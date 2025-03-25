@@ -557,4 +557,74 @@ textarea {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Itinerary Content Styles */
+.itinerary-content {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.itinerary-body {
+    line-height: 1.6;
+}
+
+.itinerary-body h3 {
+    color: var(--primary-color);
+    margin: 1.5rem 0 1rem;
+}
+
+.itinerary-body ul {
+    list-style: none;
+    padding-left: 1.5rem;
+}
+
+.itinerary-body li {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.itinerary-body li::before {
+    content: '•';
+    color: var(--primary-color);
+    position: absolute;
+    left: -1.5rem;
+}
+
+.itinerary-map {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.itinerary-tips {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.itinerary-tips h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.itinerary-tips ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.itinerary-tips li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.itinerary-tips li::before {
+    content: '✓';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
 } 

@@ -37,13 +37,46 @@
 
     <main>
         <section class="hero-banner">
-            <div class="banner-slider">
-                <!-- Slides will be added dynamically -->
+            <div class="banner-slider" id="bannerSlider">
+                <div class="banner-slide active" style="background-image: url('images/bannerSlides/bruges-1.jpg')">
+                    <div class="slide-content">
+                        <h2>Historic Bruges</h2>
+                        <p>Discover medieval charm in every corner</p>
+                    </div>
+                </div>
+                <div class="banner-slide" style="background-image: url('images/bannerSlides/bruges-2.jpg')">
+                    <div class="slide-content">
+                        <h2>Canal Tours</h2>
+                        <p>Experience the Venice of the North</p>
+                    </div>
+                </div>
+                <div class="banner-slide" style="background-image: url('images/bannerSlides/bruges-3.jpg')">
+                    <div class="slide-content">
+                        <h2>Local Culture</h2>
+                        <p>Immerse yourself in Belgian traditions</p>
+                    </div>
+                </div>
+                <div class="banner-slide" style="background-image: url('images/bannerSlides/bruges-4.jpg')">
+                    <div class="slide-content">
+                        <h2>Culinary Delights</h2>
+                        <p>Taste world-famous Belgian cuisine</p>
+                    </div>
+                </div>
+                <div class="banner-slide" style="background-image: url('images/bannerSlides/bruges-5.jpg')">
+                    <div class="slide-content">
+                        <h2>Architecture</h2>
+                        <p>Marvel at centuries of architectural beauty</p>
+                    </div>
+                </div>
             </div>
-            <div class="hero-content">
-                <h1 class="slide-up">Discover Bruges</h1>
-                <p class="slide-up">Experience the magic of medieval Belgium</p>
-                <a href="#events" class="cta-button btn-pulse">Explore Events</a>
+            <div class="banner-controls">
+                <button class="prev-slide" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="slide-indicators"></div>
+                <button class="next-slide" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </section>
 
@@ -226,5 +259,6 @@
     <script src="js/main.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/banner-slider.js"></script>
 </body>
 </html> 

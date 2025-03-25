@@ -3,93 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Tour Guide - CityGuide</title>
+    <title>Virtual Tour Guide - Bruges</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="tour-guide.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- Include your existing header -->
-    <header>
-        <!-- ... existing header code ... -->
+    <header class="main-header">
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="CityGuide Logo">
+                    <span>Bruges Guide</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="planner.html">Trip Planner</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="tour-guide.html" class="active">Virtual Guide</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="tour-guide">
-        <section class="plan-generator">
-            <div class="plan-form">
-                <h2>Generate Your Bruges Travel Plan</h2>
-                <form id="planForm">
-                    <div class="form-group">
-                        <label for="duration">Duration of Stay</label>
-                        <select id="duration" required>
-                            <option value="1">1 Day</option>
-                            <option value="2">2 Days</option>
-                            <option value="3">3 Days</option>
-                            <option value="4">4 Days</option>
-                            <option value="5">5 Days</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Interests</label>
-                        <div class="interests-checkboxes">
-                            <label><input type="checkbox" value="history"> History & Architecture</label>
-                            <label><input type="checkbox" value="art"> Art & Museums</label>
-                            <label><input type="checkbox" value="food"> Food & Beer</label>
-                            <label><input type="checkbox" value="culture"> Local Culture</label>
-                            <label><input type="checkbox" value="photography"> Photography</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="preferences">Special Preferences</label>
-                        <textarea id="preferences" placeholder="Any dietary restrictions, accessibility needs, or specific interests..."></textarea>
-                    </div>
-
-                    <button type="submit" class="generate-btn">
-                        <i class="fas fa-magic"></i> Generate Plan
-                    </button>
-                </form>
-            </div>
-            
-            <div id="planResult" class="plan-result" style="display: none;">
-                <button class="back-to-form"><i class="fas fa-arrow-left"></i> Back</button>
-                <div class="plan-content"></div>
-                <div class="plan-actions">
-                    <button class="download-btn"><i class="fas fa-download"></i> Download PDF</button>
-                    <button class="share-btn"><i class="fas fa-share-alt"></i> Share</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="map-container">
+    <div class="tour-guide-container">
+        <div class="map-section">
             <div id="map"></div>
-            <div class="location-controls">
-                <button id="centerLocation" class="control-btn">
+            <div class="map-controls">
+                <button id="centerLocation" class="control-btn" title="Center Map">
                     <i class="fas fa-crosshairs"></i>
                 </button>
-                <button id="toggleAudio" class="control-btn">
+                <button id="toggleAudio" class="control-btn" title="Toggle Audio Guide">
                     <i class="fas fa-volume-up"></i>
                 </button>
             </div>
-        </section>
+        </div>
 
-        <section class="info-panel">
-            <div class="panel-header">
-                <h2>Nearby Places</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-type="all">All</button>
-                    <button class="filter-btn" data-type="museum">Museums</button>
-                    <button class="filter-btn" data-type="church">Churches</button>
-                    <button class="filter-btn" data-type="landmark">Landmarks</button>
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Explore Bruges</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="landmarks">Landmarks</button>
+                    <button class="filter-btn" data-filter="museums">Museums</button>
+                    <button class="filter-btn" data-filter="churches">Churches</button>
                 </div>
             </div>
 
-            <div class="places-list" id="placesList">
-                <!-- Places will be added dynamically -->
+            <div class="places-container">
+                <div id="placesList" class="places-list">
+                    <!-- Places will be added dynamically -->
+                </div>
             </div>
 
-            <div class="place-details" id="placeDetails" style="display: none;">
+            <div id="placeDetails" class="place-details" style="display: none;">
                 <button class="back-btn">
                     <i class="fas fa-arrow-left"></i> Back to List
                 </button>
@@ -97,12 +65,18 @@
                     <!-- Place details will be added dynamically -->
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+
+    <div class="audio-guide-tooltip" id="audioGuideTooltip" style="display: none;">
+        <i class="fas fa-info-circle"></i>
+        <span>Click to hear about this location</span>
+    </div>
 
     <!-- Scripts -->
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/preload.js"></script>
     <script src="js/tour-guide.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html> 
