@@ -69,67 +69,136 @@ body {
 
 /* Mobile Styles */
 @media screen and (max-width: 768px) {
+    .main-header {
+        padding: 0;
+    }
+
+    .nav-container {
+        padding: 1rem;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-right {
+        display: none; /* Hide on mobile */
+    }
+
     .mobile-menu-btn {
         display: block;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 5px;
+        background: var(--primary-color);
+        color: white;
     }
 
     .nav-links {
         display: none;
+        width: 100%;
         position: absolute;
         top: 100%;
         left: 0;
-        right: 0;
         background: var(--background);
-        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         padding: 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
     }
 
     .nav-links.active {
-        display: flex;
+        display: block;
     }
 
     .nav-links li {
         margin: 0;
-        border-top: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
     }
 
     .nav-links a {
         display: block;
-        padding: 1rem;
-        text-align: left;
+        padding: 15px 20px;
+        font-size: 16px;
     }
 
-    .main-header nav {
-        position: relative;
+    /* Improved touch targets */
+    .nav-links a, 
+    .mobile-menu-btn {
+        min-height: 44px;
+        min-width: 44px;
     }
 }
 
-/* Animation for mobile menu */
+/* Mobile Image Optimizations */
 @media screen and (max-width: 768px) {
+    .banner-slide img {
+        height: 50vh;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .slide-content {
+        bottom: 30%;
+        left: 20px;
+        right: 20px;
+        text-align: center;
+    }
+
+    .slide-content h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .slide-content p {
+        font-size: 16px;
+    }
+
+    /* Optimize card images */
+    .highlight-card img {
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Adjust grid layouts */
+    .highlights-grid,
+    .events-grid,
+    .places-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    /* Improve spacing */
+    .section-padding {
+        padding: 40px 16px;
+    }
+
+    /* Better touch targets */
+    .card-overlay .explore-btn {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+/* Improved Mobile Performance */
+@media screen and (max-width: 768px) {
+    /* Reduce motion for better performance */
+    .banner-slide {
+        transition: opacity 0.4s ease;
+    }
+
+    /* Optimize images loading */
+    .banner-slide img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+
+    /* Improve touch scrolling */
     .nav-links {
-        transform: translateY(-10px);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        pointer-events: none;
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .nav-links li {
-        opacity: 0;
-        transform: translateX(-10px);
-        transition: all 0.3s ease-in-out;
-    }
-
-    .nav-links.active li {
-        opacity: 1;
-        transform: translateX(0);
-        transition-delay: calc(0.1s * var(--i));
+        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -1041,4 +1110,31 @@ footer {
     .card {
         transform: none !important;
     }
+}
+
+/* Add these to your existing CSS */
+/* Enable hardware acceleration */
+.banner-slide,
+.nav-links,
+.mobile-menu-btn {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Improve touch interactions */
+.mobile-menu-btn,
+.nav-links a,
+.card-overlay button {
+    touch-action: manipulation;
 } 
