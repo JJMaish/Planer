@@ -14,15 +14,19 @@
 <body>
     <header class="main-header">
         <nav>
-            <div class="logo hover-zoom">
-                <img src="images/logo.svg" alt="CityGuide Logo">
-                <span>CityGuide</span>
+            <div class="nav-container">
+                <a href="index.html" class="logo">Bruges Guide</a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#events" class="nav-link">Events</a></li>
-                <li><a href="planner.html" class="nav-link">Trip Planner</a></li>
-                <li><a href="tour-guide.html" class="nav-link">Virtual Guide</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="trip-planner.html">Trip Planner</a></li>
+                <li><a href="virtual-guide.html">Virtual Guide</a></li>
+                <li><a href="places-to-visit.html">Places to Visit</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
             </ul>
             <div class="nav-right">
                 <button class="theme-toggle" aria-label="Toggle theme">
@@ -30,9 +34,6 @@
                 </button>
                 <a href="#login" class="btn-primary hover-elevation">Login</a>
             </div>
-            <button class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </button>
         </nav>
     </header>
 
