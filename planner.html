@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Travel Planner - Bruges Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <!-- After opening body tag -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.svg" alt="CityGuide Logo">
+                    <span>CityGuide</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="planner.html" class="active">Trip Planner</a></li>
+                <li><a href="index.html#explore">Explore</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#stay">Stay</a></li>
+                <li><a href="index.html#food">Food & Nightlife</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#login" class="login-btn">Login</a>
+            </div>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+    
+    <main class="planner-main">
+        <section class="planner-hero">
+            <div class="hero-content">
+                <h1>Plan Your Perfect Bruges Adventure</h1>
+                <p>Let our AI create a personalized itinerary just for you</p>
+            </div>
+        </section>
+
+        <section class="planner-form-section">
+            <div class="form-container">
+                <form id="tripPlannerForm">
+                    <div class="form-group">
+                        <h3>Trip Duration</h3>
+                        <div class="duration-selector">
+                            <button type="button" class="duration-btn active" data-days="1">1 Day</button>
+                            <button type="button" class="duration-btn" data-days="2">2 Days</button>
+                            <button type="button" class="duration-btn" data-days="3">3 Days</button>
+                            <button type="button" class="duration-btn" data-days="4">4+ Days</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Your Interests</h3>
+                        <div class="interests-grid">
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="history">
+                                <i class="fas fa-landmark"></i>
+                                <span>History & Architecture</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="culture">
+                                <i class="fas fa-theater-masks"></i>
+                                <span>Arts & Culture</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="food">
+                                <i class="fas fa-utensils"></i>
+                                <span>Food & Beer</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="chocolate">
+                                <i class="fas fa-cookie"></i>
+                                <span>Chocolate & Sweets</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="photography">
+                                <i class="fas fa-camera"></i>
+                                <span>Photography</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="shopping">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span>Shopping</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Travel Style</h3>
+                        <div class="style-selector">
+                            <label class="radio-card">
+                                <input type="radio" name="pace" value="relaxed">
+                                <i class="fas fa-umbrella-beach"></i>
+                                <span>Relaxed</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="pace" value="balanced">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>Balanced</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="pace" value="active">
+                                <i class="fas fa-running"></i>
+                                <span>Active</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Additional Preferences</h3>
+                        <div class="preferences-grid">
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="preferences" value="wheelchair">
+                                <i class="fas fa-wheelchair"></i>
+                                <span>Accessibility Needed</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="preferences" value="family">
+                                <i class="fas fa-child"></i>
+                                <span>Family-Friendly</span>
+                            </label>
+                            <label class="checkbox-card">
+                                <input type="checkbox" name="preferences" value="budget">
+                                <i class="fas fa-piggy-bank"></i>
+                                <span>Budget-Conscious</span>
+                            </label>
+                        </div>
+                        <textarea name="special_requests" placeholder="Any special requests? (e.g., dietary restrictions, specific interests)"></textarea>
+                    </div>
+
+                    <button type="submit" class="generate-btn">
+                        <i class="fas fa-magic"></i> Generate My Itinerary
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section id="itineraryResult" class="itinerary-section" style="display: none">
+            <div class="itinerary-container">
+                <div class="itinerary-header">
+                    <h2>Your Personalized Bruges Itinerary</h2>
+                    <div class="itinerary-actions">
+                        <button class="action-btn" id="editPlan">
+                            <i class="fas fa-edit"></i> Edit Plan
+                        </button>
+                        <button class="action-btn" id="downloadPDF">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
+                        <button class="action-btn" id="shareBtn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+                <div id="itineraryContent"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include your existing footer -->
+    
+    <div class="chat-widget">
+        <button class="chat-toggle">
+            <i class="fas fa-comments"></i>
+            <span>Need Help?</span>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/planner.js"></script>
+</body>
+</html> 
