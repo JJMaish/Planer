@@ -4,336 +4,279 @@
     background: var(--light-bg);
 }
 
+/* Main Layout */
+.planner-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
 /* Hero Section */
 .planner-hero {
-    height: 80vh;
     position: relative;
-    overflow: hidden;
-}
-
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.hero-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-video .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
-}
-
-.hero-content {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('Data/hero-planner.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
     color: white;
-    padding: 0 2rem;
+    text-align: center;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    font-weight: 700;
+    animation: fadeInUp 0.8s ease;
 }
 
-.start-planning-btn {
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: var(--transition);
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease;
+}
+
+/* Weather Widget */
+.weather-widget {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 10px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-}
-
-.start-planning-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-/* Form Section */
-.planner-form {
-    padding: 5rem 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form-container {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    gap: 1rem;
 }
 
 /* Progress Bar */
 .progress-bar {
-    position: relative;
-    background: #f0f0f0;
-    height: 4px;
     margin-bottom: 2rem;
 }
 
-.progress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: var(--primary-color);
-    transition: width 0.3s ease;
-}
-
-.steps {
+.progress-steps {
     display: flex;
     justify-content: space-between;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .step {
-    position: relative;
+    flex: 1;
     text-align: center;
+    padding: 1rem;
+    position: relative;
+    color: #666;
 }
 
-.step::before {
+.step.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.step::after {
     content: '';
     position: absolute;
-    top: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background: #f0f0f0;
-    border-radius: 50%;
-    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #ddd;
 }
 
-.step.active::before {
+.step.active::after {
     background: var(--primary-color);
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-bottom: 3rem;
 }
 
 /* Form Steps */
 .form-step {
     display: none;
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.3s, transform 0.3s;
+    animation: fadeIn 0.5s ease;
 }
 
 .form-step.active {
     display: block;
-    opacity: 1;
-    transform: translateX(0);
 }
 
-.form-step h2 {
-    margin-bottom: 2rem;
-    color: var(--secondary-color);
-}
-
-/* Input Styles */
-.input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-}
-
-.input-group input,
-.input-group select,
-.input-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-/* Interests Grid */
+/* Interest Cards */
 .interests-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-    padding: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
 .interest-card {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 1.2rem 1rem;
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 1.5rem;
     text-align: center;
     cursor: pointer;
-    transition: var(--transition);
-    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .interest-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.interest-card input[type="checkbox"] {
+    display: none;
+}
+
+.interest-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.interest-card.selected {
     border-color: var(--primary-color);
+    background: var(--primary-color-light);
 }
 
-.interest-card span {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-color);
+/* Budget Options */
+.budget-options {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
-.interest-card input[type="checkbox"]:checked ~ * {
-    color: var(--primary-color);
+.budget-option {
+    text-align: center;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    transition: all 0.3s ease;
 }
 
-.interest-card input[type="checkbox"]:checked + i {
-    color: var(--primary-color);
-    transform: scale(1.1);
+.budget-option:hover {
+    transform: translateY(-2px);
 }
 
-/* Navigation Buttons */
-.form-navigation {
+.budget-option input[type="radio"] {
+    display: none;
+}
+
+.budget-option.selected {
+    border-color: var(--primary-color);
+    background: var(--primary-color-light);
+}
+
+/* Buttons */
+.button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
 }
 
-.prev-btn,
-.next-btn,
-.generate-btn {
-    padding: 0.8rem 1.5rem;
+.next-btn, .prev-btn, .generate-btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
     border: none;
-    border-radius: 25px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
-.prev-btn {
-    background: #f8f9fa;
-    color: var(--text-color);
-}
-
-.next-btn,
-.generate-btn {
+.next-btn, .generate-btn {
     background: var(--primary-color);
     color: white;
 }
 
-.generate-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
+.prev-btn {
+    background: #eee;
+    color: #666;
 }
 
-/* Add these styles to fix the date inputs and form layout */
-.date-inputs {
+.next-btn:hover, .generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Itinerary Result */
+.itinerary-section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.itinerary-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.input-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-/* Fix the range slider styling */
-.range-slider {
-    position: relative;
-    padding: 1rem 0;
-}
-
-.range-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--text-color);
-}
-
-/* Fix radio group styling */
-.radio-group {
-    display: flex;
     gap: 2rem;
-    padding: 0.5rem 0;
+    margin: 2rem 0;
 }
 
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
+.timeline-view {
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
 }
 
-/* Fix mobile menu */
-.mobile-menu {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
+.map-view {
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .planner-form {
+    .planner-hero {
         padding: 3rem 1rem;
     }
 
-    .form-container {
-        padding: 1.5rem;
+    .hero-content h1 {
+        font-size: 2rem;
     }
 
     .interests-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
-    .mobile-menu {
-        display: block;
-    }
-
-    .date-inputs {
+    .itinerary-body {
         grid-template-columns: 1fr;
     }
 
-    .radio-group {
+    .budget-options {
         flex-direction: column;
         gap: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .interests-grid {
-        grid-template-columns: 1fr;
     }
 }
 
@@ -343,31 +286,9 @@
     background: var(--light-bg);
 }
 
-.planner-hero {
-    height: 40vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('../images/bruges-hero.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
 .planner-form-section {
     margin-top: -50px;
     padding: 0 2rem;
-}
-
-.form-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .form-group {
@@ -627,4 +548,370 @@ textarea {
     color: var(--primary-color);
     position: absolute;
     left: 0;
+}
+
+.planner-form {
+    padding: 4rem 0;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.generate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.generate-btn:hover {
+    background: var(--primary-color-dark);
+}
+
+@media (max-width: 768px) {
+    .planner-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .planner-form {
+        padding: 2rem 1rem;
+    }
+}
+
+.planner-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Sidebar Styles */
+.planner-sidebar {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+.trip-details {
+    margin-bottom: 2rem;
+}
+
+.date-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: #333;
+}
+
+.input-group input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Search and Filters */
+.search-box {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.search-box i {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    background: white;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Attractions Grid */
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.attraction-item {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: move;
+}
+
+.attraction-image {
+    height: 120px;
+    overflow: hidden;
+}
+
+.attraction-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.attraction-item:hover .attraction-image img {
+    transform: scale(1.05);
+}
+
+.attraction-info {
+    padding: 1rem;
+}
+
+.attraction-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.rating {
+    color: #ffd700;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.itinerary-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.item-time {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.remove-item:hover {
+    background: #ffeeee;
+}
+
+.itinerary-stats {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+}
+
+.drag-over {
+    background: #f0f8ff;
+    border: 2px dashed var(--primary-color);
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+/* Improved Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.itinerary-item {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Itinerary Builder */
+.itinerary-builder {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+}
+
+.days-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.day-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.day-items {
+    min-height: 100px;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.itinerary-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.itinerary-actions button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.save-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.share-btn {
+    background: #4285F4;
+    color: white;
+}
+
+.print-btn {
+    background: #34A853;
+    color: white;
+}
+
+.itinerary-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+    .planner-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .planner-hero h1 {
+        font-size: 2rem;
+    }
+
+    .filters {
+        justify-content: center;
+    }
+
+    .itinerary-actions {
+        flex-direction: column;
+    }
+
+    .itinerary-actions button {
+        width: 100%;
+        justify-content: center;
+    }
 } 

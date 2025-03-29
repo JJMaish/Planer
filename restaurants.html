@@ -5,83 +5,824 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurants - Bruges City Guide</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="animations.css">
     <link rel="stylesheet" href="restaurants.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <header class="main-header">
         <nav>
-            <a href="index.html" class="logo">Bruges Guide</a>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
+                </a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="places-to-visit.html">Places to Visit</a></li>
                 <li><a href="restaurants.html" class="active">Restaurants</a></li>
                 <li><a href="tour-guide.html">Virtual Guide</a></li>
+                <li><a href="planner.html">Trip Planner</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="restaurants-hero">
-            <h1>Dining in Bruges</h1>
-            <p>Experience the finest Belgian cuisine and local delicacies</p>
+            <h1>Restaurants in Bruges</h1>
+            <p>Discover the finest dining experiences in the heart of Bruges</p>
         </section>
 
-        <section class="restaurants-grid">
+        <div class="view-controls">
+            <button class="view-toggle active" data-view="grid">
+                <i class="fas fa-th"></i> Grid View
+            </button>
+            <button class="view-toggle" data-view="list">
+                <i class="fas fa-list"></i> List View
+            </button>
+        </div>
+
+        <section class="restaurants-container grid-view">
+            <!-- That's Toast -->
             <div class="restaurant-card" data-aos="fade-up">
-                <img src="Data/Restaurants/restaurant1.jpg" alt="De Halve Maan">
                 <div class="restaurant-content">
-                    <h2>De Halve Maan</h2>
-                    <p class="cuisine"><i class="fas fa-utensils"></i> Belgian, Brewery</p>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Walplein 26</p>
-                    <p>Historic family brewery and restaurant serving traditional Belgian dishes and fresh beer.</p>
-                    <div class="restaurant-details">
-                        <span><i class="far fa-clock"></i> Hours: 11:00 - 23:00</span>
-                        <span><i class="fas fa-star"></i> Rating: 4.5</span>
+                    <div class="restaurant-main-info">
+                        <h2>That's Toast</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Brunch</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Dweersstraat 4</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=That's+Toast+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- De Gastro -->
             <div class="restaurant-card" data-aos="fade-up">
-                <img src="Data/Restaurants/restaurant2.jpg" alt="Den Dyver">
                 <div class="restaurant-content">
-                    <h2>Den Dyver</h2>
-                    <p class="cuisine"><i class="fas fa-utensils"></i> Belgian, Fine Dining</p>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Dijver 5</p>
-                    <p>Elegant restaurant specializing in beer cuisine, pairing Belgian beers with gourmet dishes.</p>
-                    <div class="restaurant-details">
-                        <span><i class="far fa-clock"></i> Hours: 12:00 - 22:00</span>
-                        <span><i class="fas fa-star"></i> Rating: 4.7</span>
+                    <div class="restaurant-main-info">
+                        <h2>De Gastro</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Braambergstraat 6</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gastro+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Mozart Restaurant -->
             <div class="restaurant-card" data-aos="fade-up">
-                <img src="Data/Restaurants/restaurant3.jpg" alt="Park Restaurant">
                 <div class="restaurant-content">
-                    <h2>Park Restaurant</h2>
-                    <p class="cuisine"><i class="fas fa-utensils"></i> French, Belgian</p>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Minderbroedersstraat 1</p>
-                    <p>Michelin-starred restaurant offering innovative Belgian-French cuisine in an elegant setting.</p>
-                    <div class="restaurant-details">
-                        <span><i class="far fa-clock"></i> Hours: 19:00 - 22:30</span>
-                        <span><i class="fas fa-star"></i> Rating: 4.8</span>
+                    <div class="restaurant-main-info">
+                        <h2>Mozart Restaurant Brugge</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Sint-Jakobsstraat 9</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Mozart+Restaurant+Brugge" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ONE Restaurant -->
             <div class="restaurant-card" data-aos="fade-up">
-                <img src="Data/Restaurants/restaurant4.jpg" alt="Bistro Refter">
                 <div class="restaurant-content">
-                    <h2>Bistro Refter</h2>
-                    <p class="cuisine"><i class="fas fa-utensils"></i> Belgian, Bistro</p>
-                    <p class="location"><i class="fas fa-map-marker-alt"></i> Molenmeers 2</p>
-                    <p>Charming bistro serving classic Belgian dishes in a cozy atmosphere.</p>
-                    <div class="restaurant-details">
-                        <span><i class="far fa-clock"></i> Hours: 12:00 - 21:30</span>
-                        <span><i class="fas fa-star"></i> Rating: 4.4</span>
+                    <div class="restaurant-main-info">
+                        <h2>ONE Restaurant</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Arsenaalstraat 55</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=ONE+Restaurant+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- De Pepermolen -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>De Pepermolen</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Langestraat 16</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Pepermolen+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Poules Moules -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Poules Moules</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Simon Stevinplein 9</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Poules+Moules+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bistro Bruut -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Bistro Bruut</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Meestraat 9</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bistro+Bruut+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balthasar -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Balthasar Brugge</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Breakfast</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Sint-Amandsstraat 37</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Balthasar+Brugge" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LESS Eatery -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>LESS Eatery</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> 't Zand 21a</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=LESS+Eatery+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- De Wijngaert -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Restaurant De Wijngaert</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Wijngaardstraat 15</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Restaurant+De+Wijngaert+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Olive Tree -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>The Olive Tree Brugge</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Greek</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Wollestraat 3</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=The+Olive+Tree+Brugge" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guillaume -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Guillaume</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Korte Lane 20</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Guillaume+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- De Stove -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>De Stove</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Kleine Sint-Amandsstraat 4</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Stove+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bij Koen & Marijke -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Bij Koen & Marijke</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Hooistraat 42</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bij+Koen+%26+Marijke+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réliva -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Réliva</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Goezeputstraat 6</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Reliva+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Le Mystique -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Le Mystique</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Niklaas Desparsstraat 11</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Mystique+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Le Chef et Moi -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Le Chef et Moi</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Dijver 13</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Chef+et+Moi+Bruges+Belgium" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Franco Belge Restaurant -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Franco Belge Restaurant</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Langestraat 109</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Franco+Belge+Restaurant+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opus Latino -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Opus Latino</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Burg 15</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Opus+Latino+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ONSLOW -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>ONSLOW</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Jeruzalemstraat 53</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=ONSLOW+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 't Zandkoekje -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>'t Zandkoekje</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Smedenstraat 7</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=t+Zandkoekje+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otomat -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Otomat</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Simon Stevinplein 12</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Otomat+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- El Churrasco Argentino -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>El Churrasco Argentino</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Vlamingstraat 76</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=El+Churrasco+Argentino+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assiette Blanche -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Assiette Blanche</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Philipstockstraat 23</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Assiette+Blanche+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant Goesepitte 43 -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Restaurant Goesepitte 43</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Goezeputstraat 43</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Restaurant+Goesepitte+43+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Malesherbes -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Malesherbes (Delicatessen)</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Stoofstraat 5</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Malesherbes+Delicatessen+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Juliette -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Juliette</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Dweersstraat 15</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Juliette+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cambrinus -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Cambrinus</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Brasserie</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Philipstockstraat 19</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Cambrinus+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seafoodbar Belge -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Seafoodbar Belge</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Seafood</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Eiermarkt 14</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Seafoodbar+Belge+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sans Cravate -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Sans Cravate</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Fine Dining</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Langestraat 159</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Sans+Cravate+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- @Tattie's -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>@Tattie's</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Breakfast</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Jan van Eyckplein 3</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=@Tattie's+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jilles Bier & Burgers -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Jilles Bier & Burgers Brugge</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Hamburger</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Braambergstraat 10</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Jilles+Bier+%26+Burgers+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 't Nieuw Walnutje -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>'t Nieuw Walnutje</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Walplein 3</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=t+Nieuw+Walnutje+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mr Spaghetti -->
+            <div class="restaurant-card" data-aos="fade-up">
+                <div class="restaurant-content">
+                    <div class="restaurant-main-info">
+                        <h2>Mr Spaghetti</h2>
+                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
+                        <p class="address"><i class="fas fa-map-marker-alt"></i> Mariastraat 38</p>
+                        <div class="description">
+                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        </div>
+                        <div class="details">
+                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Mr+Spaghetti+Bruges" target="_blank" class="directions-btn">
+                                <i class="fas fa-directions"></i> Directions
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,15 +855,7 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            offset: 100,
-            once: true
-        });
-    </script>
-    <script src="js/main.js"></script>
+    <script src="js/mobile-menu.js"></script>
     <script src="js/restaurants.js"></script>
 </body>
 </html> 

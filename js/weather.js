@@ -94,4 +94,40 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         return icons[code] || 'fas fa-sun';
     }
-}); 
+});
+
+class WeatherAPI {
+    constructor(apiKey) {
+        this.apiKey = apiKey;
+        this.baseUrl = 'https://api.openweathermap.org/data/2.5';
+    }
+
+    async getWeather(city) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/weather?q=${city}&appid=${this.apiKey}&units=metric`
+            );
+            
+            if (!response.ok) {
+                throw new Error('Weather data not available');
+            }
+            
+            return await response.json();
+        } catch (error) {
+            console.error('Weather API Error:', error);
+            this.handleError(error);
+        }
+    }
+
+    handleError(error) {
+        const weatherContainer = document.querySelector('.weather-container');
+        if (weatherContainer) {
+            weatherContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Unable to load weather data. Please try again later.</p>
+                </div>
+            `;
+        }
+    }
+} 

@@ -1,14 +1,14 @@
 class BannerSlider {
     constructor() {
         this.slider = document.getElementById('bannerSlider');
-        this.slides = this.slider.querySelectorAll('.banner-slide');
-        this.prevButton = document.querySelector('.prev-slide');
-        this.nextButton = document.querySelector('.next-slide');
-        this.indicatorsContainer = document.querySelector('.slide-indicators');
+        this.slides = Array.from(this.slider.querySelectorAll('.banner-slide'));
+        this.controls = document.querySelector('.banner-controls');
+        this.indicators = document.querySelector('.slide-indicators');
         this.currentSlide = 0;
+        this.slideCount = this.slides.length;
         this.isAnimating = false;
-        this.autoPlayInterval = null;
-        this.autoPlayDelay = 5000; // 5 seconds
+        this.autoPlayDelay = 5000;
+        this.autoPlayTimeout = null;
 
         this.init();
     }
@@ -17,44 +17,28 @@ class BannerSlider {
         // Create indicators
         this.createIndicators();
         
-        // Add event listeners
-        this.prevButton.addEventListener('click', () => {
-            if (!this.isAnimating) this.prevSlide();
-        });
-        this.nextButton.addEventListener('click', () => {
-            if (!this.isAnimating) this.nextSlide();
-        });
+        // Add navigation controls
+        this.controls.querySelector('.prev-slide').addEventListener('click', () => this.prevSlide());
+        this.controls.querySelector('.next-slide').addEventListener('click', () => this.nextSlide());
+        
+        // Add touch support
+        this.addTouchSupport();
         
         // Start autoplay
         this.startAutoPlay();
-
-        // Pause autoplay on hover
+        
+        // Pause on hover
         this.slider.addEventListener('mouseenter', () => this.stopAutoPlay());
         this.slider.addEventListener('mouseleave', () => this.startAutoPlay());
-
-        // Add touch support
-        this.addTouchSupport();
-
-        // Show first slide
-        this.goToSlide(0);
     }
 
     createIndicators() {
-        for (let i = 0; i < this.slides.length; i++) {
+        this.slides.forEach((_, index) => {
             const indicator = document.createElement('div');
             indicator.classList.add('indicator');
-            if (i === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => {
-                if (!this.isAnimating) this.goToSlide(i);
-            });
-            this.indicatorsContainer.appendChild(indicator);
-        }
-    }
-
-    updateIndicators() {
-        const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
-        indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === this.currentSlide);
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => this.goToSlide(index));
+            this.indicators.appendChild(indicator);
         });
     }
 
@@ -63,45 +47,39 @@ class BannerSlider {
         
         this.isAnimating = true;
         
-        // Remove active class from current slide
-        this.slides[this.currentSlide].classList.remove('active');
+        // Update indicators
+        this.indicators.children[this.currentSlide].classList.remove('active');
+        this.indicators.children[index].classList.add('active');
         
-        // Update current slide index
+        // Update slides
+        this.slides[this.currentSlide].classList.remove('active');
+        this.slides[index].classList.add('active');
+        
         this.currentSlide = index;
         
-        // Add active class to new slide
-        this.slides[this.currentSlide].classList.add('active');
-        
-        // Update indicators
-        this.updateIndicators();
-        
-        // Reset animation flag after transition
+        // Reset animation flag
         setTimeout(() => {
             this.isAnimating = false;
-        }, 800); // Match this with CSS transition duration
+        }, 800);
     }
 
     nextSlide() {
-        const next = (this.currentSlide + 1) % this.slides.length;
-        this.goToSlide(next);
+        this.goToSlide((this.currentSlide + 1) % this.slideCount);
     }
 
     prevSlide() {
-        const prev = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-        this.goToSlide(prev);
+        this.goToSlide((this.currentSlide - 1 + this.slideCount) % this.slideCount);
     }
 
     startAutoPlay() {
-        if (this.autoPlayInterval) return;
-        this.autoPlayInterval = setInterval(() => {
-            if (!this.isAnimating) this.nextSlide();
-        }, this.autoPlayDelay);
+        this.stopAutoPlay();
+        this.autoPlayTimeout = setInterval(() => this.nextSlide(), this.autoPlayDelay);
     }
 
     stopAutoPlay() {
-        if (this.autoPlayInterval) {
-            clearInterval(this.autoPlayInterval);
-            this.autoPlayInterval = null;
+        if (this.autoPlayTimeout) {
+            clearInterval(this.autoPlayTimeout);
+            this.autoPlayTimeout = null;
         }
     }
 
@@ -112,21 +90,28 @@ class BannerSlider {
         this.slider.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
             this.stopAutoPlay();
-        }, false);
+        }, { passive: true });
 
         this.slider.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].clientX;
-            if (touchStartX - touchEndX > 50) {
-                if (!this.isAnimating) this.nextSlide();
-            } else if (touchEndX - touchStartX > 50) {
-                if (!this.isAnimating) this.prevSlide();
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    this.nextSlide();
+                } else {
+                    this.prevSlide();
+                }
             }
+
             this.startAutoPlay();
-        }, false);
+        }, { passive: true });
     }
 }
 
-// Initialize the slider when the DOM is loaded
+// Initialize slider
 document.addEventListener('DOMContentLoaded', () => {
-    new BannerSlider();
+    if (document.getElementById('bannerSlider')) {
+        new BannerSlider();
+    }
 }); 

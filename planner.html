@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Travel Planner - Bruges Guide</title>
+    <title>Smart Trip Planner - Bruges Guide</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="planner.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Add Weather Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
 </head>
 <body>
-    <!-- After opening body tag -->
-    <header>
+    <header class="main-header">
         <nav>
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.svg" alt="CityGuide Logo">
-                    <span>CityGuide</span>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="places-to-visit.html">Places to Visit</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="tour-guide.html">Virtual Guide</a></li>
                 <li><a href="planner.html" class="active">Trip Planner</a></li>
-                <li><a href="index.html#explore">Explore</a></li>
-                <li><a href="index.html#events">Events</a></li>
-                <li><a href="index.html#stay">Stay</a></li>
-                <li><a href="index.html#food">Food & Nightlife</a></li>
             </ul>
-            <div class="nav-right">
-                <button class="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <a href="#login" class="login-btn">Login</a>
-            </div>
-            <button class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </button>
         </nav>
     </header>
-    
+
     <main class="planner-main">
         <section class="planner-hero">
             <div class="hero-content">
-                <h1>Plan Your Perfect Bruges Adventure</h1>
-                <p>Let our AI create a personalized itinerary just for you</p>
+                <h1>Smart Bruges Trip Planner</h1>
+                <p>AI-powered personalized itineraries with real-time updates</p>
+            </div>
+            <div class="weather-widget">
+                <!-- Weather info will be populated by JS -->
             </div>
         </section>
 
         <section class="planner-form-section">
             <div class="form-container">
+                <div class="progress-bar">
+                    <div class="progress-steps">
+                        <div class="step active" data-step="1">Trip Details</div>
+                        <div class="step" data-step="2">Interests</div>
+                        <div class="step" data-step="3">Preferences</div>
+                        <div class="step" data-step="4">Review</div>
+                    </div>
+                    <div class="progress-line">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
                 <form id="tripPlannerForm">
-                    <div class="form-group">
-                        <h3>Trip Duration</h3>
-                        <div class="duration-selector">
-                            <button type="button" class="duration-btn active" data-days="1">1 Day</button>
-                            <button type="button" class="duration-btn" data-days="2">2 Days</button>
-                            <button type="button" class="duration-btn" data-days="3">3 Days</button>
-                            <button type="button" class="duration-btn" data-days="4">4+ Days</button>
+                    <!-- Step 1: Trip Details -->
+                    <div class="form-step active" data-step="1">
+                        <h2>Trip Details</h2>
+                        <div class="date-picker">
+                            <div class="input-group">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date" required>
+                            </div>
                         </div>
+                        <div class="budget-selector">
+                            <h3>Budget Level</h3>
+                            <div class="budget-options">
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="budget">
+                                    <i class="fas fa-euro-sign"></i>
+                                    <span>Budget</span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="moderate" checked>
+                                    <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
+                                    <span>Moderate</span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="budget" value="luxury">
+                                    <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
+                                    <span>Luxury</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" class="next-btn">Next</button>
                     </div>
 
-                    <div class="form-group">
-                        <h3>Your Interests</h3>
+                    <!-- Step 2: Interests -->
+                    <div class="form-step" data-step="2">
+                        <h2>Your Interests</h2>
                         <div class="interests-grid">
                             <label class="interest-card">
                                 <input type="checkbox" name="interests" value="history">
@@ -69,14 +104,19 @@
                                 <span>History & Architecture</span>
                             </label>
                             <label class="interest-card">
-                                <input type="checkbox" name="interests" value="culture">
-                                <i class="fas fa-theater-masks"></i>
-                                <span>Arts & Culture</span>
+                                <input type="checkbox" name="interests" value="art">
+                                <i class="fas fa-palette"></i>
+                                <span>Arts & Museums</span>
                             </label>
                             <label class="interest-card">
                                 <input type="checkbox" name="interests" value="food">
                                 <i class="fas fa-utensils"></i>
-                                <span>Food & Beer</span>
+                                <span>Food & Dining</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="beer">
+                                <i class="fas fa-beer"></i>
+                                <span>Beer & Breweries</span>
                             </label>
                             <label class="interest-card">
                                 <input type="checkbox" name="interests" value="chocolate">
@@ -84,72 +124,120 @@
                                 <span>Chocolate & Sweets</span>
                             </label>
                             <label class="interest-card">
-                                <input type="checkbox" name="interests" value="photography">
-                                <i class="fas fa-camera"></i>
-                                <span>Photography</span>
-                            </label>
-                            <label class="interest-card">
                                 <input type="checkbox" name="interests" value="shopping">
                                 <i class="fas fa-shopping-bag"></i>
                                 <span>Shopping</span>
                             </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="nature">
+                                <i class="fas fa-tree"></i>
+                                <span>Parks & Nature</span>
+                            </label>
+                            <label class="interest-card">
+                                <input type="checkbox" name="interests" value="photo">
+                                <i class="fas fa-camera"></i>
+                                <span>Photography</span>
+                            </label>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-btn">Previous</button>
+                            <button type="button" class="next-btn">Next</button>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <h3>Travel Style</h3>
-                        <div class="style-selector">
-                            <label class="radio-card">
-                                <input type="radio" name="pace" value="relaxed">
-                                <i class="fas fa-umbrella-beach"></i>
-                                <span>Relaxed</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="pace" value="balanced">
-                                <i class="fas fa-balance-scale"></i>
-                                <span>Balanced</span>
-                            </label>
-                            <label class="radio-card">
-                                <input type="radio" name="pace" value="active">
-                                <i class="fas fa-running"></i>
-                                <span>Active</span>
-                            </label>
+                    <!-- Step 3: Preferences -->
+                    <div class="form-step" data-step="3">
+                        <h2>Travel Preferences</h2>
+                        <div class="preferences-section">
+                            <h3>Mobility Preferences</h3>
+                            <div class="mobility-options">
+                                <label class="mobility-option">
+                                    <input type="checkbox" name="mobility" value="walking" checked>
+                                    <i class="fas fa-walking"></i>
+                                    <span>Walking</span>
+                                </label>
+                                <label class="mobility-option">
+                                    <input type="checkbox" name="mobility" value="transit">
+                                    <i class="fas fa-bus"></i>
+                                    <span>Public Transit</span>
+                                </label>
+                                <label class="mobility-option">
+                                    <input type="checkbox" name="mobility" value="bike">
+                                    <i class="fas fa-bicycle"></i>
+                                    <span>Bike</span>
+                                </label>
+                            </div>
+
+                            <h3>Dietary Restrictions</h3>
+                            <div class="dietary-options">
+                                <label class="dietary-option">
+                                    <input type="checkbox" name="dietary" value="vegetarian">
+                                    <span>Vegetarian</span>
+                                </label>
+                                <label class="dietary-option">
+                                    <input type="checkbox" name="dietary" value="vegan">
+                                    <span>Vegan</span>
+                                </label>
+                                <label class="dietary-option">
+                                    <input type="checkbox" name="dietary" value="gluten-free">
+                                    <span>Gluten-Free</span>
+                                </label>
+                            </div>
+
+                            <h3>Additional Preferences</h3>
+                            <div class="additional-prefs">
+                                <label class="pref-option">
+                                    <input type="checkbox" name="preferences" value="accessibility">
+                                    <i class="fas fa-wheelchair"></i>
+                                    <span>Accessibility Needed</span>
+                                </label>
+                                <label class="pref-option">
+                                    <input type="checkbox" name="preferences" value="family">
+                                    <i class="fas fa-child"></i>
+                                    <span>Family-Friendly</span>
+                                </label>
+                                <label class="pref-option">
+                                    <input type="checkbox" name="preferences" value="quiet">
+                                    <i class="fas fa-volume-down"></i>
+                                    <span>Prefer Quiet Places</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-btn">Previous</button>
+                            <button type="button" class="next-btn">Next</button>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <h3>Additional Preferences</h3>
-                        <div class="preferences-grid">
-                            <label class="checkbox-card">
-                                <input type="checkbox" name="preferences" value="wheelchair">
-                                <i class="fas fa-wheelchair"></i>
-                                <span>Accessibility Needed</span>
-                            </label>
-                            <label class="checkbox-card">
-                                <input type="checkbox" name="preferences" value="family">
-                                <i class="fas fa-child"></i>
-                                <span>Family-Friendly</span>
-                            </label>
-                            <label class="checkbox-card">
-                                <input type="checkbox" name="preferences" value="budget">
-                                <i class="fas fa-piggy-bank"></i>
-                                <span>Budget-Conscious</span>
-                            </label>
+                    <!-- Step 4: Review -->
+                    <div class="form-step" data-step="4">
+                        <h2>Review Your Preferences</h2>
+                        <div class="review-summary">
+                            <!-- Will be populated by JS -->
                         </div>
-                        <textarea name="special_requests" placeholder="Any special requests? (e.g., dietary restrictions, specific interests)"></textarea>
+                        <div class="weather-alert">
+                            <!-- Weather alerts will be shown here -->
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="prev-btn">Previous</button>
+                            <button type="submit" class="generate-btn">
+                                <i class="fas fa-magic"></i> Generate Smart Itinerary
+                            </button>
+                        </div>
                     </div>
-
-                    <button type="submit" class="generate-btn">
-                        <i class="fas fa-magic"></i> Generate My Itinerary
-                    </button>
                 </form>
             </div>
         </section>
 
+        <!-- Itinerary Result Section -->
         <section id="itineraryResult" class="itinerary-section" style="display: none">
             <div class="itinerary-container">
                 <div class="itinerary-header">
-                    <h2>Your Personalized Bruges Itinerary</h2>
+                    <h2>Your Smart Bruges Itinerary</h2>
+                    <div class="real-time-updates">
+                        <div class="weather-summary"></div>
+                        <div class="alerts"></div>
+                    </div>
                     <div class="itinerary-actions">
                         <button class="action-btn" id="editPlan">
                             <i class="fas fa-edit"></i> Edit Plan
@@ -162,21 +250,80 @@
                         </button>
                     </div>
                 </div>
-                <div id="itineraryContent"></div>
+                <div class="itinerary-body">
+                    <div class="timeline-view">
+                        <!-- Will be populated by JS -->
+                    </div>
+                    <div class="map-view">
+                        <div id="map"></div>
+                    </div>
+                </div>
+                <div class="smart-suggestions">
+                    <h3>Smart Suggestions</h3>
+                    <div class="suggestion-cards">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Include your existing footer -->
-    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bruges City Guide</h3>
+                <p>Your complete guide to exploring the Venice of the North</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places to Visit</a></li>
+                    <li><a href="restaurants.html">Restaurants</a></li>
+                    <li><a href="tour-guide.html">Virtual Guide</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@brugesguide.com</p>
+                <p>Phone: +32 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges City Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
     <div class="chat-widget">
         <button class="chat-toggle">
             <i class="fas fa-comments"></i>
             <span>Need Help?</span>
         </button>
+        <div class="chat-container" style="display: none">
+            <!-- Chat interface will be added here -->
+        </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
     <script src="js/planner.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/map.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dotenv@10.0.0/lib/main.min.js"></script>
+    <script>
+        // Load environment variables
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/.env');
+                const envFile = await response.text();
+                const env = require('dotenv').parse(envFile);
+                Object.assign(process.env, env);
+            } catch (error) {
+                console.error('Error loading environment variables:', error);
+            }
+        });
+    </script>
 </body>
 </html> 
