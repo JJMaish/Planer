@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityGuide - Your Ultimate Travel Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&libraries=places" async defer></script>
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="logo hover-zoom">
+                <img src="images/logo.svg" alt="CityGuide Logo">
+                <span>CityGuide</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="planner.html" class="nav-link">Trip Planner</a></li>
+                <li><a href="tour-guide.html" class="nav-link">Virtual Guide</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#login" class="btn-primary hover-elevation">Login</a>
+            </div>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-banner">
+            <div class="banner-slider" id="bannerSlider">
+                <div class="banner-slide active">
+                    <img src="bannerSlides/banner1.jpg" alt="Historic Bruges Canal">
+                    <div class="slide-content">
+                        <h2>Historic Bruges</h2>
+                        <p>Discover medieval charm in every corner</p>
+                    </div>
+                </div>
+                <div class="banner-slide">
+                    <img src="bannerSlides/banner2.jpg" alt="Bruges Market Square">
+                    <div class="slide-content">
+                        <h2>Market Square</h2>
+                        <p>Experience the heart of medieval Bruges</p>
+                    </div>
+                </div>
+                <div class="banner-slide">
+                    <img src="bannerSlides/banner3.jpg" alt="Belgian Chocolate Shop">
+                    <div class="slide-content">
+                        <h2>Belgian Delights</h2>
+                        <p>Taste world-famous chocolates and treats</p>
+                    </div>
+                </div>
+                <div class="banner-slide">
+                    <img src="bannerSlides/banner4.jpg" alt="Belfry Tower">
+                    <div class="slide-content">
+                        <h2>Iconic Landmarks</h2>
+                        <p>Climb the famous Belfry Tower</p>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-controls">
+                <button class="prev-slide" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="slide-indicators"></div>
+                <button class="next-slide" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <section id="events" class="events-section">
+            <div class="section-header">
+                <h2>Upcoming Events</h2>
+                <div class="filter-container">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Music</button>
+                    <button class="filter-btn">Food</button>
+                    <button class="filter-btn">Culture</button>
+                </div>
+            </div>
+
+            <div class="events-grid">
+                <!-- Event cards will be added dynamically -->
+            </div>
+        </section>
+
+        <section class="weather-forecast" data-aos="fade-up">
+            <div class="weather-container">
+                <div class="current-weather">
+                    <div class="weather-header">
+                        <h2>Local Weather</h2>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> <span id="city">Loading...</span></p>
+                    </div>
+                    <div class="weather-info">
+                        <div class="weather-main">
+                            <i id="weather-icon" class="fas fa-sun"></i>
+                            <div class="temperature">
+                                <span id="temperature">--</span>°C
+                            </div>
+                        </div>
+                        <div class="weather-details">
+                            <p id="weather-description">Loading weather...</p>
+                            <div class="weather-stats">
+                                <span><i class="fas fa-tint"></i> Humidity: <span id="humidity">--%</span></span>
+                                <span><i class="fas fa-wind"></i> Wind: <span id="wind-speed">-- km/h</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecast">
+                    <h3>5-Day Forecast</h3>
+                    <div class="forecast-grid" id="forecast-container">
+                        <!-- Forecast items will be added via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured">
+            <h2 data-aos="fade-up">City Highlights</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="card-image">
+                        <img src="images/attractions.jpg" alt="Top Attractions">
+                        <div class="card-overlay">
+                            <button class="explore-btn">Explore Now</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Top Attractions</h3>
+                        <p>Must-visit landmarks and hidden gems</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-star"></i> 4.8</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 50+ Places</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="card-image">
+                        <img src="images/events.jpg" alt="Events">
+                        <div class="card-overlay">
+                            <button class="explore-btn">Explore Now</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Events</h3>
+                        <p>What's happening in the city</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-star"></i> 4.5</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 20+ Events</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-card" data-aos="fade-up">
+                    <div class="card-image">
+                        <img src="images/restaurants.jpg" alt="Restaurants">
+                        <div class="card-overlay">
+                            <button class="explore-btn">Explore Now</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Restaurants</h3>
+                        <p>Best local dining experiences</p>
+                        <div class="card-stats">
+                            <span><i class="fas fa-star"></i> 4.7</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 100+ Places</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="ai-planner" data-aos="fade-up">
+            <div class="planner-content">
+                <h2>Your Personal AI Trip Planner</h2>
+                <p>Let our advanced AI create the perfect itinerary based on your preferences</p>
+                <div class="planner-features">
+                    <div class="feature">
+                        <i class="fas fa-robot"></i>
+                        <h4>Smart Recommendations</h4>
+                        <p>Personalized suggestions based on your interests</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Custom Itineraries</h4>
+                        <p>Day-by-day schedules tailored to you</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4>Interactive Maps</h4>
+                        <p>Visual journey planning with real-time updates</p>
+                    </div>
+                </div>
+                <a href="planner.html" class="cta-button">Start Planning</a>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Let our AI create the perfect itinerary for you</p>
+            <a href="planner.html" class="cta-button">Plan Your Trip</a>
+        </section>
+
+        <!-- Additional sections... -->
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Your trusted travel companion for urban adventures</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#planner">Trip Planner</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 The Ultimate City Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="chat-widget">
+        <button class="chat-toggle">
+            <i class="fas fa-comments"></i>
+            <span>AI Assistant</span>
+        </button>
+    </div>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/banner-slider.js"></script>
+    <div id="map"></div>
+</body>
+</html> 
