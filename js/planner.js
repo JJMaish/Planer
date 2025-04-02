@@ -298,6 +298,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Save itinerary handler
     document.getElementById('save-itinerary').addEventListener('click', saveItinerary);
+
+    const agentSystem = new AgentSystem();
+    
+    // Generate Itinerary Button
+    document.getElementById('generateItinerary').addEventListener('click', async () => {
+        try {
+            const itineraryDisplay = document.getElementById('itineraryContent');
+            itineraryDisplay.innerHTML = '<div class="loading">Generating your personalized itinerary...</div>';
+            
+            const itinerary = await agentSystem.generateSmartItinerary();
+            displayItinerary(itinerary);
+        } catch (error) {
+            showError('Failed to generate itinerary. Please try again.');
+        }
+    });
+
+    // Need Help Button
+    document.getElementById('getHelp').addEventListener('click', async () => {
+        const helpPanel = document.getElementById('helpPanel');
+        helpPanel.classList.add('active');
+        
+        try {
+            const help = await agentSystem.getHelp('How can I make the most of my Bruges visit?');
+            displayHelp(help);
+        } catch (error) {
+            showError('Failed to get help. Please try again.');
+        }
+    });
 });
 
 function createAttractionElement(place) {
@@ -707,4 +735,65 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-}); 
+});
+
+function displayItinerary(itinerary) {
+    const container = document.getElementById('itineraryContent');
+    
+    let html = '<div class="itinerary-wrapper">';
+    
+    itinerary.days.forEach((day, index) => {
+        html += `
+            <div class="itinerary-day">
+                <h3>Day ${index + 1}</h3>
+                <div class="timeline">
+                    ${day.activities.map(activity => `
+                        <div class="timeline-item">
+                            <div class="time">${activity.time}</div>
+                            <div class="activity">
+                                <h4>${activity.name}</h4>
+                                <p>${activity.description}</p>
+                                <div class="activity-meta">
+                                    <span><i class="fas fa-clock"></i> ${activity.duration}</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> ${activity.location}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function displayHelp(help) {
+    const container = document.querySelector('.help-content');
+    
+    container.innerHTML = `
+        <div class="help-section">
+            <h3>${help.answer.title}</h3>
+            <p>${help.answer.content}</p>
+            
+            <h4>Suggestions</h4>
+            <ul>
+                ${help.suggestions.map(suggestion => `
+                    <li>${suggestion}</li>
+                `).join('')}
+            </ul>
+            
+            <div class="related-topics">
+                <h4>Related Topics</h4>
+                ${help.relatedTopics.map(topic => `
+                    <button class="topic-btn">${topic}</button>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function showError(message) {
+    // Implement error display
+} 
