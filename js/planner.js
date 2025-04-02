@@ -373,10 +373,12 @@ function saveItinerary() {
     alert('Itinerary saved successfully!');
 }
 
+import { PlannerAgent } from '../agents/index.js';
+import ChatAgent from '../agents/ChatAgent.js';
+
 class TripPlanner {
     constructor() {
-        this.aiPlanner = new AITripPlanner();
-        this.smartScheduler = new SmartScheduler(this.aiPlanner);
+        this.plannerAgent = new PlannerAgent();
         this.currentStep = 1;
         this.formData = {
             dates: {},
@@ -390,6 +392,8 @@ class TripPlanner {
         this.initializeWeatherWidget();
         this.initializeMap();
         this.preferenceLearning = new PreferenceLearning();
+        this.chatAgent = new ChatAgent();
+        this.initializeChatWidget();
     }
 
     initializeEventListeners() {
@@ -517,31 +521,10 @@ class TripPlanner {
         
         try {
             const preferences = this.collectFormData();
+            const { itinerary, pdf } = await this.plannerAgent.createItinerary(preferences);
             
-            // Learn from previous user choices
-            if (this.userId) {
-                const learnedPreferences = await this.preferenceLearning
-                    .learnFromUserChoices(this.userId, preferences);
-                preferences.learned = learnedPreferences;
-            }
-            
-            // Generate AI-powered itinerary
-            const smartItinerary = await this.aiPlanner
-                .generateSmartItinerary(preferences);
-            
-            // Enhance with real-time data
-            const enhancedItinerary = await this.enhanceWithRealTimeData(smartItinerary);
-            
-            // Store user choices for future learning
-            if (this.userId) {
-                await this.preferenceLearning.saveUserChoices(this.userId, {
-                    preferences,
-                    generatedItinerary: enhancedItinerary
-                });
-            }
-            
-            // Display the result
-            this.displayEnhancedItinerary(enhancedItinerary);
+            this.displayItinerary(itinerary);
+            this.offerPDFDownload(pdf);
             
         } catch (error) {
             this.showError('Error generating itinerary. Please try again.');
@@ -562,17 +545,7 @@ class TripPlanner {
         return overlay;
     }
 
-    async enhanceWithRealTimeData(itinerary) {
-        return {
-            ...itinerary,
-            weatherUpdates: await this.getWeatherUpdates(),
-            venueStatus: await this.getVenueStatus(),
-            crowdLevels: await this.getCrowdPredictions(),
-            transportOptions: await this.getTransportOptions()
-        };
-    }
-
-    displayEnhancedItinerary(itinerary) {
+    displayItinerary(itinerary) {
         const timelineView = document.querySelector('.timeline-view');
         timelineView.innerHTML = itinerary.days.map(day => this.createDayHTML(day)).join('');
         
@@ -634,20 +607,85 @@ class TripPlanner {
         // Implement form data collection logic
     }
 
-    getWeatherUpdates() {
-        // Implement weather updates logic
+    offerPDFDownload(pdf) {
+        // Implement offer PDF download logic
     }
 
-    getVenueStatus() {
-        // Implement venue status logic
+    initializeChatWidget() {
+        const chatToggle = document.querySelector('.chat-toggle');
+        const chatContainer = document.querySelector('.chat-container');
+        const chatInput = document.querySelector('.chat-input input');
+        const sendButton = document.querySelector('.chat-input button');
+        const minimizeButton = document.querySelector('.minimize-chat');
+
+        chatToggle.addEventListener('click', () => {
+            chatContainer.classList.toggle('hidden');
+            chatToggle.style.display = 'none';
+        });
+
+        minimizeButton.addEventListener('click', () => {
+            chatContainer.classList.add('hidden');
+            chatToggle.style.display = 'flex';
+        });
+
+        const sendMessage = async () => {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            this.addMessageToChat(message, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            this.showTypingIndicator();
+
+            // Get AI response
+            const response = await this.chatAgent.processMessage(message);
+
+            // Remove typing indicator and show response
+            this.hideTypingIndicator();
+            this.addMessageToChat(response, 'bot');
+        };
+
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
     }
 
-    getCrowdPredictions() {
-        // Implement crowd predictions logic
+    addMessageToChat(message, type) {
+        const messagesContainer = document.querySelector('.chat-messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${type}`;
+        messageElement.innerHTML = `
+            <i class="fas fa-${type === 'user' ? 'user' : 'robot'}"></i>
+            <div class="message-content">${message}</div>
+        `;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    getTransportOptions() {
-        // Implement transport options logic
+    showTypingIndicator() {
+        const messagesContainer = document.querySelector('.chat-messages');
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'message bot typing';
+        typingIndicator.innerHTML = `
+            <i class="fas fa-robot"></i>
+            <div class="message-content">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        `;
+        messagesContainer.appendChild(typingIndicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    hideTypingIndicator() {
+        const typingIndicator = document.querySelector('.typing');
+        if (typingIndicator) typingIndicator.remove();
     }
 }
 

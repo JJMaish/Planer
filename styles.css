@@ -13,58 +13,77 @@ body {
 
 /* Navigation */
 .main-header {
-    background: var(--background);
+    background: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
 
 .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
 }
 
-.logo {
+.logo a {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--text-primary);
+    color: var(--primary-color);
     text-decoration: none;
 }
 
 .nav-links {
     display: flex;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.nav-links li {
-    margin: 0 1rem;
-}
-
 .nav-links a {
-    color: var(--text-primary);
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover {
     color: var(--primary-color);
 }
 
-.mobile-menu-btn {
+.nav-toggle {
     display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
 }
 
 /* Mobile Styles */
@@ -1432,4 +1451,141 @@ footer {
 
 .card-content p {
     color: var(--text-secondary);
+}
+
+/* Selection Controls */
+.selection-control {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.selection-control input[type="checkbox"] {
+    display: none;
+}
+
+.selection-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.selection-label i {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}
+
+.selection-control input[type="checkbox"]:checked + .selection-label {
+    background: var(--primary-color);
+}
+
+.selection-control input[type="checkbox"]:checked + .selection-label i {
+    opacity: 1;
+    transform: scale(1);
+    color: white;
+}
+
+/* Add relative positioning to the cards to properly position the checkboxes */
+.place-card,
+.restaurant-card,
+.gallery-item {
+    position: relative;
+}
+
+/* Add a selected state style */
+.place-card.selected,
+.restaurant-card.selected,
+.gallery-item.selected {
+    border: 2px solid var(--primary-color);
+}
+
+/* Selection Summary Styles */
+.selection-summary {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 250px;
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.summary-content {
+    margin-bottom: 15px;
+}
+
+.summary-category {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.plan-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.plan-button:hover {
+    background: var(--primary-color-dark);
+}
+
+/* Hide summary if no selections */
+.selection-summary:empty {
+    display: none;
+}
+
+/* Quick Actions Styles */
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.quick-action-btn {
+    flex: 1;
+    padding: 8px;
+    text-align: center;
+    background: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.quick-action-btn:hover {
+    background: var(--secondary-color-dark);
+}
+
+.quick-action-btn i {
+    margin-right: 5px;
 } 

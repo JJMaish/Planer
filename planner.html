@@ -325,5 +325,24 @@
             }
         });
     </script>
+
+    <!-- Add this button temporarily for testing -->
+    <button id="testDeepSeek" style="position: fixed; bottom: 10px; left: 10px;">
+        Test DeepSeek API
+    </button>
+
+    <script>
+    document.getElementById('testDeepSeek').addEventListener('click', async () => {
+        try {
+            const agent = new BaseAgent();
+            const result = await agent.searchWithDeepSeek('Bruges tourist attractions', 'web');
+            console.log('DeepSeek Test Result:', result);
+            alert('Test successful! Check console for results.');
+        } catch (error) {
+            console.error('DeepSeek Test Error:', error);
+            alert('Test failed! Check console for error details.');
+        }
+    });
+    </script>
 </body>
 </html> 

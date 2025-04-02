@@ -32,6 +32,13 @@ class Config {
                 apiKey: process.env.RESTAURANT_API_KEY
             };
 
+            // DeepSeek Configuration
+            this.env.deepseek = {
+                apiKey: process.env.DEEPSEEK_API_KEY,
+                maxResults: 10,
+                language: 'en'
+            };
+
             this.validateConfig();
         } catch (error) {
             console.error('Error loading environment variables:', error);
