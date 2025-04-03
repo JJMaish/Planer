@@ -452,6 +452,7 @@ footer {
     --transition: all 0.3s ease;
     --header-height: 60px;
     --container-padding: 20px;
+    --primary-color-rgb: 52, 152, 219; /* RGB values for your primary color */
 }
 
 /* Dark Mode */
@@ -601,169 +602,6 @@ footer {
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
-}
-
-/* Chat Widget Styles */
-.chat-widget {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
-
-.chat-toggle {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-}
-
-.chat-toggle:hover {
-    transform: scale(1.05);
-}
-
-.chat-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 350px;
-    height: 500px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.chat-header {
-    background: var(--primary-color);
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.minimize-chat {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-
-.chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 1rem;
-}
-
-.message {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    animation: fadeIn 0.3s ease;
-}
-
-.message.user {
-    flex-direction: row-reverse;
-}
-
-.message i {
-    width: 30px;
-    height: 30px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 0.5rem;
-}
-
-.message.user i {
-    background: var(--secondary-color);
-}
-
-.message-content {
-    background: #f0f0f0;
-    padding: 0.8rem;
-    border-radius: 10px;
-    max-width: 70%;
-}
-
-.message.user .message-content {
-    background: var(--primary-color);
-    color: white;
-}
-
-.chat-input {
-    padding: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    border-top: 1px solid #eee;
-}
-
-.chat-input input {
-    flex: 1;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
-}
-
-.chat-input button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.chat-input button:hover {
-    background: var(--primary-color-dark);
-}
-
-.typing-dots {
-    display: flex;
-    gap: 4px;
-    padding: 8px;
-}
-
-.typing-dots span {
-    width: 8px;
-    height: 8px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    animation: typing 1s infinite ease-in-out;
-}
-
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes typing {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hidden {
-    display: none;
 }
 
 /* Responsive Enhancements */
@@ -1734,19 +1572,6 @@ footer {
     margin: 0 auto;
 }
 
-.planner-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.itinerary-display {
-    background: white;
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
 .timeline {
     position: relative;
     padding-left: 2rem;
@@ -1792,4 +1617,651 @@ footer {
 
 .help-panel.active {
     right: 0;
+}
+
+/* Tours Page Styles */
+.tours-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tours-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tour-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-5px);
+}
+
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tour-info {
+    padding: 1.5rem;
+}
+
+.tour-info h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.tour-info p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tour-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+    background: var(--primary-color-dark);
+}
+
+.info-section {
+    background: var(--light-bg);
+    padding: 4rem 2rem;
+}
+
+.info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.info-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.info-card ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tours-section {
+        padding: 2rem 1rem;
+    }
+
+    .tours-section h2 {
+        font-size: 2rem;
+    }
+
+    .tour-card img {
+        height: 180px;
+    }
+
+    .info-section {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Planner Page Styles */
+.planner-hero {
+    background: var(--primary-color);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.planner-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.planner-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.selections-overview {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+}
+
+.selection-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.selection-category {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.selection-category h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.selection-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.selection-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.remove-selection {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.remove-selection:hover {
+    background: #fff5f5;
+}
+
+.no-selections {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .planner-hero {
+        padding: 3rem 1rem;
+    }
+
+    .planner-hero h1 {
+        font-size: 2rem;
+    }
+
+    .planner-content {
+        padding: 0 1rem;
+        margin: 1rem auto;
+    }
+
+    .selections-overview {
+        padding: 1rem;
+    }
+}
+
+/* Interactive Planner Styles */
+.interactive-planner {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.planner-tools {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.date-selector {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.date-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.attractions-pool {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.attraction-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: move;
+}
+
+.itinerary-builder {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.itinerary-days {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.day-card {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.save-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+    background: var(--primary-color-dark);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .planner-tools {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Planner Preferences Styles */
+.planner-preferences {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.preference-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.preference-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.preference-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Interest Options */
+.interest-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.interest-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.interest-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Preference Options */
+.preference-options {
+    display: grid;
+    gap: 1rem;
+}
+
+.preference-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.preference-group select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+}
+
+/* Tours Options */
+.tours-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tour-type {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.tour-type h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.tour-selections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.tour-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Review Options */
+.review-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.review-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .planner-preferences {
+        padding: 1.5rem;
+    }
+
+    .interest-options {
+        grid-template-columns: 1fr;
+    }
+
+    .preference-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Interactive elements */
+.interest-option:hover,
+.tour-option:hover,
+.review-filter:hover {
+    color: var(--primary-color);
+}
+
+.preference-group select:focus,
+input[type="checkbox"]:focus + span {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Add these notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    border-left: 4px solid #28a745;
+}
+
+.notification.error {
+    border-left: 4px solid #dc3545;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification.success i {
+    color: #28a745;
+}
+
+.notification.error i {
+    color: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Save button states */
+.save-btn.saved {
+    background: #28a745;
+}
+
+.save-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Budget Options Styles */
+.budget-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.budget-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.budget-option:hover {
+    background: #e9ecef;
+}
+
+.budget-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+.budget-label {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+/* Selected state */
+.budget-option input[type="radio"]:checked + .budget-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.budget-option input[type="radio"]:checked {
+    background-color: var(--primary-color);
+}
+
+/* Active state for the entire option */
+.budget-option.active {
+    background: rgba(var(--primary-color-rgb), 0.1);
+    border: 1px solid var(--primary-color);
 } 

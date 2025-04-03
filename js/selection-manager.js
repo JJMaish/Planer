@@ -1,103 +1,118 @@
 class SelectionManager {
     constructor() {
-        this.selectedPlaces = new Set();
-        this.selectedRestaurants = new Set();
-        this.selectedPhotos = new Set();
-        this.planUpdateTimeout = null;
+        this.selections = {
+            places: [],
+            restaurants: [],
+            tours: [],
+            photos: []
+        };
+        this.loadSelections();
     }
 
-    addSelection(id, type) {
-        switch(type) {
-            case 'place':
-                this.selectedPlaces.add(id);
-                break;
-            case 'restaurant':
-                this.selectedRestaurants.add(id);
-                break;
-            case 'photo':
-                this.selectedPhotos.add(id);
-                break;
+    loadSelections() {
+        const savedSelections = localStorage.getItem('tripSelections');
+        if (savedSelections) {
+            this.selections = JSON.parse(savedSelections);
         }
-        this.updatePlannerData();
-        this.scheduleAIUpdate();
     }
 
-    removeSelection(id, type) {
-        switch(type) {
-            case 'place':
-                this.selectedPlaces.delete(id);
-                break;
-            case 'restaurant':
-                this.selectedRestaurants.delete(id);
-                break;
-            case 'photo':
-                this.selectedPhotos.delete(id);
-                break;
+    saveSelections() {
+        localStorage.setItem('tripSelections', JSON.stringify(this.selections));
+    }
+
+    addSelection(id, category) {
+        if (!this.selections[category].includes(id)) {
+            this.selections[category].push(id);
+            this.saveSelections();
         }
-        this.updatePlannerData();
-        this.scheduleAIUpdate();
+    }
+
+    removeSelection(id, category) {
+        const index = this.selections[category].indexOf(id);
+        if (index > -1) {
+            this.selections[category].splice(index, 1);
+            this.saveSelections();
+        }
     }
 
     getSelections() {
-        return {
-            places: Array.from(this.selectedPlaces),
-            restaurants: Array.from(this.selectedRestaurants),
-            photos: Array.from(this.selectedPhotos)
+        return this.selections;
+    }
+
+    clearSelections() {
+        this.selections = {
+            places: [],
+            restaurants: [],
+            tours: [],
+            photos: []
         };
+        this.saveSelections();
     }
 
-    updatePlannerData() {
-        // Store selections in localStorage
-        localStorage.setItem('plannerSelections', JSON.stringify(this.getSelections()));
-        
-        // Update the UI
-        this.updateSelectionSummary();
+    isSelected(id, category) {
+        return this.selections[category].includes(id);
     }
-
-    scheduleAIUpdate() {
-        // Debounce AI updates to prevent too many requests
-        if (this.planUpdateTimeout) {
-            clearTimeout(this.planUpdateTimeout);
-        }
-
-        this.planUpdateTimeout = setTimeout(() => {
-            this.updateAIPlan();
-        }, 1000); // Wait 1 second after last change
-    }
-
-    async updateAIPlan() {
+    
+    // Itinerary management methods
+    saveItinerary(itinerary, name = 'My Bruges Itinerary') {
         try {
-            const selections = this.getSelections();
-            if (window.aiPlanner) {
-                const plan = await window.aiPlanner.generatePlan(selections);
-                this.updatePlanDisplay(plan);
-            }
+            // Get existing saved itineraries
+            const savedItineraries = this.getSavedItineraries();
+            
+            // Create a new itinerary object with metadata
+            const newItinerary = {
+                id: Date.now().toString(), // Unique ID based on timestamp
+                name: name,
+                date: new Date().toISOString(),
+                selections: { ...this.selections }, // Copy of current selections
+                itinerary: itinerary
+            };
+            
+            // Add the new itinerary to the list
+            savedItineraries.push(newItinerary);
+            
+            // Save back to localStorage
+            localStorage.setItem('savedItineraries', JSON.stringify(savedItineraries));
+            
+            return newItinerary.id;
         } catch (error) {
-            console.error('Error updating AI plan:', error);
+            console.error('Error saving itinerary:', error);
+            throw error;
         }
     }
-
-    updatePlanDisplay(plan) {
-        const summaryEl = document.getElementById('selectionSummary');
-        if (!summaryEl) return;
-
-        // Update the plan preview in the summary
-        const planPreview = document.createElement('div');
-        planPreview.className = 'plan-preview';
-        planPreview.innerHTML = `
-            <h4>AI Generated Plan</h4>
-            <p>${plan.summary || 'Plan will be generated based on your selections'}</p>
-        `;
-
-        // Replace existing plan preview or append new one
-        const existingPreview = summaryEl.querySelector('.plan-preview');
-        if (existingPreview) {
-            existingPreview.replaceWith(planPreview);
-        } else {
-            summaryEl.appendChild(planPreview);
+    
+    getSavedItineraries() {
+        try {
+            const savedItinerariesJson = localStorage.getItem('savedItineraries');
+            return savedItinerariesJson ? JSON.parse(savedItinerariesJson) : [];
+        } catch (error) {
+            console.error('Error loading saved itineraries:', error);
+            return [];
+        }
+    }
+    
+    getSavedItinerary(id) {
+        try {
+            const savedItineraries = this.getSavedItineraries();
+            return savedItineraries.find(itinerary => itinerary.id === id);
+        } catch (error) {
+            console.error('Error getting saved itinerary:', error);
+            return null;
+        }
+    }
+    
+    deleteSavedItinerary(id) {
+        try {
+            const savedItineraries = this.getSavedItineraries();
+            const updatedItineraries = savedItineraries.filter(itinerary => itinerary.id !== id);
+            localStorage.setItem('savedItineraries', JSON.stringify(updatedItineraries));
+            return true;
+        } catch (error) {
+            console.error('Error deleting saved itinerary:', error);
+            return false;
         }
     }
 }
 
-// Create global instance
+// Initialize the selection manager
 window.selectionManager = new SelectionManager(); 

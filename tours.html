@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat & Horse Tours - Bruges Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
+                </a>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="places-to-visit.html">Places to Visit</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="tours.html" class="active">Tours</a></li>
+                <li><a href="planner.html">Trip Planner</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Explore Bruges by Boat & Horse</h1>
+                <p>Discover the city's enchanting canals and historic streets in style</p>
+            </div>
+        </section>
+
+        <!-- Boat Tours Section -->
+        <section class="tours-section" data-aos="fade-up">
+            <h2>Canal Boat Tours</h2>
+            <div class="tours-grid">
+                <!-- Boat Tour Location 1 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="huidenvettersplein" data-type="boat" id="boat-1">
+                        <label for="boat-1" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/boat-tour-1.jpg" alt="Huidenvettersplein Boat Tour">
+                    <div class="tour-info">
+                        <h3>Huidenvettersplein Dock</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Huidenvettersplein</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 12 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 30 minutes</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Huidenvettersplein+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boat Tour Location 2 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="rozenhoedkaai" data-type="boat" id="boat-2">
+                        <label for="boat-2" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/boat-tour-2.jpg" alt="Rozenhoedkaai Boat Tour">
+                    <div class="tour-info">
+                        <h3>Rozenhoedkaai Dock</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Rozenhoedkaai</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 12 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 30 minutes</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Rozenhoedkaai+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Horse Carriage Tours Section -->
+        <section class="tours-section" data-aos="fade-up">
+            <h2>Horse Carriage Tours</h2>
+            <div class="tours-grid">
+                <!-- Horse Tour Location 1 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="markt-horse" data-type="horse" id="horse-1">
+                        <label for="horse-1" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/horse-tour-1.jpg" alt="Markt Square Horse Tour">
+                    <div class="tour-info">
+                        <h3>Markt Square Carriage Stand</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 50 per carriage</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 35 minutes</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tour Information Section -->
+        <section class="info-section" data-aos="fade-up">
+            <div class="info-container">
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Important Information</h3>
+                    <ul>
+                        <li>Tours operate daily from 10:00 to 18:00</li>
+                        <li>Last boat/carriage departs 30 minutes before closing</li>
+                        <li>Tickets can be purchased on-site</li>
+                        <li>Cash and cards accepted</li>
+                        <li>No advance booking required</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Weather Policy</h3>
+                    <ul>
+                        <li>Tours may be cancelled during severe weather</li>
+                        <li>Boat tours operate year-round except during ice</li>
+                        <li>Horse carriages may not operate in extreme heat</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bruges City Guide</h3>
+                <p>Your complete guide to exploring the Venice of the North</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places to Visit</a></li>
+                    <li><a href="restaurants.html">Restaurants</a></li>
+                    <li><a href="planner.html">Trip Planner</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@brugesguide.com</p>
+                <p>Phone: +32 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges City Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html> 

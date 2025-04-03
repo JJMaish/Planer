@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bruges Trip Details | Bruges Trip Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .tour-details-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tour-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tour-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tour-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tour-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .summary-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .summary-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card .count {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .tour-sections {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .tour-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header i {
+            font-size: 1.5rem;
+        }
+
+        .section-content {
+            padding: 1.5rem;
+        }
+
+        .item-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .item-card:last-child {
+            border-bottom: none;
+        }
+
+        .item-card:hover {
+            background: #f9f9f9;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-details h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .item-details p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .action-btn.secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .action-btn.secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .day-itinerary {
+            margin-top: 2rem;
+        }
+
+        .day-header {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .timeline-time {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .no-items {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .no-items i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 1rem;
+        }
+
+        .print-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        @media print {
+            .action-btn, .print-btn {
+                display: none;
+            }
+            
+            .tour-details-container {
+                padding: 0;
+            }
+            
+            .tour-header {
+                background: none;
+                color: black;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tour-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .item-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-image {
+                width: 100%;
+                height: 150px;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .item-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 1rem;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .modal-buttons button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-buttons button:first-child {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .modal-buttons button:first-child:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .modal-buttons button:last-child {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-buttons button:last-child:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Bruges Trip Planner</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="places-to-visit.html">Places</a></li>
+                <li><a href="restaurants.html">Restaurants</a></li>
+                <li><a href="tours.html">Tours</a></li>
+                <li><a href="gallery.html">Photo Gallery</a></li>
+                <li><a href="planner.html">Trip Planner</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="tour-details-container">
+            <div class="tour-header" data-aos="fade-down">
+                <h1>Your Bruges Trip Details</h1>
+                <p>Your personalized itinerary with all selected attractions, restaurants, tours, and photo spots</p>
+            </div>
+
+            <div class="tour-summary" data-aos="fade-up">
+                <div class="summary-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Places to Visit</h3>
+                    <div class="count" id="places-count">0</div>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Restaurants</h3>
+                    <div class="count" id="restaurants-count">0</div>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-ship"></i>
+                    <h3>Tours</h3>
+                    <div class="count" id="tours-count">0</div>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-camera"></i>
+                    <h3>Photo Spots</h3>
+                    <div class="count" id="photos-count">0</div>
+                </div>
+            </div>
+
+            <div class="tour-sections">
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h2>Places to Visit</h2>
+                    </div>
+                    <div class="section-content" id="places-section">
+                        <div class="no-items">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>No places selected yet. Visit the Places page to add attractions to your trip.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-utensils"></i>
+                        <h2>Restaurants</h2>
+                    </div>
+                    <div class="section-content" id="restaurants-section">
+                        <div class="no-items">
+                            <i class="fas fa-utensils"></i>
+                            <p>No restaurants selected yet. Visit the Restaurants page to add dining options to your trip.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-ship"></i>
+                        <h2>Tours</h2>
+                    </div>
+                    <div class="section-content" id="tours-section">
+                        <div class="no-items">
+                            <i class="fas fa-ship"></i>
+                            <p>No tours selected yet. Visit the Tours page to add guided experiences to your trip.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-camera"></i>
+                        <h2>Photo Spots</h2>
+                    </div>
+                    <div class="section-content" id="photos-section">
+                        <div class="no-items">
+                            <i class="fas fa-camera"></i>
+                            <p>No photo spots selected yet. Visit the Photo Gallery to add scenic locations to your trip.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Day-by-Day Itinerary</h2>
+                    </div>
+                    <div class="section-content" id="itinerary-section">
+                        <div class="no-items">
+                            <i class="fas fa-calendar-alt"></i>
+                            <p>No itinerary generated yet. Complete your selections and visit the Trip Planner to create your personalized itinerary.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-section" data-aos="fade-up">
+                    <div class="section-header">
+                        <i class="fas fa-map"></i>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="map-container" id="map">
+                            <div class="no-items">
+                                <i class="fas fa-map"></i>
+                                <p>Map will be displayed here with all your selected locations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="print-btn" id="print-btn">
+                <i class="fas fa-print"></i> Print Itinerary
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bruges Trip Planner</h3>
+                <p>Your comprehensive guide to exploring the beautiful city of Bruges, Belgium.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places to Visit</a></li>
+                    <li><a href="restaurants.html">Restaurants</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="gallery.html">Photo Gallery</a></li>
+                    <li><a href="planner.html">Trip Planner</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@bruges-trip-planner.com</p>
+                <p>Phone: +32 123 456 789</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Bruges Trip Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/selection-manager.js"></script>
+    <script src="js/services/OpenAIService.js"></script>
+    <script src="js/agents/AgentManager.js"></script>
+    <script src="js/agents/PlaceAgent.js"></script>
+    <script src="js/agents/RestaurantAgent.js"></script>
+    <script src="js/agents/TourAgent.js"></script>
+    <script src="js/agents/PhotoAgent.js"></script>
+    <script src="js/agents/ItineraryAgent.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init();
+
+            // Check if OpenAI API key is set
+            if (!window.openAIService || !window.openAIService.isApiKeySet()) {
+                showApiKeyPrompt();
+            }
+
+            // Initialize selection manager
+            const selectionManager = window.selectionManager;
+            selectionManager.loadSelections();
+
+            // Initialize agent manager
+            const agentManager = window.agentManager;
+            agentManager.initializeAgents().catch(error => {
+                console.error('Failed to initialize agents:', error);
+                // Show error message to user
+                const itinerarySection = document.getElementById('itinerary-section');
+                if (itinerarySection) {
+                    itinerarySection.innerHTML = `
+                        <div class="no-items">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Error initializing agents. Please check the console for details.</p>
+                        </div>
+                    `;
+                }
+            });
+
+            // Display selections
+            displaySelections();
+
+            // Print button functionality
+            document.getElementById('print-btn').addEventListener('click', function() {
+                window.print();
+            });
+
+            function showApiKeyPrompt() {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h2>OpenAI API Key Required</h2>
+                        <p>To use the AI-powered features of the Bruges Trip Planner, please enter your OpenAI API key.</p>
+                        <input type="password" id="api-key-input" placeholder="Enter your OpenAI API key">
+                        <div class="modal-buttons">
+                            <button id="save-api-key">Save</button>
+                            <button id="cancel-api-key">Cancel</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+                document.getElementById('save-api-key').addEventListener('click', function() {
+                    const apiKey = document.getElementById('api-key-input').value.trim();
+                    if (apiKey) {
+                        window.openAIService.setApiKey(apiKey);
+                        document.body.removeChild(modal);
+                        // Refresh the page to reinitialize agents with the new API key
+                        window.location.reload();
+                    } else {
+                        alert('Please enter a valid API key');
+                    }
+                });
+
+                document.getElementById('cancel-api-key').addEventListener('click', function() {
+                    document.body.removeChild(modal);
+                });
+            }
+
+            function displaySelections() {
+                const selections = selectionManager.getSelections();
+                
+                // Update counts
+                document.getElementById('places-count').textContent = selections.places.length;
+                document.getElementById('restaurants-count').textContent = selections.restaurants.length;
+                document.getElementById('tours-count').textContent = selections.tours.length;
+                document.getElementById('photos-count').textContent = selections.photos.length;
+
+                // Display places
+                displaySection('places-section', selections.places, 'place');
+                
+                // Display restaurants
+                displaySection('restaurants-section', selections.restaurants, 'restaurant');
+                
+                // Display tours
+                displaySection('tours-section', selections.tours, 'tour');
+                
+                // Display photos
+                displaySection('photos-section', selections.photos, 'photo');
+
+                // Generate and display itinerary if there are selections
+                if (selections.places.length > 0 || selections.restaurants.length > 0 || 
+                    selections.tours.length > 0 || selections.photos.length > 0) {
+                    generateItinerary(selections);
+                }
+            }
+
+            function displaySection(sectionId, items, type) {
+                const section = document.getElementById(sectionId);
+                
+                if (items.length === 0) {
+                    return;
+                }
+
+                let html = '';
+                
+                items.forEach(item => {
+                    const itemData = getItemData(item, type);
+                    
+                    html += `
+                        <div class="item-card">
+                            <img src="${itemData.image}" alt="${itemData.name}" class="item-image">
+                            <div class="item-details">
+                                <h3>${itemData.name}</h3>
+                                <p>${itemData.description}</p>
+                                <div class="item-actions">
+                                    <a href="${itemData.directions}" target="_blank" class="action-btn">
+                                        <i class="fas fa-directions"></i> Directions
+                                    </a>
+                                    <button class="action-btn secondary remove-btn" data-id="${item}" data-type="${type}">
+                                        <i class="fas fa-times"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                section.innerHTML = html;
+
+                // Add event listeners to remove buttons
+                section.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        const type = this.dataset.type;
+                        selectionManager.removeSelection(id, type);
+                        displaySelections();
+                    });
+                });
+            }
+
+            function getItemData(id, type) {
+                // This would normally fetch data from an API or database
+                // For now, we'll return placeholder data
+                const placeholders = {
+                    place: {
+                        name: 'Place ' + id,
+                        description: 'A beautiful place to visit in Bruges',
+                        image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                        directions: `https://www.google.com/maps/dir/?api=1&destination=Bruges,${id}`
+                    },
+                    restaurant: {
+                        name: 'Restaurant ' + id,
+                        description: 'A delicious restaurant in Bruges',
+                        image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                        directions: `https://www.google.com/maps/dir/?api=1&destination=Bruges,${id}`
+                    },
+                    tour: {
+                        name: 'Tour ' + id,
+                        description: 'An exciting tour in Bruges',
+                        image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                        directions: `https://www.google.com/maps/dir/?api=1&destination=Bruges,${id}`
+                    },
+                    photo: {
+                        name: 'Photo Spot ' + id,
+                        description: 'A beautiful photo spot in Bruges',
+                        image: 'https://images.unsplash.com/photo-1511735111819-9a3f7709049c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                        directions: `https://www.google.com/maps/dir/?api=1&destination=Bruges,${id}`
+                    }
+                };
+
+                return placeholders[type] || placeholders.place;
+            }
+
+            async function generateItinerary(selections) {
+                const itinerarySection = document.getElementById('itinerary-section');
+                
+                try {
+                    // Create a simple itinerary based on selections
+                    const days = [];
+                    
+                    // Group selections into days
+                    const allItems = [
+                        ...selections.places.map(id => ({ id, type: 'place' })),
+                        ...selections.restaurants.map(id => ({ id, type: 'restaurant' })),
+                        ...selections.tours.map(id => ({ id, type: 'tour' })),
+                        ...selections.photos.map(id => ({ id, type: 'photo' }))
+                    ];
+                    
+                    // Simple grouping - 5 items per day
+                    for (let i = 0; i < allItems.length; i += 5) {
+                        const dayItems = allItems.slice(i, i + 5);
+                        days.push({
+                            date: new Date(Date.now() + i * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                            items: dayItems
+                        });
+                    }
+                    
+                    // Display itinerary
+                    let html = '';
+                    
+                    days.forEach(day => {
+                        html += `
+                            <div class="day-itinerary">
+                                <div class="day-header">Day ${days.indexOf(day) + 1} - ${formatDate(day.date)}</div>
+                                <div class="timeline">
+                        `;
+                        
+                        day.items.forEach((item, index) => {
+                            const itemData = getItemData(item.id, item.type);
+                            const time = 9 + index * 2; // Simple time allocation
+                            
+                            html += `
+                                <div class="timeline-item">
+                                    <div class="timeline-time">${time}:00 - ${time + 1}:00</div>
+                                    <div class="timeline-content">
+                                        <h3>${itemData.name}</h3>
+                                        <p>${itemData.description}</p>
+                                        <a href="${itemData.directions}" target="_blank" class="action-btn">
+                                            <i class="fas fa-directions"></i> Directions
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        
+                        html += `
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    itinerarySection.innerHTML = html;
+                    
+                } catch (error) {
+                    console.error('Error generating itinerary:', error);
+                    itinerarySection.innerHTML = `
+                        <div class="no-items">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Error generating itinerary. Please try again later.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            function formatDate(dateString) {
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateString).toLocaleDateString('en-US', options);
+            }
+        });
+    </script>
+</body>
+</html> 

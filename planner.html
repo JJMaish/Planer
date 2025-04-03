@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Trip Planner - Bruges Guide</title>
+    <title>Trip Planner - Bruges Guide</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="planner.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Add Weather Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    <!-- Add Animate.css for micro-transitions -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <header class="main-header">
@@ -23,247 +25,199 @@
                 </button>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="places-to-visit.html">Places to Visit</a></li>
-                <li><a href="restaurants.html">Restaurants</a></li>
-                <li><a href="tour-guide.html">Virtual Guide</a></li>
-                <li><a href="planner.html" class="active">Trip Planner</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places to Visit</a></li>
+                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Restaurants</a></li>
+                <li><a href="tour-guide.html"><i class="fas fa-headset"></i> Virtual Guide</a></li>
+                <li><a href="planner.html" class="active"><i class="fas fa-calendar-alt"></i> Trip Planner</a></li>
             </ul>
         </nav>
     </header>
 
-    <main class="planner-main">
+    <main>
         <section class="planner-hero">
-            <div class="hero-content">
-                <h1>Smart Bruges Trip Planner</h1>
-                <p>AI-powered personalized itineraries with real-time updates</p>
-            </div>
-            <div class="weather-widget">
-                <!-- Weather info will be populated by JS -->
+            <h1><i class="fas fa-map-marked-alt"></i> Your Trip Planner</h1>
+            <p><i class="fas fa-info-circle"></i> View and organize your selected places, restaurants, and tours</p>
+        </section>
+
+        <section class="planner-content">
+            <div class="selections-overview">
+                <h2><i class="fas fa-clipboard-list"></i> Your Selections</h2>
+                <div class="selection-categories">
+                    <!-- Places -->
+                    <div class="selection-category" id="selectedPlaces">
+                        <h3><i class="fas fa-landmark"></i> Places to Visit</h3>
+                        <div class="selection-items"></div>
+                    </div>
+
+                    <!-- Restaurants -->
+                    <div class="selection-category" id="selectedRestaurants">
+                        <h3><i class="fas fa-utensils"></i> Restaurants</h3>
+                        <div class="selection-items"></div>
+                    </div>
+
+                    <!-- Tours -->
+                    <div class="selection-category" id="selectedTours">
+                        <h3><i class="fas fa-walking"></i> Tours</h3>
+                        <div class="selection-items"></div>
+                    </div>
+
+                    <!-- Photos -->
+                    <div class="selection-category" id="selectedPhotos">
+                        <h3><i class="fas fa-camera"></i> Photo Spots</h3>
+                        <div class="selection-items"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="planner-form-section">
-            <div class="form-container">
-                <div class="progress-bar">
-                    <div class="progress-steps">
-                        <div class="step active" data-step="1">Trip Details</div>
-                        <div class="step" data-step="2">Interests</div>
-                        <div class="step" data-step="3">Preferences</div>
-                        <div class="step" data-step="4">Review</div>
-                    </div>
-                    <div class="progress-line">
-                        <div class="progress"></div>
+        <section class="interactive-planner">
+            <div class="planner-tools">
+                <div class="date-selector">
+                    <h3><i class="fas fa-calendar"></i> Select Your Dates</h3>
+                    <div class="date-inputs">
+                        <div class="input-group">
+                            <label for="start-date"><i class="fas fa-plane-departure"></i> Start Date</label>
+                            <input type="date" id="start-date" name="start-date" data-aos="fade-up" data-aos-delay="100">
+                        </div>
+                        <div class="input-group">
+                            <label for="end-date"><i class="fas fa-plane-arrival"></i> End Date</label>
+                            <input type="date" id="end-date" name="end-date" data-aos="fade-up" data-aos-delay="200">
+                        </div>
                     </div>
                 </div>
 
-                <form id="tripPlannerForm">
-                    <!-- Step 1: Trip Details -->
-                    <div class="form-step active" data-step="1">
-                        <h2>Trip Details</h2>
-                        <div class="date-picker">
-                            <div class="input-group">
-                                <label for="start-date">Start Date</label>
-                                <input type="date" id="start-date" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="end-date">End Date</label>
-                                <input type="date" id="end-date" required>
-                            </div>
-                        </div>
-                        <div class="budget-selector">
-                            <h3>Budget Level</h3>
-                            <div class="budget-options">
-                                <label class="budget-option">
-                                    <input type="radio" name="budget" value="budget">
-                                    <i class="fas fa-euro-sign"></i>
-                                    <span>Budget</span>
-                                </label>
-                                <label class="budget-option">
-                                    <input type="radio" name="budget" value="moderate" checked>
-                                    <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
-                                    <span>Moderate</span>
-                                </label>
-                                <label class="budget-option">
-                                    <input type="radio" name="budget" value="luxury">
-                                    <i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i><i class="fas fa-euro-sign"></i>
-                                    <span>Luxury</span>
-                                </label>
-                            </div>
-                        </div>
-                        <button type="button" class="next-btn">Next</button>
-                    </div>
-
-                    <!-- Step 2: Interests -->
-                    <div class="form-step" data-step="2">
-                        <h2>Your Interests</h2>
-                        <div class="interests-grid">
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="history">
-                                <i class="fas fa-landmark"></i>
-                                <span>History & Architecture</span>
+                <div class="planner-preferences">
+                    <h3><i class="fas fa-sliders-h"></i> Plan Your Visit</h3>
+                    
+                    <!-- Interests Section -->
+                    <div class="preference-section">
+                        <h4><i class="fas fa-heart"></i> Interests</h4>
+                        <div class="interest-options">
+                            <label class="interest-option">
+                                <input type="checkbox" name="interest" value="history">
+                                <span><i class="fas fa-landmark"></i> Historical Sites</span>
                             </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="art">
-                                <i class="fas fa-palette"></i>
-                                <span>Arts & Museums</span>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interest" value="culture">
+                                <span><i class="fas fa-theater-masks"></i> Cultural Attractions</span>
                             </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="food">
-                                <i class="fas fa-utensils"></i>
-                                <span>Food & Dining</span>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interest" value="food">
+                                <span><i class="fas fa-utensils"></i> Local Cuisine</span>
                             </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="beer">
-                                <i class="fas fa-beer"></i>
-                                <span>Beer & Breweries</span>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interest" value="shopping">
+                                <span><i class="fas fa-shopping-bag"></i> Shopping</span>
                             </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="chocolate">
-                                <i class="fas fa-cookie"></i>
-                                <span>Chocolate & Sweets</span>
+                            <label class="interest-option">
+                                <input type="checkbox" name="interest" value="nature">
+                                <span><i class="fas fa-tree"></i> Nature & Parks</span>
                             </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="shopping">
-                                <i class="fas fa-shopping-bag"></i>
-                                <span>Shopping</span>
-                            </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="nature">
-                                <i class="fas fa-tree"></i>
-                                <span>Parks & Nature</span>
-                            </label>
-                            <label class="interest-card">
-                                <input type="checkbox" name="interests" value="photo">
-                                <i class="fas fa-camera"></i>
-                                <span>Photography</span>
-                            </label>
-                        </div>
-                        <div class="button-group">
-                            <button type="button" class="prev-btn">Previous</button>
-                            <button type="button" class="next-btn">Next</button>
                         </div>
                     </div>
 
-                    <!-- Step 3: Preferences -->
-                    <div class="form-step" data-step="3">
-                        <h2>Travel Preferences</h2>
-                        <div class="preferences-section">
-                            <h3>Mobility Preferences</h3>
-                            <div class="mobility-options">
-                                <label class="mobility-option">
-                                    <input type="checkbox" name="mobility" value="walking" checked>
-                                    <i class="fas fa-walking"></i>
-                                    <span>Walking</span>
-                                </label>
-                                <label class="mobility-option">
-                                    <input type="checkbox" name="mobility" value="transit">
-                                    <i class="fas fa-bus"></i>
-                                    <span>Public Transit</span>
-                                </label>
-                                <label class="mobility-option">
-                                    <input type="checkbox" name="mobility" value="bike">
-                                    <i class="fas fa-bicycle"></i>
-                                    <span>Bike</span>
-                                </label>
+                    <!-- Preferences Section -->
+                    <div class="preference-section">
+                        <h4><i class="fas fa-sliders-h"></i> Preferences</h4>
+                        <div class="preference-options">
+                            <div class="preference-group">
+                                <label><i class="fas fa-tachometer-alt"></i> Pace</label>
+                                <select name="pace">
+                                    <option value="relaxed">Relaxed</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="intensive">Intensive</option>
+                                </select>
                             </div>
-
-                            <h3>Dietary Restrictions</h3>
-                            <div class="dietary-options">
-                                <label class="dietary-option">
-                                    <input type="checkbox" name="dietary" value="vegetarian">
-                                    <span>Vegetarian</span>
-                                </label>
-                                <label class="dietary-option">
-                                    <input type="checkbox" name="dietary" value="vegan">
-                                    <span>Vegan</span>
-                                </label>
-                                <label class="dietary-option">
-                                    <input type="checkbox" name="dietary" value="gluten-free">
-                                    <span>Gluten-Free</span>
-                                </label>
+                            <div class="preference-group">
+                                <h4><i class="fas fa-wallet"></i> Budget</h4>
+                                <div class="budget-options">
+                                    <label class="budget-option">
+                                        <input type="radio" name="budget" value="budget">
+                                        <span class="budget-label"><i class="fas fa-piggy-bank"></i> Budget-friendly</span>
+                                    </label>
+                                    <label class="budget-option">
+                                        <input type="radio" name="budget" value="moderate">
+                                        <span class="budget-label"><i class="fas fa-coins"></i> Moderate</span>
+                                    </label>
+                                    <label class="budget-option">
+                                        <input type="radio" name="budget" value="luxury">
+                                        <span class="budget-label"><i class="fas fa-gem"></i> Luxury</span>
+                                    </label>
+                                </div>
                             </div>
-
-                            <h3>Additional Preferences</h3>
-                            <div class="additional-prefs">
-                                <label class="pref-option">
-                                    <input type="checkbox" name="preferences" value="accessibility">
-                                    <i class="fas fa-wheelchair"></i>
-                                    <span>Accessibility Needed</span>
-                                </label>
-                                <label class="pref-option">
-                                    <input type="checkbox" name="preferences" value="family">
-                                    <i class="fas fa-child"></i>
-                                    <span>Family-Friendly</span>
-                                </label>
-                                <label class="pref-option">
-                                    <input type="checkbox" name="preferences" value="quiet">
-                                    <i class="fas fa-volume-down"></i>
-                                    <span>Prefer Quiet Places</span>
-                                </label>
+                            <div class="preference-group">
+                                <label><i class="fas fa-wheelchair"></i> Accessibility Needs</label>
+                                <select name="accessibility">
+                                    <option value="none">No specific needs</option>
+                                    <option value="wheelchair">Wheelchair accessible</option>
+                                    <option value="limited">Limited mobility</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="button-group">
-                            <button type="button" class="prev-btn">Previous</button>
-                            <button type="button" class="next-btn">Next</button>
                         </div>
                     </div>
 
-                    <!-- Step 4: Review -->
-                    <div class="form-step" data-step="4">
-                        <h2>Review Your Preferences</h2>
-                        <div class="review-summary">
-                            <!-- Will be populated by JS -->
-                        </div>
-                        <div class="weather-alert">
-                            <!-- Weather alerts will be shown here -->
-                        </div>
-                        <div class="button-group">
-                            <button type="button" class="prev-btn">Previous</button>
-                            <button type="submit" class="generate-btn">
-                                <i class="fas fa-magic"></i> Generate Smart Itinerary
-                            </button>
+                    <!-- Tours Section -->
+                    <div class="preference-section">
+                        <h4><i class="fas fa-route"></i> Tours</h4>
+                        <div class="tours-options">
+                            <!-- Boat Tours -->
+                            <div class="tour-type">
+                                <h5><i class="fas fa-ship"></i> Canal Boat Tours</h5>
+                                <div class="tour-selections">
+                                    <label class="tour-option">
+                                        <input type="checkbox" name="boat-tour" value="huidenvettersplein">
+                                        <span><i class="fas fa-map-marker-alt"></i> Huidenvettersplein Dock (30 min)</span>
+                                    </label>
+                                    <label class="tour-option">
+                                        <input type="checkbox" name="boat-tour" value="rozenhoedkaai">
+                                        <span><i class="fas fa-map-marker-alt"></i> Rozenhoedkaai Dock (30 min)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Horse Carriage Tours -->
+                            <div class="tour-type">
+                                <h5><i class="fas fa-horse"></i> Horse Carriage Tours</h5>
+                                <div class="tour-selections">
+                                    <label class="tour-option">
+                                        <input type="checkbox" name="horse-tour" value="markt">
+                                        <span><i class="fas fa-map-marker-alt"></i> Markt Square Tour (35 min)</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
+
+                    <!-- Reviews Section -->
+                    <div class="preference-section">
+                        <h4><i class="fas fa-star"></i> Review Preferences</h4>
+                        <div class="review-options">
+                            <label class="review-filter">
+                                <input type="checkbox" name="review" value="highly-rated">
+                                <span><i class="fas fa-star"></i> Highly Rated (4.5+ stars)</span>
+                            </label>
+                            <label class="review-filter">
+                                <input type="checkbox" name="review" value="popular">
+                                <span><i class="fas fa-fire"></i> Popular Choices</span>
+                            </label>
+                            <label class="review-filter">
+                                <input type="checkbox" name="review" value="hidden-gems">
+                                <span><i class="fas fa-gem"></i> Hidden Gems</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <!-- Itinerary Result Section -->
-        <section id="itineraryResult" class="itinerary-section" style="display: none">
-            <div class="itinerary-container">
-                <div class="itinerary-header">
-                    <h2>Your Smart Bruges Itinerary</h2>
-                    <div class="real-time-updates">
-                        <div class="weather-summary"></div>
-                        <div class="alerts"></div>
-                    </div>
-                    <div class="itinerary-actions">
-                        <button class="action-btn" id="editPlan">
-                            <i class="fas fa-edit"></i> Edit Plan
-                        </button>
-                        <button class="action-btn" id="downloadPDF">
-                            <i class="fas fa-download"></i> Download PDF
-                        </button>
-                        <button class="action-btn" id="shareBtn">
-                            <i class="fas fa-share-alt"></i> Share
-                        </button>
-                    </div>
+            <div class="itinerary-builder">
+                <h3><i class="fas fa-calendar-check"></i> Your Itinerary</h3>
+                <div id="itinerary-days" class="itinerary-days">
+                    <!-- Day cards will be populated here -->
                 </div>
-                <div class="itinerary-body">
-                    <div class="timeline-view">
-                        <!-- Will be populated by JS -->
-                    </div>
-                    <div class="map-view">
-                        <div id="map"></div>
-                    </div>
-                </div>
-                <div class="smart-suggestions">
-                    <h3>Smart Suggestions</h3>
-                    <div class="suggestion-cards">
-                        <!-- Will be populated by JS -->
-                    </div>
-                </div>
+                <button id="save-itinerary" class="save-btn">
+                    <i class="fas fa-save"></i> Save Itinerary
+                </button>
             </div>
         </section>
     </main>
@@ -271,22 +225,22 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Bruges City Guide</h3>
+                <h3><i class="fas fa-landmark"></i> Bruges City Guide</h3>
                 <p>Your complete guide to exploring the Venice of the North</p>
             </div>
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="places-to-visit.html">Places to Visit</a></li>
-                    <li><a href="restaurants.html">Restaurants</a></li>
-                    <li><a href="tour-guide.html">Virtual Guide</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places to Visit</a></li>
+                    <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Restaurants</a></li>
+                    <li><a href="tour-guide.html"><i class="fas fa-headset"></i> Virtual Guide</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Contact</h3>
-                <p>Email: info@brugesguide.com</p>
-                <p>Phone: +32 123 456 789</p>
+                <h3><i class="fas fa-envelope"></i> Contact</h3>
+                <p><i class="fas fa-envelope"></i> Email: info@brugesguide.com</p>
+                <p><i class="fas fa-phone"></i> Phone: +32 123 456 789</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -294,76 +248,82 @@
         </div>
     </footer>
 
-    <!-- Chat Widget -->
-    <div class="chat-widget">
-        <button class="chat-toggle">
-            <i class="fas fa-comments"></i>
-            <span>Need Help?</span>
-        </button>
-        <div class="chat-container" style="display: none">
-            <!-- Chat interface will be added here -->
-        </div>
-    </div>
-
     <!-- Scripts -->
+    <script src="js/selection-manager.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
-    <script src="js/planner.js"></script>
-    <script src="js/weather.js"></script>
-    <script src="js/map.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dotenv@10.0.0/lib/main.min.js"></script>
     <script>
-        // Load environment variables
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                const response = await fetch('/.env');
-                const envFile = await response.text();
-                const env = require('dotenv').parse(envFile);
-                Object.assign(process.env, env);
-            } catch (error) {
-                console.error('Error loading environment variables:', error);
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Add micro-transitions to interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to buttons
+            const buttons = document.querySelectorAll('button, .btn, .save-btn');
+            buttons.forEach(button => {
+                button.classList.add('animate__animated', 'animate__pulse');
+            });
+            
+            // Add hover effects to selection items
+            const selectionItems = document.querySelectorAll('.selection-item');
+            selectionItems.forEach(item => {
+                item.classList.add('animate__animated', 'animate__fadeIn');
+            });
+            
+            // Add hover effects to preference options
+            const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option, .review-filter');
+            preferenceOptions.forEach(option => {
+                option.classList.add('animate__animated', 'animate__fadeIn');
+            });
+            
+            // Add hover effects to itinerary days
+            const itineraryDays = document.querySelectorAll('.itinerary-day');
+            itineraryDays.forEach(day => {
+                day.classList.add('animate__animated', 'animate__fadeIn');
+            });
+            
+            // Fix for date inputs to prevent calendar overlapping
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+            
+            if (startDateInput && endDateInput) {
+                // Set min date for end date based on start date
+                startDateInput.addEventListener('change', function() {
+                    endDateInput.min = this.value;
+                    
+                    // If end date is before start date, update it
+                    if (endDateInput.value && endDateInput.value < this.value) {
+                        endDateInput.value = this.value;
+                    }
+                });
+                
+                // Set max date for start date based on end date
+                endDateInput.addEventListener('change', function() {
+                    startDateInput.max = this.value;
+                    
+                    // If start date is after end date, update it
+                    if (startDateInput.value && startDateInput.value > this.value) {
+                        startDateInput.value = this.value;
+                    }
+                });
+                
+                // Prevent both calendars from being open at the same time
+                startDateInput.addEventListener('focus', function() {
+                    if (document.activeElement === endDateInput) {
+                        endDateInput.blur();
+                    }
+                });
+                
+                endDateInput.addEventListener('focus', function() {
+                    if (document.activeElement === startDateInput) {
+                        startDateInput.blur();
+                    }
+                });
             }
         });
     </script>
-
-    <!-- Add this button temporarily for testing -->
-    <button id="testDeepSeek" style="position: fixed; bottom: 10px; left: 10px;">
-        Test DeepSeek API
-    </button>
-
-    <script>
-    document.getElementById('testDeepSeek').addEventListener('click', async () => {
-        try {
-            const agent = new BaseAgent();
-            const result = await agent.searchWithDeepSeek('Bruges tourist attractions', 'web');
-            console.log('DeepSeek Test Result:', result);
-            alert('Test successful! Check console for results.');
-        } catch (error) {
-            console.error('DeepSeek Test Error:', error);
-            alert('Test failed! Check console for error details.');
-        }
-    });
-    </script>
-
-    <div class="planner-container">
-        <div class="planner-controls">
-            <button id="generateItinerary" class="primary-button">
-                <i class="fas fa-calendar"></i>
-                Generate Smart Itinerary
-            </button>
-            <button id="getHelp" class="secondary-button">
-                <i class="fas fa-question-circle"></i>
-                Need Help?
-            </button>
-        </div>
-
-        <div class="itinerary-display">
-            <div id="itineraryContent"></div>
-        </div>
-
-        <div class="help-panel" id="helpPanel">
-            <div class="help-content"></div>
-        </div>
-    </div>
 </body>
 </html> 

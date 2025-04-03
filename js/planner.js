@@ -303,28 +303,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Generate Itinerary Button
     document.getElementById('generateItinerary').addEventListener('click', async () => {
-        try {
-            const itineraryDisplay = document.getElementById('itineraryContent');
-            itineraryDisplay.innerHTML = '<div class="loading">Generating your personalized itinerary...</div>';
-            
-            const itinerary = await agentSystem.generateSmartItinerary();
-            displayItinerary(itinerary);
-        } catch (error) {
-            showError('Failed to generate itinerary. Please try again.');
-        }
+        // Remove this event listener
     });
 
     // Need Help Button
     document.getElementById('getHelp').addEventListener('click', async () => {
-        const helpPanel = document.getElementById('helpPanel');
-        helpPanel.classList.add('active');
-        
-        try {
-            const help = await agentSystem.getHelp('How can I make the most of my Bruges visit?');
-            displayHelp(help);
-        } catch (error) {
-            showError('Failed to get help. Please try again.');
-        }
+        // Remove this event listener
     });
 });
 
@@ -796,4 +780,335 @@ function displayHelp(help) {
 
 function showError(message) {
     // Implement error display
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the planner
+    const planner = new PlannerPage();
+    planner.initialize();
+
+    // Add save button functionality
+    const saveButton = document.getElementById('save-itinerary');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            planner.saveItinerary();
+        });
+    }
+});
+
+class PlannerPage {
+    constructor() {
+        this.selectionManager = window.selectionManager;
+        this.startDate = null;
+        this.endDate = null;
+        this.initialized = false;
+    }
+
+    initialize() {
+        if (this.initialized) return;
+        
+        try {
+            // Initialize date inputs
+            this.initializeDateInputs();
+            
+            // Load saved selections
+            this.selectionManager.loadSelections();
+            
+            // Display selections
+            this.displayAllSelections();
+
+            // Initialize preferences handlers
+            this.initializePreferences();
+
+            // Add save button event listener
+            const saveButton = document.getElementById('save-itinerary');
+            if (saveButton) {
+                saveButton.addEventListener('click', () => this.saveItinerary());
+            }
+
+            this.initialized = true;
+        } catch (error) {
+            console.error('Error initializing planner:', error);
+            this.showNotification('Error initializing planner. Please refresh the page.', 'error');
+        }
+    }
+
+    initializeDateInputs() {
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+
+        if (startDateInput && endDateInput) {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            startDateInput.min = today;
+            endDateInput.min = today;
+
+            // Add event listeners
+            startDateInput.addEventListener('change', (e) => {
+                this.startDate = e.target.value;
+                endDateInput.min = e.target.value;
+                this.updatePreferences();
+            });
+
+            endDateInput.addEventListener('change', (e) => {
+                this.endDate = e.target.value;
+                this.updatePreferences();
+            });
+        }
+    }
+
+    initializePreferences() {
+        try {
+            // Handle interest selections
+            document.querySelectorAll('.interest-option input').forEach(checkbox => {
+                checkbox.addEventListener('change', () => this.updatePreferences());
+            });
+
+            // Handle preference selections
+            document.querySelectorAll('.preference-group select').forEach(select => {
+                select.addEventListener('change', () => this.updatePreferences());
+            });
+
+            // Handle tour selections
+            document.querySelectorAll('.tour-option input').forEach(checkbox => {
+                checkbox.addEventListener('change', () => this.updatePreferences());
+            });
+
+            // Handle review filter selections
+            document.querySelectorAll('.review-filter input').forEach(checkbox => {
+                checkbox.addEventListener('change', () => this.updatePreferences());
+            });
+
+            // Budget options handler
+            document.querySelectorAll('.budget-option').forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.addEventListener('change', () => {
+                        document.querySelectorAll('.budget-option').forEach(opt => {
+                            opt.classList.remove('active');
+                        });
+                        option.classList.add('active');
+                        this.updatePreferences();
+                    });
+                }
+            });
+
+            // Load saved preferences
+            const savedPreferences = localStorage.getItem('plannerPreferences');
+            if (savedPreferences) {
+                const preferences = JSON.parse(savedPreferences);
+                this.applySavedPreferences(preferences);
+            }
+        } catch (error) {
+            console.error('Error initializing preferences:', error);
+            this.showNotification('Error loading preferences', 'error');
+        }
+    }
+
+    applySavedPreferences(preferences) {
+        try {
+            // Apply interests
+            preferences.interests?.forEach(interest => {
+                const checkbox = document.querySelector(`input[name="interest"][value="${interest}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+
+            // Apply pace
+            if (preferences.pace) {
+                const paceSelect = document.querySelector('select[name="pace"]');
+                if (paceSelect) paceSelect.value = preferences.pace;
+            }
+
+            // Apply budget
+            if (preferences.budget) {
+                const budgetRadio = document.querySelector(`input[name="budget"][value="${preferences.budget}"]`);
+                if (budgetRadio) {
+                    budgetRadio.checked = true;
+                    budgetRadio.closest('.budget-option').classList.add('active');
+                }
+            }
+
+            // Apply accessibility
+            if (preferences.accessibility) {
+                const accessibilitySelect = document.querySelector('select[name="accessibility"]');
+                if (accessibilitySelect) accessibilitySelect.value = preferences.accessibility;
+            }
+
+            // Apply tours
+            preferences.tours?.boat?.forEach(tour => {
+                const checkbox = document.querySelector(`input[name="boat-tour"][value="${tour}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+
+            preferences.tours?.horse?.forEach(tour => {
+                const checkbox = document.querySelector(`input[name="horse-tour"][value="${tour}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+
+            // Apply reviews
+            preferences.reviews?.forEach(review => {
+                const checkbox = document.querySelector(`input[name="review"][value="${review}"]`);
+                if (checkbox) checkbox.checked = true;
+            });
+        } catch (error) {
+            console.error('Error applying saved preferences:', error);
+        }
+    }
+
+    updatePreferences() {
+        try {
+            const preferences = {
+                interests: Array.from(document.querySelectorAll('.interest-option input:checked')).map(cb => cb.value),
+                pace: document.querySelector('select[name="pace"]')?.value || '',
+                budget: document.querySelector('input[name="budget"]:checked')?.value || '',
+                accessibility: document.querySelector('select[name="accessibility"]')?.value || '',
+                tours: {
+                    boat: Array.from(document.querySelectorAll('input[name="boat-tour"]:checked')).map(cb => cb.value),
+                    horse: Array.from(document.querySelectorAll('input[name="horse-tour"]:checked')).map(cb => cb.value)
+                },
+                reviews: Array.from(document.querySelectorAll('.review-filter input:checked')).map(cb => cb.value)
+            };
+
+            localStorage.setItem('plannerPreferences', JSON.stringify(preferences));
+        } catch (error) {
+            console.error('Error updating preferences:', error);
+        }
+    }
+
+    saveItinerary() {
+        try {
+            // Validate dates
+            if (!this.startDate || !this.endDate) {
+                this.showNotification('Please select both start and end dates', 'error');
+                return;
+            }
+
+            // Get all selections and preferences
+            const itineraryData = {
+                dates: {
+                    start: this.startDate,
+                    end: this.endDate
+                },
+                selections: this.selectionManager.getSelections(),
+                preferences: JSON.parse(localStorage.getItem('plannerPreferences') || '{}')
+            };
+
+            // Save to localStorage
+            localStorage.setItem('savedItinerary', JSON.stringify(itineraryData));
+
+            // Show success message
+            this.showNotification('Itinerary saved successfully!', 'success');
+
+            // Update UI to reflect saved state
+            this.updateSaveButtonState(true);
+        } catch (error) {
+            console.error('Error saving itinerary:', error);
+            this.showNotification('Error saving itinerary', 'error');
+        }
+    }
+
+    showNotification(message, type = 'info') {
+        try {
+            // Remove existing notifications
+            document.querySelectorAll('.notification').forEach(notification => notification.remove());
+
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            // Add to document
+            document.body.appendChild(notification);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        } catch (error) {
+            console.error('Error showing notification:', error);
+        }
+    }
+
+    updateSaveButtonState(saved) {
+        try {
+            const saveButton = document.getElementById('save-itinerary');
+            if (saveButton) {
+                saveButton.innerHTML = saved ? 
+                    '<i class="fas fa-check"></i> Itinerary Saved' : 
+                    '<i class="fas fa-save"></i> Save Itinerary';
+                
+                if (saved) {
+                    saveButton.classList.add('saved');
+                    setTimeout(() => {
+                        saveButton.classList.remove('saved');
+                        saveButton.innerHTML = '<i class="fas fa-save"></i> Save Itinerary';
+                    }, 2000);
+                }
+            }
+        } catch (error) {
+            console.error('Error updating save button state:', error);
+        }
+    }
+
+    displayAllSelections() {
+        try {
+            const selections = this.selectionManager.getSelections();
+            
+            // Display places
+            this.displaySelectionCategory('places', selections.places);
+            
+            // Display restaurants
+            this.displaySelectionCategory('restaurants', selections.restaurants);
+            
+            // Display tours
+            this.displaySelectionCategory('tours', selections.tours);
+            
+            // Display photos
+            this.displaySelectionCategory('photos', selections.photos);
+        } catch (error) {
+            console.error('Error displaying selections:', error);
+            this.showNotification('Error loading selections', 'error');
+        }
+    }
+
+    displaySelectionCategory(category, items) {
+        try {
+            const container = document.querySelector(`#selected${category.charAt(0).toUpperCase() + category.slice(1)} .selection-items`);
+            if (!container) return;
+
+            if (!items || items.length === 0) {
+                container.innerHTML = `<p class="no-selections">No ${category} selected yet</p>`;
+                return;
+            }
+
+            container.innerHTML = items.map(item => `
+                <div class="selection-item">
+                    <span class="item-name">${item}</span>
+                    <button class="remove-selection" data-id="${item}" data-type="${category}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // Add event listeners for remove buttons
+            container.querySelectorAll('.remove-selection').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const button = e.target.closest('button');
+                    if (button) {
+                        const id = button.dataset.id;
+                        const type = button.dataset.type;
+                        this.selectionManager.removeSelection(id, type.slice(0, -1)); // Remove 's' from type
+                        this.displaySelectionCategory(type, this.selectionManager.getSelections()[type]);
+                    }
+                });
+            });
+        } catch (error) {
+            console.error(`Error displaying ${category}:`, error);
+        }
+    }
 } 

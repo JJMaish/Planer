@@ -1,56 +1,75 @@
 class ChatAgent {
     constructor() {
-        this.basePrompt = `As a knowledgeable Bruges travel assistant, I can help you with:
-- Planning your itinerary
-- Finding attractions and restaurants
-- Getting directions
-- Local tips and recommendations
-- Travel advice`;
+        this.initialize();
+    }
+
+    initialize() {
+        this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        
+        if (chatForm) {
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const message = chatInput.value.trim();
+                if (message) {
+                    await this.handleUserMessage(message);
+                    chatInput.value = '';
+                }
+            });
+        }
+    }
+
+    async handleUserMessage(message) {
+        try {
+            // Display user message
+            this.displayMessage(message, 'user');
+
+            // Process the message and get response
+            const response = await this.processMessage(message);
+
+            // Display bot response
+            this.displayMessage(response, 'bot');
+        } catch (error) {
+            console.error('Error handling message:', error);
+            this.displayMessage('Sorry, I encountered an error. Please try again.', 'bot');
+        }
     }
 
     async processMessage(message) {
         try {
-            const prompt = this.createPrompt(message);
-            const response = await this.callDeepSeek(prompt);
-            return this.formatResponse(response);
-        } catch (error) {
-            console.error('Chat processing error:', error);
-            return 'I apologize, but I encountered an error. Please try again.';
-        }
-    }
-
-    createPrompt(message) {
-        return `${this.basePrompt}\n\nUser: ${message}\n\nAssistant:`;
-    }
-
-    async callDeepSeek(prompt) {
-        try {
-            const response = await fetch('YOUR_DEEPSEEK_ENDPOINT', {
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    prompt: prompt,
-                    max_tokens: 150,
-                    temperature: 0.7
-                })
+                body: JSON.stringify({ message })
             });
 
             if (!response.ok) {
-                throw new Error('DeepSeek API call failed');
+                throw new Error('Failed to get response');
             }
 
             const data = await response.json();
-            return data.choices[0].text;
+            return data.response;
         } catch (error) {
-            console.error('DeepSeek API error:', error);
+            console.error('Error processing message:', error);
             throw error;
         }
     }
 
-    formatResponse(response) {
-        return response.trim();
+    displayMessage(message, type) {
+        const chatMessages = document.getElementById('chat-messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = `chat-message ${type}-message`;
+        messageElement.textContent = message;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
+}
+
+export default ChatAgent; 
 } 

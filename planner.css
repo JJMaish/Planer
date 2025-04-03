@@ -23,18 +23,39 @@
     margin-bottom: 3rem;
     color: white;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
-.hero-content h1 {
+.planner-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.planner-hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
     animation: fadeInUp 0.8s ease;
 }
 
-.hero-content p {
+.planner-hero h1 i {
+    margin-right: 10px;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.planner-hero:hover h1 i {
+    transform: scale(1.2);
+}
+
+.planner-hero p {
     font-size: 1.2rem;
     opacity: 0.9;
     animation: fadeInUp 1s ease;
+}
+
+.planner-hero p i {
+    margin-right: 8px;
+    color: var(--primary-color);
 }
 
 /* Weather Widget */
@@ -49,6 +70,12 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.weather-widget:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Progress Bar */
@@ -68,6 +95,7 @@
     padding: 1rem;
     position: relative;
     color: #666;
+    transition: all 0.3s ease;
 }
 
 .step.active {
@@ -83,6 +111,7 @@
     width: 100%;
     height: 3px;
     background: #ddd;
+    transition: all 0.3s ease;
 }
 
 .step.active::after {
@@ -96,6 +125,12 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     padding: 2rem;
     margin-bottom: 3rem;
+    transition: all 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* Form Steps */
@@ -139,6 +174,11 @@
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.interest-card:hover i {
+    transform: scale(1.2);
 }
 
 .interest-card.selected {
@@ -165,10 +205,22 @@
 
 .budget-option:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .budget-option input[type="radio"] {
     display: none;
+}
+
+.budget-option i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.budget-option:hover i {
+    transform: scale(1.2);
 }
 
 .budget-option.selected {
@@ -213,6 +265,12 @@
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.itinerary-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .itinerary-body {
@@ -226,17 +284,387 @@
     padding: 2rem;
     background: #f8f9fa;
     border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.timeline-view:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .map-view {
     height: 500px;
     border-radius: 10px;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.map-view:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 #map {
     height: 100%;
     width: 100%;
+}
+
+/* Selection Categories */
+.selection-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.selection-category {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.selection-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.selection-category h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.selection-category h3 i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.selection-category:hover h3 i {
+    transform: scale(1.2);
+}
+
+.selection-items {
+    min-height: 100px;
+}
+
+/* Planner Tools */
+.planner-tools {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.planner-tools:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Date Selector */
+.date-selector {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.date-selector h3, .planner-preferences h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.date-selector h3 i, .planner-preferences h3 i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.date-selector:hover h3 i, .planner-preferences:hover h3 i {
+    transform: scale(1.2);
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    position: relative;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.input-group label i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.input-group input, .input-group select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    outline: none;
+}
+
+/* Fix for overlapping calendars */
+input[type="date"] {
+    position: relative;
+    z-index: 1;
+}
+
+/* When a date input is focused, increase its z-index to prevent overlap */
+input[type="date"]:focus {
+    z-index: 10;
+}
+
+/* Ensure the calendar popup appears above other elements */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive adjustments for date inputs */
+@media (max-width: 768px) {
+    .date-inputs {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Ensure proper spacing between date inputs on mobile */
+    .input-group:first-child {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Preference Sections */
+.preference-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.preference-section:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.preference-section h4 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.preference-section h4 i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.preference-section:hover h4 i {
+    transform: scale(1.2);
+}
+
+.interest-options, .preference-options, .tours-options, .review-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.interest-option, .budget-option, .tour-option, .review-filter {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.interest-option:hover, .budget-option:hover, .tour-option:hover, .review-filter:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.interest-option input, .budget-option input, .tour-option input, .review-filter input {
+    margin-right: 10px;
+}
+
+.interest-option span, .budget-option span, .tour-option span, .review-filter span {
+    display: flex;
+    align-items: center;
+}
+
+.interest-option span i, .budget-option span i, .tour-option span i, .review-filter span i {
+    margin-right: 8px;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.interest-option:hover span i, .budget-option:hover span i, .tour-option:hover span i, .review-filter:hover span i {
+    transform: scale(1.2);
+}
+
+/* Itinerary Builder */
+.itinerary-builder {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.itinerary-builder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.itinerary-builder h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.itinerary-builder h3 i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.itinerary-builder:hover h3 i {
+    transform: scale(1.2);
+}
+
+.itinerary-days {
+    margin-bottom: 2rem;
+}
+
+.save-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.save-btn i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.save-btn:hover {
+    background: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.save-btn:hover i {
+    transform: scale(1.2);
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 3rem 0 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-section h3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.footer-section h3 i {
+    margin-right: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #ddd;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.footer-section ul li a i {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.footer-section ul li a:hover i {
+    transform: scale(1.2);
+}
+
+.footer-section p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.footer-section p i {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #444;
 }
 
 /* Animations */
@@ -256,27 +684,44 @@
     }
 }
 
-/* Responsive Design */
+/* Micro-transitions */
+.animate__animated {
+    animation-duration: 0.5s;
+}
+
+.animate__pulse {
+    animation-duration: 1s;
+}
+
+.animate__fadeIn {
+    animation-duration: 0.5s;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
     .planner-hero {
         padding: 3rem 1rem;
     }
-
-    .hero-content h1 {
-        font-size: 2rem;
+    
+    .planner-hero h1 {
+        font-size: 2.5rem;
     }
-
-    .interests-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .itinerary-body {
+    
+    .date-inputs {
         grid-template-columns: 1fr;
     }
-
+    
+    .interest-options, .preference-options, .tours-options, .review-options {
+        grid-template-columns: 1fr;
+    }
+    
     .budget-options {
         flex-direction: column;
         gap: 1rem;
+    }
+    
+    .itinerary-body {
+        grid-template-columns: 1fr;
     }
 }
 
