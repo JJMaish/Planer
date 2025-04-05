@@ -15,16 +15,25 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
+                <div class="wishlist-nav">
+                    <a href="wish-list.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="places-to-visit.html" class="active">Places to Visit</a></li>
-                <li><a href="restaurants.html">Restaurants</a></li>
-                <li><a href="tour-guide.html">Virtual Guide</a></li>
-                <li><a href="planner.html">Trip Planner</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="places-to-visit.html" class="active"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
+                <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
@@ -48,12 +57,8 @@
             <!-- Belfort -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="belfort" 
-                           data-type="place"
-                           id="place-belfort">
-                    <label for="place-belfort" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="belfort" data-type="place" id="place-1">
+                    <label for="place-1" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -90,12 +95,8 @@
             <!-- De Burg -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="de-burg" 
-                           data-type="place"
-                           id="place-de-burg">
-                    <label for="place-de-burg" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="de-burg" data-type="place" id="place-2">
+                    <label for="place-2" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -132,12 +133,8 @@
             <!-- Market Square -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="market-square" 
-                           data-type="place"
-                           id="place-market-square">
-                    <label for="place-market-square" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="market-square" data-type="place" id="place-3">
+                    <label for="place-3" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -171,14 +168,13 @@
             <!-- Basilica of the Holy Blood -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="basilica-holy-blood" 
-                           data-type="place"
-                           id="place-basilica-holy-blood">
-                    <label for="place-basilica-holy-blood" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="holy-blood" data-type="place" id="place-4">
+                    <label for="place-4" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
+                </div>
+                <div class="place-image">
+                    <img src="Data/Places/holy-blood.jpg" alt="Basilica of the Holy Blood">
                 </div>
                 <div class="place-content">
                     <div class="place-header">
@@ -207,12 +203,8 @@
             <!-- Historium Bruges -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="historium" 
-                           data-type="place"
-                           id="place-historium">
-                    <label for="place-historium" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="historium" data-type="place" id="place-5">
+                    <label for="place-5" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -249,12 +241,8 @@
             <!-- Groeninge Museum -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="groeninge" 
-                           data-type="place"
-                           id="place-groeninge">
-                    <label for="place-groeninge" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="groeninge" data-type="place" id="place-6">
+                    <label for="place-6" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -291,12 +279,8 @@
             <!-- Church of Our Lady -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="church-of-our-lady" 
-                           data-type="place"
-                           id="place-church-of-our-lady">
-                    <label for="place-church-of-our-lady" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="church-of-our-lady" data-type="place" id="place-7">
+                    <label for="place-7" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -333,12 +317,8 @@
             <!-- Rosary Quay -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="rosary-quay" 
-                           data-type="place"
-                           id="place-rosary-quay">
-                    <label for="place-rosary-quay" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="rosary-quay" data-type="place" id="place-8">
+                    <label for="place-8" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -375,12 +355,8 @@
             <!-- Choco-Story -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="choco-story" 
-                           data-type="place"
-                           id="place-choco-story">
-                    <label for="place-choco-story" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="choco-story" data-type="place" id="place-9">
+                    <label for="place-9" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -417,12 +393,8 @@
             <!-- De Halve Maan -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="de-halve-maan" 
-                           data-type="place"
-                           id="place-de-halve-maan">
-                    <label for="place-de-halve-maan" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="halve-maan" data-type="place" id="place-10">
+                    <label for="place-10" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -459,12 +431,8 @@
             <!-- Sint-Salvatorskathedraal -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="sint-salvators" 
-                           data-type="place"
-                           id="place-sint-salvators">
-                    <label for="place-sint-salvators" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="sint-salvators" data-type="place" id="place-11">
+                    <label for="place-11" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -501,12 +469,8 @@
             <!-- Boniface Bridge -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="boniface-bridge" 
-                           data-type="place"
-                           id="place-boniface-bridge">
-                    <label for="place-boniface-bridge" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="boniface-bridge" data-type="place" id="place-12">
+                    <label for="place-12" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -543,12 +507,8 @@
             <!-- Bruges City Hall -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="city-hall" 
-                           data-type="place"
-                           id="place-city-hall">
-                    <label for="place-city-hall" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="city-hall" data-type="place" id="place-13">
+                    <label for="place-13" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -585,12 +545,8 @@
             <!-- Bruges Beer Experience -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="beer-experience" 
-                           data-type="place"
-                           id="place-beer-experience">
-                    <label for="place-beer-experience" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="beer-experience" data-type="place" id="place-14">
+                    <label for="place-14" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -627,12 +583,8 @@
             <!-- Saint John's Hospital -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="saint-johns" 
-                           data-type="place"
-                           id="place-saint-johns">
-                    <label for="place-saint-johns" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="saint-johns" data-type="place" id="place-15">
+                    <label for="place-15" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -669,12 +621,8 @@
             <!-- Luc Vanlaere Harpist -->
             <div class="place-card" data-aos="fade-up">
                 <div class="selection-control">
-                    <input type="checkbox" 
-                           class="place-selector" 
-                           data-id="harpist" 
-                           data-type="place"
-                           id="place-harpist">
-                    <label for="place-harpist" class="selection-label">
+                    <input type="checkbox" class="place-selector" data-id="harpist" data-type="place" id="place-16">
+                    <label for="place-16" class="selection-label">
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
@@ -720,9 +668,11 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="places-to-visit.html">Places to Visit</a></li>
-                    <li><a href="restaurants.html">Restaurants</a></li>
-                    <li><a href="tour-guide.html">Virtual Guide</a></li>
+                    <li><a href="places-to-visit.html">Places</a></li>
+                    <li><a href="restaurants.html">Food</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="planner.html">Plan</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -738,5 +688,6 @@
 
     <script src="js/mobile-menu.js"></script>
     <script src="js/places-view.js" defer></script>
+    <script src="js/selection-manager.js"></script>
 </body>
 </html> 

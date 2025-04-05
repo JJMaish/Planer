@@ -1,6 +1,11 @@
 // Test script for Bruges Trip Planner agents
 console.log('Starting agent tests...');
 
+// Import agents
+import AIPlannerAgent from './Agents/AIPlannerAgent.js';
+import PreferenceLearningAgent from './Agents/PreferenceLearningAgent.js';
+import SmartSchedulerAgent from './Agents/SmartSchedulerAgent.js';
+
 async function waitForAgents() {
     // Wait for agents to be initialized
     let attempts = 0;
@@ -128,6 +133,28 @@ async function runTests() {
         const itineraryAgent = agentManager.agents.itinerary;
         const itineraryResult = await itineraryAgent.handleSelectionChange(selections, result.recommendations);
         console.log('Itinerary result:', itineraryResult);
+        
+        // Test AI Planner Agent
+        console.log('\nTesting AI Planner Agent...');
+        const aiPlannerAgent = new AIPlannerAgent();
+        const planResult = await aiPlannerAgent.generatePlan(selections);
+        console.log('AI Planner result:', planResult);
+        
+        // Test Preference Learning Agent
+        console.log('\nTesting Preference Learning Agent...');
+        const preferenceLearningAgent = new PreferenceLearningAgent();
+        const preferencesResult = await preferenceLearningAgent.learnFromUserChoices('test-user', selections);
+        console.log('Preference Learning result:', preferencesResult);
+        
+        // Test Smart Scheduler Agent
+        console.log('\nTesting Smart Scheduler Agent...');
+        const smartSchedulerAgent = new SmartSchedulerAgent(aiPlannerAgent);
+        const scheduleResult = await smartSchedulerAgent.createOptimizedSchedule({
+            startDate: new Date(),
+            duration: 3,
+            preferences: selections
+        });
+        console.log('Smart Scheduler result:', scheduleResult);
         
         console.log('\nAll tests completed successfully!');
         

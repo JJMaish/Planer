@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish List - Bruges City Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wish-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="nav-container">
+                <a href="index.html" class="logo">Bruges City Guide</a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="places-to-visit.html"><i class="fas fa-landmark"></i> Places</a></li>
+                    <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
+                    <li><a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a></li>
+                    <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                    <li><a href="wish-list.html" class="active"><i class="fas fa-heart"></i> Wish List</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="wish-list-main">
+        <section class="wish-list-hero">
+            <h1>Your Wish List</h1>
+            <p>Keep track of all your favorite places, restaurants, tours, events, and photos in one place.</p>
+        </section>
+
+        <div class="wish-list-controls">
+            <button class="clear-btn">
+                <i class="fas fa-trash"></i>
+                Clear All
+            </button>
+        </div>
+
+        <div class="wish-list-categories">
+            <!-- Places Category -->
+            <div class="wish-list-category" data-category="places">
+                <div class="category-header">
+                    <h2><i class="fas fa-landmark"></i> Places to Visit</h2>
+                    <span class="item-count">0</span>
+                </div>
+                <div class="category-items">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Restaurants Category -->
+            <div class="wish-list-category" data-category="restaurants">
+                <div class="category-header">
+                    <h2><i class="fas fa-utensils"></i> Restaurants</h2>
+                    <span class="item-count">0</span>
+                </div>
+                <div class="category-items">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Tours Category -->
+            <div class="wish-list-category" data-category="tours">
+                <div class="category-header">
+                    <h2><i class="fas fa-map-marked-alt"></i> Tours</h2>
+                    <span class="item-count">0</span>
+                </div>
+                <div class="category-items">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Events Category -->
+            <div class="wish-list-category" data-category="events">
+                <div class="category-header">
+                    <h2><i class="fas fa-calendar"></i> Events</h2>
+                    <span class="item-count">0</span>
+                </div>
+                <div class="category-items">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Photos Category -->
+            <div class="wish-list-category" data-category="photos">
+                <div class="category-header">
+                    <h2><i class="fas fa-images"></i> Photos</h2>
+                    <span class="item-count">0</span>
+                </div>
+                <div class="category-items">
+                    <!-- Items will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="places-to-visit.html">Places to Visit</a></li>
+                    <li><a href="restaurants.html">Restaurants</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="planner.html">Plan Your Trip</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@brugescityguide.com</p>
+                <p>Phone: +32 50 123 456</p>
+                <p>Address: Markt 1, 8000 Bruges, Belgium</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges City Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/selection-manager.js"></script>
+    <script src="js/wish-list.js"></script>
+</body>
+</html> 

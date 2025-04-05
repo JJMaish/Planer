@@ -26,85 +26,57 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places to Visit</a></li>
-                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Restaurants</a></li>
-                <li><a href="tour-guide.html"><i class="fas fa-headset"></i> Virtual Guide</a></li>
-                <li><a href="planner.html" class="active"><i class="fas fa-calendar-alt"></i> Trip Planner</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
+                <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="planner.html" class="active"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="planner-main">
         <section class="planner-hero">
-            <h1><i class="fas fa-map-marked-alt"></i> Your Trip Planner</h1>
-            <p><i class="fas fa-info-circle"></i> View and organize your selected places, restaurants, and tours</p>
+            <h1><i class="fas fa-map-marked-alt"></i> Plan Your Trip</h1>
+            <p><i class="fas fa-info-circle"></i> Customize your perfect Bruges experience</p>
         </section>
 
-        <section class="planner-content">
-            <div class="selections-overview">
-                <h2><i class="fas fa-clipboard-list"></i> Your Selections</h2>
-                <div class="selection-categories">
-                    <!-- Places -->
-                    <div class="selection-category" id="selectedPlaces">
-                        <h3><i class="fas fa-landmark"></i> Places to Visit</h3>
-                        <div class="selection-items"></div>
-                    </div>
-
-                    <!-- Restaurants -->
-                    <div class="selection-category" id="selectedRestaurants">
-                        <h3><i class="fas fa-utensils"></i> Restaurants</h3>
-                        <div class="selection-items"></div>
-                    </div>
-
-                    <!-- Tours -->
-                    <div class="selection-category" id="selectedTours">
-                        <h3><i class="fas fa-walking"></i> Tours</h3>
-                        <div class="selection-items"></div>
-                    </div>
-
-                    <!-- Photos -->
-                    <div class="selection-category" id="selectedPhotos">
-                        <h3><i class="fas fa-camera"></i> Photo Spots</h3>
-                        <div class="selection-items"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="interactive-planner">
+        <div class="planner-content">
             <div class="planner-tools">
                 <div class="date-selector">
-                    <h3><i class="fas fa-calendar"></i> Select Your Dates</h3>
-                    <div class="date-inputs">
-                        <div class="input-group">
-                            <label for="start-date"><i class="fas fa-plane-departure"></i> Start Date</label>
-                            <input type="date" id="start-date" name="start-date" data-aos="fade-up" data-aos-delay="100">
-                        </div>
-                        <div class="input-group">
-                            <label for="end-date"><i class="fas fa-plane-arrival"></i> End Date</label>
-                            <input type="date" id="end-date" name="end-date" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-calendar"></i> When are you visiting?</h3>
+                    <div class="date-inputs-container">
+                        <div class="date-inputs">
+                            <div class="input-group">
+                                <label for="start-date"><i class="fas fa-plane-departure"></i> Arrival</label>
+                                <input type="date" id="start-date" name="start-date">
+                            </div>
+                            <div class="input-group">
+                                <label for="end-date"><i class="fas fa-plane-arrival"></i> Departure</label>
+                                <input type="date" id="end-date" name="end-date">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="planner-preferences">
-                    <h3><i class="fas fa-sliders-h"></i> Plan Your Visit</h3>
+                    <h3><i class="fas fa-sliders-h"></i> Your Preferences</h3>
                     
-                    <!-- Interests Section -->
                     <div class="preference-section">
-                        <h4><i class="fas fa-heart"></i> Interests</h4>
+                        <h4><i class="fas fa-heart"></i> What interests you?</h4>
                         <div class="interest-options">
                             <label class="interest-option">
                                 <input type="checkbox" name="interest" value="history">
-                                <span><i class="fas fa-landmark"></i> Historical Sites</span>
+                                <span><i class="fas fa-landmark"></i> History</span>
                             </label>
                             <label class="interest-option">
                                 <input type="checkbox" name="interest" value="culture">
-                                <span><i class="fas fa-theater-masks"></i> Cultural Attractions</span>
+                                <span><i class="fas fa-theater-masks"></i> Culture</span>
                             </label>
                             <label class="interest-option">
                                 <input type="checkbox" name="interest" value="food">
-                                <span><i class="fas fa-utensils"></i> Local Cuisine</span>
+                                <span><i class="fas fa-utensils"></i> Food</span>
                             </label>
                             <label class="interest-option">
                                 <input type="checkbox" name="interest" value="shopping">
@@ -112,139 +84,97 @@
                             </label>
                             <label class="interest-option">
                                 <input type="checkbox" name="interest" value="nature">
-                                <span><i class="fas fa-tree"></i> Nature & Parks</span>
+                                <span><i class="fas fa-tree"></i> Nature</span>
                             </label>
                         </div>
                     </div>
 
-                    <!-- Preferences Section -->
                     <div class="preference-section">
-                        <h4><i class="fas fa-sliders-h"></i> Preferences</h4>
-                        <div class="preference-options">
-                            <div class="preference-group">
-                                <label><i class="fas fa-tachometer-alt"></i> Pace</label>
-                                <select name="pace">
-                                    <option value="relaxed">Relaxed</option>
-                                    <option value="moderate">Moderate</option>
-                                    <option value="intensive">Intensive</option>
-                                </select>
-                            </div>
-                            <div class="preference-group">
-                                <h4><i class="fas fa-wallet"></i> Budget</h4>
-                                <div class="budget-options">
-                                    <label class="budget-option">
-                                        <input type="radio" name="budget" value="budget">
-                                        <span class="budget-label"><i class="fas fa-piggy-bank"></i> Budget-friendly</span>
-                                    </label>
-                                    <label class="budget-option">
-                                        <input type="radio" name="budget" value="moderate">
-                                        <span class="budget-label"><i class="fas fa-coins"></i> Moderate</span>
-                                    </label>
-                                    <label class="budget-option">
-                                        <input type="radio" name="budget" value="luxury">
-                                        <span class="budget-label"><i class="fas fa-gem"></i> Luxury</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="preference-group">
-                                <label><i class="fas fa-wheelchair"></i> Accessibility Needs</label>
-                                <select name="accessibility">
-                                    <option value="none">No specific needs</option>
-                                    <option value="wheelchair">Wheelchair accessible</option>
-                                    <option value="limited">Limited mobility</option>
-                                </select>
-                            </div>
+                        <h4><i class="fas fa-wallet"></i> Budget</h4>
+                        <div class="budget-options">
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="budget">
+                                <span><i class="fas fa-piggy-bank"></i> Budget</span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="moderate">
+                                <span><i class="fas fa-coins"></i> Moderate</span>
+                            </label>
+                            <label class="budget-option">
+                                <input type="radio" name="budget" value="luxury">
+                                <span><i class="fas fa-gem"></i> Luxury</span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Tours Section -->
                     <div class="preference-section">
                         <h4><i class="fas fa-route"></i> Tours</h4>
                         <div class="tours-options">
-                            <!-- Boat Tours -->
-                            <div class="tour-type">
-                                <h5><i class="fas fa-ship"></i> Canal Boat Tours</h5>
-                                <div class="tour-selections">
-                                    <label class="tour-option">
-                                        <input type="checkbox" name="boat-tour" value="huidenvettersplein">
-                                        <span><i class="fas fa-map-marker-alt"></i> Huidenvettersplein Dock (30 min)</span>
-                                    </label>
-                                    <label class="tour-option">
-                                        <input type="checkbox" name="boat-tour" value="rozenhoedkaai">
-                                        <span><i class="fas fa-map-marker-alt"></i> Rozenhoedkaai Dock (30 min)</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Horse Carriage Tours -->
-                            <div class="tour-type">
-                                <h5><i class="fas fa-horse"></i> Horse Carriage Tours</h5>
-                                <div class="tour-selections">
-                                    <label class="tour-option">
-                                        <input type="checkbox" name="horse-tour" value="markt">
-                                        <span><i class="fas fa-map-marker-alt"></i> Markt Square Tour (35 min)</span>
-                                    </label>
-                                </div>
-                            </div>
+                            <label class="tour-option">
+                                <input type="checkbox" name="boat-tour" value="huidenvettersplein">
+                                <span><i class="fas fa-ship"></i> Canal Tour</span>
+                            </label>
+                            <label class="tour-option">
+                                <input type="checkbox" name="horse-tour" value="markt">
+                                <span><i class="fas fa-horse"></i> Carriage Tour</span>
+                            </label>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Reviews Section -->
-                    <div class="preference-section">
-                        <h4><i class="fas fa-star"></i> Review Preferences</h4>
-                        <div class="review-options">
-                            <label class="review-filter">
-                                <input type="checkbox" name="review" value="highly-rated">
-                                <span><i class="fas fa-star"></i> Highly Rated (4.5+ stars)</span>
-                            </label>
-                            <label class="review-filter">
-                                <input type="checkbox" name="review" value="popular">
-                                <span><i class="fas fa-fire"></i> Popular Choices</span>
-                            </label>
-                            <label class="review-filter">
-                                <input type="checkbox" name="review" value="hidden-gems">
-                                <span><i class="fas fa-gem"></i> Hidden Gems</span>
-                            </label>
-                        </div>
+            <div class="selections-overview">
+                <h2><i class="fas fa-clipboard-list"></i> Your Selections</h2>
+                <div class="selection-categories">
+                    <div class="selection-category" id="selectedPlaces">
+                        <h3><i class="fas fa-landmark"></i> Places</h3>
+                        <div class="selection-items"></div>
+                    </div>
+                    <div class="selection-category" id="selectedRestaurants">
+                        <h3><i class="fas fa-utensils"></i> Food</h3>
+                        <div class="selection-items"></div>
+                    </div>
+                    <div class="selection-category" id="selectedTours">
+                        <h3><i class="fas fa-walking"></i> Tours</h3>
+                        <div class="selection-items"></div>
+                    </div>
+                    <div class="selection-category" id="selectedPhotos">
+                        <h3><i class="fas fa-camera"></i> Photos</h3>
+                        <div class="selection-items"></div>
                     </div>
                 </div>
             </div>
 
             <div class="itinerary-builder">
                 <h3><i class="fas fa-calendar-check"></i> Your Itinerary</h3>
-                <div id="itinerary-days" class="itinerary-days">
-                    <!-- Day cards will be populated here -->
-                </div>
+                <div id="itinerary-days" class="itinerary-days"></div>
                 <button id="save-itinerary" class="save-btn">
                     <i class="fas fa-save"></i> Save Itinerary
                 </button>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h3><i class="fas fa-landmark"></i> Bruges City Guide</h3>
-                <p>Your complete guide to exploring the Venice of the North</p>
+                <h3><i class="fas fa-landmark"></i> Bruges Guide</h3>
+                <p>Your complete guide to exploring Bruges</p>
             </div>
             <div class="footer-section">
-                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places to Visit</a></li>
-                    <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Restaurants</a></li>
-                    <li><a href="tour-guide.html"><i class="fas fa-headset"></i> Virtual Guide</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places</a></li>
+                    <li><a href="restaurants.html">Food</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="planner.html">Plan</a></li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h3><i class="fas fa-envelope"></i> Contact</h3>
-                <p><i class="fas fa-envelope"></i> Email: info@brugesguide.com</p>
-                <p><i class="fas fa-phone"></i> Phone: +32 123 456 789</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Bruges City Guide. All rights reserved.</p>
+            <p>&copy; 2024 Bruges Guide. All rights reserved.</p>
         </div>
     </footer>
 
@@ -274,7 +204,7 @@
             });
             
             // Add hover effects to preference options
-            const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option, .review-filter');
+            const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option');
             preferenceOptions.forEach(option => {
                 option.classList.add('animate__animated', 'animate__fadeIn');
             });
@@ -285,32 +215,25 @@
                 day.classList.add('animate__animated', 'animate__fadeIn');
             });
             
-            // Fix for date inputs to prevent calendar overlapping
+            // Date input handling
             const startDateInput = document.getElementById('start-date');
             const endDateInput = document.getElementById('end-date');
             
             if (startDateInput && endDateInput) {
-                // Set min date for end date based on start date
                 startDateInput.addEventListener('change', function() {
                     endDateInput.min = this.value;
-                    
-                    // If end date is before start date, update it
                     if (endDateInput.value && endDateInput.value < this.value) {
                         endDateInput.value = this.value;
                     }
                 });
                 
-                // Set max date for start date based on end date
                 endDateInput.addEventListener('change', function() {
                     startDateInput.max = this.value;
-                    
-                    // If start date is after end date, update it
                     if (startDateInput.value && startDateInput.value > this.value) {
                         startDateInput.value = this.value;
                     }
                 });
                 
-                // Prevent both calendars from being open at the same time
                 startDateInput.addEventListener('focus', function() {
                     if (document.activeElement === endDateInput) {
                         endDateInput.blur();
@@ -323,6 +246,122 @@
                     }
                 });
             }
+            
+            // Selection tracking
+            const selectionManager = {
+                places: [],
+                restaurants: [],
+                tours: [],
+                photos: []
+            };
+            
+            // Function to update selection displays
+            function updateSelectionDisplays() {
+                // Update places
+                const placesContainer = document.querySelector('#selectedPlaces .selection-items');
+                if (placesContainer) {
+                    placesContainer.innerHTML = '';
+                    selectionManager.places.forEach(place => {
+                        const item = document.createElement('div');
+                        item.className = 'selection-item';
+                        item.innerHTML = `
+                            <i class="fas fa-landmark"></i>
+                            <span>${place}</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        `;
+                        placesContainer.appendChild(item);
+                    });
+                }
+                
+                // Update restaurants
+                const restaurantsContainer = document.querySelector('#selectedRestaurants .selection-items');
+                if (restaurantsContainer) {
+                    restaurantsContainer.innerHTML = '';
+                    selectionManager.restaurants.forEach(restaurant => {
+                        const item = document.createElement('div');
+                        item.className = 'selection-item';
+                        item.innerHTML = `
+                            <i class="fas fa-utensils"></i>
+                            <span>${restaurant}</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        `;
+                        restaurantsContainer.appendChild(item);
+                    });
+                }
+                
+                // Update tours
+                const toursContainer = document.querySelector('#selectedTours .selection-items');
+                if (toursContainer) {
+                    toursContainer.innerHTML = '';
+                    selectionManager.tours.forEach(tour => {
+                        const item = document.createElement('div');
+                        item.className = 'selection-item';
+                        item.innerHTML = `
+                            <i class="fas fa-walking"></i>
+                            <span>${tour}</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        `;
+                        toursContainer.appendChild(item);
+                    });
+                }
+                
+                // Update photos
+                const photosContainer = document.querySelector('#selectedPhotos .selection-items');
+                if (photosContainer) {
+                    photosContainer.innerHTML = '';
+                    selectionManager.photos.forEach(photo => {
+                        const item = document.createElement('div');
+                        item.className = 'selection-item';
+                        item.innerHTML = `
+                            <i class="fas fa-camera"></i>
+                            <span>${photo}</span>
+                            <button class="remove-btn"><i class="fas fa-times"></i></button>
+                        `;
+                        photosContainer.appendChild(item);
+                    });
+                }
+            }
+            
+            // Track interest selections
+            const interestOptions = document.querySelectorAll('.interest-option input');
+            interestOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    const value = this.value;
+                    if (this.checked) {
+                        if (!selectionManager.places.includes(value)) {
+                            selectionManager.places.push(value);
+                        }
+                    } else {
+                        const index = selectionManager.places.indexOf(value);
+                        if (index > -1) {
+                            selectionManager.places.splice(index, 1);
+                        }
+                    }
+                    updateSelectionDisplays();
+                });
+            });
+            
+            // Track tour selections
+            const tourOptions = document.querySelectorAll('.tour-option input');
+            tourOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    const value = this.value;
+                    if (this.checked) {
+                        if (!selectionManager.tours.includes(value)) {
+                            selectionManager.tours.push(value);
+                        }
+                    } else {
+                        const index = selectionManager.tours.indexOf(value);
+                        if (index > -1) {
+                            selectionManager.tours.splice(index, 1);
+                        }
+                    }
+                    updateSelectionDisplays();
+                });
+            });
+            
+            // Initialize selection displays
+            updateSelectionDisplays();
         });
     </script>
 </body>

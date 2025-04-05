@@ -28,6 +28,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo a {
@@ -1433,11 +1434,16 @@ footer {
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 10;
+    z-index: 100;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
 }
 
 .selection-control input[type="checkbox"] {
@@ -1453,6 +1459,7 @@ footer {
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .selection-label i {
@@ -1475,6 +1482,8 @@ footer {
 /* Add relative positioning to the cards to properly position the checkboxes */
 .place-card,
 .restaurant-card,
+.tour-card,
+.event-card,
 .gallery-item {
     position: relative;
 }
@@ -1482,6 +1491,8 @@ footer {
 /* Add a selected state style */
 .place-card.selected,
 .restaurant-card.selected,
+.tour-card.selected,
+.event-card.selected,
 .gallery-item.selected {
     border: 2px solid var(--primary-color);
 }
@@ -2264,4 +2275,48 @@ input[type="checkbox"]:focus + span {
 .budget-option.active {
     background: rgba(var(--primary-color-rgb), 0.1);
     border: 1px solid var(--primary-color);
+}
+
+.wishlist-nav {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wishlist-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.wishlist-nav a:hover {
+    color: var(--primary-color);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.wishlist-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .wishlist-nav {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+        justify-content: center;
+    }
 } 

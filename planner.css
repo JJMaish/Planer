@@ -1,4 +1,336 @@
 /* Planner Page Styles */
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #6c757d;
+    --accent-color: #ffc107;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Main Layout */
+.planner-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.planner-hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../bannerSlides/banner1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+.planner-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.planner-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.planner-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Date Selector */
+.date-selector {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.date-selector h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.date-inputs-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.date-inputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.input-group input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+}
+
+/* Planner Preferences */
+.planner-preferences {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.planner-preferences h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preference-section {
+    margin-bottom: 1.5rem;
+}
+
+.preference-section h4 {
+    margin-bottom: 0.8rem;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.interest-options, .budget-options, .tours-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
+}
+
+.interest-option, .budget-option, .tour-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.interest-option:hover, .budget-option:hover, .tour-option:hover {
+    background-color: var(--light-color);
+    border-color: var(--primary-color);
+}
+
+.interest-option input, .budget-option input, .tour-option input {
+    margin-right: 0.5rem;
+}
+
+/* Selections Overview */
+.selections-overview {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.selections-overview h2 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.selection-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.selection-category {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+
+.selection-category h3 {
+    margin-bottom: 0.8rem;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.selection-items {
+    min-height: 50px;
+}
+
+.selection-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.selection-item i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+/* Itinerary Builder */
+.itinerary-builder {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.itinerary-builder h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.itinerary-days {
+    margin-bottom: 1.5rem;
+}
+
+.itinerary-day {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.itinerary-day h4 {
+    margin-bottom: 0.8rem;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.save-btn:hover {
+    background-color: #3a5a8c;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .planner-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .planner-hero p {
+        font-size: 1rem;
+    }
+    
+    .date-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .selection-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .interest-options, .budget-options, .tours-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .input-group input {
+        font-size: 16px; /* Prevent zoom on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .planner-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .interest-options, .budget-options, .tours-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .planner-main {
+        padding: 0.5rem;
+    }
+    
+    .date-selector, .planner-preferences, .selections-overview, .itinerary-builder {
+        padding: 1rem;
+    }
+}
+
+/* Planner Page Styles */
 .planner-page {
     min-height: 100vh;
     background: var(--light-bg);
@@ -346,7 +678,60 @@
 }
 
 .selection-items {
-    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    min-height: 50px;
+}
+
+.selection-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.selection-item:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.selection-item i {
+    color: var(--primary-color);
+}
+
+.selection-item .remove-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.selection-item .remove-btn:hover {
+    background: rgba(220, 53, 69, 0.1);
+    transform: scale(1.1);
+}
+
+/* Empty state for selection items */
+.selection-items:empty::after {
+    content: 'No items selected yet';
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    text-align: center;
 }
 
 /* Planner Tools */

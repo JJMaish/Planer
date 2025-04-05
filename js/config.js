@@ -21,6 +21,11 @@ class Config {
                 maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS) || 2000
             };
 
+            // Weather API Configuration
+            this.env.weather = {
+                apiKey: process.env.WEATHER_API_KEY
+            };
+
             // Google Maps Configuration
             this.env.googleMaps = {
                 apiKey: process.env.GOOGLE_MAPS_API_KEY
@@ -33,6 +38,13 @@ class Config {
 
             this.env.restaurant = {
                 apiKey: process.env.RESTAURANT_API_KEY
+            };
+
+            // DeepSeek Configuration
+            this.env.deepseek = {
+                apiKey: process.env.DEEPSEEK_API_KEY,
+                maxResults: 10,
+                language: 'en'
             };
 
             this.validateConfig();

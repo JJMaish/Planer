@@ -3,14 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruges Photo Gallery - CityGuide</title>
+    <title>Bruges Photo Gallery - Bruges Guide</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="gallery.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- Include your existing header -->
+    <header class="main-header">
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
+                </a>
+                <div class="wishlist-nav">
+                    <a href="wish-list.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
+                <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="gallery.html" class="active"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="gallery-main">
         <section class="gallery-hero">
@@ -81,7 +108,33 @@
         </div>
     </main>
 
-    <!-- Include your existing footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-landmark"></i> Bruges Guide</h3>
+                <p>Your complete guide to exploring Bruges</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places</a></li>
+                    <li><a href="restaurants.html">Food</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="planner.html">Plan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-envelope"></i> Contact</h3>
+                <p>Email: info@brugesguide.com</p>
+                <p>Phone: +32 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges Guide. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="js/gallery.js"></script>

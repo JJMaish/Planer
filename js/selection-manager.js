@@ -4,9 +4,11 @@ class SelectionManager {
             places: [],
             restaurants: [],
             tours: [],
-            photos: []
+            photos: [],
+            events: []
         };
         this.loadSelections();
+        this.initializeSelectors();
     }
 
     loadSelections() {
@@ -44,13 +46,122 @@ class SelectionManager {
             places: [],
             restaurants: [],
             tours: [],
-            photos: []
+            photos: [],
+            events: []
         };
         this.saveSelections();
     }
 
     isSelected(id, category) {
         return this.selections[category].includes(id);
+    }
+    
+    // Initialize all selectors on the page
+    initializeSelectors() {
+        // Initialize place selectors
+        const placeSelectors = document.querySelectorAll('.place-selector');
+        placeSelectors.forEach(selector => {
+            const id = selector.getAttribute('data-id');
+            const category = 'places';
+            
+            // Set initial state
+            if (this.isSelected(id, category)) {
+                selector.checked = true;
+            }
+            
+            // Add event listener
+            selector.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.addSelection(id, category);
+                } else {
+                    this.removeSelection(id, category);
+                }
+            });
+        });
+        
+        // Initialize restaurant selectors
+        const restaurantSelectors = document.querySelectorAll('.restaurant-selector');
+        restaurantSelectors.forEach(selector => {
+            const id = selector.getAttribute('data-id');
+            const category = 'restaurants';
+            
+            // Set initial state
+            if (this.isSelected(id, category)) {
+                selector.checked = true;
+            }
+            
+            // Add event listener
+            selector.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.addSelection(id, category);
+                } else {
+                    this.removeSelection(id, category);
+                }
+            });
+        });
+        
+        // Initialize tour selectors
+        const tourSelectors = document.querySelectorAll('.tour-selector');
+        tourSelectors.forEach(selector => {
+            const id = selector.getAttribute('data-id');
+            const category = 'tours';
+            
+            // Set initial state
+            if (this.isSelected(id, category)) {
+                selector.checked = true;
+            }
+            
+            // Add event listener
+            selector.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.addSelection(id, category);
+                } else {
+                    this.removeSelection(id, category);
+                }
+            });
+        });
+        
+        // Initialize photo selectors
+        const photoSelectors = document.querySelectorAll('.photo-selector');
+        photoSelectors.forEach(selector => {
+            const id = selector.getAttribute('data-id');
+            const category = 'photos';
+            
+            // Set initial state
+            if (this.isSelected(id, category)) {
+                selector.checked = true;
+            }
+            
+            // Add event listener
+            selector.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.addSelection(id, category);
+                } else {
+                    this.removeSelection(id, category);
+                }
+            });
+        });
+        
+        // Initialize event selectors
+        const eventSelectors = document.querySelectorAll('.event-selector');
+        eventSelectors.forEach(selector => {
+            const id = selector.getAttribute('data-id');
+            const category = 'events';
+            
+            // Set initial state
+            if (this.isSelected(id, category)) {
+                selector.checked = true;
+            }
+            
+            // Add event listener
+            selector.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.addSelection(id, category);
+                } else {
+                    this.removeSelection(id, category);
+                }
+            });
+        });
     }
     
     // Itinerary management methods
@@ -114,5 +225,7 @@ class SelectionManager {
     }
 }
 
-// Initialize the selection manager
-window.selectionManager = new SelectionManager(); 
+// Initialize the selection manager when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.selectionManager = new SelectionManager();
+}); 

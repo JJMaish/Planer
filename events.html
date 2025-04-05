@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Bruges City Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
+                </a>
+                <div class="wishlist-nav">
+                    <a href="wish-list.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
+                <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html" class="active"><i class="fas fa-calendar"></i> Events</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="events-hero">
+            <h1>Upcoming Events in Bruges</h1>
+            <p>Discover exciting festivals, concerts, and cultural events in the heart of Bruges</p>
+        </section>
+
+        <div class="view-controls">
+            <button class="view-toggle active" data-view="grid">
+                <i class="fas fa-th"></i> Grid View
+            </button>
+            <button class="view-toggle" data-view="list">
+                <i class="fas fa-list"></i> List View
+            </button>
+        </div>
+
+        <section class="events-container grid-view">
+            <!-- Bruges Beer Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="beer-festival" data-type="event" id="event-1">
+                    <label for="event-1" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/beer-festival.jpg" alt="Bruges Beer Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Beer Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-beer"></i> Festival</p>
+                    <div class="description">
+                        <p>Experience the best of Belgian beer culture at this annual festival. Sample over 100 different beers from local breweries, enjoy live music, and learn about brewing traditions from expert brewers.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> June 15-17, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Market Square</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €15 entry</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Market+Square+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.brugesbeerfestival.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Light Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="light-festival" data-type="event" id="event-2">
+                    <label for="event-2" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/light-festival.jpg" alt="Bruges Light Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Light Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-lightbulb"></i> Festival</p>
+                    <div class="description">
+                        <p>Every three years, Bruges transforms into a magical light spectacle. Artists from around the world create stunning light installations throughout the historic city center, turning the medieval architecture into a canvas for contemporary art.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> November 15-30, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> City Center</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €20 entry</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.brugge.be/lichtfestival" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Procession of the Holy Blood -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="holy-blood" data-type="event" id="event-3">
+                    <label for="event-3" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/holy-blood.jpg" alt="Procession of the Holy Blood">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Procession of the Holy Blood</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-church"></i> Religious Event</p>
+                    <div class="description">
+                        <p>This UNESCO-recognized procession has been held annually since 1304. Hundreds of participants in medieval costumes reenact biblical scenes and carry the relic of the Holy Blood through the streets of Bruges, followed by a solemn religious ceremony.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> Ascension Day (May 30, 2024)</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> City Center</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.holyblood.com/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Christmas Market -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="christmas-market" data-type="event" id="event-4">
+                    <label for="event-4" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/christmas-market.jpg" alt="Bruges Christmas Market">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Christmas Market</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.8</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-gift"></i> Market</p>
+                    <div class="description">
+                        <p>Experience the magic of Christmas in Bruges with this enchanting market. Browse stalls selling handmade crafts, enjoy traditional Belgian treats, and take a spin on the ice rink. The historic city center is beautifully decorated with lights and festive displays.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> November 25 - January 6, 2024-2025</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Market Square & Surroundings</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> Free entry</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Market+Square+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.visitbruges.be/en/christmas-market" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Triennial -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="triennial" data-type="event" id="event-5">
+                    <label for="event-5" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/triennial.jpg" alt="Bruges Triennial">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Triennial</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-palette"></i> Art Exhibition</p>
+                    <div class="description">
+                        <p>This contemporary art and architecture exhibition takes place every three years, transforming the historic city with innovative installations and interventions. International artists create site-specific works that respond to Bruges' unique urban landscape and heritage.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> May 13 - September 1, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Various locations</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €20 entry</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.triennalebrugge.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cactus Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="cactus-festival" data-type="event" id="event-6">
+                    <label for="event-6" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/cactus-festival.jpg" alt="Cactus Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Cactus Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-music"></i> Music Festival</p>
+                    <div class="description">
+                        <p>One of Belgium's most popular music festivals, Cactus Festival brings together international and local artists for three days of diverse music. From rock and indie to world music and electronic, this festival offers something for every music lover.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> July 12-14, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Minnewaterpark</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €95 for 3 days</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Minnewaterpark+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.cactusfestival.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Chocolate Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="chocolate-festival" data-type="event" id="event-7">
+                    <label for="event-7" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/chocolate-festival.jpg" alt="Bruges Chocolate Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Chocolate Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.9</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-cookie"></i> Food Festival</p>
+                    <div class="description">
+                        <p>Celebrate Belgium's chocolate heritage at this delicious festival. Watch master chocolatiers demonstrate their craft, sample unique chocolate creations, and learn about the history of chocolate making in Belgium. Perfect for chocolate lovers of all ages.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> April 20-22, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €10 entry</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.brugeschocolatefestival.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Film Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="film-festival" data-type="event" id="event-8">
+                    <label for="event-8" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/film-festival.jpg" alt="Bruges Film Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Film Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.5</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-film"></i> Film Festival</p>
+                    <div class="description">
+                        <p>This international film festival showcases the best of European cinema, with a special focus on Flemish and Belgian films. Screenings take place in historic venues throughout the city, creating a unique cinematic experience in the heart of medieval Bruges.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> October 10-20, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Various venues</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €12 per screening</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.bruggefilmfestival.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Marathon -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="marathon" data-type="event" id="event-9">
+                    <label for="event-9" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/marathon.jpg" alt="Bruges Marathon">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Marathon</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-running"></i> Sports Event</p>
+                    <div class="description">
+                        <p>Run through the historic streets of Bruges in this scenic marathon. The course takes participants past the city's most beautiful landmarks, including the Belfry, Market Square, and canals. The event also includes half-marathon and 10K options.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> May 5, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> City Center</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €45 registration</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.brugemarathon.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bruges Jazz Festival -->
+            <div class="event-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="event-selector" data-id="jazz-festival" data-type="event" id="event-10">
+                    <label for="event-10" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="event-image">
+                    <img src="Data/Events/jazz-festival.jpg" alt="Bruges Jazz Festival">
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <h2>Bruges Jazz Festival</h2>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-music"></i> Music Festival</p>
+                    <div class="description">
+                        <p>Experience the best of jazz music in the intimate venues of Bruges. This festival brings together international jazz musicians for performances ranging from traditional to contemporary styles. Concerts take place in historic buildings and cozy jazz clubs throughout the city.</p>
+                    </div>
+                    <div class="details">
+                        <p class="date"><i class="far fa-calendar-alt"></i> July 5-7, 2024</p>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Various venues</p>
+                        <p class="price"><i class="fas fa-ticket-alt"></i> €25-40 per concert</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=City+Center+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.bruggejazzfestival.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Bruges City Guide</h3>
+                <p>Your complete guide to exploring the Venice of the North</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="places-to-visit.html">Places</a></li>
+                    <li><a href="restaurants.html">Food</a></li>
+                    <li><a href="tours.html">Tours</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="planner.html">Plan</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@brugesguide.com</p>
+                <p>Phone: +32 123 456 789</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges City Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/events-view.js" defer></script>
+    <script src="js/selection-manager.js"></script>
+</body>
+</html> 
