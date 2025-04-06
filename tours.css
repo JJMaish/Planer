@@ -252,16 +252,9 @@
     overflow: hidden;
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-/* Remove the iframe specific styles since we're using Leaflet now */
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* Add styles for Leaflet map */
 #bike-rental-map {
     width: 100%;
     height: 100%;
@@ -270,6 +263,36 @@
 /* Ensure Leaflet controls are visible */
 .leaflet-control-container .leaflet-control {
     z-index: 1000;
+}
+
+/* Distance display styles */
+.distance-display {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.distance-info {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.distance-value {
+    color: #4a90e2;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* City center marker styles */
+.city-center-marker {
+    font-size: 30px;
+    color: #4a90e2;
+    text-shadow: 0 0 3px white;
 }
 
 /* Info Section Styles */
