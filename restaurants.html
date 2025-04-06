@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurants - Bruges City Guide</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="restaurants.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,28 +13,20 @@
     <header class="main-header">
         <nav>
             <div class="nav-container">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-landmark"></i> Bruges Guide
-                </a>
-                <div class="wishlist-nav">
-                    <a href="wish-list.html">
-                        <i class="fas fa-heart"></i>
-                        Wish List
-                        <span class="wishlist-count">0</span>
-                    </a>
-                </div>
+                <a href="index.html" class="logo">Bruges City Guide</a>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-landmark"></i> Places</a></li>
                 <li><a href="restaurants.html" class="active"><i class="fas fa-utensils"></i> Food</a></li>
-                <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="tours.html"><i class="fas fa-map-marked-alt"></i> Tours</a></li>
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                <li><a href="wish-list.html"><i class="fas fa-heart"></i> Wish List</a></li>
             </ul>
         </nav>
     </header>
@@ -42,6 +35,24 @@
         <section class="restaurants-hero">
             <h1>Restaurants in Bruges</h1>
             <p>Discover the finest dining experiences in the heart of Bruges</p>
+        </section>
+
+        <section class="filter-section">
+            <div class="filter-container">
+                <h2>Explore by Category</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Restaurants</button>
+                    <button class="filter-btn" data-category="traditional">Traditional Flemish</button>
+                    <button class="filter-btn" data-category="waffles">Waffles & Desserts</button>
+                    <button class="filter-btn" data-category="chocolate">Chocolate Shops</button>
+                    <button class="filter-btn" data-category="beer">Beer & Breweries</button>
+                    <button class="filter-btn" data-category="fine">Fine Dining</button>
+                    <button class="filter-btn" data-category="casual">Casual & Bistro</button>
+                    <button class="filter-btn" data-category="street">Fast Food</button>
+                    <button class="filter-btn" data-category="vegetarian">Vegetarian & Vegan</button>
+                    <button class="filter-btn" data-category="pizza">حلال</button>
+                </div>
+            </div>
         </section>
 
         <div class="view-controls">

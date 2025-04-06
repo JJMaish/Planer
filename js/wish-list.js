@@ -76,46 +76,33 @@ class WishListManager {
         
         const mockData = {
             places: {
-                'place1': { id: 'place1', title: 'Belfry of Bruges', description: 'Historic bell tower in the city center', image: 'images/places/belfry.jpg', location: 'Markt', price: '€12', directions: 'Located in the heart of Bruges, the Belfry is accessible via Markt square. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop.' },
-                'place2': { id: 'place2', title: 'Basilica of the Holy Blood', description: '12th-century basilica', image: 'images/places/basilica.jpg', location: 'Burg Square', price: 'Free', directions: 'Located in Burg Square, a short walk from the Markt. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 2 minutes to Burg Square.' },
-                'place3': { id: 'place3', title: 'Groeningemuseum', description: 'Art museum with Flemish paintings', image: 'images/places/groeninge.jpg', location: 'Dijver', price: '€12', directions: 'Located on Dijver street, near the Gruuthuse Museum. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 5 minutes to Dijver.' }
+                'belfort': { id: 'belfort', title: 'Belfort', description: 'The Belfry of Bruges is a medieval bell tower in the city center', image: 'Data/Places/belfort.jpg', location: 'Markt', price: '€12' },
+                'de-burg': { id: 'de-burg', title: 'De Burg', description: 'The Burg Square is one of Bruges\' most important historical sites', image: 'Data/Places/de-burg.jpg', location: 'Burg Square', price: 'Free' },
+                'market-square': { id: 'market-square', title: 'Market Square', description: 'The Markt of Bruges is the historic city center and main square', image: 'Data/Places/market-square.jpg', location: 'Markt', price: 'Free' }
             },
             restaurants: {
-                'rest1': { id: 'rest1', title: 'De Halve Maan Brewery', description: 'Traditional Belgian cuisine with brewery tour', image: 'images/restaurants/halve-maan.jpg', location: 'Walplein', price: '€€', directions: 'Located on Walplein square. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 10 minutes to Walplein.' },
-                'rest2': { id: 'rest2', title: 'Gruuthuse Hof', description: 'Fine dining with local specialties', image: 'images/restaurants/gruuthuse.jpg', location: 'Muntplein', price: '€€€', directions: 'Located on Muntplein square. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 5 minutes to Muntplein.' },
-                'rest3': { id: 'rest3', title: 'That\'s Toast', description: 'Modern café with creative toasts', image: 'images/restaurants/thats-toast.jpg', location: 'Langestraat', price: '€', directions: 'Located on Langestraat street. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 7 minutes to Langestraat.' }
+                'thats-toast': { id: 'thats-toast', title: 'That\'s Toast', description: 'A cozy brunch spot known for their artisanal toasts and fresh ingredients', image: 'Data/Restaurants/thats-toast.jpg', location: 'Dweersstraat 4', price: '€€' },
+                'de-gastro': { id: 'de-gastro', title: 'De Gastro', description: 'Traditional Belgian cuisine with a modern twist', image: 'Data/Restaurants/de-gastro.jpg', location: 'Braambergstraat 6', price: '€€€' },
+                'gruuthuse-hof': { id: 'gruuthuse-hof', title: 'Gruuthuse Hof', description: 'Fine dining restaurant serving local specialties', image: 'Data/Restaurants/gruuthuse-hof.jpg', location: 'Muntplein', price: '€€€' }
             },
             tours: {
-                'tour1': { id: 'tour1', title: 'Canal Boat Tour', description: 'Scenic boat tour through Bruges canals', image: 'images/tours/canal-tour.jpg', location: 'Various departure points', price: '€10', duration: '30 min', directions: 'Departure points include Rozenhoedkaai, Dijver, and Huidenvettersplein. The main departure point is Rozenhoedkaai, a 5-minute walk from the Markt.' },
-                'tour2': { id: 'tour2', title: 'Chocolate Workshop', description: 'Learn to make Belgian chocolates', image: 'images/tours/chocolate-workshop.jpg', location: 'Chocolate Line', price: '€35', duration: '2 hours', directions: 'Located at Simon Stevinplein 19. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 3 minutes to Simon Stevinplein.' },
-                'tour3': { id: 'tour3', title: 'Brewery Tour', description: 'Tour of De Halve Maan brewery with tasting', image: 'images/tours/brewery-tour.jpg', location: 'De Halve Maan', price: '€12', duration: '45 min', directions: 'Located at Walplein 26. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and walk 10 minutes to Walplein.' }
+                'canal-tour': { id: 'canal-tour', title: 'Canal Boat Tour', description: 'Scenic boat tour through Bruges canals', image: 'Data/Tours/canal-tour.jpg', location: 'Various departure points', price: '€10', duration: '30 min' },
+                'chocolate-workshop': { id: 'chocolate-workshop', title: 'Chocolate Workshop', description: 'Learn to make Belgian chocolates', image: 'Data/Tours/chocolate-workshop.jpg', location: 'Chocolate Line', price: '€35', duration: '2 hours' },
+                'brewery-tour': { id: 'brewery-tour', title: 'Brewery Tour', description: 'Tour of De Halve Maan brewery with tasting', image: 'Data/Tours/brewery-tour.jpg', location: 'De Halve Maan', price: '€12', duration: '45 min' }
             },
             events: {
-                'event1': { id: 'event1', title: 'Bruges Beer Festival', description: 'Annual beer festival with local breweries', image: 'images/events/beer-festival.jpg', location: 'Market Square', date: 'June 15-17, 2024', price: '€15', directions: 'Takes place in the Market Square. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop.' },
-                'event2': { id: 'event2', title: 'Procession of the Holy Blood', description: 'Annual religious procession', image: 'images/events/holy-blood.jpg', location: 'City Center', date: 'Ascension Day', price: 'Free', directions: 'The procession starts at the Basilica of the Holy Blood in Burg Square and follows a route through the city center. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop.' },
-                'event3': { id: 'event3', title: 'Bruges Christmas Market', description: 'Festive market with local crafts and food', image: 'images/events/christmas-market.jpg', location: 'Market Square', date: 'Nov 25 - Jan 6', price: 'Free', directions: 'Takes place in the Market Square and surrounding streets. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop.' }
+                'beer-festival': { id: 'beer-festival', title: 'Bruges Beer Festival', description: 'Annual beer festival with local breweries', image: 'Data/Events/beer-festival.jpg', location: 'Market Square', date: 'June 15-17, 2024', price: '€15' },
+                'holy-blood': { id: 'holy-blood', title: 'Procession of the Holy Blood', description: 'Annual religious procession', image: 'Data/Events/holy-blood.jpg', location: 'City Center', date: 'Ascension Day', price: 'Free' },
+                'christmas-market': { id: 'christmas-market', title: 'Bruges Christmas Market', description: 'Festive market with local crafts and food', image: 'Data/Events/christmas-market.jpg', location: 'Market Square', date: 'Nov 25 - Jan 6', price: 'Free' }
             },
             photos: {
-                'photo1': { id: 'photo1', title: 'Belfry at Sunset', description: 'The iconic Belfry tower against a colorful sky', image: 'images/photos/belfry-sunset.jpg', photographer: 'John Doe', location: 'Market Square', directions: 'Best viewing spot is from the corner of Markt and Breidelstraat, facing the Belfry.' },
-                'photo2': { id: 'photo2', title: 'Canal Reflections', description: 'Historic buildings reflected in the canal water', image: 'images/photos/canal-reflections.jpg', photographer: 'Jane Smith', location: 'Rozenhoedkaai', directions: 'Located at Rozenhoedkaai, a 5-minute walk from the Markt. Best photographed in the morning or evening for optimal reflections.' },
-                'photo3': { id: 'photo3', title: 'Medieval Streets', description: 'Narrow cobblestone streets in the historic center', image: 'images/photos/medieval-streets.jpg', photographer: 'Mike Johnson', location: 'Various', directions: 'Best spots include Stoofstraat, Groenerei, and Rozenhoedkaai. These streets are within a 10-minute walk from the Markt.' }
+                'belfort-view': { id: 'belfort-view', title: 'Belfort View', description: 'Historic city center', image: 'Data/Gallery/belfort-view.jpg', photographer: 'John Doe', location: 'Market Square' },
+                'canal-reflections': { id: 'canal-reflections', title: 'Canal Reflections', description: 'Historic buildings reflected in the canal water', image: 'Data/Gallery/canal-reflections.jpg', photographer: 'Jane Smith', location: 'Rozenhoedkaai' },
+                'market-square': { id: 'market-square', title: 'Market Square', description: 'The heart of Bruges', image: 'Data/Gallery/market-square.jpg', photographer: 'Mike Johnson', location: 'Markt' }
             }
         };
-        
-        // If the ID doesn't exist in our mock data, create a generic item
-        if (!mockData[category] || !mockData[category][id]) {
-            console.log(`Creating generic item for ${category} with ID ${id}`);
-            return {
-                id: id,
-                title: `${category.charAt(0).toUpperCase() + category.slice(1)} Item ${id}`,
-                description: `This is a selected ${category} item.`,
-                image: `images/${category}/placeholder.jpg`,
-                location: 'Bruges',
-                directions: `This ${category} is located in Bruges. Take bus lines 1, 3, 4, 6, 11, 13, 14, or 16 to the Markt stop and follow the signs.`
-            };
-        }
-        
-        return mockData[category][id];
+
+        return mockData[category]?.[id] || null;
     }
 
     getEmptyStateHTML(category) {

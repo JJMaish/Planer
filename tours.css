@@ -3,21 +3,88 @@
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Data/Tours/hero-tours.jpg');
     background-size: cover;
     background-position: center;
-    color: white;
+    width: 100%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 100px 20px;
-    margin-bottom: 40px;
+    color: white;
+    padding: 4rem var(--container-padding);
+    margin-bottom: 2rem;
 }
 
 .hero-content h1 {
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Tour Categories Navigation */
+.tour-categories {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.categories-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.category-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 120px;
+}
+
+.category-link i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.category-link span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.category-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.category-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.category-link.active i {
+    color: white;
 }
 
 .tours-section {
@@ -102,6 +169,110 @@
     margin-right: 5px;
 }
 
+/* Rent a Bike Section */
+.rent-bike-section {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rent-bike-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.rent-bike-section > p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #666;
+}
+
+.rental-shops {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.rental-shop-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.rental-shop-card:hover {
+    transform: translateY(-3px);
+}
+
+.rental-shop-card h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.rental-shop-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.rental-shop-card i {
+    margin-right: 8px;
+    color: #4a90e2;
+}
+
+.rental-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.rental-map {
+    margin-top: 30px;
+}
+
+.rental-map h4 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.map-container {
+    width: 100%;
+    height: 350px;
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove the iframe specific styles since we're using Leaflet now */
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Add styles for Leaflet map */
+#bike-rental-map {
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure Leaflet controls are visible */
+.leaflet-control-container .leaflet-control {
+    z-index: 1000;
+}
+
+/* Info Section Styles */
 .info-section {
     padding: 40px 20px;
     background-color: #f9f9f9;
@@ -196,12 +367,37 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 40vh;
+        padding: 2rem var(--container-padding);
+    }
+    
     .hero-content h1 {
         font-size: 2rem;
     }
     
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
     .tours-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .categories-container {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .category-link {
+        flex-shrink: 0;
+    }
+
+    .rental-shops {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -216,5 +412,9 @@
     
     .tours-grid {
         grid-template-columns: 1fr;
+    }
+
+    .rent-bike-section {
+        padding: 20px;
     }
 } 

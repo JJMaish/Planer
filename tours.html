@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boat & Horse Tours - Bruges Guide</title>
+    <title>Tours - Bruges City Guide</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="tours.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -13,28 +14,20 @@
     <header class="main-header">
         <nav>
             <div class="nav-container">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-landmark"></i> Bruges Guide
-                </a>
-                <div class="wishlist-nav">
-                    <a href="wish-list.html">
-                        <i class="fas fa-heart"></i>
-                        Wish List
-                        <span class="wishlist-count">0</span>
-                    </a>
-                </div>
+                <a href="index.html" class="logo">Bruges City Guide</a>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-landmark"></i> Places</a></li>
                 <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
-                <li><a href="tours.html" class="active"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="tours.html" class="active"><i class="fas fa-map-marked-alt"></i> Tours</a></li>
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                <li><a href="wish-list.html"><i class="fas fa-heart"></i> Wish List</a></li>
             </ul>
         </nav>
     </header>
@@ -43,13 +36,35 @@
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-content">
-                <h1>Explore Bruges by Boat & Horse</h1>
+                <h1>Explore Bruges by Boat, Horse, Foot & Bike</h1>
                 <p>Discover the city's enchanting canals and historic streets in style</p>
             </div>
         </section>
 
+        <!-- Tour Categories Navigation -->
+        <section class="tour-categories">
+            <div class="categories-container">
+                <a href="#boat-tours" class="category-link active">
+                    <i class="fas fa-ship"></i>
+                    <span>Canal Boat Tours</span>
+                </a>
+                <a href="#horse-tours" class="category-link">
+                    <i class="fas fa-horse"></i>
+                    <span>Horse Carriage Tours</span>
+                </a>
+                <a href="#walk-tours" class="category-link">
+                    <i class="fas fa-walking"></i>
+                    <span>Walk Tours</span>
+                </a>
+                <a href="#bike-tours" class="category-link">
+                    <i class="fas fa-bicycle"></i>
+                    <span>Bike Tours</span>
+                </a>
+            </div>
+        </section>
+
         <!-- Boat Tours Section -->
-        <section class="tours-section" data-aos="fade-up">
+        <section id="boat-tours" class="tours-section" data-aos="fade-up">
             <h2>Canal Boat Tours</h2>
             <div class="tours-grid">
                 <!-- Boat Tour Location 1 -->
@@ -99,7 +114,7 @@
         </section>
 
         <!-- Horse Carriage Tours Section -->
-        <section class="tours-section" data-aos="fade-up">
+        <section id="horse-tours" class="tours-section" data-aos="fade-up">
             <h2>Horse Carriage Tours</h2>
             <div class="tours-grid">
                 <!-- Horse Tour Location 1 -->
@@ -126,6 +141,191 @@
             </div>
         </section>
 
+        <!-- Walk Tours Section -->
+        <section id="walk-tours" class="tours-section" data-aos="fade-up">
+            <h2>Walk Tours</h2>
+            <div class="tours-grid">
+                <!-- Walk Tour 1 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="free-walking-tour" data-type="walk" id="walk-1">
+                        <label for="walk-1" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/walk-tour-1.jpg" alt="Free Walking Tour">
+                    <div class="tour-info">
+                        <h3>Free Walking Tour</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> Free (tips appreciated)</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 2 hours</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Walk Tour 2 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="chocolate-walking-tour" data-type="walk" id="walk-2">
+                        <label for="walk-2" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/walk-tour-2.jpg" alt="Chocolate Walking Tour">
+                    <div class="tour-info">
+                        <h3>Chocolate Walking Tour</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 25 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 2.5 hours</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Walk Tour 3 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="beer-walking-tour" data-type="walk" id="walk-3">
+                        <label for="walk-3" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/walk-tour-3.jpg" alt="Beer Walking Tour">
+                    <div class="tour-info">
+                        <h3>Beer Walking Tour</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 35 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 3 hours</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bike Tours Section -->
+        <section id="bike-tours" class="tours-section" data-aos="fade-up">
+            <h2>Bike Tours</h2>
+            <div class="tours-grid">
+                <!-- Bike Tour 1 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="city-bike-tour" data-type="bike" id="bike-1">
+                        <label for="bike-1" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/bike-tour-1.jpg" alt="City Bike Tour">
+                    <div class="tour-info">
+                        <h3>City Bike Tour</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 25 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 2.5 hours</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bike Tour 2 -->
+                <div class="tour-card">
+                    <div class="selection-control">
+                        <input type="checkbox" class="tour-selector" data-id="countryside-bike-tour" data-type="bike" id="bike-2">
+                        <label for="bike-2" class="selection-label">
+                            <i class="fas fa-check"></i>
+                        </label>
+                    </div>
+                    <img src="Data/Tours/bike-tour-2.jpg" alt="Countryside Bike Tour">
+                    <div class="tour-info">
+                        <h3>Countryside Bike Tour</h3>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> 35 per person</p>
+                        <p class="duration"><i class="fas fa-clock"></i> 4 hours</p>
+                        <div class="tour-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rent a Bike Section -->
+            <div class="rent-bike-section" data-aos="fade-up">
+                <h3>Rent a Bike</h3>
+                <p>Explore Bruges at your own pace with a rental bike. Several shops offer bike rentals throughout the city.</p>
+                
+                <div class="rental-shops">
+                    <!-- Rental Shop 1 -->
+                    <div class="rental-shop-card">
+                        <h4>Fietsen Popelier</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Mariastraat 26</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> From €5 per day</p>
+                        <p class="hours"><i class="fas fa-clock"></i> 9:00 - 18:00</p>
+                        <div class="rental-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Fietsen+Popelier+Bruges" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                            <a href="tel:+3250333744" class="action-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rental Shop 2 -->
+                    <div class="rental-shop-card">
+                        <h4>De Ketting</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Carmersstraat 7</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> From €6 per day</p>
+                        <p class="hours"><i class="fas fa-clock"></i> 9:00 - 18:00</p>
+                        <div class="rental-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Ketting+Bruges" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                            <a href="tel:+3250333744" class="action-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Rental Shop 3 -->
+                    <div class="rental-shop-card">
+                        <h4>Bruges Bike Rental</h4>
+                        <p class="location"><i class="fas fa-map-marker-alt"></i> Niklaas Desparsstraat 17</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> From €7 per day</p>
+                        <p class="hours"><i class="fas fa-clock"></i> 8:30 - 19:00</p>
+                        <div class="rental-actions">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bruges+Bike+Rental" class="action-btn" target="_blank">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                            <a href="tel:+3250333744" class="action-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rental-map">
+                    <h4>Bike Rental Locations</h4>
+                    <div class="map-container">
+                        <div id="bike-rental-map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Tour Information Section -->
         <section class="info-section" data-aos="fade-up">
             <div class="info-container">
@@ -147,6 +347,7 @@
                         <li>Tours may be cancelled during severe weather</li>
                         <li>Boat tours operate year-round except during ice</li>
                         <li>Horse carriages may not operate in extreme heat</li>
+                        <li>Bike tours may be cancelled during heavy rain</li>
                     </ul>
                 </div>
             </div>
@@ -183,7 +384,13 @@
 
     <script src="js/mobile-menu.js"></script>
     <script src="js/selection-manager.js"></script>
+    <script src="js/tours.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Add Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <!-- Custom Map JS -->
+    <script src="js/map.js"></script>
     <script>
         AOS.init({
             duration: 800,

@@ -9,24 +9,37 @@
 
 /* Hero Section */
 .wish-list-hero {
+    width: 100%;
+    min-height: 50vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('Data/WishList/hero-wishlist.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: white;
+    padding: 4rem var(--container-padding);
     margin-bottom: 2rem;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
+    border-radius: 0;
 }
 
 .wish-list-hero h1 {
     font-size: 2.5rem;
-    color: #333;
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
 }
 
 .wish-list-hero p {
     font-size: 1.2rem;
-    color: #666;
     max-width: 800px;
     margin: 0 auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    color: white;
 }
 
 /* Wish List Controls */
@@ -420,11 +433,16 @@
     }
     
     .wish-list-hero {
-        padding: 1.5rem;
+        min-height: 40vh;
+        padding: 2rem var(--container-padding);
     }
     
     .wish-list-hero h1 {
         font-size: 2rem;
+    }
+    
+    .wish-list-hero p {
+        font-size: 1rem;
     }
     
     .category-items {
