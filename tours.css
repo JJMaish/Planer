@@ -29,12 +29,12 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Tour Categories Navigation */
+/* Tour Categories */
 .tour-categories {
-    background-color: #f8f9fa;
+    background-color: var(--subcategory-bg);
     padding: 1rem 0;
     margin-bottom: 2rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .categories-container {
@@ -52,13 +52,14 @@
     flex-direction: column;
     align-items: center;
     padding: 0.75rem 1.5rem;
-    background-color: white;
+    background-color: var(--menu-bg);
     border-radius: 8px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
     min-width: 120px;
+    border: 1px solid var(--border-color);
 }
 
 .category-link i {
@@ -75,16 +76,18 @@
 
 .category-link:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--menu-hover-bg);
 }
 
 .category-link.active {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--subcategory-active-bg);
+    color: var(--subcategory-active-color);
+    border-color: var(--subcategory-active-bg);
 }
 
 .category-link.active i {
-    color: white;
+    color: var(--subcategory-active-color);
 }
 
 .tours-section {
@@ -106,48 +109,51 @@
 }
 
 .tour-card {
-    background: white;
-    border-radius: 15px;
+    background: var(--menu-bg);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: relative;
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all 0.3s ease;
 }
 
 .tour-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-.tour-card img {
+.tour-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
 .tour-info {
-    padding: 20px;
+    padding: 1rem;
 }
 
-.tour-info h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #333;
+.tour-title {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
-.tour-info p {
-    margin: 5px 0;
-    color: #666;
+.tour-description {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
 }
 
-.tour-info i {
-    margin-right: 8px;
-    color: #4a90e2;
+.tour-price {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .tour-actions {
-    margin-top: 15px;
     display: flex;
-    justify-content: flex-start;
+    gap: 1rem;
 }
 
 .action-btn {

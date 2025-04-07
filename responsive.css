@@ -1,0 +1,163 @@
+/* Base Responsive Design Rules */
+:root {
+    /* Standard dimensions */
+    --header-height: 60px;
+    --container-max-width: 1200px;
+    --container-padding: 20px;
+    --card-min-width: 280px;
+    --card-max-width: 400px;
+    --grid-gap: 20px;
+    
+    /* Breakpoints */
+    --mobile-breakpoint: 480px;
+    --tablet-breakpoint: 768px;
+    --laptop-breakpoint: 1024px;
+    --desktop-breakpoint: 1366px;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Grid Layouts */
+.grid-container {
+    display: grid;
+    gap: var(--grid-gap);
+    width: 100%;
+}
+
+/* Responsive Grid Columns */
+@media (min-width: 480px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Card Components */
+.card {
+    width: 100%;
+    min-width: var(--card-min-width);
+    max-width: var(--card-max-width);
+    margin: 0 auto;
+}
+
+/* Images */
+.responsive-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Hero Sections */
+.hero-section {
+    width: 100%;
+    min-height: 50vh;
+    padding: 4rem var(--container-padding);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 40vh;
+        padding: 2rem var(--container-padding);
+    }
+}
+
+/* Typography */
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    line-height: 1.4;
+}
+
+p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+}
+
+/* Navigation */
+.nav-container {
+    height: var(--header-height);
+    padding: 0 var(--container-padding);
+}
+
+.nav-links {
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* Buttons */
+.button {
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+/* Form Elements */
+input, select, textarea {
+    width: 100%;
+    padding: clamp(0.5rem, 1.5vw, 1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+}
+
+/* Footer */
+.footer-content {
+    padding: clamp(2rem, 4vw, 4rem) var(--container-padding);
+}
+
+/* Utility Classes */
+.hide-mobile {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .hide-mobile {
+        display: block;
+    }
+    
+    .hide-desktop {
+        display: none;
+    }
+}
+
+/* Touch-friendly elements */
+@media (hover: none) {
+    .button, .nav-link, .card {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .no-print {
+        display: none;
+    }
+} 

@@ -20,6 +20,12 @@ class SelectionManager {
 
     saveSelections() {
         localStorage.setItem('tripSelections', JSON.stringify(this.selections));
+        
+        // Dispatch a custom event to notify other components that selections have changed
+        const event = new CustomEvent('selectionsChanged', {
+            detail: { selections: this.selections }
+        });
+        window.dispatchEvent(event);
     }
 
     addSelection(id, category) {

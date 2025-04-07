@@ -3,14 +3,30 @@
                 url('Data/Restaurants/hero-restaurants.jpg');
     background-size: cover;
     background-position: center;
-    height: 40vh;
+    width: 100%;
+    min-height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    padding: 2rem;
+    padding: 4rem var(--container-padding);
+    margin-bottom: 2rem;
+}
+
+.restaurants-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.restaurants-hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .restaurants-grid {
@@ -23,29 +39,51 @@
 }
 
 .restaurant-card {
-    background: white;
-    border-radius: 10px;
+    background: var(--menu-bg);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: all 0.3s ease;
 }
 
 .restaurant-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-.restaurant-card img {
+.restaurant-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-.restaurant-content {
-    padding: 1.5rem;
+.restaurant-info {
+    padding: 1rem;
 }
 
-.restaurant-info {
-    margin: 1rem 0;
+.restaurant-title {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.restaurant-description {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.restaurant-rating {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.restaurant-actions {
+    display: flex;
+    gap: 1rem;
 }
 
 .restaurant-info p {
@@ -118,8 +156,17 @@
         margin: 0 1rem;
     }
 
+    .restaurants-hero {
+        min-height: 40vh;
+        padding: 2rem var(--container-padding);
+    }
+    
     .restaurants-hero h1 {
         font-size: 2rem;
+    }
+    
+    .restaurants-hero p {
+        font-size: 1rem;
     }
 
     .button-group {
@@ -240,5 +287,87 @@
     
     .restaurants-container.grid-view {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Filter Section */
+.filter-section {
+    background-color: var(--subcategory-bg);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.filter-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--menu-bg);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    min-width: 120px;
+    border: 1px solid var(--border-color);
+}
+
+.filter-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.filter-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--menu-hover-bg);
+}
+
+.filter-btn.active {
+    background-color: var(--subcategory-active-bg);
+    color: var(--subcategory-active-color);
+    border-color: var(--subcategory-active-bg);
+}
+
+.filter-btn.active i {
+    color: var(--subcategory-active-color);
+}
+
+@media (max-width: 768px) {
+    .filter-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .filter-container h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .filter-buttons {
+        justify-content: flex-start;
+        padding: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 } 

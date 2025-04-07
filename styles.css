@@ -14,10 +14,50 @@ body {
     color: #333;
 }
 
+/* Custom Properties */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --dark-bg: #1a1a1a;
+    --transition: all 0.3s ease;
+    --header-height: 60px;
+    --container-padding: 20px;
+    --primary-color-rgb: 52, 152, 219; /* RGB values for your primary color */
+    --link-color: #3498db;
+    --link-hover-color: #2980b9;
+    --subcategory-bg: #f8f9fa;
+    --subcategory-active-bg: #3498db;
+    --subcategory-active-color: white;
+    --menu-bg: white;
+    --menu-hover-bg: #f8f9fa;
+    --menu-active-bg: #3498db;
+    --menu-active-color: white;
+    --border-color: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --text-color: #fff;
+    --light-bg: #1a1a1a;
+    --dark-bg: #2c2c2c;
+    --link-color: #5dade2;
+    --link-hover-color: #3498db;
+    --subcategory-bg: #2c2c2c;
+    --subcategory-active-bg: #3498db;
+    --menu-bg: #1a1a1a;
+    --menu-hover-bg: #2c2c2c;
+    --border-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 /* Navigation */
 .main-header {
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background: var(--menu-bg);
+    box-shadow: 0 2px 5px var(--shadow-color);
     position: fixed;
     width: 100%;
     top: 0;
@@ -47,6 +87,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-links a {
@@ -54,16 +95,159 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--primary-color);
 }
 
-.nav-toggle {
-    display: none;
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+/* Subcategories Navigation - Consistent styling across all pages */
+.subcategories-nav,
+.tour-categories,
+.filter-section,
+.category-nav {
+    background-color: var(--subcategory-bg);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.subcategories-container,
+.categories-container,
+.filter-container,
+.category-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.subcategory-link,
+.category-link,
+.filter-btn,
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--menu-bg);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    min-width: 120px;
+    border: 1px solid var(--border-color);
+}
+
+.subcategory-link i,
+.category-link i,
+.filter-btn i,
+.category-btn i {
     font-size: 1.5rem;
-    cursor: pointer;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.subcategory-link span,
+.category-link span,
+.filter-btn span,
+.category-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.subcategory-link:hover,
+.category-link:hover,
+.filter-btn:hover,
+.category-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    background-color: var(--menu-hover-bg);
+}
+
+.subcategory-link.active,
+.category-link.active,
+.filter-btn.active,
+.category-btn.active {
+    background-color: var(--subcategory-active-bg);
+    color: var(--subcategory-active-color);
+    border-color: var(--subcategory-active-bg);
+}
+
+.subcategory-link.active i,
+.category-link.active i,
+.filter-btn.active i,
+.category-btn.active i {
+    color: var(--subcategory-active-color);
+}
+
+/* Links - Consistent styling across all pages */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Action Buttons - Consistent styling across all pages */
+.action-btn,
+.directions-btn,
+.visit-btn,
+.browse-btn,
+.maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.action-btn:hover,
+.directions-btn:hover,
+.visit-btn:hover,
+.browse-btn:hover,
+.maps-link:hover {
+    background-color: var(--link-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.action-btn i,
+.directions-btn i,
+.visit-btn i,
+.browse-btn i,
+.maps-link i {
+    font-size: 1rem;
 }
 
 /* Mobile Navigation */
@@ -78,15 +262,23 @@ body {
         top: 100%;
         left: 0;
         right: 0;
-        background: white;
+        background: var(--menu-bg);
         flex-direction: column;
         padding: 1rem;
         gap: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 5px var(--shadow-color);
     }
 
     .nav-links.active {
         display: flex;
+    }
+    
+    .subcategory-link,
+    .category-link,
+    .filter-btn,
+    .category-btn {
+        min-width: 100px;
+        padding: 0.5rem 1rem;
     }
 }
 
@@ -445,27 +637,6 @@ footer {
     }
 }
 
-/* Custom Properties */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --text-color: #333;
-    --light-bg: #f8f9fa;
-    --dark-bg: #1a1a1a;
-    --transition: all 0.3s ease;
-    --header-height: 60px;
-    --container-padding: 20px;
-    --primary-color-rgb: 52, 152, 219; /* RGB values for your primary color */
-}
-
-/* Dark Mode */
-[data-theme="dark"] {
-    --text-color: #fff;
-    --light-bg: #1a1a1a;
-    --dark-bg: #2c2c2c;
-}
-
 /* Enhanced Navigation */
 .nav-right {
     display: flex;
@@ -631,25 +802,6 @@ footer {
         border-radius: 25px;
         margin: 0.5rem 0;
     }
-}
-
-/* Add these styles for better navigation */
-.nav-links a.active {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.logo a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.logo img {
-    height: 32px;
-    width: auto;
 }
 
 /* Weather Forecast Section */
