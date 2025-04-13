@@ -297,7 +297,110 @@ document.addEventListener('DOMContentLoaded', function() {
     updateItineraryDays();
 
     // Save itinerary handler
-    document.getElementById('save-itinerary').addEventListener('click', saveItinerary);
+    document.getElementById('save-itinerary')?.addEventListener('click', async () => {
+        try {
+            const saveButton = document.getElementById('save-itinerary');
+            saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            saveButton.disabled = true;
+
+            // Get current selections and preferences
+            const selections = window.selectionManager?.getSelections() || {};
+            const preferences = JSON.parse(localStorage.getItem('plannerPreferences') || '{}');
+            
+            // Create itinerary data
+            const itineraryData = {
+                dates: {
+                    start: document.getElementById('start-date')?.value,
+                    end: document.getElementById('end-date')?.value
+                },
+                selections,
+                preferences
+            };
+
+            // Save to localStorage
+            localStorage.setItem('savedItinerary', JSON.stringify(itineraryData));
+
+            // Update UI
+            saveButton.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            saveButton.classList.add('saved');
+            
+            // Show success notification
+            const notification = document.createElement('div');
+            notification.className = 'notification success';
+            notification.innerHTML = '<i class="fas fa-check-circle"></i> Itinerary saved successfully!';
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+                saveButton.innerHTML = '<i class="fas fa-save"></i> Save Itinerary';
+                saveButton.disabled = false;
+                saveButton.classList.remove('saved');
+            }, 3000);
+
+        } catch (error) {
+            console.error('Error saving itinerary:', error);
+            
+            // Show error notification
+            const notification = document.createElement('div');
+            notification.className = 'notification error';
+            notification.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error saving itinerary. Please try again.';
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+                const saveButton = document.getElementById('save-itinerary');
+                if (saveButton) {
+                    saveButton.innerHTML = '<i class="fas fa-save"></i> Save Itinerary';
+                    saveButton.disabled = false;
+                }
+            }, 3000);
+        }
+    });
+
+    // Add notification styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+        }
+        
+        .notification.success {
+            background-color: #4CAF50;
+        }
+        
+        .notification.error {
+            background-color: #f44336;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .save-btn.saved {
+            background-color: #4CAF50;
+        }
+    `;
+    document.head.appendChild(style);
 
     const agentSystem = new AgentSystem();
     

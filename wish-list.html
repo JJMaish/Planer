@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="wish-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
     <header>
@@ -100,18 +102,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="show-on-map-container">
+            <button id="showOnMapBtn" class="show-on-map-btn">
+                <i class="fas fa-map-marked-alt"></i> Show all on map
+            </button>
+        </div>
     </main>
 
-    <div class="map-container" id="mapContainer">
-        <button class="map-close-btn" id="mapCloseBtn">
-            <i class="fas fa-times"></i>
-        </button>
+    <!-- Map Container -->
+    <div id="mapContainer" class="map-container">
         <div id="map"></div>
-    </div>
-
-    <div class="show-on-map-container">
-        <button id="showOnMapBtn" class="show-on-map-btn">
-            <i class="fas fa-map-marked-alt"></i> Show all on map
+        <button id="mapCloseBtn" class="map-close-btn">
+            <i class="fas fa-times"></i>
         </button>
     </div>
 
@@ -150,7 +153,6 @@
     </footer>
 
     <!-- Load Leaflet first -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Then load our scripts -->
