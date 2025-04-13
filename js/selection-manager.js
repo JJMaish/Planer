@@ -233,5 +233,7 @@ class SelectionManager {
 
 // Initialize the selection manager when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.selectionManager = new SelectionManager();
+    if (!window.selectionManager) {
+        window.selectionManager = new SelectionManager();
+    }
 }); 

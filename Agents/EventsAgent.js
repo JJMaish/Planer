@@ -1,6 +1,6 @@
-import BaseAgent from './BaseAgent.js';
+import { BaseAgent } from './BaseAgent.js';
 
-class EventsAgent extends BaseAgent {
+export class EventsAgent extends BaseAgent {
     constructor() {
         super();
         this.eventCache = new Map();
@@ -8,9 +8,9 @@ class EventsAgent extends BaseAgent {
 
     async getEvents(startDate, endDate) {
         try {
-            // Search for current events using DeepSeek
+            // Search for current events using Groq
             const query = `events in Bruges between ${startDate} and ${endDate}`;
-            const searchResults = await this.searchWithDeepSeek(query, 'local');
+            const searchResults = await this.searchInformation(query, 'events');
 
             // Enhance results with AI processing
             const enhancedEvents = await this.enhanceEventsWithAI(searchResults.items);
@@ -26,11 +26,9 @@ class EventsAgent extends BaseAgent {
         const prompt = `Enhance these Bruges events with detailed descriptions:
             ${JSON.stringify(events, null, 2)}`;
 
-        const enhancedData = await this.callOpenAI(prompt, 
+        const enhancedData = await this.callGroq(prompt, 
             "You are an expert in Bruges events and culture.");
 
         return JSON.parse(enhancedData);
     }
-}
-
-export default EventsAgent; 
+} 

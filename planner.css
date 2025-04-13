@@ -253,10 +253,11 @@
 }
 
 .itinerary-day {
-    background-color: var(--light-color);
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .itinerary-day h4 {
@@ -265,6 +266,35 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.day-schedule {
+    display: grid;
+    gap: 20px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bg-primary);
+    border-radius: 6px;
+}
+
+.activity-item i {
+    color: var(--accent-color);
+}
+
+.activity-item .duration {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.activity-item .notes {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-top: 5px;
 }
 
 .save-btn {
@@ -1869,4 +1899,88 @@ textarea {
 
 .chat-input button:hover {
     background: var(--primary-color-dark);
+}
+
+/* Itinerary Styles */
+.itinerary-day {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.day-schedule {
+    display: grid;
+    gap: 20px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: var(--bg-primary);
+    border-radius: 6px;
+}
+
+.activity-item i {
+    color: var(--accent-color);
+}
+
+.activity-item .duration {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+.activity-item .notes {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.weather-forecast {
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.weather-days {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.weather-day {
+    text-align: center;
+    min-width: 80px;
+}
+
+.weather-day .wi {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+.loading-state {
+    text-align: center;
+    padding: 40px;
+}
+
+.loading-state i {
+    font-size: 2em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.error-message {
+    background: var(--error-bg);
+    color: var(--error-text);
+    padding: 10px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 } 

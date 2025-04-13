@@ -1,11 +1,11 @@
 import config from './config.js';
 
 const AI_CONFIG = {
-    // OpenAI API configuration
-    openai: {
-        apiKey: config.get('openai.apiKey'),
-        model: config.get('openai.model'),
-        maxTokens: config.get('openai.maxTokens')
+    // Groq API configuration
+    groq: {
+        apiKey: config.get('groq.apiKey'),
+        model: config.get('groq.model'),
+        maxTokens: config.get('groq.maxTokens')
     },
     
     // Scoring weights for different factors

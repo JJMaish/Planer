@@ -543,7 +543,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/selection-manager.js"></script>
-    <script src="js/services/OpenAIService.js"></script>
+    <script src="js/services/GroqService.js"></script>
     <script src="js/agents/AgentManager.js"></script>
     <script src="js/agents/PlaceAgent.js"></script>
     <script src="js/agents/RestaurantAgent.js"></script>
@@ -555,8 +555,8 @@
             // Initialize AOS
             AOS.init();
 
-            // Check if OpenAI API key is set
-            if (!window.openAIService || !window.openAIService.isApiKeySet()) {
+            // Check if Groq API key is set
+            if (!window.groqService || !window.groqService.isApiKeySet()) {
                 showApiKeyPrompt();
             }
 
@@ -593,9 +593,9 @@
                 modal.className = 'modal';
                 modal.innerHTML = `
                     <div class="modal-content">
-                        <h2>OpenAI API Key Required</h2>
-                        <p>To use the AI-powered features of the Bruges Trip Planner, please enter your OpenAI API key.</p>
-                        <input type="password" id="api-key-input" placeholder="Enter your OpenAI API key">
+                        <h2>Groq API Key Required</h2>
+                        <p>To use the AI-powered features of the Bruges Trip Planner, please enter your Groq API key.</p>
+                        <input type="password" id="api-key-input" placeholder="Enter your Groq API key">
                         <div class="modal-buttons">
                             <button id="save-api-key">Save</button>
                             <button id="cancel-api-key">Cancel</button>
@@ -607,9 +607,8 @@
                 document.getElementById('save-api-key').addEventListener('click', function() {
                     const apiKey = document.getElementById('api-key-input').value.trim();
                     if (apiKey) {
-                        window.openAIService.setApiKey(apiKey);
+                        window.groqService.setApiKey(apiKey);
                         document.body.removeChild(modal);
-                        // Refresh the page to reinitialize agents with the new API key
                         window.location.reload();
                     } else {
                         alert('Please enter a valid API key');

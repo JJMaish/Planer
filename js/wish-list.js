@@ -1,59 +1,142 @@
 class WishListManager {
     constructor() {
-        this.selectionManager = new SelectionManager();
+        if (!window.selectionManager) {
+            console.error('SelectionManager not found. Initializing...');
+            window.selectionManager = new SelectionManager();
+        }
+        this.selectionManager = window.selectionManager;
+        this.map = null;
+        this.markers = [];
         this.initializeEventListeners();
         this.loadWishList();
     }
 
     initializeEventListeners() {
-        // Clear all button
-        const clearBtn = document.querySelector('.clear-btn');
-        if (clearBtn) {
-            clearBtn.addEventListener('click', () => this.clearAllSelections());
+        try {
+            // Clear all button
+            const clearBtn = document.querySelector('.clear-btn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => this.clearAllSelections());
+            }
+
+            // Show on map button
+            const showOnMapBtn = document.getElementById('showOnMapBtn');
+            if (showOnMapBtn) {
+                showOnMapBtn.addEventListener('click', () => this.showAllOnMap());
+            }
+
+            // Listen for selection changes
+            window.addEventListener('selectionsChanged', () => {
+                console.log('Selections changed, updating wish list...');
+                this.loadWishList();
+            });
+
+            // Listen for storage events (for cross-tab synchronization)
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'tripSelections') {
+                    console.log('Storage changed, updating wish list...');
+                    this.loadWishList();
+                }
+            });
+        } catch (error) {
+            console.error('Error initializing event listeners:', error);
         }
     }
 
     loadWishList() {
-        const selections = this.selectionManager.getSelections();
-        this.updateCategory('places', selections.places);
-        this.updateCategory('restaurants', selections.restaurants);
-        this.updateCategory('tours', selections.tours);
-        this.updateCategory('events', selections.events);
-        this.updateCategory('photos', selections.photos);
+        try {
+            const selections = this.selectionManager.getSelections();
+            console.log('Loading wish list with selections:', selections);
+            
+            // Update each category
+            ['places', 'restaurants', 'tours', 'events', 'photos'].forEach(category => {
+                this.updateCategory(category, selections[category] || []);
+            });
+        } catch (error) {
+            console.error('Error loading wish list:', error);
+        }
     }
 
     updateCategory(category, items) {
-        const categoryElement = document.querySelector(`.wish-list-category[data-category="${category}"]`);
-        if (!categoryElement) return;
+        try {
+            const categoryElement = document.querySelector(`.wish-list-category[data-category="${category}"]`);
+            if (!categoryElement) {
+                console.warn(`Category element not found for ${category}`);
+                return;
+            }
 
-        const itemsContainer = categoryElement.querySelector('.category-items');
-        const itemCount = categoryElement.querySelector('.item-count');
-        
-        if (!items || items.length === 0) {
-            itemsContainer.innerHTML = this.getEmptyStateHTML(category);
-            itemCount.textContent = '0';
-            return;
+            const itemsContainer = categoryElement.querySelector('.category-items');
+            const countElement = categoryElement.querySelector('.item-count');
+            
+            if (!itemsContainer || !countElement) {
+                console.warn(`Required elements not found for ${category}`);
+                return;
+            }
+
+            countElement.textContent = items.length;
+            console.log(`Updating ${category} with ${items.length} items`);
+
+            if (items.length === 0) {
+                itemsContainer.innerHTML = this.getEmptyStateHTML(category);
+                return;
+            }
+
+            const itemsHTML = items.map(itemId => {
+                const itemData = this.getMockItemData(category, itemId);
+                if (!itemData) {
+                    console.warn(`No data found for ${category} item ${itemId}`);
+                    return '';
+                }
+
+                return this.getItemHTML(category, itemId, itemData);
+            }).join('');
+
+            itemsContainer.innerHTML = itemsHTML;
+        } catch (error) {
+            console.error(`Error updating ${category}:`, error);
+        }
+    }
+
+    getItemHTML(category, itemId, itemData) {
+        // Ensure we have at least a title
+        if (!itemData || !itemData.title) {
+            console.warn(`Missing title for ${category} item ${itemId}`);
+            return '';
         }
 
-        itemCount.textContent = items.length;
-        
-        // Fetch item details for each ID
-        const itemPromises = items.map(id => this.fetchItemDetails(category, id));
-        
-        Promise.all(itemPromises)
-            .then(itemDetails => {
-                itemsContainer.innerHTML = itemDetails
-                    .filter(item => item) // Filter out any null items
-                    .map(item => this.getItemHTML(category, item))
-                    .join('');
-                
-                // Add event listeners to the new items
-                this.initializeItemEventListeners(category);
-            })
-            .catch(error => {
-                console.error(`Error loading ${category} items:`, error);
-                itemsContainer.innerHTML = this.getEmptyStateHTML(category);
-            });
+        // Build the HTML with only essential information
+        let html = `
+            <div class="wish-list-item" data-id="${itemId}">
+                <div class="item-image">
+                    <img src="${itemData.image || 'https://placehold.co/300x200/png?text=No+Image'}" 
+                         alt="${itemData.title}"
+                         onerror="this.src='https://placehold.co/300x200/png?text=Image+Not+Found'">
+                </div>
+                <div class="item-details">
+                    <h3>${itemData.title}</h3>
+                    ${itemData.location ? `
+                        <p class="meta-info">
+                            <i class="fas fa-map-marker-alt"></i> ${itemData.location}
+                        </p>
+                    ` : ''}
+                    <div class="item-directions">
+                        ${itemData.location ? `
+                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(itemData.location + ' Bruges Belgium')}" 
+                               target="_blank" class="maps-link">
+                                <i class="fas fa-map-marked-alt"></i> Get Directions
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="remove-btn" onclick="window.wishListManager.removeItem('${category}', '${itemId}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        return html;
     }
 
     fetchItemDetails(category, id) {
@@ -71,34 +154,38 @@ class WishListManager {
     }
 
     getMockItemData(category, id) {
-        // Mock data for demonstration purposes
-        // In a real implementation, this would come from your backend
-        
         const mockData = {
             places: {
-                'belfort': { id: 'belfort', title: 'Belfort', description: 'The Belfry of Bruges is a medieval bell tower in the city center', image: 'Data/Places/belfort.jpg', location: 'Markt', price: '€12' },
-                'de-burg': { id: 'de-burg', title: 'De Burg', description: 'The Burg Square is one of Bruges\' most important historical sites', image: 'Data/Places/de-burg.jpg', location: 'Burg Square', price: 'Free' },
-                'market-square': { id: 'market-square', title: 'Market Square', description: 'The Markt of Bruges is the historic city center and main square', image: 'Data/Places/market-square.jpg', location: 'Markt', price: 'Free' }
+                'belfry': { id: 'belfry', title: 'Belfry Tower', description: 'Historic bell tower with panoramic views', image: 'https://placehold.co/300x200/png?text=Belfry+Tower', location: 'Markt Square', price: '€12' },
+                'basilica': { id: 'basilica', title: 'Basilica of the Holy Blood', description: '12th-century basilica housing a relic of the Holy Blood', image: 'https://placehold.co/300x200/png?text=Basilica', location: 'Burg Square', price: '€2.50' },
+                'minnewater': { id: 'minnewater', title: 'Minnewater Lake', description: 'Romantic lake known as the "Lake of Love"', image: 'https://placehold.co/300x200/png?text=Minnewater', location: 'Minnewater Park', price: 'Free' },
+                'begijnhof': { id: 'begijnhof', title: 'Begijnhof', description: 'Historic beguinage with white houses and tranquil gardens', image: 'https://placehold.co/300x200/png?text=Begijnhof', location: 'Begijnhof', price: '€2' },
+                'de-burg': { id: 'de-burg', title: 'De Burg', description: 'Historic square with the Town Hall and Basilica', image: 'https://placehold.co/300x200/png?text=De+Burg', location: 'Burg Square', price: 'Free' }
             },
             restaurants: {
-                'thats-toast': { id: 'thats-toast', title: 'That\'s Toast', description: 'A cozy brunch spot known for their artisanal toasts and fresh ingredients', image: 'Data/Restaurants/thats-toast.jpg', location: 'Dweersstraat 4', price: '€€' },
-                'de-gastro': { id: 'de-gastro', title: 'De Gastro', description: 'Traditional Belgian cuisine with a modern twist', image: 'Data/Restaurants/de-gastro.jpg', location: 'Braambergstraat 6', price: '€€€' },
-                'gruuthuse-hof': { id: 'gruuthuse-hof', title: 'Gruuthuse Hof', description: 'Fine dining restaurant serving local specialties', image: 'Data/Restaurants/gruuthuse-hof.jpg', location: 'Muntplein', price: '€€€' }
+                'de-karmeliet': { id: 'de-karmeliet', title: 'De Karmeliet', description: 'Michelin-starred restaurant serving Belgian cuisine', image: 'https://placehold.co/300x200/png?text=De+Karmeliet', location: 'Langestraat 19', price: '€€€' },
+                'den-dyver': { id: 'den-dyver', title: 'Den Dyver', description: 'Beer restaurant with beer-paired dishes', image: 'https://placehold.co/300x200/png?text=Den+Dyver', location: 'Dijver 5', price: '€€' },
+                'tom-pouce': { id: 'tom-pouce', title: 'Tom Pouce', description: 'Traditional Belgian restaurant', image: 'https://placehold.co/300x200/png?text=Tom+Pouce', location: 'Simon Stevinplein', price: '€€' },
+                'de-bottelier': { id: 'de-bottelier', title: 'De Bottelier', description: 'Seafood restaurant with canal views', image: 'https://placehold.co/300x200/png?text=De+Bottelier', location: 'Huidenvettersplein', price: '€€' },
+                'thats-toast': { id: 'thats-toast', title: "That's Toast", description: 'Cozy café serving delicious toasties and coffee', image: 'https://placehold.co/300x200/png?text=Thats+Toast', location: 'Langestraat 42', price: '€' }
             },
             tours: {
-                'canal-tour': { id: 'canal-tour', title: 'Canal Boat Tour', description: 'Scenic boat tour through Bruges canals', image: 'Data/Tours/canal-tour.jpg', location: 'Various departure points', price: '€10', duration: '30 min' },
-                'chocolate-workshop': { id: 'chocolate-workshop', title: 'Chocolate Workshop', description: 'Learn to make Belgian chocolates', image: 'Data/Tours/chocolate-workshop.jpg', location: 'Chocolate Line', price: '€35', duration: '2 hours' },
-                'brewery-tour': { id: 'brewery-tour', title: 'Brewery Tour', description: 'Tour of De Halve Maan brewery with tasting', image: 'Data/Tours/brewery-tour.jpg', location: 'De Halve Maan', price: '€12', duration: '45 min' }
+                'canal-tour': { id: 'canal-tour', title: 'Canal Boat Tour', description: 'Scenic boat tour through Bruges canals', image: 'https://placehold.co/300x200/png?text=Canal+Tour', location: 'Various departure points', price: '€10', duration: '30 min' },
+                'chocolate-workshop': { id: 'chocolate-workshop', title: 'Chocolate Workshop', description: 'Learn to make Belgian chocolates', image: 'https://placehold.co/300x200/png?text=Chocolate+Workshop', location: 'Chocolate Line', price: '€35', duration: '2 hours' },
+                'brewery-tour': { id: 'brewery-tour', title: 'Brewery Tour', description: 'Tour of De Halve Maan brewery with tasting', image: 'https://placehold.co/300x200/png?text=Brewery+Tour', location: 'De Halve Maan', price: '€12', duration: '45 min' },
+                'huidenvettersplein': { id: 'huidenvettersplein', title: 'Huidenvettersplein', description: 'Historic square with restaurants and canal views', image: 'https://placehold.co/300x200/png?text=Huidenvettersplein', location: 'Huidenvettersplein', price: 'Free', duration: '1 hour' },
+                'rozenhoedkaai': { id: 'rozenhoedkaai', title: 'Rozenhoedkaai', description: 'Most photographed spot in Bruges with canal views', image: 'https://placehold.co/300x200/png?text=Rozenhoedkaai', location: 'Rozenhoedkaai', price: 'Free', duration: '30 min' }
             },
             events: {
-                'beer-festival': { id: 'beer-festival', title: 'Bruges Beer Festival', description: 'Annual beer festival with local breweries', image: 'Data/Events/beer-festival.jpg', location: 'Market Square', date: 'June 15-17, 2024', price: '€15' },
-                'holy-blood': { id: 'holy-blood', title: 'Procession of the Holy Blood', description: 'Annual religious procession', image: 'Data/Events/holy-blood.jpg', location: 'City Center', date: 'Ascension Day', price: 'Free' },
-                'christmas-market': { id: 'christmas-market', title: 'Bruges Christmas Market', description: 'Festive market with local crafts and food', image: 'Data/Events/christmas-market.jpg', location: 'Market Square', date: 'Nov 25 - Jan 6', price: 'Free' }
+                'beer-festival': { id: 'beer-festival', title: 'Bruges Beer Festival', description: 'Annual beer festival with local breweries', image: 'https://placehold.co/300x200/png?text=Beer+Festival', location: 'Market Square', date: 'June 15-17, 2024', price: '€15' },
+                'holy-blood': { id: 'holy-blood', title: 'Procession of the Holy Blood', description: 'Annual religious procession', image: 'https://placehold.co/300x200/png?text=Holy+Blood', location: 'City Center', date: 'Ascension Day', price: 'Free' },
+                'christmas-market': { id: 'christmas-market', title: 'Bruges Christmas Market', description: 'Festive market with local crafts and food', image: 'https://placehold.co/300x200/png?text=Christmas+Market', location: 'Market Square', date: 'Nov 25 - Jan 6', price: 'Free' },
+                'light-festival': { id: 'light-festival', title: 'Bruges Light Festival', description: 'Biennial light art festival', image: 'https://placehold.co/300x200/png?text=Light+Festival', location: 'Throughout Bruges', date: 'December 2024', price: 'Free' }
             },
             photos: {
-                'belfort-view': { id: 'belfort-view', title: 'Belfort View', description: 'Historic city center', image: 'Data/Gallery/belfort-view.jpg', photographer: 'John Doe', location: 'Market Square' },
-                'canal-reflections': { id: 'canal-reflections', title: 'Canal Reflections', description: 'Historic buildings reflected in the canal water', image: 'Data/Gallery/canal-reflections.jpg', photographer: 'Jane Smith', location: 'Rozenhoedkaai' },
-                'market-square': { id: 'market-square', title: 'Market Square', description: 'The heart of Bruges', image: 'Data/Gallery/market-square.jpg', photographer: 'Mike Johnson', location: 'Markt' }
+                'belfort-view': { id: 'belfort-view', title: 'Belfort View', description: 'Historic city center', image: 'https://placehold.co/300x200/png?text=Belfort+View', photographer: 'John Doe', location: 'Market Square' },
+                'canal-reflections': { id: 'canal-reflections', title: 'Canal Reflections', description: 'Historic buildings reflected in the canal water', image: 'https://placehold.co/300x200/png?text=Canal+Reflections', photographer: 'Jane Smith', location: 'Rozenhoedkaai' },
+                'market-square': { id: 'market-square', title: 'Market Square', description: 'The heart of Bruges', image: 'https://placehold.co/300x200/png?text=Market+Square', photographer: 'Mike Johnson', location: 'Markt' }
             }
         };
 
@@ -131,78 +218,20 @@ class WishListManager {
         `;
     }
 
-    getItemHTML(category, item) {
-        if (!item) return '';
-        
-        // Ensure we have a title and location
-        const title = item.title || `${category.charAt(0).toUpperCase() + category.slice(1)} Item ${item.id}`;
-        const location = item.location || 'Bruges';
-        
-        // Create Google Maps link
-        const mapsQuery = encodeURIComponent(`${title}, ${location}, Bruges, Belgium`);
-        const mapsLink = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
-
-        return `
-            <div class="wish-list-item" data-id="${item.id}">
-                <div class="item-details">
-                    <h3 class="item-title">${title}</h3>
-                    <a href="${mapsLink}" target="_blank" class="maps-link">
-                        <i class="fas fa-map-marked-alt"></i> View on Google Maps
-                    </a>
-                </div>
-                <div class="item-actions">
-                    <button class="remove-btn" title="Remove from Wish List">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-    }
-
-    initializeItemEventListeners(category) {
-        const categoryElement = document.querySelector(`.wish-list-category[data-category="${category}"]`);
-        if (!categoryElement) return;
-
-        // Remove buttons
-        categoryElement.querySelectorAll('.remove-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Make sure we get the closest wish-list-item even if the click was on the icon
-                const item = e.target.closest('.wish-list-item');
-                if (!item) return;
-                
-                const itemId = item.dataset.id;
-                this.removeItem(category, itemId);
-            });
-        });
-
-        // View buttons
-        categoryElement.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Make sure we get the closest wish-list-item even if the click was on the icon
-                const item = e.target.closest('.wish-list-item');
-                if (!item) return;
-                
-                const itemId = item.dataset.id;
-                this.viewItemDetails(category, itemId);
-            });
-        });
-    }
-
-    removeItem(category, itemId) {
-        this.selectionManager.removeSelection(itemId, category);
-        this.loadWishList();
-    }
-
-    viewItemDetails(category, itemId) {
-        const categoryLinks = {
+    getCategoryLink(category) {
+        const links = {
             places: 'places-to-visit.html',
             restaurants: 'restaurants.html',
             tours: 'tours.html',
             events: 'events.html',
             photos: 'gallery.html'
         };
+        return links[category] || '#';
+    }
 
-        window.location.href = `${categoryLinks[category]}?id=${itemId}`;
+    removeItem(category, itemId) {
+        this.selectionManager.removeSelection(itemId, category);
+        this.loadWishList();
     }
 
     clearAllSelections() {
@@ -211,9 +240,135 @@ class WishListManager {
             this.loadWishList();
         }
     }
+
+    async showAllOnMap() {
+        try {
+            const mapContainer = document.getElementById('mapContainer');
+            const mapCloseBtn = document.getElementById('mapCloseBtn');
+            const mapElement = document.getElementById('map');
+            
+            // Show the map container
+            mapContainer.style.display = 'block';
+
+            // Clear existing map if it exists
+            if (this.map) {
+                this.map.remove();
+                this.map = null;
+            }
+
+            // Clear existing markers
+            this.markers.forEach(marker => marker.remove());
+            this.markers = [];
+
+            // Wait for the container to be visible
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Initialize new map
+            this.map = L.map(mapElement, {
+                zoomControl: true,
+                attributionControl: true,
+                preferCanvas: true,
+                maxZoom: 18,
+                minZoom: 10
+            }).setView([51.2093, 3.2247], 14);
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+                detectRetina: true
+            }).addTo(this.map);
+
+            // Force a resize event
+            setTimeout(() => {
+                this.map.invalidateSize();
+            }, 100);
+
+            const selections = this.selectionManager.getSelections();
+            const bounds = L.latLngBounds([]);
+
+            // Process each category
+            for (const [category, items] of Object.entries(selections)) {
+                for (const itemId of items) {
+                    const itemData = this.getMockItemData(category, itemId);
+                    if (itemData && itemData.location) {
+                        // Geocode the location using Nominatim
+                        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(itemData.location + ', Bruges, Belgium')}`);
+                        const data = await response.json();
+                        
+                        if (data && data[0]) {
+                            const lat = parseFloat(data[0].lat);
+                            const lng = parseFloat(data[0].lon);
+                            const position = [lat, lng];
+                            bounds.extend(position);
+
+                            const marker = L.marker(position, {
+                                icon: this.getMarkerIcon(category)
+                            }).addTo(this.map);
+
+                            marker.bindPopup(`
+                                <div class="map-popup">
+                                    <h3>${itemData.title}</h3>
+                                    <p>${itemData.location}</p>
+                                    <p>Category: ${category}</p>
+                                </div>
+                            `);
+
+                            this.markers.push(marker);
+                        }
+                    }
+                }
+            }
+
+            // Fit map to show all markers
+            if (this.markers.length > 0) {
+                this.map.fitBounds(bounds, { padding: [50, 50] });
+            }
+
+            // Add close button functionality
+            mapCloseBtn.onclick = () => {
+                mapContainer.style.display = 'none';
+                if (this.map) {
+                    this.map.remove();
+                    this.map = null;
+                }
+            };
+        } catch (error) {
+            console.error('Error showing items on map:', error);
+            const mapContainer = document.getElementById('mapContainer');
+            if (mapContainer) {
+                mapContainer.style.display = 'none';
+            }
+        }
+    }
+
+    getMarkerIcon(category) {
+        const colors = {
+            places: 'red',
+            restaurants: 'green',
+            tours: 'blue',
+            events: 'yellow',
+            photos: 'purple'
+        };
+        
+        return L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div style="background-color: ${colors[category] || 'red'}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+        });
+    }
 }
 
 // Initialize the wish list manager when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new WishListManager();
+    try {
+        if (!window.selectionManager) {
+            window.selectionManager = new SelectionManager();
+        }
+        window.wishListManager = new WishListManager();
+        console.log('WishListManager initialized successfully');
+    } catch (error) {
+        console.error('Error initializing WishListManager:', error);
+    }
 }); 

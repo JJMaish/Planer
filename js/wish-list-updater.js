@@ -206,16 +206,16 @@ class WishListUpdater {
         const title = item.title || `${category.charAt(0).toUpperCase() + category.slice(1)} Item ${item.id}`;
         const location = item.location || 'Bruges';
         
-        // Create Google Maps link
-        const mapsQuery = encodeURIComponent(`${title}, ${location}, Bruges, Belgium`);
-        const mapsLink = `https://www.google.com/maps/search/?api=1&query=${mapsQuery}`;
+        // Create OpenStreetMap link
+        const mapsQuery = encodeURIComponent(title + ' Bruges Belgium');
+        const mapsLink = `https://www.openstreetmap.org/search?query=${mapsQuery}`;
 
         return `
             <div class="wish-list-item" data-id="${item.id}">
                 <div class="item-details">
                     <h3 class="item-title">${title}</h3>
                     <a href="${mapsLink}" target="_blank" class="maps-link">
-                        <i class="fas fa-map-marked-alt"></i> View on Google Maps
+                        <i class="fas fa-map-marked-alt"></i> View on OpenStreetMap
                     </a>
                 </div>
                 <div class="item-actions">

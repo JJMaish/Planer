@@ -1,9 +1,9 @@
-import BaseAgent from './BaseAgent.js';
-import EventsAgent from './EventsAgent.js';
-import NightlifeAgent from './NightlifeAgent.js';
-import AttractionsAgent from './AttractionsAgent.js';
+import { BaseAgent } from './BaseAgent.js';
+import { EventsAgent } from './EventsAgent.js';
+import { NightlifeAgent } from './NightlifeAgent.js';
+import { AttractionsAgent } from './AttractionsAgent.js';
 
-class PlannerAgent extends BaseAgent {
+export class PlannerAgent extends BaseAgent {
     constructor() {
         super();
         this.eventsAgent = new EventsAgent();
@@ -45,13 +45,11 @@ class PlannerAgent extends BaseAgent {
             Selected Restaurants: ${JSON.stringify(selectedRestaurants)}
             Other Preferences: ${JSON.stringify(preferences)}`;
 
-        return await this.callOpenAI(prompt, "You are an expert travel planner for Bruges.");
+        return await this.callGroq(prompt, "You are an expert travel planner for Bruges.");
     }
 
     async generatePDF(itinerary) {
         // Implement PDF generation logic
         // Could use libraries like pdfkit or jspdf
     }
-}
-
-export default PlannerAgent; 
+} 

@@ -14,21 +14,9 @@ class Config {
 
     loadEnvironmentVariables() {
         try {
-            // OpenAI Configuration
-            this.env.openai = {
-                apiKey: process.env.OPENAI_API_KEY,
-                model: process.env.OPENAI_MODEL || 'gpt-4',
-                maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS) || 2000
-            };
-
             // Weather API Configuration
             this.env.weather = {
                 apiKey: process.env.WEATHER_API_KEY
-            };
-
-            // Google Maps Configuration
-            this.env.googleMaps = {
-                apiKey: process.env.GOOGLE_MAPS_API_KEY
             };
 
             // Additional APIs
@@ -40,11 +28,11 @@ class Config {
                 apiKey: process.env.RESTAURANT_API_KEY
             };
 
-            // DeepSeek Configuration
-            this.env.deepseek = {
-                apiKey: process.env.DEEPSEEK_API_KEY,
-                maxResults: 10,
-                language: 'en'
+            // Groq Configuration
+            this.env.groq = {
+                apiKey: process.env.GROQ_API_KEY,
+                model: process.env.GROQ_MODEL || 'mixtral-8x7b-32768',
+                maxTokens: parseInt(process.env.GROQ_MAX_TOKENS) || 2000
             };
 
             this.validateConfig();
@@ -56,9 +44,8 @@ class Config {
 
     validateConfig() {
         const requiredKeys = [
-            'openai.apiKey',
-            'weather.apiKey',
-            'googleMaps.apiKey'
+            'groq.apiKey',
+            'weather.apiKey'
         ];
 
         for (const key of requiredKeys) {

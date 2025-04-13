@@ -1,6 +1,6 @@
-import BaseAgent from './BaseAgent.js';
+import { BaseAgent } from './BaseAgent.js';
 
-class NightlifeAgent extends BaseAgent {
+export class NightlifeAgent extends BaseAgent {
     constructor() {
         super();
         this.venues = new Map();
@@ -27,7 +27,7 @@ class NightlifeAgent extends BaseAgent {
         ];
 
         const results = await Promise.all(
-            queries.map(query => this.searchWithDeepSeek(query, 'local'))
+            queries.map(query => this.searchInformation(query, 'nightlife'))
         );
 
         return this.processVenueResults(results);
@@ -43,11 +43,9 @@ class NightlifeAgent extends BaseAgent {
         const prompt = `Enhance these Bruges nightlife venues with engaging descriptions:
             ${JSON.stringify(venues, null, 2)}`;
 
-        const enhancedData = await this.callOpenAI(prompt,
+        const enhancedData = await this.callGroq(prompt,
             "You are an expert in Bruges nightlife and entertainment.");
 
         return JSON.parse(enhancedData);
     }
-}
-
-export default NightlifeAgent; 
+} 

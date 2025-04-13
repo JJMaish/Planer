@@ -102,6 +102,19 @@
         </div>
     </main>
 
+    <div class="map-container" id="mapContainer">
+        <button class="map-close-btn" id="mapCloseBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <div id="map"></div>
+    </div>
+
+    <div class="show-on-map-container">
+        <button id="showOnMapBtn" class="show-on-map-btn">
+            <i class="fas fa-map-marked-alt"></i> Show all on map
+        </button>
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -136,6 +149,11 @@
         </div>
     </footer>
 
+    <!-- Load Leaflet first -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Then load our scripts -->
     <script src="js/mobile-menu.js"></script>
     <script src="js/selection-manager.js"></script>
     <script src="js/wish-list.js"></script>

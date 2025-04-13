@@ -1,6 +1,6 @@
-import BaseAgent from './BaseAgent.js';
+import { BaseAgent } from './BaseAgent.js';
 
-class ChatAgent extends BaseAgent {
+export class ChatAgent extends BaseAgent {
     constructor() {
         super();
         this.context = [];
@@ -9,8 +9,9 @@ class ChatAgent extends BaseAgent {
     async processMessage(message) {
         try {
             // Search for relevant information
-            const searchResults = await this.searchWithDeepSeek(
-                `${message} Bruges tourism`, 'web'
+            const searchResults = await this.searchInformation(
+                `${message} Bruges tourism`,
+                'tourism'
             );
 
             // Add context to the AI prompt
@@ -40,7 +41,7 @@ class ChatAgent extends BaseAgent {
             - Weather considerations
             Provide concise, practical advice and always be friendly.`;
 
-        return await this.callOpenAI(prompt, systemMessage);
+        return await this.callGroq(prompt, systemMessage);
     }
 
     enhancePromptWithSearchResults(message, searchResults) {
@@ -49,7 +50,7 @@ class ChatAgent extends BaseAgent {
             
             Relevant Information:
             ${searchResults.items.map(item => 
-                `- ${item.title}: ${item.snippet}`
+                `- ${item.title}: ${item.description}`
             ).join('\n')}
             
             Please provide a helpful response based on this information.
@@ -59,6 +60,4 @@ class ChatAgent extends BaseAgent {
     clearContext() {
         this.context = [];
     }
-}
-
-export default ChatAgent; 
+} 

@@ -1,6 +1,6 @@
-import BaseAgent from './BaseAgent.js';
+import { BaseAgent } from './BaseAgent.js';
 
-class AttractionsAgent extends BaseAgent {
+export class AttractionsAgent extends BaseAgent {
     constructor() {
         super();
         this.attractions = new Map();
@@ -11,7 +11,7 @@ class AttractionsAgent extends BaseAgent {
             // Get basic attraction data
             const attractions = await this.fetchAttractions();
 
-            // Enhance with real-time data from DeepSeek
+            // Enhance with real-time data
             const enhancedAttractions = await this.enhanceWithRealTimeData(attractions);
 
             // Categorize and sort based on preferences
@@ -32,19 +32,16 @@ class AttractionsAgent extends BaseAgent {
         const enhanced = [];
         
         for (const attraction of attractions) {
-            // Search for real-time information
-            const query = `${attraction.name} Bruges current status opening hours reviews`;
-            const searchResults = await this.searchWithDeepSeek(query, 'local');
-
-            // Get images
-            const imageResults = await this.searchWithDeepSeek(
-                `${attraction.name} Bruges photos`, 'image'
+            // Search for real-time information using Groq
+            const searchResults = await this.searchInformation(
+                `${attraction.name} Bruges current status, opening hours, and reviews`,
+                'attraction'
             );
 
             enhanced.push({
                 ...attraction,
-                realTimeData: searchResults.items[0],
-                images: imageResults.items.slice(0, 5)
+                realTimeData: searchResults,
+                images: searchResults.images || []
             });
         }
 
@@ -55,11 +52,9 @@ class AttractionsAgent extends BaseAgent {
         const prompt = `Create detailed descriptions for these Bruges attractions:
             ${JSON.stringify(attractions, null, 2)}`;
 
-        const enhancedData = await this.callOpenAI(prompt,
+        const enhancedData = await this.callGroq(prompt,
             "You are an expert in Bruges tourism and history.");
 
         return JSON.parse(enhancedData);
     }
-}
-
-export default AttractionsAgent; 
+} 

@@ -52,39 +52,22 @@ const brugesData = {
     }
 };
 
-// Routes for Google Maps API proxy
-app.get('/api/places/nearby', async (req, res) => {
+// Weather API route
+app.get('/api/weather', async (req, res) => {
     try {
-        const { lat, lng, type } = req.query;
-        const response = await axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json`, {
+        const { lat, lon } = req.query;
+        const response = await axios.get(`${process.env.WEATHER_API_ENDPOINT}`, {
             params: {
-                location: `${lat},${lng}`,
-                radius: 1000,
-                type: type,
-                key: process.env.GOOGLE_MAPS_API_KEY
+                lat,
+                lon,
+                appid: process.env.WEATHER_API_KEY,
+                units: 'metric'
             }
         });
         res.json(response.data);
     } catch (error) {
-        console.error('Error fetching nearby places:', error);
-        res.status(500).json({ error: 'Failed to fetch nearby places' });
-    }
-});
-
-app.get('/api/places/details', async (req, res) => {
-    try {
-        const { placeId } = req.query;
-        const response = await axios.get(`https://maps.googleapis.com/maps/api/place/details/json`, {
-            params: {
-                place_id: placeId,
-                fields: 'name,formatted_address,photos,url,website,opening_hours,formatted_phone_number,review',
-                key: process.env.GOOGLE_MAPS_API_KEY
-            }
-        });
-        res.json(response.data);
-    } catch (error) {
-        console.error('Error fetching place details:', error);
-        res.status(500).json({ error: 'Failed to fetch place details' });
+        console.error('Error fetching weather:', error);
+        res.status(500).json({ error: 'Failed to fetch weather data' });
     }
 });
 
@@ -150,6 +133,7 @@ Format the response in a clear, structured way with emojis for better readabilit
     }
 });
 
+// Start server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 }); 
