@@ -13,91 +13,91 @@ class GalleryManager {
         // Gallery data
         this.images = [
             {
-                src: 'images/PhotoGallery/bruges-aerial.jpg',
+                src: 'bannerSlides/banner2.jpg',
                 title: 'Aerial View of Bruges',
                 location: 'City Center',
                 description: 'Panoramic view of medieval Bruges with its iconic bell towers and red-tiled roofs',
                 category: 'architecture'
             },
             {
-                src: 'images/PhotoGallery/belfort-tower.jpg',
+                src: 'bannerSlides/banner3.jpg',
                 title: 'Belfry Tower',
                 location: 'Market Square',
                 description: 'The iconic medieval bell tower, standing 83 meters tall',
                 category: 'landmarks'
             },
             {
-                src: 'images/PhotoGallery/canal-boats.jpg',
+                src: 'bannerSlides/banner4.jpg',
                 title: 'Canal Tour Boats',
                 location: 'Bruges Canals',
                 description: 'Traditional boat tours through the Venice of the North',
                 category: 'culture'
             },
             {
-                src: 'images/PhotoGallery/chocolate-shop.jpg',
+                src: 'bannerSlides/banner5.jpg',
                 title: 'Belgian Chocolates',
                 location: 'Old Town',
                 description: 'Famous Belgian chocolate displays in a traditional shop',
                 category: 'food'
             },
             {
-                src: 'images/PhotoGallery/grote-markt.jpg',
+                src: 'bannerSlides/banner6.jpg',
                 title: 'Grote Markt',
                 location: 'City Center',
                 description: 'Historic market square surrounded by medieval buildings',
                 category: 'landmarks'
             },
             {
-                src: 'images/PhotoGallery/minnewater-lake.jpg',
+                src: 'bannerSlides/banner7.jpg',
                 title: 'Minnewater Lake',
                 location: 'Lake of Love',
                 description: 'Peaceful lake known as the Lake of Love with swans',
                 category: 'nature'
             },
             {
-                src: 'images/PhotoGallery/church-of-our-lady.jpg',
+                src: 'bannerSlides/banner8.jpg',
                 title: 'Church of Our Lady',
                 location: 'Church Square',
                 description: 'Gothic church with the second tallest brick tower in the world',
                 category: 'architecture'
             },
             {
-                src: 'images/PhotoGallery/belgian-waffles.jpg',
+                src: 'bannerSlides/banner1.jpg',
                 title: 'Belgian Waffles',
                 location: 'Local Cafe',
                 description: 'Fresh Belgian waffles with strawberries and cream',
                 category: 'food'
             },
             {
-                src: 'images/PhotoGallery/begijnhof.jpg',
+                src: 'bannerSlides/banner9.jpg',
                 title: 'Begijnhof',
                 location: 'Ten Wijngaerde',
                 description: 'Historic complex home to Benedictine nuns',
                 category: 'culture'
             },
             {
-                src: 'images/PhotoGallery/canal-houses.jpg',
+                src: 'bannerSlides/banner10.jpg',
                 title: 'Canal Houses',
                 location: 'Historic Center',
                 description: 'Traditional houses along the picturesque canals',
                 category: 'architecture'
             },
             {
-                src: 'images/PhotoGallery/beer-tasting.jpg',
+                src: 'bannerSlides/banner11.jpg',
                 title: 'Belgian Beer Tasting',
                 location: 'Local Brewery',
                 description: 'Traditional Belgian beer selection',
                 category: 'food'
             },
             {
-                src: 'images/PhotoGallery/rozenhoedkaai.jpg',
+                src: 'bannerSlides/banner12.jpg',
                 title: 'Rozenhoedkaai',
                 location: 'Canal Junction',
                 description: 'Most photographed spot in Bruges',
                 category: 'landmarks'
             },
             {
-                src: 'images/PhotoGallery/windmills.jpg',
+                src: 'bannerSlides/k.jpg',
                 title: 'Historic Windmills',
                 location: 'Kruisvest',
                 description: 'Traditional windmills along the city ramparts',
@@ -150,14 +150,13 @@ class GalleryManager {
     }
 
     setupEventListeners() {
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                this.filterGallery(e.target.dataset.filter);
+        // Filter dropdown
+        const filterDropdown = document.querySelector('.filter-dropdown');
+        if (filterDropdown) {
+            filterDropdown.addEventListener('change', (e) => {
+                this.filterGallery(e.target.value);
             });
-        });
+        }
 
         // View toggle
         document.querySelectorAll('.view-btn').forEach(btn => {
