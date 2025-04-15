@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - Bruges Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wishlist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">Bruges Guide</a>
+                <div class="nav-links">
+                    <a href="places-to-visit.html">Places</a>
+                    <a href="restaurants.html">Restaurants</a>
+                    <a href="tours.html">Tours</a>
+                    <a href="events.html">Events</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="wishlist.html" class="active">Wishlist</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="wishlist-hero">
+            <h1>My Wishlist</h1>
+            <p>All your selected places, restaurants, and activities in one place</p>
+        </section>
+
+        <section class="wishlist-container">
+            <div class="wishlist-controls">
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th-large"></i> Grid View
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i> List View
+                    </button>
+                </div>
+                <div class="map-toggle">
+                    <button id="show-map-btn">
+                        <i class="fas fa-map-marked-alt"></i> Show on Map
+                    </button>
+                </div>
+            </div>
+
+            <div class="wishlist-items">
+                <!-- Items will be dynamically added here -->
+            </div>
+
+            <div id="map-section" class="map-section">
+                <div id="wishlist-map"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> About</h3>
+                <p>Your comprehensive guide to exploring Bruges</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-envelope"></i> Contact</h3>
+                <p>Email: info@brugesguide.com</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Bruges Guide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/selection-manager.js"></script>
+    <script src="js/services/GroqService.js"></script>
+    <script src="js/agents/BaseAgent.js"></script>
+    <script src="js/agents/AgentManager.js"></script>
+    <script src="js/agents/PlaceAgent.js"></script>
+    <script src="js/agents/RestaurantAgent.js"></script>
+    <script src="js/agents/TourAgent.js"></script>
+    <script src="js/agents/PhotoAgent.js"></script>
+    <script src="js/agents/ItineraryAgent.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init();
+
+            // Initialize selection manager
+            if (!window.selectionManager) {
+                window.selectionManager = new SelectionManager();
+            }
+
+            // Initialize agent manager
+            if (!window.agentManager) {
+                window.agentManager = new AgentManager();
+            }
+
+            // Initialize agents
+            window.agentManager.initializeAgents().catch(error => {
+                console.error('Failed to initialize agents:', error);
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,12 +1,19 @@
 /* Events Page Styles */
 .events-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Data/Events/events-hero.jpg');
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('bannerSlides/banner1.jpg');
     background-size: cover;
     background-position: center;
-    color: white;
+    width: 100%;
+    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 100px 20px;
-    margin-bottom: 40px;
+    color: white;
+    padding: 4rem var(--container-padding);
+    margin-bottom: 2rem;
 }
 
 .events-hero h1 {
@@ -23,30 +30,40 @@
 }
 
 /* View Controls */
+/* View Controls */
 .view-controls {
     display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    margin-left: auto;
+    background: #f5f5f5;
+    border-radius: 8px;
 }
 
 .view-toggle {
-    background: none;
-    border: 1px solid #ddd;
-    padding: 8px 15px;
-    margin: 0 5px;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 4px;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
 }
 
 .view-toggle:hover {
-    background-color: #f0f0f0;
+    background: #f0f0f0;
+    transform: translateY(-2px);
 }
 
 .view-toggle.active {
-    background-color: #4a6fa5;
+    background: var(--primary-color);
     color: white;
-    border-color: #4a6fa5;
 }
 
 /* Events Container */

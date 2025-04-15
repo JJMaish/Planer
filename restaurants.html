@@ -26,7 +26,7 @@
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
-                <li><a href="wish-list.html"><i class="fas fa-heart"></i> Wish List</a></li>
+                <li><a href="wishlist.html"><i class="fas fa-heart"></i> Wish List</a></li>
             </ul>
         </nav>
     </header>
@@ -39,30 +39,28 @@
 
         <section class="filter-section">
             <div class="filter-container">
-                <h2>Explore by Category</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-category="all">All Restaurants</button>
-                    <button class="filter-btn" data-category="traditional">Traditional Flemish</button>
-                    <button class="filter-btn" data-category="waffles">Waffles & Desserts</button>
-                    <button class="filter-btn" data-category="chocolate">Chocolate Shops</button>
-                    <button class="filter-btn" data-category="beer">Beer & Breweries</button>
-                    <button class="filter-btn" data-category="fine">Fine Dining</button>
-                    <button class="filter-btn" data-category="casual">Casual & Bistro</button>
-                    <button class="filter-btn" data-category="street">Fast Food</button>
-                    <button class="filter-btn" data-category="vegetarian">Vegetarian & Vegan</button>
-                    <button class="filter-btn" data-category="pizza">حلال</button>
-                </div>
+                <select class="filter-dropdown">
+                    <option value="all">All Restaurants</option>
+                    <option value="traditional">Traditional Flemish</option>
+                    <option value="waffles">Waffles & Desserts</option>
+                    <option value="chocolate">Chocolate Shops</option>
+                    <option value="beer">Beer & Breweries</option>
+                    <option value="fine">Fine Dining</option>
+                    <option value="casual">Casual & Bistro</option>
+                    <option value="street">Fast Food</option>
+                    <option value="vegetarian">Vegetarian & Vegan</option>
+                    <option value="pizza">Pizza</option>
+                </select>
+            </div>
+            <div class="view-controls">
+                <button class="view-toggle active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid View
+                </button>
+                <button class="view-toggle" data-view="list">
+                    <i class="fas fa-list"></i> List View
+                </button>
             </div>
         </section>
-
-        <div class="view-controls">
-            <button class="view-toggle active" data-view="grid">
-                <i class="fas fa-th"></i> Grid View
-            </button>
-            <button class="view-toggle" data-view="list">
-                <i class="fas fa-list"></i> List View
-            </button>
-        </div>
 
         <section class="restaurants-container grid-view">
             <!-- That's Toast -->
@@ -73,23 +71,32 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/thats-toast.jpg" alt="That's Toast">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>That's Toast</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Brunch</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Dweersstraat 4</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.5</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=That's+Toast+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Brunch</p>
+                    <div class="description">
+                        <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=That's+Toast+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.thatstoast.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -102,23 +109,32 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/de-gastro.jpg" alt="De Gastro">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>De Gastro</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Braambergstraat 6</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gastro+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                    <div class="description">
+                        <p>Traditional Belgian cuisine with a modern twist. Known for their excellent service and cozy atmosphere.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 12:00 - 22:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gastro+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.degastro.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -131,23 +147,32 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/mozart.jpg" alt="Mozart Restaurant">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>Mozart Restaurant Brugge</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Sint-Jakobsstraat 9</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.4</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Mozart+Restaurant+Brugge" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Fine Dining</p>
+                    <div class="description">
+                        <p>Elegant restaurant offering a sophisticated dining experience with classical music ambiance.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 18:00 - 23:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Mozart+Restaurant+Brugge" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.mozartbrugge.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -160,23 +185,32 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/one-restaurant.jpg" alt="ONE Restaurant">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>ONE Restaurant</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Arsenaalstraat 55</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=ONE+Restaurant+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                    <div class="description">
+                        <p>Modern Belgian cuisine with an innovative menu and stylish interior design.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 12:00 - 22:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=ONE+Restaurant+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.onerestaurant.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -189,23 +223,32 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/de-pepermolen.jpg" alt="De Pepermolen">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>De Pepermolen</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Langestraat 16</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.5</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Pepermolen+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Traditional</p>
+                    <div class="description">
+                        <p>Historic restaurant serving authentic Flemish cuisine in a charming setting.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 12:00 - 22:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Pepermolen+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.depepermolen.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
@@ -218,52 +261,82 @@
                         <i class="fas fa-check"></i>
                     </label>
                 </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/poules-moules.jpg" alt="Poules Moules">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>Poules Moules</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Simon Stevinplein 9</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.3</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Poules+Moules+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
+                    <div class="description">
+                        <p>Specializing in mussels and seafood dishes, offering a wide variety of preparations.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 12:00 - 22:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Poules+Moules+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.poulesmoules.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
 
             <!-- Bistro Bruut -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="bistro-bruut" data-type="restaurant" id="restaurant-7">
+                    <label for="restaurant-7" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
+                <div class="restaurant-image">
+                    <img src="Data/Restaurants/bistro-bruut.jpg" alt="Bistro Bruut">
+                </div>
                 <div class="restaurant-content">
-                    <div class="restaurant-main-info">
+                    <div class="restaurant-header">
                         <h2>Bistro Bruut</h2>
-                        <p class="cuisine-type"><i class="fas fa-utensils"></i> Restaurant</p>
-                        <p class="address"><i class="fas fa-map-marker-alt"></i> Meestraat 9</p>
-                        <div class="description">
-                            <p>A cozy brunch spot known for their artisanal toasts and fresh ingredients. Perfect for breakfast and lunch with a modern twist on classic dishes.</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.6</span>
                         </div>
-                        <div class="details">
-                            <p class="hours"><i class="far fa-clock"></i> Open: 8:00 - 16:00</p>
-                            <p class="price-range"><i class="fas fa-euro-sign"></i> Price Range: €€</p>
-                        </div>
-                        <div class="button-group">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bistro+Bruut+Bruges+Belgium" target="_blank" class="directions-btn">
-                                <i class="fas fa-directions"></i> Directions
-                            </a>
-                        </div>
+                    </div>
+                    <p class="type"><i class="fas fa-utensils"></i> Bistro</p>
+                    <div class="description">
+                        <p>Modern bistro offering creative dishes with local ingredients and craft beers.</p>
+                    </div>
+                    <div class="details">
+                        <p class="hours"><i class="far fa-clock"></i> Open: 12:00 - 22:00</p>
+                        <p class="price"><i class="fas fa-euro-sign"></i> €€€</p>
+                    </div>
+                    <div class="button-group">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bistro+Bruut+Bruges+Belgium" class="directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
+                        <a href="https://www.bistrobruut.be/" class="website-btn" target="_blank">
+                            <i class="fas fa-globe"></i> Visit Website
+                        </a>
                     </div>
                 </div>
             </div>
 
             <!-- Balthasar -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="balthasar" data-type="restaurant" id="restaurant-8">
+                    <label for="restaurant-8" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Balthasar Brugge</h2>
@@ -287,6 +360,12 @@
 
             <!-- LESS Eatery -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="less-eatery" data-type="restaurant" id="restaurant-9">
+                    <label for="restaurant-9" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>LESS Eatery</h2>
@@ -310,6 +389,12 @@
 
             <!-- De Wijngaert -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="de-wijngaert" data-type="restaurant" id="restaurant-10">
+                    <label for="restaurant-10" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Restaurant De Wijngaert</h2>
@@ -333,6 +418,12 @@
 
             <!-- The Olive Tree -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="olive-tree" data-type="restaurant" id="restaurant-11">
+                    <label for="restaurant-11" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>The Olive Tree Brugge</h2>
@@ -356,6 +447,12 @@
 
             <!-- Guillaume -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="guillaume" data-type="restaurant" id="restaurant-12">
+                    <label for="restaurant-12" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Guillaume</h2>
@@ -379,6 +476,12 @@
 
             <!-- De Stove -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="de-stove" data-type="restaurant" id="restaurant-13">
+                    <label for="restaurant-13" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>De Stove</h2>
@@ -402,6 +505,12 @@
 
             <!-- Bij Koen & Marijke -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="koen-marijke" data-type="restaurant" id="restaurant-14">
+                    <label for="restaurant-14" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Bij Koen & Marijke</h2>
@@ -425,6 +534,12 @@
 
             <!-- Réliva -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="reliva" data-type="restaurant" id="restaurant-15">
+                    <label for="restaurant-15" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Réliva</h2>
@@ -448,6 +563,12 @@
 
             <!-- Le Mystique -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="le-mystique" data-type="restaurant" id="restaurant-16">
+                    <label for="restaurant-16" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Le Mystique</h2>
@@ -471,6 +592,12 @@
 
             <!-- Le Chef et Moi -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="le-chef-et-moi" data-type="restaurant" id="restaurant-17">
+                    <label for="restaurant-17" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Le Chef et Moi</h2>
@@ -494,6 +621,12 @@
 
             <!-- Franco Belge Restaurant -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="franco-belge" data-type="restaurant" id="restaurant-18">
+                    <label for="restaurant-18" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Franco Belge Restaurant</h2>
@@ -517,6 +650,12 @@
 
             <!-- Opus Latino -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="opus-latino" data-type="restaurant" id="restaurant-19">
+                    <label for="restaurant-19" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Opus Latino</h2>
@@ -540,6 +679,12 @@
 
             <!-- ONSLOW -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="onslow" data-type="restaurant" id="restaurant-20">
+                    <label for="restaurant-20" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>ONSLOW</h2>
@@ -563,6 +708,12 @@
 
             <!-- 't Zandkoekje -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="zandkoekje" data-type="restaurant" id="restaurant-21">
+                    <label for="restaurant-21" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>'t Zandkoekje</h2>
@@ -586,6 +737,12 @@
 
             <!-- Otomat -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="otomat" data-type="restaurant" id="restaurant-22">
+                    <label for="restaurant-22" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Otomat</h2>
@@ -609,6 +766,12 @@
 
             <!-- El Churrasco Argentino -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="el-churrasco" data-type="restaurant" id="restaurant-23">
+                    <label for="restaurant-23" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>El Churrasco Argentino</h2>
@@ -632,6 +795,12 @@
 
             <!-- Assiette Blanche -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="assiette-blanche" data-type="restaurant" id="restaurant-24">
+                    <label for="restaurant-24" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Assiette Blanche</h2>
@@ -655,6 +824,12 @@
 
             <!-- Restaurant Goesepitte 43 -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="goesepitte-43" data-type="restaurant" id="restaurant-25">
+                    <label for="restaurant-25" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Restaurant Goesepitte 43</h2>
@@ -678,6 +853,12 @@
 
             <!-- Malesherbes -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="malesherbes" data-type="restaurant" id="restaurant-26">
+                    <label for="restaurant-26" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Malesherbes (Delicatessen)</h2>
@@ -701,6 +882,12 @@
 
             <!-- Juliette -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="juliette" data-type="restaurant" id="restaurant-27">
+                    <label for="restaurant-27" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Juliette</h2>
@@ -724,6 +911,12 @@
 
             <!-- Cambrinus -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="cambrinus" data-type="restaurant" id="restaurant-28">
+                    <label for="restaurant-28" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Cambrinus</h2>
@@ -747,6 +940,12 @@
 
             <!-- Seafoodbar Belge -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="seafoodbar-belge" data-type="restaurant" id="restaurant-29">
+                    <label for="restaurant-29" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Seafoodbar Belge</h2>
@@ -770,6 +969,12 @@
 
             <!-- Sans Cravate -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="sans-cravate" data-type="restaurant" id="restaurant-30">
+                    <label for="restaurant-30" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Sans Cravate</h2>
@@ -793,6 +998,12 @@
 
             <!-- @Tattie's -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="tatties" data-type="restaurant" id="restaurant-31">
+                    <label for="restaurant-31" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>@Tattie's</h2>
@@ -816,6 +1027,12 @@
 
             <!-- Jilles Bier & Burgers -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="jilles-bier-burgers" data-type="restaurant" id="restaurant-32">
+                    <label for="restaurant-32" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Jilles Bier & Burgers Brugge</h2>
@@ -839,6 +1056,12 @@
 
             <!-- 't Nieuw Walnutje -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="nieuw-walnutje" data-type="restaurant" id="restaurant-33">
+                    <label for="restaurant-33" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>'t Nieuw Walnutje</h2>
@@ -862,6 +1085,12 @@
 
             <!-- Mr Spaghetti -->
             <div class="restaurant-card" data-aos="fade-up">
+                <div class="selection-control">
+                    <input type="checkbox" class="restaurant-selector" data-id="mr-spaghetti" data-type="restaurant" id="restaurant-34">
+                    <label for="restaurant-34" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-content">
                     <div class="restaurant-main-info">
                         <h2>Mr Spaghetti</h2>

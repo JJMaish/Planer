@@ -1,104 +1,70 @@
 class AgentManager {
     constructor() {
-        this.agents = {
-            place: null,
-            restaurant: null,
-            tour: null,
-            photo: null,
-            itinerary: null
-        };
+        this.agents = new Map();
         this.initialized = false;
-        this.initializationPromise = null;
     }
 
     async initializeAgents() {
-        // If already initializing, return the existing promise
-        if (this.initializationPromise) {
-            return this.initializationPromise;
-        }
+        if (this.initialized) return;
 
-        // If already initialized, return immediately
-        if (this.initialized) {
-            return Promise.resolve();
-        }
-
-        // Create a new initialization promise
-        this.initializationPromise = (async () => {
-            try {
-                console.log('Initializing agents...');
-
-                // Wait for all required global objects to be available
-                await this.waitForDependencies();
-                
-                // Check if all required agent classes are available
-                if (!window.PlaceAgent) {
-                    throw new Error('PlaceAgent class not found');
-                }
-                if (!window.RestaurantAgent) {
-                    throw new Error('RestaurantAgent class not found');
-                }
-                if (!window.TourAgent) {
-                    throw new Error('TourAgent class not found');
-                }
-                if (!window.PhotoAgent) {
-                    throw new Error('PhotoAgent class not found');
-                }
-                if (!window.ItineraryAgent) {
-                    throw new Error('ItineraryAgent class not found');
-                }
-                
-                // Initialize each agent
-                this.agents.place = window.placeAgent || new PlaceAgent();
-                this.agents.restaurant = window.restaurantAgent || new RestaurantAgent();
-                this.agents.tour = window.tourAgent || new TourAgent();
-                this.agents.photo = window.photoAgent || new PhotoAgent();
-                this.agents.itinerary = window.itineraryAgent || new ItineraryAgent();
-                
-                // Load data for each agent
-                await Promise.all([
-                    this.agents.place.loadData(),
-                    this.agents.restaurant.loadData(),
-                    this.agents.tour.loadData(),
-                    this.agents.photo.loadData()
-                ]);
-                
-                this.initialized = true;
-                console.log('All agents initialized successfully');
-            } catch (error) {
-                console.error('Error initializing agents:', error.message || error);
-                console.error('Error stack:', error.stack);
-                this.initializationPromise = null; // Reset the promise on error
-                throw error;
+        try {
+            console.log('Initializing agents...');
+            
+            // Initialize GroqService if not already initialized
+            if (!window.groqService) {
+                window.groqService = new GroqService();
             }
-        })();
+            
+            // Set the API key from .env
+            window.groqService.setApiKey('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');
+            
+            // Wait for all required dependencies to be available
+            await this.waitForDependencies(['BaseAgent', 'GroqService']);
 
-        return this.initializationPromise;
+            // Initialize each agent type
+            const agentTypes = ['place', 'restaurant', 'tour', 'photo', 'itinerary'];
+            
+            for (const type of agentTypes) {
+                const agent = window[`${type}Agent`];
+                if (agent) {
+                    await agent.initialize();
+                    this.agents.set(type, agent);
+                    console.log(`${type} agent initialized successfully`);
+                } else {
+                    console.warn(`${type} agent not found`);
+                }
+            }
+
+            this.initialized = true;
+            console.log('All agents initialized successfully');
+        } catch (error) {
+            console.error('Failed to initialize Agent Manager:', error);
+            throw error;
+        }
     }
 
-    async waitForDependencies(timeout = 10000) {
-        const startTime = Date.now();
-        
-        while (Date.now() - startTime < timeout) {
-            // Check if all required dependencies are available
-            const missingDependencies = [];
-            
-            if (!window.PlaceAgent) missingDependencies.push('PlaceAgent');
-            if (!window.RestaurantAgent) missingDependencies.push('RestaurantAgent');
-            if (!window.TourAgent) missingDependencies.push('TourAgent');
-            if (!window.PhotoAgent) missingDependencies.push('PhotoAgent');
-            if (!window.ItineraryAgent) missingDependencies.push('ItineraryAgent');
-            if (!window.selectionManager) missingDependencies.push('selectionManager');
+    async waitForDependencies(dependencies) {
+        const maxAttempts = 50;
+        const checkInterval = 100; // ms
+
+        for (let i = 0; i < maxAttempts; i++) {
+            const missingDependencies = dependencies.filter(dep => {
+                if (dep === 'GroqService') {
+                    return !window.groqService || !window.groqService.isApiKeySet();
+                }
+                return !window[dep];
+            });
             
             if (missingDependencies.length === 0) {
-                return true;
+                return;
             }
-            
-            // Wait a bit before checking again
-            await new Promise(resolve => setTimeout(resolve, 100));
+
+            if (i === maxAttempts - 1) {
+                throw new Error(`Missing required dependencies: ${missingDependencies.join(', ')}`);
+            }
+
+            await new Promise(resolve => setTimeout(resolve, checkInterval));
         }
-        
-        throw new Error('Required dependencies not found within timeout period: ' + 
-            (missingDependencies ? missingDependencies.join(', ') : 'unknown'));
     }
 
     async handleSelectionChange(selections) {
@@ -137,10 +103,10 @@ class AgentManager {
             
             // Get recommendations from each agent
             const recommendations = {
-                places: await this.agents.place.getRecommendations(selections.places),
-                restaurants: await this.agents.restaurant.getRecommendations(selections.restaurants),
-                tours: await this.agents.tour.getRecommendations(selections.tours),
-                photos: await this.agents.photo.getRecommendations(selections.photos)
+                places: await this.agents.get('place').getRecommendations(selections.places),
+                restaurants: await this.agents.get('restaurant').getRecommendations(selections.restaurants),
+                tours: await this.agents.get('tour').getRecommendations(selections.tours),
+                photos: await this.agents.get('photo').getRecommendations(selections.photos)
             };
             
             // Check if OpenAI service is available before generating itinerary
@@ -155,7 +121,7 @@ class AgentManager {
             }
             
             // Generate itinerary using the recommendations
-            const itinerary = await this.agents.itinerary.handleSelectionChange(selections, recommendations);
+            const itinerary = await this.agents.get('itinerary').handleSelectionChange(selections, recommendations);
             
             return {
                 recommendations,
@@ -229,10 +195,7 @@ class AgentManager {
     }
 
     getAgent(type) {
-        if (!this.initialized) {
-            throw new Error('Agents not initialized');
-        }
-        return this.agents[type];
+        return this.agents.get(type);
     }
 
     isInitialized() {
@@ -240,7 +203,7 @@ class AgentManager {
     }
 }
 
-// Initialize the agent manager
+// Make it available globally
 window.agentManager = new AgentManager();
 
 // Initialize agents after DOM is loaded

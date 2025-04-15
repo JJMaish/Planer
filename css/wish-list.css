@@ -1,291 +1,351 @@
+/* Modern and compact wish list styles */
+:root {
+    --primary-color: #0066cc;
+    --secondary-color: #004d99;
+    --danger-color: #ff4444;
+    --danger-hover: #cc0000;
+    --text-color: #333;
+    --light-bg: #f5f9ff;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-hover: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: var(--text-color);
+}
+
+.wish-list-main {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wish-list-hero {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.wish-list-hero h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.wish-list-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.clear-btn, .show-map-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.clear-btn {
+    background: var(--danger-color);
+    color: white;
+}
+
+.clear-btn:hover {
+    background: var(--danger-hover);
+}
+
+.show-map-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.show-map-btn:hover {
+    background: var(--secondary-color);
+}
+
 .wish-list-categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
-.wish-list-item {
-    display: flex;
-    flex-direction: column;
+.wish-list-category {
     background: white;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    margin-bottom: 1rem;
-}
-
-.item-image {
-    width: 100%;
-    height: 200px;
+    box-shadow: var(--shadow);
     overflow: hidden;
 }
 
-.item-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.item-details {
+.category-header {
     padding: 1rem;
-    flex-grow: 1;
+    background: var(--light-bg);
+    border-bottom: 1px solid var(--border-color);
 }
 
-.item-details h3 {
-    margin: 0 0 0.5rem 0;
+.category-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.2rem;
 }
 
-.meta-info {
-    margin: 0.5rem 0;
-    color: #666;
-    font-size: 0.9rem;
+.item-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
 }
 
-.item-directions {
-    margin-top: 1rem;
-    display: flex;
+.category-items {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
 }
 
-.maps-link {
-    color: #4CAF50;
-    text-decoration: none;
+.restaurant-content {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+}
+
+.restaurant-main-info {
+    padding: 1.5rem;
+}
+
+.restaurant-main-info h2 {
+    margin: 0 0 1rem 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.cuisine-type, .address {
+    margin: 0 0 0.5rem 0;
+    color: #666;
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.maps-link:hover {
-    text-decoration: underline;
+.description {
+    margin: 1rem 0;
 }
 
-.item-actions {
-    padding: 1rem;
-    border-top: 1px solid #eee;
+.description p {
+    margin: 0;
+    color: #666;
+    line-height: 1.5;
+}
+
+.details {
+    margin: 1rem 0;
+}
+
+.hours, .price-range {
+    margin: 0 0 0.5rem 0;
+    color: #666;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.directions-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.directions-btn:hover {
+    background: var(--secondary-color);
 }
 
 .remove-btn {
-    background: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--danger-color);
+    color: white;
     border: none;
-    color: #ff4444;
-    cursor: pointer;
-    padding: 0.5rem;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .remove-btn:hover {
-    background-color: rgba(255, 68, 68, 0.1);
+    background: var(--danger-hover);
 }
 
-.show-on-map-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
-    padding: 0 1rem;
+/* Map Section Styles */
+.map-section {
+    position: relative;
+    height: 400px;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: none;
 }
 
-.show-on-map-btn {
-    background: linear-gradient(135deg, #2196F3, #1976D2);
-    color: white;
-    padding: 16px 32px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
-    width: 100%;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.show-on-map-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-    background: linear-gradient(135deg, #1976D2, #2196F3);
-}
-
-.show-on-map-btn i {
-    font-size: 20px;
-    margin-right: 8px;
+.map-section.active {
+    display: block;
 }
 
 .map-container {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 999;
-    display: none;
-    overflow: hidden;
 }
 
-#map {
+.map-controls {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
-.map-close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: white;
-    border: none;
+.control-btn {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    background: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    transition: all 0.3s ease;
+    color: var(--primary-color);
+    transition: all 0.2s ease;
 }
 
-.map-close-btn:hover {
+.control-btn:hover {
+    background: var(--light-bg);
     transform: scale(1.1);
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    background: #f5f5f5;
+    border-color: var(--primary-color);
 }
 
-.map-close-btn i {
-    color: #333;
-    font-size: 20px;
-}
-
-/* Custom marker styles */
-.custom-marker {
+/* Marker styles */
+.wish-list-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
-    background: white;
-    border: 2px solid #2196F3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    color: #0066cc;
 }
 
-.marker-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-}
-
-.marker-icon.places {
-    background: #4CAF50;
-}
-
-.marker-icon.restaurants {
-    background: #FF5722;
-}
-
-.marker-icon.tours {
-    background: #9C27B0;
-}
-
-.marker-icon.events {
-    background: #FFC107;
-}
-
-.marker-icon.photos {
-    background: #2196F3;
-}
-
-/* Map popup styles */
-.map-popup {
-    padding: 15px;
+/* Popup styles */
+.marker-popup {
+    padding: 1rem;
     min-width: 200px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.map-popup h3 {
-    margin: 0 0 8px 0;
-    font-size: 16px;
-    color: #2196F3;
-    font-weight: 600;
+.marker-popup h3 {
+    margin: 0 0 0.5rem 0;
+    color: #0066cc;
 }
 
-.map-popup p {
-    margin: 0 0 5px 0;
-    font-size: 14px;
+.marker-popup p {
+    margin: 0 0 1rem 0;
     color: #666;
 }
 
-.map-popup p:last-child {
-    margin-bottom: 0;
-}
-
-/* Leaflet popup customization */
-.leaflet-popup-content-wrapper {
-    border-radius: 8px;
-    padding: 0;
-}
-
-.leaflet-popup-tip {
-    background: white;
-}
-
-.leaflet-popup-close-button {
-    display: none;
-}
-
-/* Mobile-specific styles */
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .wish-list-main {
+        padding: 1rem;
+    }
+
+    .wish-list-controls {
+        flex-direction: column;
+    }
+
     .wish-list-categories {
         grid-template-columns: 1fr;
-        padding: 1rem;
-        gap: 1rem;
+    }
+
+    .category-items {
+        grid-template-columns: 1fr;
+    }
+
+    .map-section {
+        height: 300px;
+    }
+
+    .map-controls {
+        top: auto;
+        bottom: 1rem;
+        flex-direction: row;
     }
 
     .wish-list-item {
-        margin-bottom: 1rem;
+        flex-direction: column;
     }
 
-    .item-image {
-        height: 150px;
+    .wish-list-item .item-image {
+        width: 100%;
+        height: 200px;
     }
 
-    .show-on-map-container {
-        top: 50%;
-        width: calc(100% - 2rem);
-        padding: 0;
+    .wish-list-item .item-details {
+        padding: 1rem;
     }
 
-    .show-on-map-btn {
-        padding: 14px 24px;
-        font-size: 16px;
-        border-radius: 40px;
+    .wish-list-item .item-actions {
+        flex-direction: column;
     }
 
-    .show-on-map-btn i {
-        font-size: 18px;
+    .wish-list-item .website-btn,
+    .wish-list-item .remove-btn {
+        width: 100%;
+        justify-content: center;
     }
+}
+
+/* Photo item specific styles */
+.wish-list-item.photo-item .item-image {
+    width: 100px;
+    height: 100px;
+}
+
+.wish-list-item.photo-item .meta-info {
+    margin-top: 0.5rem;
 } 

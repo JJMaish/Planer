@@ -27,13 +27,16 @@
 .gallery-filters {
     position: sticky;
     top: 70px;
-    background: white;
+    background: #f5f5f5;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
+    border-radius: 8px;
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
 }
 
 .filter-container {
@@ -44,29 +47,42 @@
 
 .filter-dropdown {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
+    border:0.5px solid var(--primary-color);
+    border-radius: 2px;
     background: white;
     color: var(--text-color);
     cursor: pointer;
 }
 
-.view-options {
+/* View Controls */
+.view-controls {
     display: flex;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
 }
 
-.view-btn {
-    padding: 0.5rem;
-    border: none;
-    background: transparent;
-    color: var(--text-color);
+.view-toggle {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    border-radius: 8px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
 }
 
-.view-btn.active {
-    color: var(--primary-color);
+.view-toggle:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.view-toggle.active {
+    background: var(--primary-color);
+    color: white;
 }
 
 /* Gallery Grid */
@@ -79,32 +95,49 @@
     margin: 0 auto;
 }
 
+/* Grid View */
+.gallery-grid.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-grid.grid-view .gallery-item {
+    aspect-ratio: 3/2;
+}
+
+/* Masonry View */
 .gallery-grid.masonry {
-    columns: 3 300px;
-    column-gap: 1.5rem;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 10px;
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    aspect-ratio: 3/2;
     background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.gallery-grid.masonry .gallery-item {
+    grid-row-end: span var(--row-span);
 }
 
 .gallery-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
@@ -116,7 +149,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     color: white;
     transform: translateY(100%);
@@ -130,6 +163,7 @@
 .gallery-item-info h3 {
     margin: 0;
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .gallery-item-info p {
@@ -247,13 +281,15 @@
         gap: 1rem;
     }
 
-    .gallery-grid.masonry {
-        columns: 2 300px;
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 15px;
+        padding: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .gallery-grid.masonry {
-        columns: 1 300px;
+    .gallery-grid {
+        grid-template-columns: 1fr;
     }
 } 

@@ -1,497 +1,208 @@
 class VirtualTourGuide {
     constructor() {
         this.map = null;
-        this.userMarker = null;
-        this.places = [];
-        this.currentPosition = null;
-        this.audioEnabled = true;
-        this.speechSynthesis = window.speechSynthesis;
-        this.watchId = null;
-        this.defaultLocation = { lat: 51.2093, lng: 3.2247 }; // Bruges coordinates
-        
-        this.initializeMap();
-        this.initializeCalendar();
-        this.setupEventListeners();
-        this.setupFilters();
-    }
-
-    async initializeMap() {
-        try {
-            // Check if Google Maps is loaded
-            if (typeof google === 'undefined') {
-                throw new Error('Google Maps SDK failed to load');
-            }
-
-            const mapOptions = {
-                center: this.defaultLocation,
-                zoom: 15,
-                mapTypeControl: false,
-                fullscreenControl: false,
-                streetViewControl: false,
-                zoomControl: true,
-                styles: this.getMapStyles()
-            };
-
-            // Create map instance
-            this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-            
-            // Try to get user location
-            try {
-                const position = await this.getCurrentPosition();
-                this.currentPosition = position;
-                this.addUserMarker(position);
-            } catch (locationError) {
-                console.warn('Could not get user location:', locationError);
-                // Use default location for Bruges
-                this.currentPosition = {
-                    coords: this.defaultLocation
-                };
-            }
-
-            this.startLocationTracking();
-            await this.searchNearbyPlaces();
-
-        } catch (error) {
-            console.error('Map initialization error:', error);
-            this.handleMapError();
-            // Use fallback map if available
-            this.showFallbackMap();
-        }
-    }
-
-    getCurrentPosition() {
-        return new Promise((resolve, reject) => {
-            if (!navigator.geolocation) {
-                reject(new Error('Geolocation is not supported'));
-                return;
-            }
-
-            navigator.geolocation.getCurrentPosition(resolve, reject, {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            });
-        });
-    }
-
-    addUserMarker(position) {
-        if (this.userMarker) {
-            this.userMarker.setMap(null);
-        }
-
-        this.userMarker = new google.maps.Marker({
-            position: {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            },
-            map: this.map,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 10,
-                fillColor: '#4285F4',
-                fillOpacity: 1,
-                strokeColor: '#ffffff',
-                strokeWeight: 2
-            }
-        });
-    }
-
-    startLocationTracking() {
-        if (this.watchId) {
-            navigator.geolocation.clearWatch(this.watchId);
-        }
-
-        this.watchId = navigator.geolocation.watchPosition(
-            (position) => {
-                this.currentPosition = position;
-                this.updateUserLocation(position);
-                this.checkNearbyPlaces();
-            },
-            (error) => console.error('Error tracking location:', error),
+        this.markers = [];
+        this.currentLocation = null;
+        this.audioEnabled = false;
+        this.places = [
             {
-                enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0
-            }
-        );
-    }
-
-    async searchNearbyPlaces() {
-        const placesList = document.getElementById('placesList');
-        placesList.classList.add('loading');
-
-        const brugesAttractions = [
-            {
-                name: "Belfry Tower",
-                location: { lat: 51.2088, lng: 3.2246 },
-                type: "landmarks",
-                image: "images/attractions/belfry.jpg",
-                description: "Medieval bell tower with panoramic views of the city",
-                openNow: true,
-                nextTour: "Every 30 minutes",
-                info: "UNESCO World Heritage site"
+                id: 'belfry',
+                name: 'Belfry of Bruges',
+                type: 'landmarks',
+                lat: 51.2084,
+                lng: 3.2257,
+                description: 'The Belfry of Bruges is a medieval bell tower in the center of Bruges. It is one of the city\'s most prominent symbols.',
+                audio: 'audio/belfry.mp3'
             },
             {
-                name: "Church of Our Lady",
-                location: { lat: 51.2046, lng: 3.2252 },
-                type: "churches",
-                image: "images/attractions/church-our-lady.jpg",
-                description: "Gothic church with Michelangelo's Madonna and Child",
-                openNow: true,
-                nextTour: "Self-guided tours available",
-                info: "Houses valuable art collections"
+                id: 'basilica',
+                name: 'Basilica of the Holy Blood',
+                type: 'churches',
+                lat: 51.2086,
+                lng: 3.2267,
+                description: 'The Basilica of the Holy Blood is a Roman Catholic basilica in Bruges. It houses a venerated relic of the Holy Blood.',
+                audio: 'audio/basilica.mp3'
             },
             {
-                name: "Groeningemuseum",
-                location: { lat: 51.2049, lng: 3.2248 },
-                type: "museums",
-                image: "images/attractions/groeninge.jpg",
-                description: "Fine arts museum with Flemish primitives",
-                openNow: true,
-                nextTour: "Guided tours daily",
-                info: "Features works by Jan van Eyck"
-            },
-            {
-                name: "Basilica of the Holy Blood",
-                location: { lat: 51.2089, lng: 3.2274 },
-                type: "churches",
-                image: "images/attractions/holy-blood.jpg",
-                description: "Romanesque and Gothic chapel housing sacred relics",
-                openNow: true,
-                nextTour: "Visit during service times",
-                info: "Famous for its Holy Blood relic"
+                id: 'groeninge',
+                name: 'Groeninge Museum',
+                type: 'museums',
+                lat: 51.2069,
+                lng: 3.2264,
+                description: 'The Groeninge Museum is a municipal museum in Bruges, Belgium, built on the site of the medieval Eekhout Abbey.',
+                audio: 'audio/groeninge.mp3'
             }
         ];
 
-        brugesAttractions.forEach(place => {
-            const marker = new google.maps.Marker({
-                position: place.location,
-                map: this.map,
-                title: place.name,
-                icon: {
-                    url: `images/icons/${place.type}.png`,
-                    scaledSize: new google.maps.Size(32, 32)
-                }
-            });
-
-            const placeCard = this.createPlaceCard(place);
-            placesList.appendChild(placeCard);
-
-            marker.addListener('click', () => {
-                this.showPlaceDetails(place);
-            });
-        });
-
-        placesList.classList.remove('loading');
+        this.initializeMap();
+        this.setupEventListeners();
+        this.renderPlaces();
     }
 
-    async getPlaceDetails(placeId) {
-        try {
-            const response = await fetch(`/api/places/details?placeId=${placeId}`);
-            const data = await response.json();
-            return data.result;
-        } catch (error) {
-            console.error('Error fetching place details:', error);
-            throw error;
+    initializeMap() {
+        // Initialize the map centered on Bruges
+        this.map = L.map('map').setView([51.2093, 3.2247], 14);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(this.map);
+
+        // Add current location button functionality
+        document.getElementById('centerLocation').addEventListener('click', () => {
+            if (this.currentLocation) {
+                this.map.setView(this.currentLocation, 16);
+            } else {
+                this.getCurrentLocation();
+            }
+        });
+    }
+
+    getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    this.currentLocation = [position.coords.latitude, position.coords.longitude];
+                    this.map.setView(this.currentLocation, 16);
+                    
+                    // Add current location marker
+                    L.marker(this.currentLocation, {
+                        icon: L.divIcon({
+                            className: 'current-location-marker',
+                            html: '<i class="fas fa-location-dot"></i>',
+                            iconSize: [30, 30]
+                        })
+                    }).addTo(this.map);
+                },
+                (error) => {
+                    console.error('Error getting location:', error);
+                    alert('Unable to get your location. Please enable location services.');
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by your browser.');
         }
     }
 
-    displayPlaces(places) {
-        const placesList = document.getElementById('placesList');
-        
-        places.forEach(place => {
-            const placeCard = this.createPlaceCard(place);
-            placesList.appendChild(placeCard);
+    setupEventListeners() {
+        // Audio toggle
+        document.getElementById('toggleAudio').addEventListener('click', () => {
+            this.audioEnabled = !this.audioEnabled;
+            const icon = document.querySelector('#toggleAudio i');
+            icon.className = this.audioEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
+        });
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.filterPlaces(btn.dataset.filter);
+            });
         });
     }
 
-    createPlaceCard(place) {
-        const card = document.createElement('div');
-        card.className = 'place-card';
-        
-        card.innerHTML = `
-            <div class="place-icon">
-                <i class="fas fa-${this.getIconForType(place.type)}"></i>
-            </div>
-            <div class="place-details">
-                <h3>${place.name}</h3>
-                <div class="place-meta">
-                    <span><i class="fas fa-clock"></i> ${place.openNow ? 'Open Now' : 'Closed'}</span>
-                    <span><i class="fas fa-info-circle"></i> ${place.info}</span>
-                </div>
-                <div class="place-schedule">
-                    <div class="schedule-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>${place.nextTour}</span>
-                    </div>
-                </div>
-            </div>
-        `;
+    renderPlaces() {
+        const placesList = document.getElementById('placesList');
+        placesList.innerHTML = '';
 
-        card.addEventListener('click', () => this.showPlaceDetails(place));
-        return card;
+        this.places.forEach(place => {
+            // Create list item
+            const listItem = document.createElement('div');
+            listItem.className = 'place-item';
+            listItem.dataset.id = place.id;
+            listItem.innerHTML = `
+                <h3>${place.name}</h3>
+                <p>${place.description}</p>
+                <button class="view-details-btn" data-id="${place.id}">View Details</button>
+            `;
+
+            // Add marker to map
+            const marker = L.marker([place.lat, place.lng], {
+                icon: L.divIcon({
+                    className: `place-marker ${place.type}`,
+                    html: `<i class="fas fa-${this.getIconForType(place.type)}"></i>`,
+                    iconSize: [30, 30]
+                })
+            }).addTo(this.map);
+
+            marker.bindPopup(`
+                <div class="marker-popup">
+                    <h3>${place.name}</h3>
+                    <p>${place.description}</p>
+                    ${this.audioEnabled ? `<button class="audio-btn" data-audio="${place.audio}">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>` : ''}
+                </div>
+            `);
+
+            this.markers.push(marker);
+
+            // Add click event to list item
+            listItem.addEventListener('click', () => {
+                this.showPlaceDetails(place);
+                this.map.setView([place.lat, place.lng], 16);
+            });
+
+            placesList.appendChild(listItem);
+        });
     }
 
     getIconForType(type) {
         const icons = {
             landmarks: 'landmark',
-            churches: 'church',
-            museums: 'museum',
-            restaurants: 'utensils',
-            attractions: 'star'
+            museums: 'university',
+            churches: 'church'
         };
         return icons[type] || 'map-marker-alt';
     }
 
-    async showPlaceDetails(place) {
-        const detailsPanel = document.getElementById('placeDetails');
-        const service = new google.maps.places.PlacesService(this.map);
-
-        try {
-            const details = await this.getPlaceDetails(place.place_id);
-            this.displayPlaceDetails(details);
-            detailsPanel.style.display = 'block';
-        } catch (error) {
-            console.error('Error fetching place details:', error);
-        }
-    }
-
-    displayPlaceDetails(place) {
-        const content = document.querySelector('.details-content');
-        const photo = place.photos ? place.photos[0].getUrl() : 'placeholder-image.jpg';
-
-        content.innerHTML = `
-            <img src="${photo}" alt="${place.name}">
-            <h2>${place.name}</h2>
-            <div class="details-meta">
-                <p><i class="fas fa-map-marker-alt"></i> ${place.formatted_address}</p>
-                ${place.formatted_phone_number ? `<p><i class="fas fa-phone"></i> ${place.formatted_phone_number}</p>` : ''}
-                ${place.website ? `<p><i class="fas fa-globe"></i> <a href="${place.website}" target="_blank">Visit Website</a></p>` : ''}
-            </div>
-            <div class="details-description">
-                ${this.getOpeningHoursHTML(place.opening_hours)}
-            </div>
-        `;
-
-        if (this.audioEnabled) {
-            this.speakPlaceDescription(place);
-        }
-    }
-
-    getOpeningHoursHTML(hours) {
-        if (!hours || !hours.weekday_text) return '';
-
-        return `
-            <h3>Opening Hours</h3>
-            <ul class="opening-hours">
-                ${hours.weekday_text.map(day => `<li>${day}</li>`).join('')}
-            </ul>
-        `;
-    }
-
-    speakPlaceDescription(place) {
-        if (this.speechSynthesis.speaking) {
-            this.speechSynthesis.cancel();
-        }
-
-        const description = `You are near ${place.name}. ${place.formatted_address}`;
-        const utterance = new SpeechSynthesisUtterance(description);
-        this.speechSynthesis.speak(utterance);
-    }
-
-    setupEventListeners() {
-        document.getElementById('centerLocation').addEventListener('click', () => {
-            if (this.currentPosition) {
-                this.map.panTo({
-                    lat: this.currentPosition.coords.latitude,
-                    lng: this.currentPosition.coords.longitude
-                });
-            }
-        });
-
-        document.getElementById('toggleAudio').addEventListener('click', (e) => {
-            this.audioEnabled = !this.audioEnabled;
-            e.currentTarget.querySelector('i').className = 
-                this.audioEnabled ? 'fas fa-volume-up' : 'fas fa-volume-mute';
-        });
-
-        document.querySelector('.back-btn').addEventListener('click', () => {
-            document.getElementById('placeDetails').style.display = 'none';
-            if (this.speechSynthesis.speaking) {
-                this.speechSynthesis.cancel();
-            }
-        });
-    }
-
-    getMapStyles() {
-        return [
-            {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ];
-    }
-
-    async generatePlan() {
-        const form = document.getElementById('planForm');
-        const planResult = document.getElementById('planResult');
-        const planContent = planResult.querySelector('.plan-content');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const duration = document.getElementById('duration').value;
-            const interests = Array.from(document.querySelectorAll('.interests-checkboxes input:checked'))
-                .map(checkbox => checkbox.value);
-            const preferences = document.getElementById('preferences').value;
-
-            try {
-                const response = await fetch('/api/generate-plan', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        duration,
-                        interests,
-                        preferences
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.itinerary) {
-                    planContent.innerHTML = marked(data.itinerary); // Using marked.js for markdown rendering
-                    form.style.display = 'none';
-                    planResult.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Error generating plan:', error);
-                alert('Failed to generate travel plan. Please try again.');
-            }
-        });
-
-        // Back button handler
-        document.querySelector('.back-to-form').addEventListener('click', () => {
-            planResult.style.display = 'none';
-            form.style.display = 'block';
-        });
-    }
-
-    initializeCalendar() {
-        const today = new Date();
-        const calendar = document.createElement('div');
-        calendar.className = 'calendar-widget';
-        
-        const header = document.createElement('div');
-        header.className = 'calendar-header';
-        header.innerHTML = `
-            <h3>${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}</h3>
-            <div class="calendar-nav">
-                <button class="prev-month"><i class="fas fa-chevron-left"></i></button>
-                <button class="next-month"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        `;
-
-        const grid = document.createElement('div');
-        grid.className = 'calendar-grid';
-        
-        // Add day names
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        days.forEach(day => {
-            const dayEl = document.createElement('div');
-            dayEl.className = 'calendar-day day-name';
-            dayEl.textContent = day;
-            grid.appendChild(dayEl);
-        });
-
-        // Add calendar days
-        const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-        const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-        
-        for (let i = 0; i < firstDay.getDay(); i++) {
-            grid.appendChild(document.createElement('div'));
-        }
-
-        for (let i = 1; i <= lastDay.getDate(); i++) {
-            const dayEl = document.createElement('div');
-            dayEl.className = 'calendar-day';
-            dayEl.textContent = i;
-            if (i === today.getDate()) {
-                dayEl.classList.add('active');
-            }
-            grid.appendChild(dayEl);
-        }
-
-        calendar.appendChild(header);
-        calendar.appendChild(grid);
-        
-        // Add calendar to the page
-        const infoPanel = document.querySelector('.info-panel');
-        infoPanel.insertBefore(calendar, infoPanel.firstChild);
-    }
-
-    handleMapError() {
-        const mapContainer = document.getElementById('map');
-        mapContainer.innerHTML = `
-            <div class="map-error">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>Map Loading Error</h3>
-                <p>The map couldn't be loaded. This might be due to:</p>
-                <ul style="text-align: left; margin-top: 10px;">
-                    <li>Missing or invalid API key</li>
-                    <li>No internet connection</li>
-                    <li>Ad blocker interference</li>
-                </ul>
-                <button onclick="location.reload()" class="retry-btn" style="margin-top: 15px;">
-                    <i class="fas fa-redo"></i> Retry
-                </button>
-            </div>
-        `;
-    }
-
-    setupFilters() {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filter = button.dataset.filter;
-                this.filterPlaces(filter);
-            });
-        });
-    }
-
     filterPlaces(filter) {
-        const cards = document.querySelectorAll('.place-card');
-        cards.forEach(card => {
-            const place = this.places.find(p => p.name === card.querySelector('h3').textContent);
+        this.markers.forEach(marker => {
+            const place = this.places.find(p => 
+                p.lat === marker.getLatLng().lat && 
+                p.lng === marker.getLatLng().lng
+            );
+            
             if (filter === 'all' || place.type === filter) {
-                card.style.display = 'flex';
+                marker.addTo(this.map);
             } else {
-                card.style.display = 'none';
+                marker.remove();
+            }
+        });
+
+        // Update list view
+        const places = document.querySelectorAll('.place-item');
+        places.forEach(place => {
+            const placeData = this.places.find(p => p.id === place.dataset.id);
+            if (filter === 'all' || placeData.type === filter) {
+                place.style.display = 'block';
+            } else {
+                place.style.display = 'none';
             }
         });
     }
 
-    showFallbackMap() {
-        const mapContainer = document.getElementById('map');
-        mapContainer.innerHTML = `
-            <div class="fallback-map">
-                <img src="images/static-map.jpg" alt="Static map of Bruges">
-                <div class="fallback-overlay">
-                    <p>Development Mode: Using static map</p>
-                </div>
-            </div>
+    showPlaceDetails(place) {
+        const detailsContainer = document.getElementById('placeDetails');
+        const detailsContent = detailsContainer.querySelector('.details-content');
+        
+        detailsContent.innerHTML = `
+            <h2>${place.name}</h2>
+            <p>${place.description}</p>
+            ${this.audioEnabled ? `
+                <button class="audio-btn" data-audio="${place.audio}">
+                    <i class="fas fa-volume-up"></i> Listen to Audio Guide
+                </button>
+            ` : ''}
         `;
+
+        document.getElementById('placesList').style.display = 'none';
+        detailsContainer.style.display = 'block';
     }
 }
 
-// Initialize the tour guide when the DOM is fully loaded
+// Initialize the tour guide when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new VirtualTourGuide();
 }); 

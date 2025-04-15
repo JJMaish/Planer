@@ -6,6 +6,8 @@
     <title>Trip Planner - Bruges Guide</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="planner.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!-- Add Weather Icons -->
@@ -286,23 +288,23 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/selection-manager.js"></script>
+    <script src="/js/selection-manager.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     <!-- Module scripts -->
     <script type="module">
         // Import all required modules
-        import config from './js/config.js';
-        import { GroqService } from './js/services/GroqService.js';
-        import { BaseAgent } from './Agents/BaseAgent.js';
-        import { AttractionsAgent } from './Agents/AttractionsAgent.js';
-        import { EventsAgent } from './Agents/EventsAgent.js';
-        import { NightlifeAgent } from './Agents/NightlifeAgent.js';
-        import { PlannerAgent } from './Agents/PlannerAgent.js';
-        import { ChatAgent } from './Agents/ChatAgent.js';
-        import { WishlistAgent } from './Agents/WishlistAgent.js';
-        import { PlannerIntegration } from './js/planner-integration.js';
-        import { MapManager } from './js/map-manager.js';
+        import config from '/js/config.js';
+        import { GroqService } from '/js/services/GroqService.js';
+        import { BaseAgent } from '/js/agents/BaseAgent.js';
+        import { PlaceAgent } from '/js/agents/PlaceAgent.js';
+        import { RestaurantAgent } from '/js/agents/RestaurantAgent.js';
+        import { TourAgent } from '/js/agents/TourAgent.js';
+        import { PhotoAgent } from '/js/agents/PhotoAgent.js';
+        import { ItineraryAgent } from '/js/agents/ItineraryAgent.js';
+        import { AgentManager } from '/js/agents/AgentManager.js';
+        import { PlannerIntegration } from '/js/planner-integration.js';
+        import { MapManager } from '/js/map-manager.js';
 
         // Initialize AOS
         AOS.init({
@@ -315,84 +317,120 @@
         window.groqService = new GroqService();
         
         // Initialize the planner integration and map
-        document.addEventListener('DOMContentLoaded', () => {
-            window.plannerIntegration = new PlannerIntegration();
-            window.mapManager = new MapManager();
-            window.wishlistAgent = new WishlistAgent();
-            
-            // Add hover effects to buttons
-            const buttons = document.querySelectorAll('button, .btn, .save-btn');
-            buttons.forEach(button => {
-                button.classList.add('animate__animated', 'animate__pulse');
-            });
-            
-            // Add hover effects to selection items
-            const selectionItems = document.querySelectorAll('.selection-item');
-            selectionItems.forEach(item => {
-                item.classList.add('animate__animated', 'animate__fadeIn');
-            });
-            
-            // Add hover effects to preference options
-            const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option');
-            preferenceOptions.forEach(option => {
-                option.classList.add('animate__animated', 'animate__fadeIn');
-            });
-
-            // Add event listeners for preference changes
-            const preferenceInputs = document.querySelectorAll('input[name="interest"], input[name="budget"], input[name="boat-tour"], input[name="horse-tour"]');
-            preferenceInputs.forEach(input => {
-                input.addEventListener('change', async () => {
-                    const preferences = await window.wishlistAgent.processPreferences();
-                    const plan = await window.wishlistAgent.generatePlan(preferences);
-                    await window.wishlistAgent.updatePlanDisplay(plan);
-                });
-            });
-            
-            // Initialize selection manager
-            window.selectionManager = {
-                places: [],
-                restaurants: [],
-                tours: [],
-                photos: [],
-                events: []
-            };
-            
-            // Initialize selection displays
-            function updateSelectionDisplays() {
-                const selections = window.selectionManager;
-                const categories = ['places', 'restaurants', 'tours', 'events', 'photos'];
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Initialize agent manager
+                window.agentManager = new AgentManager();
+                await window.agentManager.initializeAgents();
                 
-                categories.forEach(category => {
-                    const container = document.getElementById(`selected${category.charAt(0).toUpperCase() + category.slice(1)}`);
-                    if (container) {
-                        const itemsContainer = container.querySelector('.selection-items');
-                        if (itemsContainer) {
-                            if (selections[category].length === 0) {
-                                itemsContainer.innerHTML = `<div class="no-items">
+                // Get agents
+                const placeAgent = window.agentManager.getAgent('place');
+                const restaurantAgent = window.agentManager.getAgent('restaurant');
+                const tourAgent = window.agentManager.getAgent('tour');
+                const photoAgent = window.agentManager.getAgent('photo');
+                const itineraryAgent = window.agentManager.getAgent('itinerary');
+
+                // Store agents in window for access
+                window.agents = {
+                    place: placeAgent,
+                    restaurant: restaurantAgent,
+                    tour: tourAgent,
+                    photo: photoAgent,
+                    itinerary: itineraryAgent
+                };
+
+                // Initialize the planner integration and map
+                window.plannerIntegration = new PlannerIntegration();
+                window.mapManager = new MapManager();
+                
+                // Add hover effects to buttons
+                const buttons = document.querySelectorAll('button, .btn, .save-btn');
+                buttons.forEach(button => {
+                    button.classList.add('animate__animated', 'animate__pulse');
+                });
+                
+                // Add hover effects to selection items
+                const selectionItems = document.querySelectorAll('.selection-item');
+                selectionItems.forEach(item => {
+                    item.classList.add('animate__animated', 'animate__fadeIn');
+                });
+                
+                // Add hover effects to preference options
+                const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option');
+                preferenceOptions.forEach(option => {
+                    option.classList.add('animate__animated', 'animate__fadeIn');
+                });
+
+                // Add event listeners for preference changes
+                const preferenceInputs = document.querySelectorAll('input[name="interest"], input[name="budget"], input[name="boat-tour"], input[name="horse-tour"]');
+                preferenceInputs.forEach(input => {
+                    input.addEventListener('change', async () => {
+                        const preferences = await window.agentManager.getAgent('itinerary').processPreferences();
+                        const plan = await window.agentManager.getAgent('itinerary').generatePlan(preferences);
+                        await window.agentManager.getAgent('itinerary').updatePlanDisplay(plan);
+                    });
+                });
+                
+                // Initialize selection manager
+                window.selectionManager = {
+                    places: [],
+                    restaurants: [],
+                    tours: [],
+                    photos: [],
+                    events: []
+                };
+                
+                // Initialize selection displays
+                updateSelectionDisplays();
+            } catch (error) {
+                console.error('Failed to initialize:', error);
+                // Show error message to user
+                const mainContent = document.querySelector('.planner-content');
+                if (mainContent) {
+                    mainContent.innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h2>Error Initializing Planner</h2>
+                            <p>${error.message}</p>
+                            <button onclick="window.location.reload()">Try Again</button>
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        function updateSelectionDisplays() {
+            const selections = window.selectionManager;
+            const categories = ['places', 'restaurants', 'tours', 'events', 'photos'];
+            
+            categories.forEach(category => {
+                const container = document.getElementById(`selected${category.charAt(0).toUpperCase() + category.slice(1)}`);
+                if (container) {
+                    const itemsContainer = container.querySelector('.selection-items');
+                    if (itemsContainer) {
+                        if (selections[category].length === 0) {
+                            itemsContainer.innerHTML = `<div class="no-items">
+                                <i class="fas fa-${category === 'places' ? 'landmark' : 
+                                    category === 'restaurants' ? 'utensils' : 
+                                    category === 'tours' ? 'map-marked-alt' : 
+                                    category === 'events' ? 'calendar' : 'images'}"></i>
+                                <p>No ${category} selected yet. Visit the ${category.charAt(0).toUpperCase() + category.slice(1)} page to add items to your trip.</p>
+                            </div>`;
+                        } else {
+                            itemsContainer.innerHTML = selections[category].map(item => `
+                                <div class="selection-item">
                                     <i class="fas fa-${category === 'places' ? 'landmark' : 
                                         category === 'restaurants' ? 'utensils' : 
                                         category === 'tours' ? 'map-marked-alt' : 
                                         category === 'events' ? 'calendar' : 'images'}"></i>
-                                    <p>No ${category} selected yet. Visit the ${category.charAt(0).toUpperCase() + category.slice(1)} page to add items to your trip.</p>
-                                </div>`;
-                            } else {
-                                itemsContainer.innerHTML = selections[category].map(item => `
-                                    <div class="selection-item">
-                                        <i class="fas fa-${category === 'places' ? 'landmark' : 
-                                            category === 'restaurants' ? 'utensils' : 
-                                            category === 'tours' ? 'map-marked-alt' : 
-                                            category === 'events' ? 'calendar' : 'images'}"></i>
-                                        <span>${item}</span>
-                                    </div>
-                                `).join('');
-                            }
+                                    <span>${item}</span>
+                                </div>
+                            `).join('');
                         }
                     }
-                });
-            }
-            
-            updateSelectionDisplays();
-        });
+                }
+            });
+        }
     </script>
 </body>
 </html> 

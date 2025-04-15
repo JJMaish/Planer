@@ -1,0 +1,140 @@
+.gallery-filters {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.filter-dropdown {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 1px solid #0066cc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 1.5rem;
+    min-width: 180px;
+    height: 36px;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown:hover {
+    border-color: #004d99;
+    background-color: #f5f9ff;
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #004d99;
+    box-shadow: 0 0 0 2px rgba(0,102,204,0.2);
+}
+
+.filter-dropdown option {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.filter-dropdown option:hover {
+    background-color: #f5f9ff;
+}
+
+/* Remove old button styles */
+.filter-btn {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-filters {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .filter-dropdown {
+        min-width: 160px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.selection-control {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.photo-selector {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.selection-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.selection-label i {
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+}
+
+.photo-selector:checked + .selection-label {
+    background: var(--primary-color);
+}
+
+.photo-selector:checked + .selection-label i {
+    opacity: 1;
+}
+
+.gallery-item:hover .selection-label {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.gallery-item:hover .photo-selector:checked + .selection-label {
+    background: var(--primary-color);
+}
+
+/* Ensure Font Awesome icons are loaded */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'); 

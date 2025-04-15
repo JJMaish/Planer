@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="tour-guide.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -33,7 +37,7 @@
 
     <div class="tour-guide-container">
         <div class="map-section">
-            <div id="map"></div>
+            <div id="map" class="map-container"></div>
             <div class="map-controls">
                 <button id="centerLocation" class="control-btn" title="Center Map">
                     <i class="fas fa-crosshairs"></i>

@@ -2,20 +2,50 @@
  * Groq Service
  * Handles communication with Groq's API
  */
-export class GroqService {
+class GroqService {
     constructor() {
-        this.apiKey = localStorage.getItem('groq_api_key') || '';
+        this.apiKey = null;
         this.model = 'mixtral-8x7b-32768'; // Groq's Mixtral model
         this.baseUrl = 'https://api.groq.com/v1/chat/completions';
     }
 
-    setApiKey(apiKey) {
-        this.apiKey = apiKey;
-        localStorage.setItem('groq_api_key', apiKey);
+    setApiKey(key) {
+        this.apiKey = key;
     }
 
     isApiKeySet() {
-        return !!this.apiKey;
+        return this.apiKey !== null;
+    }
+
+    async getResponse(prompt) {
+        if (!this.apiKey) {
+            throw new Error('Groq API key not set');
+        }
+
+        try {
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.apiKey}`
+                },
+                body: JSON.stringify({
+                    model: 'mixtral-8x7b-32768',
+                    messages: [{ role: 'user', content: prompt }],
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Groq API error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        } catch (error) {
+            console.error('Groq API error:', error);
+            throw error;
+        }
     }
 
     async makeRequest(messages, maxTokens = 1000, temperature = 0.7) {
@@ -98,5 +128,7 @@ export class GroqService {
     }
 }
 
-// Initialize the Groq service
-window.groqService = new GroqService(); 
+// Initialize and make available globally
+if (!window.groqService) {
+    window.groqService = new GroqService();
+} 

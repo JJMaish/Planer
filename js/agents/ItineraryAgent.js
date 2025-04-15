@@ -4,19 +4,23 @@
  */
 class ItineraryAgent extends BaseAgent {
     constructor() {
-        super('itinerary');
-        this.basePrompt = `You are a professional travel planner specializing in creating detailed day-by-day itineraries for Bruges, Belgium. 
+        super();
+        this.type = 'itinerary';
+        this.data = [];
+        this.initialized = false;
+        this.basePrompt = `You are a travel planning expert specializing in Bruges, Belgium. 
+        Your task is to create personalized day-by-day itineraries based on user selections.
         Consider factors like:
-        - Opening hours of attractions
-        - Meal times and restaurant availability
-        - Walking distances between locations
-        - Time needed at each location
+        - Opening hours
+        - Travel time between locations
+        - Meal times
+        - Tour schedules
+        - Walking distances
+        - Rest periods
         - Weather conditions
-        - Local events and festivals
-        - Tourist crowds and peak times
-        - Transportation options
-        - Historical significance and context
-        - Local customs and etiquette`;
+        - Special events
+        - Local customs
+        - Tourist crowds`;
         
         this.systemPrompt = `You are an expert travel planner for Bruges, Belgium. Your task is to create detailed, 
         well-structured day-by-day itineraries that optimize the visitor's experience. Consider all practical aspects 
@@ -44,6 +48,19 @@ class ItineraryAgent extends BaseAgent {
                 }
             ]
         }`;
+    }
+
+    async loadData() {
+        try {
+            console.log('Loading data for ItineraryAgent...');
+            // Initialize empty data array
+            this.data = [];
+            this.initialized = true;
+            console.log('ItineraryAgent data loaded successfully');
+        } catch (error) {
+            console.error('Error loading data for ItineraryAgent:', error);
+            throw error;
+        }
     }
 
     async handleSelectionChange(selections, recommendations) {
@@ -298,6 +315,50 @@ class ItineraryAgent extends BaseAgent {
         const walkingSpeed = 5;
         const hours = distance / walkingSpeed;
         return Math.ceil(hours * 60); // Convert to minutes
+    }
+
+    async getRecommendations(items) {
+        if (!this.initialized) {
+            await this.initialize();
+        }
+
+        try {
+            // Generate a 3-day itinerary
+            const itinerary = [
+                {
+                    title: 'Day 1: Historic Center',
+                    items: items.slice(0, 4).map((item, index) => ({
+                        time: `${9 + index}:00`,
+                        name: item.name || `Activity ${index + 1}`,
+                        description: item.description || 'Explore this location',
+                        directions: item.directions || '#'
+                    }))
+                },
+                {
+                    title: 'Day 2: Cultural Experience',
+                    items: items.slice(4, 8).map((item, index) => ({
+                        time: `${9 + index}:00`,
+                        name: item.name || `Activity ${index + 5}`,
+                        description: item.description || 'Explore this location',
+                        directions: item.directions || '#'
+                    }))
+                },
+                {
+                    title: 'Day 3: Local Flavors',
+                    items: items.slice(8).map((item, index) => ({
+                        time: `${9 + index}:00`,
+                        name: item.name || `Activity ${index + 9}`,
+                        description: item.description || 'Explore this location',
+                        directions: item.directions || '#'
+                    }))
+                }
+            ];
+
+            return itinerary;
+        } catch (error) {
+            console.error('Error generating itinerary:', error);
+            throw error;
+        }
     }
 }
 

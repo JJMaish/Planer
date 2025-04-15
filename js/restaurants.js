@@ -52,26 +52,72 @@ document.addEventListener('DOMContentLoaded', function() {
                     const cuisineType = card.querySelector('.cuisine-type').textContent.toLowerCase();
                     const description = card.querySelector('.description').textContent.toLowerCase();
                     
-                    // Check if the card matches the selected category
-                    const matches = {
-                        'traditional': () => cuisineType.includes('flemish') || description.includes('traditional') || description.includes('flemish'),
-                        'waffles': () => cuisineType.includes('dessert') || description.includes('waffle') || description.includes('dessert'),
-                        'chocolate': () => cuisineType.includes('chocolate') || description.includes('chocolate') || description.includes('sweet'),
-                        'beer': () => cuisineType.includes('brewery') || description.includes('beer') || description.includes('brewery'),
-                        'fine': () => cuisineType.includes('fine dining') || description.includes('fine dining') || description.includes('gourmet'),
-                        'casual': () => cuisineType.includes('bistro') || description.includes('casual') || description.includes('bistro'),
-                        'street': () => cuisineType.includes('street food') || description.includes('street food') || description.includes('food truck'),
-                        'vegetarian': () => cuisineType.includes('vegetarian') || description.includes('vegetarian') || description.includes('vegan'),
-                        'pizza': () => cuisineType.includes('pizza') || description.includes('pizza') || description.includes('italian')
-                    };
-
-                    if (matches[category] && matches[category]()) {
+                    if (cuisineType.includes(category) || description.includes(category)) {
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
                     }
                 });
             });
+        });
+    }
+
+    // Selection handling
+    const restaurantSelectors = document.querySelectorAll('.restaurant-selector');
+    
+    if (restaurantSelectors.length > 0) {
+        restaurantSelectors.forEach(selector => {
+            selector.addEventListener('change', function() {
+                const restaurantId = this.getAttribute('data-id');
+                const restaurantType = this.getAttribute('data-type');
+                const isSelected = this.checked;
+                
+                // Update selection in the selection manager
+                if (window.selectionManager) {
+                    if (isSelected) {
+                        window.selectionManager.addSelection(restaurantType, restaurantId);
+                    } else {
+                        window.selectionManager.removeSelection(restaurantType, restaurantId);
+                    }
+
+                    // Dispatch event to notify wish list
+                    const event = new CustomEvent('restaurantSelected', {
+                        detail: {
+                            id: restaurantId,
+                            selected: isSelected
+                        }
+                    });
+                    document.dispatchEvent(event);
+                }
+                
+                // Update UI feedback
+                const label = this.nextElementSibling;
+                if (isSelected) {
+                    label.style.background = 'var(--primary-color)';
+                    label.querySelector('i').style.opacity = '1';
+                    label.querySelector('i').style.color = 'white';
+                } else {
+                    label.style.background = 'rgba(255, 255, 255, 0.9)';
+                    label.querySelector('i').style.opacity = '0';
+                }
+            });
+        });
+    }
+
+    // Initialize selections from storage
+    if (window.selectionManager) {
+        const selections = window.selectionManager.getSelections();
+        const restaurantSelections = selections.restaurants || [];
+        
+        restaurantSelections.forEach(restaurantId => {
+            const selector = document.querySelector(`.restaurant-selector[data-id="${restaurantId}"]`);
+            if (selector) {
+                selector.checked = true;
+                const label = selector.nextElementSibling;
+                label.style.background = 'var(--primary-color)';
+                label.querySelector('i').style.opacity = '1';
+                label.querySelector('i').style.color = 'white';
+            }
         });
     }
 

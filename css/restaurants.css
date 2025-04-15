@@ -1,0 +1,135 @@
+@media (max-width: 768px) {
+    .restaurants-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1rem;
+    }
+    
+    .restaurant-card {
+        margin: 0;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .restaurant-content {
+        padding: 1rem;
+    }
+
+    .restaurant-main-info {
+        width: 100%;
+    }
+
+    .restaurant-main-info h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .cuisine-type, .address {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+    }
+
+    .description p {
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+    }
+
+    .details {
+        margin: 0.5rem 0;
+    }
+
+    .details p {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+    }
+
+    .button-group {
+        margin-top: 1rem;
+    }
+
+    .directions-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .selection-control {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 2;
+    }
+
+    .restaurant-selector {
+        display: none;
+    }
+
+    .selection-label {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .selection-label i {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .restaurant-selector:checked + .selection-label {
+        background: var(--primary-color);
+    }
+
+    .restaurant-selector:checked + .selection-label i {
+        opacity: 1;
+        color: white;
+    }
+
+    .restaurants-hero {
+        min-height: 30vh;
+        padding: 2rem 1rem;
+    }
+    
+    .restaurants-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .restaurants-hero p {
+        font-size: 1rem;
+    }
+
+    .filter-section {
+        padding: 1rem;
+    }
+
+    .filter-container {
+        padding: 0;
+    }
+
+    .filter-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+
+    .view-controls {
+        padding: 0.5rem;
+        justify-content: center;
+    }
+
+    .view-toggle {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+} 

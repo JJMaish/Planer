@@ -1,10 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', 
+                this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+            );
+        });
+    }
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {

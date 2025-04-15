@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeSelectionHandlers() {
     try {
+        // Wait for selection manager to be initialized
+        if (!window.selectionManager) {
+            console.warn('Selection manager not initialized yet');
+            return;
+        }
+
         // Handle all selection checkboxes
         document.querySelectorAll('.place-selector, .restaurant-selector, .photo-selector, .tour-selector, .event-selector')
             .forEach(checkbox => {
@@ -26,15 +32,16 @@ function initializeSelectionHandlers() {
                 // Set initial state
                 if (window.selectionManager.isSelected(id, type)) {
                     checkbox.checked = true;
+                    updateSelectionUI(checkbox);
                 }
                 
                 // Add event listener
                 checkbox.addEventListener('change', function() {
                     try {
                         if (this.checked) {
-                            window.selectionManager.addSelection(id, type);
+                            window.selectionManager.addSelection(type, id);
                         } else {
-                            window.selectionManager.removeSelection(id, type);
+                            window.selectionManager.removeSelection(type, id);
                         }
                         
                         // Update visual feedback
@@ -58,6 +65,19 @@ function updateSelectionUI(checkbox) {
                 card.classList.add('selected');
             } else {
                 card.classList.remove('selected');
+            }
+        }
+
+        // Update label styling
+        const label = checkbox.nextElementSibling;
+        if (label && label.classList.contains('selection-label')) {
+            if (checkbox.checked) {
+                label.style.background = 'var(--primary-color)';
+                label.querySelector('i')?.style.setProperty('opacity', '1');
+                label.querySelector('i')?.style.setProperty('color', 'white');
+            } else {
+                label.style.background = 'rgba(255, 255, 255, 0.9)';
+                label.querySelector('i')?.style.setProperty('opacity', '0');
             }
         }
     } catch (error) {

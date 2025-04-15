@@ -3,73 +3,61 @@
  * Provides common functionality for all agents
  */
 class BaseAgent {
-    constructor(type) {
-        this.type = type;
-        this.data = [];
+    constructor() {
         this.initialized = false;
-        this.recommendations = new Map();
+        this.data = null;
     }
 
     async initialize() {
-        // Load initial data
-        await this.loadData();
+        if (this.initialized) return;
+        
+        try {
+            await this.loadData();
+            this.initialized = true;
+        } catch (error) {
+            console.error(`Error initializing ${this.constructor.name}:`, error);
+            throw error;
+        }
     }
 
     async loadData() {
-        try {
-            console.log(`Loading data for ${this.type}Agent...`);
-            // In a real application, this would load data from an API or database
-            // For now, we'll use placeholder data
-            this.data = [];
-            this.initialized = true;
-            console.log(`${this.type}Agent data loaded successfully`);
-        } catch (error) {
-            console.error(`Error loading data for ${this.type}Agent:`, error);
-            throw error;
+        // To be implemented by child classes
+        throw new Error('loadData method must be implemented by child class');
+    }
+
+    isInitialized() {
+        return this.initialized;
+    }
+
+    async getRecommendations(ids) {
+        if (!this.initialized) {
+            await this.initialize();
         }
+        
+        if (!this.data) {
+            return [];
+        }
+
+        // Ensure data is an array
+        const dataArray = Array.isArray(this.data) ? this.data : Object.values(this.data);
+        
+        // Handle both string IDs and object IDs
+        return ids.map(id => {
+            if (typeof id === 'object' && id.id) {
+                return dataArray.find(item => item.id === id.id);
+            }
+            return dataArray.find(item => item.id === id);
+        }).filter(Boolean);
     }
 
     async handleSelection(id, action) {
         try {
-            console.log(`${this.type}Agent handling selection: ${id}, ${action}`);
+            console.log(`${this.constructor.name} handling selection: ${id}, ${action}`);
             // In a real application, this would update the agent's state based on the selection
             // For now, we'll just log the action
             return true;
         } catch (error) {
-            console.error(`Error handling selection in ${this.type}Agent:`, error);
-            throw error;
-        }
-    }
-
-    async getRecommendations(selectedIds) {
-        try {
-            console.log(`${this.type}Agent getting recommendations for:`, selectedIds);
-            
-            // Ensure selectedIds is an array
-            if (!selectedIds) {
-                selectedIds = [];
-            } else if (typeof selectedIds === 'string') {
-                selectedIds = [selectedIds];
-            } else if (!Array.isArray(selectedIds)) {
-                console.warn('Invalid selectedIds format, using empty array');
-                selectedIds = [];
-            }
-            
-            // If no selections, return all items
-            if (selectedIds.length === 0) {
-                console.log('No selections, returning all items');
-                return this.data;
-            }
-            
-            // Filter items based on selections
-            const recommendations = this.data.filter(item => 
-                selectedIds.includes(item.id)
-            );
-            
-            console.log(`${this.type} recommendations:`, recommendations);
-            return recommendations;
-        } catch (error) {
-            console.error(`Error getting recommendations in ${this.type}Agent:`, error);
+            console.error(`Error handling selection in ${this.constructor.name}:`, error);
             throw error;
         }
     }
@@ -101,4 +89,7 @@ class BaseAgent {
         const event = new CustomEvent(eventName, { detail });
         document.dispatchEvent(event);
     }
-} 
+}
+
+// Make it available globally
+window.BaseAgent = BaseAgent; 

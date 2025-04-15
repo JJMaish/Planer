@@ -1,64 +1,62 @@
-class TourAgent {
+class TourAgent extends BaseAgent {
     constructor() {
+        super();
         this.type = 'tour';
-        this.data = [];
-        this.initialized = false;
-        this.basePrompt = `You are a tour guide expert specializing in Bruges, Belgium. 
-        Your task is to recommend tours based on user preferences and selections.
+        this.basePrompt = `You are a local tour expert specializing in Bruges, Belgium. 
+        Your task is to recommend tours and activities based on user preferences and selections.
         Consider factors like:
-        - Tour duration
-        - Difficulty level
-        - Language availability
+        - Tour type (walking, boat, bike, etc.)
+        - Duration
+        - Price range
         - Group size
-        - Price
-        - Departure times
+        - Language options
+        - Special themes
+        - Local guides
+        - Unique experiences
         - Accessibility
-        - Special interests
-        - Seasonal availability
-        - Booking requirements`;
+        - Reviews and ratings`;
     }
 
     async loadData() {
         try {
             console.log('Loading data for TourAgent...');
-            // In a real application, this would load data from an API or database
-            // For now, we'll use placeholder data
+            // Initialize with some default tours
             this.data = [
                 {
-                    id: 'tour1',
-                    name: 'Bruges Canal Boat Tour',
-                    description: 'Scenic boat tour through the historic canals of Bruges',
-                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5',
-                    location: { lat: 51.2090, lng: 3.2250 },
-                    duration: 30,
-                    price: '€10',
-                    departureTimes: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-                    languages: ['English', 'Dutch', 'French', 'German'],
+                    id: 'canal-tour',
+                    name: 'Bruges Canal Tour',
+                    description: 'Scenic boat tour through Bruges\' historic canals',
+                    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
+                    location: { lat: 51.2085, lng: 3.2260 },
+                    duration: '30 minutes',
+                    price: '€12',
+                    groupSize: '20 people',
+                    languages: ['English', 'Dutch', 'French'],
                     rating: 4.8
                 },
                 {
-                    id: 'tour2',
-                    name: 'Bruges Beer Tasting Tour',
-                    description: 'Sample Belgian beers and learn about brewing traditions',
-                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5',
-                    location: { lat: 51.2095, lng: 3.2245 },
-                    duration: 120,
+                    id: 'chocolate-workshop',
+                    name: 'Chocolate Workshop',
+                    description: 'Hands-on chocolate making workshop with local chocolatier',
+                    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
+                    location: { lat: 51.2090, lng: 3.2255 },
+                    duration: '2 hours',
                     price: '€35',
-                    departureTimes: ['14:00', '16:00', '18:00'],
+                    groupSize: '12 people',
                     languages: ['English', 'Dutch'],
-                    rating: 4.7
+                    rating: 4.9
                 },
                 {
-                    id: 'tour3',
-                    name: 'Bruges Chocolate Workshop',
-                    description: 'Learn to make Belgian chocolates with a master chocolatier',
-                    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5',
-                    location: { lat: 51.2085, lng: 3.2255 },
-                    duration: 90,
-                    price: '€45',
-                    departureTimes: ['10:00', '14:00'],
-                    languages: ['English', 'Dutch', 'French'],
-                    rating: 4.9
+                    id: 'beer-tasting',
+                    name: 'Belgian Beer Tasting',
+                    description: 'Guided tasting of local Belgian beers with expert',
+                    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
+                    location: { lat: 51.2080, lng: 3.2265 },
+                    duration: '1.5 hours',
+                    price: '€25',
+                    groupSize: '15 people',
+                    languages: ['English', 'Dutch'],
+                    rating: 4.7
                 }
             ];
             this.initialized = true;
@@ -69,32 +67,115 @@ class TourAgent {
         }
     }
 
+    async searchOpenStreetMap(query) {
+        try {
+            // Overpass API query for tourist attractions and tours in Bruges
+            const overpassQuery = `
+                [out:json][timeout:25];
+                area[name="Brugge"]->.searchArea;
+                (
+                    node["tourism"~"attraction|museum|gallery|viewpoint"]["name"~"${query}",i](area.searchArea);
+                    way["tourism"~"attraction|museum|gallery|viewpoint"]["name"~"${query}",i](area.searchArea);
+                    relation["tourism"~"attraction|museum|gallery|viewpoint"]["name"~"${query}",i](area.searchArea);
+                );
+                out body;
+                >;
+                out skel qt;
+            `;
+
+            const response = await fetch('https://overpass-api.de/api/interpreter', {
+                method: 'POST',
+                body: overpassQuery
+            });
+
+            if (!response.ok) {
+                throw new Error('OpenStreetMap search failed');
+            }
+
+            const data = await response.json();
+            return data.elements;
+        } catch (error) {
+            console.error('Error searching OpenStreetMap:', error);
+            throw error;
+        }
+    }
+
+    async getTourDetails(osmId, osmType) {
+        try {
+            // Overpass API query for specific tour details
+            const overpassQuery = `
+                [out:json][timeout:25];
+                ${osmType}(${osmId});
+                out body;
+                >;
+                out skel qt;
+            `;
+
+            const response = await fetch('https://overpass-api.de/api/interpreter', {
+                method: 'POST',
+                body: overpassQuery
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to get tour details');
+            }
+
+            const data = await response.json();
+            return data.elements[0];
+        } catch (error) {
+            console.error('Error getting tour details:', error);
+            throw error;
+        }
+    }
+
     async getRecommendations(selectedIds) {
         try {
             console.log('TourAgent getting recommendations for:', selectedIds);
             
-            // Ensure selectedIds is an array
-            if (!selectedIds) {
-                selectedIds = [];
-            } else if (typeof selectedIds === 'string') {
-                selectedIds = [selectedIds];
-            } else if (!Array.isArray(selectedIds)) {
-                console.warn('Invalid selectedIds format, using empty array');
-                selectedIds = [];
-            }
-            
             // If no selections, return all tours
-            if (selectedIds.length === 0) {
-                console.log('No selections, returning all tours');
+            if (!selectedIds || selectedIds.length === 0) {
                 return this.data;
             }
+
+            // For each selected ID, try to find it in our data or search OpenStreetMap
+            const recommendations = [];
+            for (const id of selectedIds) {
+                // First check our local data
+                const localTour = this.data.find(tour => tour.id === id);
+                if (localTour) {
+                    recommendations.push(localTour);
+                } else {
+                    // If not found locally, try to search OpenStreetMap
+                    try {
+                        const searchResults = await this.searchOpenStreetMap(id);
+                        if (searchResults && searchResults.length > 0) {
+                            const tourDetails = await this.getTourDetails(
+                                searchResults[0].id,
+                                searchResults[0].type
+                            );
+                            
+                            recommendations.push({
+                                id: id,
+                                name: tourDetails.tags.name || id,
+                                description: tourDetails.tags.description || tourDetails.tags.tourism || 'Tourist attraction in Bruges',
+                                image: 'images/default-placeholder.jpg',
+                                location: {
+                                    lat: tourDetails.lat || tourDetails.center.lat,
+                                    lng: tourDetails.lon || tourDetails.center.lon
+                                },
+                                duration: 'Not specified',
+                                price: tourDetails.tags.fee || 'Not available',
+                                groupSize: 'Not specified',
+                                languages: ['English'],
+                                rating: 4.5
+                            });
+                        }
+                    } catch (error) {
+                        console.error(`Error getting details for ${id}:`, error);
+                    }
+                }
+            }
             
-            // Filter tours based on selections
-            const recommendations = this.data.filter(tour => 
-                selectedIds.includes(tour.id)
-            );
-            
-            console.log('Tour recommendations:', recommendations);
             return recommendations;
         } catch (error) {
             console.error('Error getting recommendations in TourAgent:', error);

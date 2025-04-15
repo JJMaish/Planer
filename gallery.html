@@ -17,7 +17,7 @@
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
                 <div class="wishlist-nav">
-                    <a href="wish-list.html">
+                    <a href="wishlist.html">
                         <i class="fas fa-heart"></i>
                         Wish List
                         <span class="wishlist-count">0</span>
@@ -58,13 +58,12 @@
                     <option value="architecture">Architecture</option>
                 </select>
             </div>
-            <div class="view-options">
-                
-                <button class="view-btn active" data-view="grid">
-                    <i class="fas fa-th"></i>
+            <div class="view-controls">
+                <button class="view-toggle active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid View
                 </button>
-                <button class="view-btn" data-view="masonry">
-                    <i class="fas fa-columns"></i>
+                <button class="view-toggle" data-view="masonry">
+                    <i class="fas fa-masonry"></i> masonry View
                 </button>
             </div>
         </section>
@@ -141,5 +140,7 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="js/gallery.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/gallery-view.js"></script>
 </body>
 </html> 
