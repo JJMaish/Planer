@@ -7,6 +7,11 @@ class Config {
             weather: {
                 apiKey: process.env.WEATHER_API_KEY,
                 endpoint: process.env.WEATHER_API_ENDPOINT
+            },
+            groq: {
+                apiKey: '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',
+                model: 'mixtral-8x7b-32768',
+                maxTokens: 2000
             }
         };
         this.loadEnvironmentVariables();
@@ -26,13 +31,6 @@ class Config {
 
             this.env.restaurant = {
                 apiKey: process.env.RESTAURANT_API_KEY
-            };
-
-            // Groq Configuration
-            this.env.groq = {
-                apiKey: process.env.GROQ_API_KEY,
-                model: process.env.GROQ_MODEL || 'mixtral-8x7b-32768',
-                maxTokens: parseInt(process.env.GROQ_MAX_TOKENS) || 2000
             };
 
             this.validateConfig();
