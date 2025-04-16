@@ -13,7 +13,7 @@ class BaseAgent {
     async initialize() {
         // Check if Groq API key is set
         if (!this.groqService.isApiKeySet()) {
-            throw new Error('Groq API key is not set. Please check your .env file.');
+            throw new Error('Groq API key is not set. Please check the initialization.');
         }
     }
 
