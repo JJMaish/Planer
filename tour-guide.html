@@ -12,6 +12,154 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        /* Chat Box Styles */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+        }
+
+        .chat-container.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .chat-toggle i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            background: #e3f2fd;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background: #f5f5f5;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background: #2c3e50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #34495e;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #666;
+            border-radius: 50%;
+            animation: typing 1s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -81,6 +229,32 @@
         <span>Click to hear about this location</span>
     </div>
 
+    <!-- Chat Box -->
+    <div class="chat-toggle" id="chatToggle">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h3><i class="fas fa-robot"></i> Bruges Guide Assistant</h3>
+            <button class="close-chat" id="closeChat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm your Bruges guide assistant. Ask me anything about the city, its attractions, history, or culture!
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Ask about Bruges..." />
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -111,7 +285,61 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/services/GroqService.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/agents/BaseAgent.js"></script>
+    <script src="js/agents/PlaceAgent.js"></script>
     <script src="js/preload.js"></script>
     <script src="js/tour-guide.js"></script>
+    <script src="js/chat-assistant.js"></script>
+
+    <script type="module">
+        // Import required modules
+        import { GroqService } from './js/services/GroqService.js';
+        import { BaseAgent } from './js/agents/BaseAgent.js';
+        import { PlaceAgent } from './js/agents/PlaceAgent.js';
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize GroqService with API key from .env
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Load environment variables
+                const response = await fetch('/.env');
+                const envText = await response.text();
+                const envVars = {};
+                envText.split('\n').forEach(line => {
+                    const [key, value] = line.split('=');
+                    if (key && value) {
+                        envVars[key.trim()] = value.trim();
+                    }
+                });
+
+                // Set Groq API key
+                if (envVars.GROQ_API_KEY) {
+                    window.groqService.setApiKey(envVars.GROQ_API_KEY);
+                    console.log('Groq API key loaded successfully');
+                } else {
+                    throw new Error('GROQ_API_KEY not found in .env file');
+                }
+
+                // Initialize place agent
+                window.placeAgent = new PlaceAgent();
+                await window.placeAgent.initialize();
+                console.log('Place agent initialized successfully');
+
+                // Initialize tour guide functionality
+                initializeTourGuide();
+            } catch (error) {
+                console.error('Error during initialization:', error);
+                showError('Failed to initialize tour guide. Please check the console for details.');
+            }
+        });
+    </script>
 </body>
 </html> 

@@ -131,6 +131,79 @@
                 margin-right: 10px;
             }
         }
+
+        .user-input-container {
+            margin-top: 15px;
+        }
+
+        .user-interests-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        .user-interests-input:focus {
+            outline: none;
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+            background-color: white;
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .analyze-btn, .clear-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .analyze-btn {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .analyze-btn:hover {
+            background-color: #34495e;
+            transform: translateY(-2px);
+        }
+
+        .clear-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .clear-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .user-interests-input {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .analyze-btn, .clear-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -152,6 +225,9 @@
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="planner.html" class="active"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                <li><a href="tour-details.html"><i class="fas fa-info-circle"></i> Details</a></li>
+                <li><a href="tour-details.html"><i class="fas fa-info-circle"></i> Details</a></li>
+
             </ul>
         </nav>
     </header>
@@ -195,6 +271,26 @@
                                 <input type="checkbox" name="interest" value="nature">
                                 <span><i class="fas fa-tree"></i> Nature</span>
                             </label>
+                        </div>
+                    </div>
+
+                    <div class="preference-section">
+                        <h4><i class="fas fa-comment-dots"></i> Additional Interests or Questions</h4>
+                        <div class="user-input-container">
+                            <textarea 
+                                id="userInterests" 
+                                class="user-interests-input" 
+                                placeholder="Tell us more about your interests, specific places you'd like to visit, or any questions you have about Bruges..."
+                                rows="4"
+                            ></textarea>
+                            <div class="input-actions">
+                                <button id="analyzeInterests" class="analyze-btn">
+                                    <i class="fas fa-magic"></i> Analyze
+                                </button>
+                                <button id="clearInterests" class="clear-btn">
+                                    <i class="fas fa-trash"></i> Clear
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -290,6 +386,10 @@
     <!-- Scripts -->
     <script src="js/selection-manager.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/services/GroqService.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/agents/BaseAgent.js"></script>
+    <script src="js/agents/ItineraryAgent.js"></script>
 
     <!-- Module scripts -->
     <script type="module">
@@ -313,105 +413,39 @@
             once: true
         });
         
-        // Initialize the services
-        window.groqService = new GroqService();
-        window.groqService.setApiKey('gsk_1234567890abcdefghijklmnopqrstuvwxyz'); // Replace with your actual API key
-        
-        // Initialize the planner integration and map
+        // Initialize GroqService with API key from .env
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // Initialize agent manager
+                // Load environment variables
+                const response = await fetch('/.env');
+                const envText = await response.text();
+                const envVars = {};
+                envText.split('\n').forEach(line => {
+                    const [key, value] = line.split('=');
+                    if (key && value) {
+                        envVars[key.trim()] = value.trim();
+                    }
+                });
+
+                // Set Groq API key
+                if (envVars.GROQ_API_KEY) {
+                    window.groqService.setApiKey(envVars.GROQ_API_KEY);
+                    console.log('Groq API key loaded successfully');
+                } else {
+                    throw new Error('GROQ_API_KEY not found in .env file');
+                }
+
+                // Initialize agents
                 window.agentManager = new AgentManager();
                 await window.agentManager.initializeAgents();
-                
-                // Get agents
-                const placeAgent = window.agentManager.getAgent('place');
-                const restaurantAgent = window.agentManager.getAgent('restaurant');
-                const tourAgent = window.agentManager.getAgent('tour');
-                const photoAgent = window.agentManager.getAgent('photo');
-                const itineraryAgent = window.agentManager.getAgent('itinerary');
+                console.log('All agents initialized successfully');
 
-                // Store agents in window for access
-                window.agents = {
-                    place: placeAgent,
-                    restaurant: restaurantAgent,
-                    tour: tourAgent,
-                    photo: photoAgent,
-                    itinerary: itineraryAgent
-                };
-
-                // Initialize the planner integration and map
-                window.plannerIntegration = new PlannerIntegration();
-                window.mapManager = new MapManager();
-                
-                // Add event listener for save button
-                const saveButton = document.getElementById('save-itinerary');
-                if (saveButton) {
-                    saveButton.addEventListener('click', async () => {
-                        try {
-                            const preferences = await window.agentManager.getAgent('itinerary').processPreferences();
-                            const plan = await window.agentManager.getAgent('itinerary').generatePlan(preferences);
-                            await window.agentManager.getAgent('itinerary').updatePlanDisplay(plan);
-                        } catch (error) {
-                            console.error('Error saving itinerary:', error);
-                            alert('Failed to save itinerary. Please try again.');
-                        }
-                    });
-                }
-                
-                // Add hover effects to buttons
-                const buttons = document.querySelectorAll('button, .btn, .save-btn');
-                buttons.forEach(button => {
-                    button.classList.add('animate__animated', 'animate__pulse');
-                });
-                
-                // Add hover effects to selection items
-                const selectionItems = document.querySelectorAll('.selection-item');
-                selectionItems.forEach(item => {
-                    item.classList.add('animate__animated', 'animate__fadeIn');
-                });
-                
-                // Add hover effects to preference options
-                const preferenceOptions = document.querySelectorAll('.interest-option, .budget-option, .tour-option');
-                preferenceOptions.forEach(option => {
-                    option.classList.add('animate__animated', 'animate__fadeIn');
-                });
-
-                // Add event listeners for preference changes
-                const preferenceInputs = document.querySelectorAll('input[name="interest"], input[name="budget"], input[name="boat-tour"], input[name="horse-tour"]');
-                preferenceInputs.forEach(input => {
-                    input.addEventListener('change', async () => {
-                        const preferences = await window.agentManager.getAgent('itinerary').processPreferences();
-                        const plan = await window.agentManager.getAgent('itinerary').generatePlan(preferences);
-                        await window.agentManager.getAgent('itinerary').updatePlanDisplay(plan);
-                    });
-                });
-                
-                // Initialize selection manager
-                window.selectionManager = {
-                    places: [],
-                    restaurants: [],
-                    tours: [],
-                    photos: [],
-                    events: []
-                };
-                
-                // Initialize selection displays
-                updateSelectionDisplays();
+                // Initialize map and other UI components
+                initializeMap();
+                setupEventListeners();
             } catch (error) {
-                console.error('Failed to initialize:', error);
-                // Show error message to user
-                const mainContent = document.querySelector('.planner-content');
-                if (mainContent) {
-                    mainContent.innerHTML = `
-                        <div class="error-message">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h2>Error Initializing Planner</h2>
-                            <p>${error.message}</p>
-                            <button onclick="window.location.reload()">Try Again</button>
-                        </div>
-                    `;
-                }
+                console.error('Error during initialization:', error);
+                showError('Failed to initialize services. Please check the console for details.');
             }
         });
 
@@ -447,6 +481,108 @@
                 }
             });
         }
+
+        // Add event listeners for the new input box
+        document.addEventListener('DOMContentLoaded', () => {
+            const analyzeBtn = document.getElementById('analyzeInterests');
+            const clearBtn = document.getElementById('clearInterests');
+            const userInterests = document.getElementById('userInterests');
+
+            analyzeBtn.addEventListener('click', async () => {
+                const interests = userInterests.value.trim();
+                if (!interests) return;
+
+                try {
+                    const response = await window.groqService.generateResponse(
+                        `Analyze the following user interests and questions about Bruges: "${interests}"`,
+                        `You are a travel planning assistant for Bruges. Analyze the user's interests and questions, and provide personalized recommendations. Focus on:
+                        - Understanding their specific interests
+                        - Suggesting relevant places and activities
+                        - Answering any questions they have
+                        - Providing practical advice
+                        Keep the response concise and actionable.`
+                    );
+
+                    // Display the analysis in a modal or alert
+                    alert(response);
+                } catch (error) {
+                    console.error('Error analyzing interests:', error);
+                    alert('Sorry, there was an error analyzing your interests. Please try again.');
+                }
+            });
+
+            clearBtn.addEventListener('click', () => {
+                userInterests.value = '';
+            });
+        });
+
+        // Initialize save button functionality
+        document.addEventListener('DOMContentLoaded', async () => {
+            const saveButton = document.getElementById('save-itinerary');
+            if (saveButton) {
+                saveButton.addEventListener('click', async () => {
+                    try {
+                        // Show loading state
+                        saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Plan...';
+                        saveButton.disabled = true;
+
+                        // Get all form data
+                        const formData = {
+                            interests: Array.from(document.querySelectorAll('input[name="interest"]:checked'))
+                                .map(cb => cb.value),
+                            budget: document.querySelector('input[name="budget"]:checked')?.value,
+                            tours: Array.from(document.querySelectorAll('input[name="boat-tour"], input[name="horse-tour"]:checked'))
+                                .map(cb => cb.value),
+                            additionalInterests: document.getElementById('userInterests')?.value,
+                            selections: window.selectionManager?.getSelections() || {}
+                        };
+
+                        // Validate at least one interest is selected
+                        if (formData.interests.length === 0) {
+                            throw new Error('Please select at least one interest');
+                        }
+
+                        // Get the itinerary agent
+                        const itineraryAgent = window.agentManager.getAgent('itinerary');
+                        if (!itineraryAgent) {
+                            throw new Error('Itinerary agent not available');
+                        }
+
+                        // Generate the plan
+                        const plan = await itineraryAgent.generatePlan(formData);
+
+                        // Update the display
+                        await itineraryAgent.updatePlanDisplay(plan);
+
+                        // Save to localStorage
+                        localStorage.setItem('savedItinerary', JSON.stringify(plan));
+
+                        // Show success message
+                        const notification = document.createElement('div');
+                        notification.className = 'notification success';
+                        notification.innerHTML = '<i class="fas fa-check-circle"></i> Itinerary generated and saved successfully!';
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => notification.remove(), 3000);
+
+                    } catch (error) {
+                        console.error('Error generating itinerary:', error);
+                        
+                        // Show error message
+                        const notification = document.createElement('div');
+                        notification.className = 'notification error';
+                        notification.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${error.message || 'Error generating itinerary. Please try again.'}`;
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => notification.remove(), 3000);
+                    } finally {
+                        // Reset button state
+                        saveButton.innerHTML = '<i class="fas fa-save"></i> Save Itinerary';
+                        saveButton.disabled = false;
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html> 

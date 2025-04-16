@@ -133,6 +133,32 @@ Format the response in a clear, structured way with emojis for better readabilit
     }
 });
 
+// Places endpoint
+app.get('/api/places', (req, res) => {
+    try {
+        const places = Object.entries(brugesData.attractions).flatMap(([category, items]) => 
+            items.map(item => ({
+                id: item.name.toLowerCase().replace(/\s+/g, '-'),
+                name: item.name,
+                description: `A ${category} attraction in Bruges`,
+                type: category,
+                distance: 'Within walking distance',
+                location: {
+                    lat: 51.2093 + (Math.random() - 0.5) * 0.01,
+                    lng: 3.2247 + (Math.random() - 0.5) * 0.01
+                },
+                duration: item.duration,
+                cost: item.cost,
+                accessibility: item.accessibility
+            }))
+        );
+        res.json(places);
+    } catch (error) {
+        console.error('Error fetching places:', error);
+        res.status(500).json({ error: 'Failed to fetch places' });
+    }
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

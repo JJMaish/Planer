@@ -642,6 +642,30 @@
             });
 
             try {
+                // Initialize GroqService first
+                if (!window.groqService) {
+                    window.groqService = new GroqService();
+                }
+
+                // Load environment variables
+                const response = await fetch('/.env');
+                const envText = await response.text();
+                const envVars = {};
+                envText.split('\n').forEach(line => {
+                    const [key, value] = line.split('=');
+                    if (key && value) {
+                        envVars[key.trim()] = value.trim();
+                    }
+                });
+
+                // Set Groq API key
+                if (envVars.GROQ_API_KEY) {
+                    window.groqService.setApiKey(envVars.GROQ_API_KEY);
+                    console.log('Groq API key loaded successfully');
+                } else {
+                    throw new Error('GROQ_API_KEY not found in .env file');
+                }
+
                 console.log('Initializing selection manager...');
                 window.selectionManager = new SelectionManager();
                 
@@ -655,16 +679,18 @@
                 const placeAgent = window.agentManager.getAgent('place');
                 const restaurantAgent = window.agentManager.getAgent('restaurant');
                 const tourAgent = window.agentManager.getAgent('tour');
+                const photoAgent = window.agentManager.getAgent('photo');
                 const itineraryAgent = window.agentManager.getAgent('itinerary');
 
                 console.log('Agents initialized:', {
                     place: !!placeAgent,
                     restaurant: !!restaurantAgent,
                     tour: !!tourAgent,
+                    photo: !!photoAgent,
                     itinerary: !!itineraryAgent
                 });
 
-                if (!placeAgent || !restaurantAgent || !tourAgent || !itineraryAgent) {
+                if (!placeAgent || !restaurantAgent || !tourAgent || !photoAgent || !itineraryAgent) {
                     throw new Error('Some agents failed to initialize');
                 }
 
@@ -673,6 +699,7 @@
                     place: placeAgent,
                     restaurant: restaurantAgent,
                     tour: tourAgent,
+                    photo: photoAgent,
                     itinerary: itineraryAgent
                 };
                 
@@ -685,6 +712,15 @@
 
                 // Initialize map
                 initializeMap();
+
+                // Add event listeners for selection changes
+                window.selectionManager.onSelectionChange = async () => {
+                    const newSelections = window.selectionManager.getSelections();
+                    await displaySelections();
+                    await updateMap(newSelections);
+                    await generateItinerary(newSelections);
+                };
+
             } catch (error) {
                 console.error('Failed to initialize:', error);
                 // Show error message to user
@@ -695,45 +731,14 @@
                             <div class="no-items">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <p>Error initializing: ${error.message}</p>
+                                <button class="retry-btn" onclick="window.location.reload()">
+                                    <i class="fas fa-sync"></i> Retry
+                                </button>
                             </div>
                         `;
                     }
                 });
             }
-
-            // Print button functionality
-            document.getElementById('print-btn').addEventListener('click', async function() {
-                try {
-                    // Get the current selections
-                    const selections = window.selectionManager.getSelections();
-                    
-                    // Get the itinerary agent
-                    const itineraryAgent = window.agents.itinerary;
-                    if (!itineraryAgent) {
-                        throw new Error('Itinerary agent not available');
-                    }
-
-                    // Generate itinerary
-                    const itinerary = await itineraryAgent.getRecommendations([
-                        ...selections.places.map(id => ({ id, type: 'place' })),
-                        ...selections.restaurants.map(id => ({ id, type: 'restaurant' })),
-                        ...selections.tours.map(id => ({ id, type: 'tour' })),
-                        ...selections.photos.map(id => ({ id, type: 'photo' }))
-                    ]);
-
-                    // Save to localStorage
-                    localStorage.setItem('savedItinerary', JSON.stringify(itinerary));
-                    
-                    // Show success message
-                    alert('Itinerary saved successfully!');
-                    
-                    // Print the page
-                    window.print();
-                } catch (error) {
-                    console.error('Error saving itinerary:', error);
-                    alert('Error saving itinerary. Please try again.');
-                }
-            });
         });
 
         async function getItemData(id, type) {
@@ -756,9 +761,23 @@
                 const item = itemDetails[0];
                 const location = item.location || { lat: 51.2093, lng: 3.2247 };
                 
+                // Use GroqService to enhance the description if available
+                let enhancedDescription = item.description;
+                if (window.groqService && item.description) {
+                    try {
+                        const enhanced = await window.groqService.generateResponse(
+                            `Enhance this description about a ${type} in Bruges: "${item.description}"`,
+                            `You are a knowledgeable tour guide for Bruges. Enhance the description to be more engaging and informative while maintaining accuracy.`
+                        );
+                        enhancedDescription = enhanced;
+                    } catch (error) {
+                        console.warn('Failed to enhance description:', error);
+                    }
+                }
+                
                 return {
                     name: item.name || `Unknown ${type}`,
-                    description: item.description || `A ${type} in Bruges`,
+                    description: enhancedDescription,
                     image: item.image || getDefaultImage(type),
                     directions: `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}`,
                     coordinates: [location.lat, location.lng],
