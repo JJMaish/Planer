@@ -8,6 +8,7 @@ class ItineraryAgent extends BaseAgent {
         this.type = 'itinerary';
         this.data = [];
         this.initialized = false;
+        this.groqService = window.groqService;
         this.basePrompt = `You are a travel planning expert specializing in Bruges, Belgium. 
         Your task is to create personalized day-by-day itineraries based on user selections.
         Consider factors like:
@@ -67,18 +68,14 @@ class ItineraryAgent extends BaseAgent {
         try {
             console.log('Handling selection change in ItineraryAgent:', { selections, recommendations });
             
-            // Check if OpenAI service is available
-            if (!window.openAIService) {
-                console.warn('OpenAI service not found. Using fallback itinerary generation.');
+            // Check if Groq service is available
+            if (!this.groqService) {
+                console.warn('Groq service not found. Using fallback itinerary generation.');
                 return this.generateFallbackItinerary(selections, recommendations);
             }
             
-            if (!window.openAIService.isApiKeySet()) {
-                console.warn('OpenAI API key not set. Using fallback itinerary generation.');
-                return this.generateFallbackItinerary(selections, recommendations);
-            }
-            
-            const itinerary = await this.generateItinerary(selections, recommendations);
+            const preferences = await this.processPreferences();
+            const itinerary = await this.generatePlan(preferences);
             return itinerary;
         } catch (error) {
             console.error('Error in handleSelectionChange:', error.message || error);
@@ -88,43 +85,147 @@ class ItineraryAgent extends BaseAgent {
         }
     }
 
-    async generateItinerary(selections, recommendations) {
+    async processPreferences() {
         try {
-            console.log('Generating itinerary with:', { selections, recommendations });
-            
-            // Check if OpenAI service is available
-            if (!window.openAIService) {
-                console.warn('OpenAI service not found. Using fallback itinerary generation.');
-                return this.generateFallbackItinerary(selections, recommendations);
+            const preferences = {
+                interests: Array.from(document.querySelectorAll('.interest-option input:checked'))
+                    .map(input => input.value),
+                budget: document.querySelector('.budget-option input:checked')?.value || 'moderate',
+                tours: Array.from(document.querySelectorAll('.tour-option input:checked'))
+                    .map(input => input.value),
+                selectedPlaces: window.selectionManager?.places || [],
+                selectedRestaurants: window.selectionManager?.restaurants || [],
+                selectedTours: window.selectionManager?.tours || []
+            };
+
+            // Validate preferences
+            if (preferences.interests.length === 0) {
+                throw new Error('Please select at least one interest.');
             }
-            
-            if (!window.openAIService.isApiKeySet()) {
-                console.warn('OpenAI API key not set. Using fallback itinerary generation.');
-                return this.generateFallbackItinerary(selections, recommendations);
-            }
-            
-            // Prepare the prompt for OpenAI
-            const prompt = this.createPrompt(selections, recommendations);
-            
-            // Generate the itinerary using OpenAI
-            const itinerary = await window.openAIService.generateStructuredResponse(
-                prompt,
-                this.systemPrompt,
-                'json',
-                2000,  // Increased token limit for detailed itineraries
-                0.7    // Balanced creativity and consistency
-            );
-            
-            console.log('Generated itinerary:', itinerary);
-            return itinerary;
+
+            return preferences;
         } catch (error) {
-            console.error('Error generating itinerary:', error.message || error);
-            console.error('Error stack:', error.stack);
-            // Fall back to simple itinerary generation
-            return this.generateFallbackItinerary(selections, recommendations);
+            console.error('Error processing preferences:', error);
+            throw error;
         }
     }
-    
+
+    async generatePlan(preferences) {
+        try {
+            if (!this.groqService) {
+                throw new Error('Groq service not initialized');
+            }
+
+            const prompt = this.createPrompt(preferences);
+            const response = await this.groqService.generateResponse(prompt);
+            
+            // Parse the response into an itinerary
+            const itinerary = this.parseResponse(response);
+            return itinerary;
+        } catch (error) {
+            console.error('Error generating plan:', error);
+            throw error;
+        }
+    }
+
+    createPrompt(preferences) {
+        return `Create a detailed day-by-day itinerary for a trip to Bruges based on the following preferences:
+        Interests: ${preferences.interests.join(', ')}
+        Budget: ${preferences.budget}
+        Selected Places: ${preferences.selectedPlaces.join(', ')}
+        Selected Restaurants: ${preferences.selectedRestaurants.join(', ')}
+        Selected Tours: ${preferences.selectedTours.join(', ')}
+        
+        Format the response as a JSON object with the following structure:
+        {
+            "days": [
+                {
+                    "day": 1,
+                    "items": [
+                        {
+                            "time": "HH:MM",
+                            "duration": "X hours",
+                            "type": "place|restaurant|tour",
+                            "name": "Item name",
+                            "description": "Brief description"
+                        }
+                    ]
+                }
+            ]
+        }`;
+    }
+
+    parseResponse(response) {
+        try {
+            return JSON.parse(response);
+        } catch (error) {
+            console.error('Error parsing response:', error);
+            // Return a fallback itinerary
+            return {
+                days: [{
+                    day: 1,
+                    items: [{
+                        time: "09:00",
+                        duration: "1 hour",
+                        type: "place",
+                        name: "Bruges City Center",
+                        description: "Explore the historic city center"
+                    }]
+                }]
+            };
+        }
+    }
+
+    async updatePlanDisplay(plan) {
+        try {
+            const itineraryContainer = document.getElementById('itinerary-days');
+            if (!itineraryContainer) {
+                throw new Error('Itinerary container not found');
+            }
+
+            // Clear existing content
+            itineraryContainer.innerHTML = '';
+
+            // Add each day to the container
+            plan.days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'itinerary-day';
+                dayElement.innerHTML = `
+                    <h4>Day ${day.day}</h4>
+                    <div class="day-schedule">
+                        ${day.items.map(item => `
+                            <div class="activity-item">
+                                <i class="fas fa-${this.getActivityIcon(item.type)}"></i>
+                                <div class="activity-details">
+                                    <div class="activity-time">${item.time} (${item.duration})</div>
+                                    <div class="activity-name">${item.name}</div>
+                                    <div class="activity-description">${item.description}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                itineraryContainer.appendChild(dayElement);
+            });
+        } catch (error) {
+            console.error('Error updating plan display:', error);
+            throw error;
+        }
+    }
+
+    getActivityIcon(type) {
+        switch (type) {
+            case 'place':
+                return 'landmark';
+            case 'restaurant':
+                return 'utensils';
+            case 'tour':
+                return 'map-marked-alt';
+            default:
+                return 'calendar';
+        }
+    }
+
     generateFallbackItinerary(selections, recommendations) {
         try {
             console.log('Generating fallback itinerary');
@@ -184,61 +285,6 @@ class ItineraryAgent extends BaseAgent {
             description: `A ${type} in Bruges`,
             location: { lat: 51.2093, lng: 3.2247 }
         };
-    }
-
-    createPrompt(selections, recommendations) {
-        const selectedItems = [];
-        
-        // Add selected places
-        if (selections.places && selections.places.length > 0) {
-            selectedItems.push(...selections.places.map(id => ({
-                type: 'place',
-                id: id,
-                ...recommendations.places.find(p => p.id === id)
-            })));
-        }
-        
-        // Add selected restaurants
-        if (selections.restaurants && selections.restaurants.length > 0) {
-            selectedItems.push(...selections.restaurants.map(id => ({
-                type: 'restaurant',
-                id: id,
-                ...recommendations.restaurants.find(r => r.id === id)
-            })));
-        }
-        
-        // Add selected tours
-        if (selections.tours && selections.tours.length > 0) {
-            selectedItems.push(...selections.tours.map(id => ({
-                type: 'tour',
-                id: id,
-                ...recommendations.tours.find(t => t.id === id)
-            })));
-        }
-        
-        // Add selected photos
-        if (selections.photos && selections.photos.length > 0) {
-            selectedItems.push(...selections.photos.map(id => ({
-                type: 'photo',
-                id: id,
-                ...recommendations.photos.find(p => p.id === id)
-            })));
-        }
-
-        return `Create a detailed day-by-day itinerary for a trip to Bruges with the following selected items:
-        ${JSON.stringify(selectedItems, null, 2)}
-        
-        Please consider:
-        1. Group nearby attractions together to minimize walking time
-        2. Include meal times at appropriate restaurants
-        3. Account for opening hours of attractions
-        4. Consider time needed at each location
-        5. Include photo opportunities at scenic spots
-        6. Balance the daily schedule to avoid overcrowding
-        7. Include time for rest and relaxation
-        8. Consider weather conditions and indoor/outdoor activities
-        9. Account for tour durations and schedules
-        10. Include time for transportation between locations`;
     }
 
     optimizeDayRoute(items) {

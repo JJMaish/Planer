@@ -288,23 +288,23 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/js/selection-manager.js"></script>
+    <script src="js/selection-manager.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     <!-- Module scripts -->
     <script type="module">
         // Import all required modules
-        import config from '/js/config.js';
-        import { GroqService } from '/js/services/GroqService.js';
-        import { BaseAgent } from '/js/agents/BaseAgent.js';
-        import { PlaceAgent } from '/js/agents/PlaceAgent.js';
-        import { RestaurantAgent } from '/js/agents/RestaurantAgent.js';
-        import { TourAgent } from '/js/agents/TourAgent.js';
-        import { PhotoAgent } from '/js/agents/PhotoAgent.js';
-        import { ItineraryAgent } from '/js/agents/ItineraryAgent.js';
-        import { AgentManager } from '/js/agents/AgentManager.js';
-        import { PlannerIntegration } from '/js/planner-integration.js';
-        import { MapManager } from '/js/map-manager.js';
+        import config from './js/config.js';
+        import { GroqService } from './js/services/GroqService.js';
+        import { BaseAgent } from './js/agents/BaseAgent.js';
+        import { PlaceAgent } from './js/agents/PlaceAgent.js';
+        import { RestaurantAgent } from './js/agents/RestaurantAgent.js';
+        import { TourAgent } from './js/agents/TourAgent.js';
+        import { PhotoAgent } from './js/agents/PhotoAgent.js';
+        import { ItineraryAgent } from './js/agents/ItineraryAgent.js';
+        import { AgentManager } from './js/agents/AgentManager.js';
+        import { PlannerIntegration } from './js/planner-integration.js';
+        import { MapManager } from './js/map-manager.js';
 
         // Initialize AOS
         AOS.init({
@@ -315,6 +315,7 @@
         
         // Initialize the services
         window.groqService = new GroqService();
+        window.groqService.setApiKey('gsk_1234567890abcdefghijklmnopqrstuvwxyz'); // Replace with your actual API key
         
         // Initialize the planner integration and map
         document.addEventListener('DOMContentLoaded', async () => {
@@ -342,6 +343,21 @@
                 // Initialize the planner integration and map
                 window.plannerIntegration = new PlannerIntegration();
                 window.mapManager = new MapManager();
+                
+                // Add event listener for save button
+                const saveButton = document.getElementById('save-itinerary');
+                if (saveButton) {
+                    saveButton.addEventListener('click', async () => {
+                        try {
+                            const preferences = await window.agentManager.getAgent('itinerary').processPreferences();
+                            const plan = await window.agentManager.getAgent('itinerary').generatePlan(preferences);
+                            await window.agentManager.getAgent('itinerary').updatePlanDisplay(plan);
+                        } catch (error) {
+                            console.error('Error saving itinerary:', error);
+                            alert('Failed to save itinerary. Please try again.');
+                        }
+                    });
+                }
                 
                 // Add hover effects to buttons
                 const buttons = document.querySelectorAll('button, .btn, .save-btn');
