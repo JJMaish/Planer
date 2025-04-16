@@ -1,3 +1,5 @@
+import { BaseAgent } from './BaseAgent.js';
+
 class ItineraryAgent extends BaseAgent {
     constructor() {
         super();

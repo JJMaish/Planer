@@ -1,5 +1,8 @@
-class ChatAssistant {
+import { BaseAgent } from './agents/BaseAgent.js';
+
+class ChatAssistant extends BaseAgent {
     constructor() {
+        super();
         this.chatContainer = document.getElementById('chatContainer');
         this.chatToggle = document.getElementById('chatToggle');
         this.closeChat = document.getElementById('closeChat');
@@ -52,34 +55,22 @@ class ChatAssistant {
 
     async getAIResponse(message) {
         const prompt = `You are a knowledgeable tour guide for Bruges, Belgium. 
-            The user has asked: "${message}"
-            
-            Please provide a helpful, accurate response about Bruges. 
-            Focus on:
-            - Historical facts
-            - Tourist attractions
-            - Cultural information
-            - Practical advice
-            - Local tips
-            
-            Keep your response concise but informative.`;
-
-        const systemPrompt = `You are a friendly, knowledgeable tour guide for Bruges, Belgium.
-            You have extensive knowledge about:
-            - The city's history and architecture
-            - Tourist attractions and landmarks
-            - Local culture and traditions
-            - Best places to visit
-            - Practical travel information
-            
-            Provide accurate, helpful information while maintaining a conversational tone.
-            If asked about something outside of Bruges, politely redirect to Bruges-related topics.`;
+        Please provide accurate and helpful information about Bruges based on the following question: ${message}
+        
+        Focus on:
+        1. Historical facts and context
+        2. Tourist attractions and landmarks
+        3. Cultural information
+        4. Practical advice
+        5. Local tips and recommendations
+        
+        Keep your response concise but informative.`;
 
         try {
-            const response = await window.groqService.generateResponse(prompt, systemPrompt);
+            const response = await this._generateResponse(prompt);
             return response;
         } catch (error) {
-            console.error('Error getting AI response:', error);
+            console.error('Error generating AI response:', error);
             throw error;
         }
     }

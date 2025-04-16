@@ -30,7 +30,7 @@ class BaseAgent {
         return true;
     }
 
-    protected async generateResponse(prompt, systemPrompt = '') {
+    async _generateResponse(prompt, systemPrompt = '') {
         try {
             return await this.groqService.generateResponse(prompt, systemPrompt);
         } catch (error) {
@@ -39,7 +39,7 @@ class BaseAgent {
         }
     }
 
-    protected async generateStructuredResponse(prompt, systemPrompt = '', format = 'json') {
+    async _generateStructuredResponse(prompt, systemPrompt = '', format = 'json') {
         try {
             return await this.groqService.generateStructuredResponse(prompt, systemPrompt, format);
         } catch (error) {

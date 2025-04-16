@@ -306,26 +306,16 @@
             once: true
         });
 
-        // Initialize GroqService with API key from .env
+        // Initialize GroqService with API key
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // Load environment variables
-                const response = await fetch('/.env');
-                const envText = await response.text();
-                const envVars = {};
-                envText.split('\n').forEach(line => {
-                    const [key, value] = line.split('=');
-                    if (key && value) {
-                        envVars[key.trim()] = value.trim();
-                    }
-                });
-
-                // Set Groq API key
-                if (envVars.GROQ_API_KEY) {
-                    window.groqService.setApiKey(envVars.GROQ_API_KEY);
+                // Set Groq API key directly
+                const groqApiKey = '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';
+                if (groqApiKey) {
+                    window.groqService.setApiKey(groqApiKey);
                     console.log('Groq API key loaded successfully');
                 } else {
-                    throw new Error('GROQ_API_KEY not found in .env file');
+                    throw new Error('GROQ_API_KEY not found');
                 }
 
                 // Initialize place agent
