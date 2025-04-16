@@ -609,6 +609,9 @@
         // Initialize GroqService with API key
         document.addEventListener('DOMContentLoaded', async () => {
             try {
+                // Create and initialize GroqService instance
+                window.groqService = new GroqService();
+                
                 // Set Groq API key directly
                 const groqApiKey = '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';
                 if (groqApiKey) {
@@ -624,7 +627,9 @@
                 console.log('Tour agent initialized successfully');
 
                 // Initialize tour details functionality
-                initializeTourDetails();
+                if (typeof initializeTourDetails === 'function') {
+                    initializeTourDetails();
+                }
             } catch (error) {
                 console.error('Error during initialization:', error);
                 showError('Failed to initialize tour details. Please check the console for details.');

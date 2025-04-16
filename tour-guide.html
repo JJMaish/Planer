@@ -449,19 +449,12 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="js/services/GroqService.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/agents/BaseAgent.js"></script>
-    <script src="js/agents/PlaceAgent.js"></script>
-    <script src="js/preload.js"></script>
-    <script src="js/tour-guide.js"></script>
-    <script src="js/chat-assistant.js"></script>
-
     <script type="module">
         // Import required modules
         import { GroqService } from './js/services/GroqService.js';
         import { BaseAgent } from './js/agents/BaseAgent.js';
         import { PlaceAgent } from './js/agents/PlaceAgent.js';
+        import { ChatAssistant } from './js/chat-assistant.js';
 
         // Initialize AOS
         AOS.init({
@@ -473,6 +466,9 @@
         // Initialize GroqService with API key
         document.addEventListener('DOMContentLoaded', async () => {
             try {
+                // Create and initialize GroqService
+                window.groqService = new GroqService();
+                
                 // Set Groq API key directly
                 const groqApiKey = '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';
                 if (groqApiKey) {
@@ -487,17 +483,18 @@
                 await window.placeAgent.initialize();
                 console.log('Place agent initialized successfully');
 
+                // Initialize chat assistant
+                window.chatAssistant = new ChatAssistant();
+                console.log('Chat assistant initialized successfully');
+
                 // Initialize tour guide functionality
-                initializeTourGuide();
+                if (typeof initializeTourGuide === 'function') {
+                    initializeTourGuide();
+                }
             } catch (error) {
                 console.error('Error during initialization:', error);
                 showError('Failed to initialize tour guide. Please check the console for details.');
             }
-        });
-
-        // Initialize chat assistant
-        document.addEventListener('DOMContentLoaded', () => {
-            window.chatAssistant = new ChatAssistant();
         });
     </script>
 </body>

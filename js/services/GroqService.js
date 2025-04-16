@@ -128,7 +128,5 @@ class GroqService {
     }
 }
 
-// Initialize and make available globally
-if (!window.groqService) {
-    window.groqService = new GroqService();
-} 
+// Export the class
+export { GroqService }; 
