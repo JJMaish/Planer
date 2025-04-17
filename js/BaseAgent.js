@@ -2,7 +2,7 @@
  * Base Agent class that all other agents should extend
  * Handles common functionality like Groq service initialization
  */
-class BaseAgent {
+export class BaseAgent {
     constructor() {
         if (!window.groqService) {
             throw new Error('GroqService must be initialized before creating agents');
@@ -47,6 +47,4 @@ class BaseAgent {
             throw new Error('Failed to generate structured response. Please try again.');
         }
     }
-}
-
-export { BaseAgent }; 
+} 
