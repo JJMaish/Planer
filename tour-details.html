@@ -595,9 +595,9 @@
     <script src="js/selection-manager.js"></script>
     <script type="module">
         // Import required modules
-        import { GroqService } from './js/services/GroqService.js';
-        import { BaseAgent } from './js/agents/BaseAgent.js';
-        import { TourAgent } from './js/agents/TourAgent.js';
+        import { GroqService } from '/js/services/GroqService.js';
+        import { BaseAgent } from '/js/agents/BaseAgent.js';
+        import { TourAgent } from '/js/agents/TourAgent.js';
 
         // Initialize AOS
         AOS.init({
@@ -632,7 +632,11 @@
                 }
             } catch (error) {
                 console.error('Error during initialization:', error);
-                showError('Failed to initialize tour details. Please check the console for details.');
+                // Show error message to user
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = 'Failed to initialize tour details. Please check the console for details.';
+                document.body.appendChild(errorDiv);
             }
         });
     </script>
