@@ -36,9 +36,10 @@ body {
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-micro: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --header-height: 60px;
     --container-padding: 20px;
-    --primary-color-rgb: 52, 152, 219; /* RGB values for your primary color */
+    --primary-color-rgb: 52, 152, 219;
     --link-color: #3498db;
     --link-hover-color: #2980b9;
     --subcategory-bg: #f8f9fa;
@@ -2490,183 +2491,84 @@ input[type="checkbox"]:focus + span {
 }
 
 /* Common Transitions */
-:root {
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Button Transitions */
-.btn {
-    transition: var(--transition);
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Card Transitions */
+.btn,
+.nav-links a,
+.wishlist-nav a,
+.card,
+.gallery-item,
 .place-card,
 .restaurant-card,
 .tour-card,
 .event-card,
-.gallery-item {
-    transition: var(--transition);
-}
-
-.place-card:hover,
-.restaurant-card:hover,
-.tour-card:hover,
-.event-card:hover,
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Image Transitions */
-.place-image img,
-.restaurant-image img,
-.tour-image img,
-.event-image img,
-.gallery-item img {
-    transition: var(--transition);
-}
-
-.place-card:hover .place-image img,
-.restaurant-card:hover .restaurant-image img,
-.tour-card:hover .tour-image img,
-.event-card:hover .event-image img,
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-/* Content Transitions */
-.place-content,
-.restaurant-content,
-.tour-content,
-.event-content,
-.gallery-item-info {
-    transition: var(--transition);
-}
-
-/* Filter and Control Transitions */
 .filter-dropdown,
 .view-toggle,
-.filter-btn {
-    transition: var(--transition);
-}
-
-.filter-dropdown:hover,
-.view-toggle:hover,
-.filter-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Navigation Transitions */
-.nav-links a,
-.wishlist-nav a {
-    transition: var(--transition);
-}
-
-.nav-links a:hover,
-.wishlist-nav a:hover {
-    transform: translateY(-2px);
-    color: var(--primary-color);
-}
-
-/* Mobile Menu Transitions */
-.mobile-menu-btn {
-    transition: var(--transition);
-}
-
-.mobile-menu-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Lightbox Transitions */
-.lightbox {
-    transition: var(--transition-slow);
-}
-
-.lightbox-content {
-    transition: var(--transition);
-}
-
+.filter-btn,
+.mobile-menu-btn,
+.lightbox,
+.lightbox-content,
 .lightbox-close,
 .lightbox-prev,
-.lightbox-next {
-    transition: var(--transition);
-}
-
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover {
-    transform: scale(1.1);
-}
-
-/* Form Element Transitions */
+.lightbox-next,
 input,
 select,
-textarea {
-    transition: var(--transition);
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Selection Control Transitions */
-.selection-control {
-    transition: var(--transition);
-}
-
-.selection-control:hover {
-    transform: scale(1.1);
-}
-
-/* Footer Link Transitions */
-.footer-section a {
-    transition: var(--transition);
-}
-
-.footer-section a:hover {
-    transform: translateX(5px);
-    color: var(--primary-color);
-}
-
-/* Loading State Transitions */
-.loading {
-    transition: var(--transition);
-}
-
-/* Error State Transitions */
-.error {
-    transition: var(--transition);
-}
-
-/* Success State Transitions */
+textarea,
+.selection-control,
+.footer-section a,
+.loading,
+.error,
 .success {
     transition: var(--transition);
 }
 
-/* Media Query Adjustments */
+/* Micro Transitions */
+.btn:hover,
+.nav-links a:hover,
+.wishlist-nav a:hover,
+.card:hover,
+.gallery-item:hover,
+.place-card:hover,
+.restaurant-card:hover,
+.tour-card:hover,
+.event-card:hover,
+.filter-dropdown:hover,
+.view-toggle:hover,
+.filter-btn:hover,
+.mobile-menu-btn:hover,
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover,
+input:focus,
+select:focus,
+textarea:focus,
+.selection-control:hover,
+.footer-section a:hover {
+    transition: var(--transition-micro);
+}
+
+/* Disable transitions on mobile */
 @media (max-width: 768px) {
     .btn:hover,
+    .nav-links a:hover,
+    .wishlist-nav a:hover,
+    .card:hover,
+    .gallery-item:hover,
     .place-card:hover,
     .restaurant-card:hover,
     .tour-card:hover,
     .event-card:hover,
-    .gallery-item:hover {
-        transform: none;
-    }
-    
-    .nav-links a:hover,
-    .wishlist-nav a:hover {
-        transform: none;
+    .filter-dropdown:hover,
+    .view-toggle:hover,
+    .filter-btn:hover,
+    .mobile-menu-btn:hover,
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    .selection-control:hover,
+    .footer-section a:hover {
+        transition: none;
+        transform: none !important;
     }
 } 
