@@ -2,7 +2,7 @@
  * Groq Service
  * Handles communication with Groq's API
  */
-class GroqService {
+export class GroqService {
     constructor() {
         this.apiKey = null;
         this.model = 'mixtral-8x7b-32768'; // Groq's Mixtral model
@@ -126,7 +126,4 @@ class GroqService {
         
         return response;
     }
-}
-
-// Export the class
-export { GroqService }; 
+} 

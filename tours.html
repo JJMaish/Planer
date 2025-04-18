@@ -15,20 +15,28 @@
     <header class="main-header">
         <nav>
             <div class="nav-container">
-                <a href="index.html" class="logo">Bruges City Guide</a>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-landmark"></i> Bruges Guide
+                </a>
+                <div class="wishlist-nav">
+                    <a href="wish-list.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="places-to-visit.html"><i class="fas fa-landmark"></i> Places</a></li>
+                <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
                 <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
-                <li><a href="tours.html" class="active"><i class="fas fa-map-marked-alt"></i> Tours</a></li>
+                <li><a href="tours.html" class="active"><i class="fas fa-ship"></i> Tours</a></li>
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
                 <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
-                <li><a href="wish-list.html"><i class="fas fa-heart"></i> Wish List</a></li>
             </ul>
         </nav>
     </header>
@@ -69,21 +77,20 @@
             <h2>Canal Boat Tours</h2>
             <div class="tours-grid">
                 <!-- Boat Tour Location 1 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="huidenvettersplein" data-type="boat" id="boat-1">
-                        <label for="boat-1" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/boat-tour-1.jpg" alt="Huidenvettersplein Boat Tour">
                     </div>
-                    <img src="Data/Tours/boat-tour-1.jpg" alt="Huidenvettersplein Boat Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Huidenvettersplein Dock</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Huidenvettersplein</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 12 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 30 minutes</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Huidenvettersplein+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Boat Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Huidenvettersplein+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -91,21 +98,20 @@
                 </div>
 
                 <!-- Boat Tour Location 2 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="rozenhoedkaai" data-type="boat" id="boat-2">
-                        <label for="boat-2" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/boat-tour-2.jpg" alt="Rozenhoedkaai Boat Tour">
                     </div>
-                    <img src="Data/Tours/boat-tour-2.jpg" alt="Rozenhoedkaai Boat Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Rozenhoedkaai Dock</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Rozenhoedkaai</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 12 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 30 minutes</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Rozenhoedkaai+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Boat Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Rozenhoedkaai+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -119,21 +125,20 @@
             <h2>Horse Carriage Tours</h2>
             <div class="tours-grid">
                 <!-- Horse Tour Location 1 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="markt-horse" data-type="horse" id="horse-1">
-                        <label for="horse-1" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/horse-tour-1.jpg" alt="Markt Square Horse Tour">
                     </div>
-                    <img src="Data/Tours/horse-tour-1.jpg" alt="Markt Square Horse Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Markt Square Carriage Stand</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 50 per carriage</p>
                         <p class="duration"><i class="fas fa-clock"></i> 35 minutes</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Horse Carriage Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -147,21 +152,20 @@
             <h2>Walk Tours</h2>
             <div class="tours-grid">
                 <!-- Walk Tour 1 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="free-walking-tour" data-type="walk" id="walk-1">
-                        <label for="walk-1" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/walk-tour-1.jpg" alt="Free Walking Tour">
                     </div>
-                    <img src="Data/Tours/walk-tour-1.jpg" alt="Free Walking Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Free Walking Tour</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> Free (tips appreciated)</p>
                         <p class="duration"><i class="fas fa-clock"></i> 2 hours</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Walking Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -169,21 +173,20 @@
                 </div>
 
                 <!-- Walk Tour 2 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="chocolate-walking-tour" data-type="walk" id="walk-2">
-                        <label for="walk-2" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/walk-tour-2.jpg" alt="Chocolate Walking Tour">
                     </div>
-                    <img src="Data/Tours/walk-tour-2.jpg" alt="Chocolate Walking Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Chocolate Walking Tour</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 25 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 2.5 hours</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Walking Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -191,21 +194,20 @@
                 </div>
 
                 <!-- Walk Tour 3 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="beer-walking-tour" data-type="walk" id="walk-3">
-                        <label for="walk-3" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/walk-tour-3.jpg" alt="Beer Walking Tour">
                     </div>
-                    <img src="Data/Tours/walk-tour-3.jpg" alt="Beer Walking Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Beer Walking Tour</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 35 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 3 hours</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Walking Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -219,21 +221,20 @@
             <h2>Bike Tours</h2>
             <div class="tours-grid">
                 <!-- Bike Tour 1 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="city-bike-tour" data-type="bike" id="bike-1">
-                        <label for="bike-1" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/bike-tour-1.jpg" alt="City Bike Tour">
                     </div>
-                    <img src="Data/Tours/bike-tour-1.jpg" alt="City Bike Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>City Bike Tour</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 25 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 2.5 hours</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Bike Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -241,21 +242,20 @@
                 </div>
 
                 <!-- Bike Tour 2 -->
-                <div class="tour-card">
-                    <div class="selection-control">
-                        <input type="checkbox" class="tour-selector" data-id="countryside-bike-tour" data-type="bike" id="bike-2">
-                        <label for="bike-2" class="selection-label">
-                            <i class="fas fa-check"></i>
-                        </label>
+                <div class="tour-card" data-aos="fade-up">
+                    <div class="tour-image">
+                        <img src="Data/Tours/bike-tour-2.jpg" alt="Countryside Bike Tour">
                     </div>
-                    <img src="Data/Tours/bike-tour-2.jpg" alt="Countryside Bike Tour">
-                    <div class="tour-info">
+                    <div class="tour-content">
                         <h3>Countryside Bike Tour</h3>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Markt Square</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> 35 per person</p>
                         <p class="duration"><i class="fas fa-clock"></i> 4 hours</p>
-                        <div class="tour-actions">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="action-btn" target="_blank">
+                        <div class="tour-details">
+                            <span class="feature">Bike Tour</span>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Markt+Bruges+Belgium" class="btn btn-primary" target="_blank">
                                 <i class="fas fa-directions"></i> Get Directions
                             </a>
                         </div>
@@ -270,7 +270,7 @@
                 
                 <div class="rental-shops">
                     <!-- Rental Shop 1 -->
-                    <div class="rental-shop-card">
+                    <div class="rental-shop-card" data-aos="fade-up">
                         <h4>Fietsen Popelier</h4>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Mariastraat 26</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> From €5 per day</p>
@@ -286,7 +286,7 @@
                     </div>
 
                     <!-- Rental Shop 2 -->
-                    <div class="rental-shop-card">
+                    <div class="rental-shop-card" data-aos="fade-up">
                         <h4>De Ketting</h4>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Carmersstraat 7</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> From €6 per day</p>
@@ -302,7 +302,7 @@
                     </div>
 
                     <!-- Rental Shop 3 -->
-                    <div class="rental-shop-card">
+                    <div class="rental-shop-card" data-aos="fade-up">
                         <h4>Bruges Bike Rental</h4>
                         <p class="location"><i class="fas fa-map-marker-alt"></i> Niklaas Desparsstraat 17</p>
                         <p class="price"><i class="fas fa-euro-sign"></i> From €7 per day</p>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="gallery.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/wish-list.css">
 </head>
 <body>
     <header class="main-header">
@@ -69,24 +70,23 @@
         </section>
 
         <section class="gallery-grid" id="galleryGrid">
-            <div class="gallery-item" data-aos="fade-up">
-                <div class="selection-control">
-                    <input type="checkbox" 
-                           class="photo-selector" 
-                           data-id="belfort-view" 
-                           data-type="photo"
-                           id="photo-belfort-view">
-                    <label for="photo-belfort-view" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
+            <div class="gallery-card" data-aos="fade-up">
+                <div class="gallery-image">
+                    <img src="Data/Gallery/0001.jpg" alt="Gallery Image">
                 </div>
-                <img src="Data/Gallery/belfort-view.jpg" alt="Belfort View">
-                <div class="gallery-item-info">
-                    <h3>Belfort View</h3>
-                    <p>Historic city center</p>
+                <div class="gallery-content">
+                    <h3>Gallery Name</h3>
+                    <p class="gallery-type">Type of Gallery</p>
+                    <p class="gallery-description">Description of the gallery...</p>
+                    <div class="gallery-details">
+                        <span class="feature">Feature 1</span>
+                        <span class="feature">Feature 2</span>
+                    </div>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-primary">View Details</a>
+                    </div>
                 </div>
             </div>
-            <!-- Add more gallery items with checkboxes -->
         </section>
 
         <div class="lightbox" id="lightbox">

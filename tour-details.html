@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
-            --primary-color: #4CAF50;
-            --primary-dark: #388E3C;
+            --primary-color: #2196F3;
+            --primary-dark: #2196F3;
         }
 
         * {
@@ -430,6 +430,13 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
+                <div class="wishlist-nav">
+                    <a href="wishlist.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -439,8 +446,9 @@
                 <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
                 <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
                 <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="planner.html"><i class="fas fa-calendar-alt"></i> Plan</a></li>
+                <li><a href="planner.html" class="active"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
@@ -595,9 +603,9 @@
     <script src="js/selection-manager.js"></script>
     <script type="module">
         // Import required modules
-        import { GroqService } from '/js/services/GroqService.js';
-        import { BaseAgent } from '/js/agents/BaseAgent.js';
-        import { TourAgent } from '/js/agents/TourAgent.js';
+        import { GroqService } from './js/services/GroqService.js';
+        import { BaseAgent } from './Agents/BaseAgent.js';
+        import { TourAgent } from './Agents/TourAgent.js';
 
         // Initialize AOS
         AOS.init({

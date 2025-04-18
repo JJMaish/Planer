@@ -1,135 +1,443 @@
+:root {
+    --primary-color: #0066cc;
+    --primary-dark: #004d99;
+    --primary-darker: #0d47a1;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --border-radius: 8px;
+    --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+.restaurants-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('bannerSlides/banner10.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.restaurants-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+/* Grid View */
+.restaurants-container.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 1rem;
+}
+
+.restaurants-container.grid-view .restaurant-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.restaurants-container.grid-view .restaurant-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.restaurants-container.grid-view .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.restaurants-container.grid-view .restaurant-card:hover .restaurant-image img {
+    transform: scale(1.05);
+}
+
+.restaurants-container.grid-view .restaurant-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.restaurants-container.grid-view .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.restaurants-container.grid-view .restaurant-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.restaurants-container.grid-view .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.restaurants-container.grid-view .type {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.restaurants-container.grid-view .description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.restaurants-container.grid-view .details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.restaurants-container.grid-view .details p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.restaurants-container.grid-view .button-group {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.restaurants-container.grid-view .directions-btn {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: var(--card-bg);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.restaurants-container.grid-view .directions-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* List View */
+.restaurants-container.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.restaurants-container.list-view .restaurant-card {
+    display: flex;
+    flex-direction: row;
+    min-height: 120px;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.restaurants-container.list-view .restaurant-image {
+    width: 150px;
+    height: 120px;
+    flex-shrink: 0;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    overflow: hidden;
+}
+
+.restaurants-container.list-view .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.restaurants-container.list-view .restaurant-card:hover .restaurant-image img {
+    transform: scale(1.05);
+}
+
+.restaurants-container.list-view .restaurant-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.restaurants-container.list-view .restaurant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.restaurants-container.list-view .restaurant-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.restaurants-container.list-view .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.restaurants-container.list-view .type {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.restaurants-container.list-view .description {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.restaurants-container.list-view .details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.restaurants-container.list-view .details p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.restaurants-container.list-view .button-group {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.restaurants-container.list-view .directions-btn {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: var(--card-bg);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.restaurants-container.list-view .directions-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Common Styles */
+.restaurant-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-color);
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.restaurant-image img {
+    transition: transform 0.5s ease;
+}
+
+.restaurant-card:hover .restaurant-image img {
+    transform: scale(1.05);
+}
+
+/* View Controls */
+.view-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    margin-left: auto;
+    background: var(--card-bg);
+    border-radius: 8px;
+}
+
+.view-toggle {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.view-toggle:hover {
+    background: var(--primary-color);
+    color: var(--card-bg);
+}
+
+.view-toggle.active {
+    background: var(--primary-color);
+    color: var(--card-bg);
+}
+
+/* Filter Styles */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.filter-dropdown {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    background-color: white;
+    color: var(--text-color);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230066cc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 1.5rem;
+    min-width: 180px;
+    height: 36px;
+    transition: var(--transition);
+}
+
+.filter-dropdown:hover {
+    border-color: var(--primary-dark);
+    background-color: #f5f9ff;
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 2px rgba(0,102,204,0.2);
+}
+
+.filter-dropdown option {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.filter-dropdown option:hover {
+    background-color: #f5f9ff;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .restaurants-grid {
+    .filter-dropdown {
+        min-width: 160px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .restaurants-container.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .restaurants-container.list-view .restaurant-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .restaurants-container.list-view .restaurant-image {
+        width: 100%;
+        height: 200px;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .restaurants-container.list-view .restaurant-content {
+        padding: 1rem;
+    }
+
+    .restaurants-container.list-view .button-group {
+        justify-content: center;
+    }
+
+    .restaurants-container.grid-view {
         grid-template-columns: 1fr;
         padding: 1rem;
-        gap: 1rem;
     }
     
-    .restaurant-card {
-        margin: 0;
-        width: 100%;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .restaurant-content {
-        padding: 1rem;
-    }
-
-    .restaurant-main-info {
-        width: 100%;
-    }
-
-    .restaurant-main-info h2 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .cuisine-type, .address {
-        font-size: 0.9rem;
-        margin: 0.3rem 0;
-    }
-
-    .description p {
-        font-size: 0.9rem;
-        margin: 0.5rem 0;
-    }
-
-    .details {
-        margin: 0.5rem 0;
-    }
-
-    .details p {
-        font-size: 0.9rem;
-        margin: 0.3rem 0;
-    }
-
-    .button-group {
-        margin-top: 1rem;
-    }
-
-    .directions-btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem;
-    }
-
-    .selection-control {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        z-index: 2;
-    }
-
-    .restaurant-selector {
-        display: none;
-    }
-
-    .selection-label {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .selection-label i {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .restaurant-selector:checked + .selection-label {
-        background: var(--primary-color);
-    }
-
-    .restaurant-selector:checked + .selection-label i {
-        opacity: 1;
-        color: white;
-    }
-
-    .restaurants-hero {
-        min-height: 30vh;
-        padding: 2rem 1rem;
+    .restaurants-container.grid-view .restaurant-card {
+        margin: 0 1rem;
     }
     
     .restaurants-hero h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
-    .restaurants-hero p {
-        font-size: 1rem;
-    }
-
-    .filter-section {
-        padding: 1rem;
-    }
-
-    .filter-container {
-        padding: 0;
-    }
-
-    .filter-buttons {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+    .button-group {
+        flex-direction: column;
         gap: 0.5rem;
     }
-
-    .filter-btn {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-        min-width: auto;
-    }
-
-    .view-controls {
-        padding: 0.5rem;
+    
+    .visit-btn, .directions-btn {
         justify-content: center;
     }
+}
 
-    .view-toggle {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
+/* Remove all checkbox styles */
+.restaurant-card input[type="checkbox"],
+.restaurant-card input[type="checkbox"]:checked,
+.restaurant-card input[type="checkbox"]:checked::after,
+.restaurant-card input[type="checkbox"]:hover,
+.restaurants-container.list-view .restaurant-card input[type="checkbox"],
+.restaurants-container.grid-view .restaurant-card input[type="checkbox"] {
+    display: none;
 } 

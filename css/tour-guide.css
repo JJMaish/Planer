@@ -1,3 +1,14 @@
+:root {
+    --primary-color: #0066cc;
+    --primary-dark: #004d99;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --border-color: #e0e0e0;
+    --shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
 .tour-guide-container {
     display: flex;
     height: calc(100vh - 70px);
@@ -292,4 +303,59 @@
     .filter-btn {
         white-space: nowrap;
     }
+}
+
+/* Checkbox Styles */
+.tour-guide-card input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+    margin: 0;
+    padding: 0;
+}
+
+.tour-guide-card input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.tour-guide-card input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.tour-guide-card input[type="checkbox"]:hover {
+    border-color: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+/* List View Checkbox Position */
+.tour-guide-container.list-view .tour-guide-card input[type="checkbox"] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+}
+
+/* Grid View Checkbox Position */
+.tour-guide-container.grid-view .tour-guide-card input[type="checkbox"] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
 } 

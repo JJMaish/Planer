@@ -1,6 +1,6 @@
 .places-hero {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                url('Data/Places/hero-places.jpg');
+        url('bannerSlides/banner10.jpg');
     background-size: cover;
     background-position: center;
     height: 40vh;
@@ -209,17 +209,44 @@
 /* Grid View */
 .places-container.grid-view {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
 .places-container.grid-view .place-card {
-    flex-direction: column;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    top: 0;
+}
+
+.places-container.grid-view .place-card:hover {
+    top: -8px;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
 .places-container.grid-view .place-image {
     width: 100%;
-    height: 250px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.places-container.grid-view .place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.places-container.grid-view .place-card:hover .place-image img {
+    transform: scale(1.05);
+}
+
+.places-container.grid-view .place-content {
+    padding: 1.5rem;
 }
 
 /* List View */
@@ -234,47 +261,68 @@
     grid-template-columns: 300px 1fr;
     gap: 2rem;
     padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .places-container.list-view .place-image {
     height: 100%;
     min-height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.places-container.list-view .place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .places-container.list-view .place-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 0;
 }
 
-/* Common styles */
-.place-image {
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-.place-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+/* Common Card Styles */
+.place-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .place-card:hover .place-image img {
     transform: scale(1.05);
 }
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .places-container.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .places-container.list-view .place-card {
         grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .places-container.list-view .place-image {
+        height: 200px;
+        min-height: auto;
     }
     
     .places-container.grid-view {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
     
-    .view-controls {
-        justify-content: center;
-        padding: 1rem;
+    .places-container.grid-view .place-card {
+        margin: 0 1rem;
     }
 } 

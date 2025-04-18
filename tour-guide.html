@@ -194,6 +194,13 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
+                <div class="wishlist-nav">
+                    <a href="wishlist.html">
+                        <i class="fas fa-heart"></i>
+                        Wish List
+                        <span class="wishlist-count">0</span>
+                    </a>
+                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -203,8 +210,9 @@
                 <li><a href="places-to-visit.html"><i class="fas fa-map-marker-alt"></i> Places</a></li>
                 <li><a href="restaurants.html"><i class="fas fa-utensils"></i> Food</a></li>
                 <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="planner.html"><i class="fas fa-calendar-alt"></i> Plan</a></li>
+                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
@@ -317,124 +325,50 @@
     <script src="js/tour-guide.js"></script>
 
     <script type="module">
-        // Import required modules
         import { GroqService } from './js/services/GroqService.js';
-        import { BaseAgent } from './js/agents/BaseAgent.js';
-        import { PlaceAgent } from './js/agents/PlaceAgent.js';
         import { ChatAssistant } from './js/chat-assistant.js';
 
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Initialize GroqService with API key
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                // Create and initialize GroqService
-                window.groqService = new GroqService();
+                // Initialize GroqService
+                const groqService = new GroqService();
+                await groqService.initialize();
                 
-                // Set Groq API key directly
-                const groqApiKey = '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';
-                if (groqApiKey) {
-                    window.groqService.setApiKey(groqApiKey);
-                    console.log('Groq API key loaded successfully');
-                } else {
-                    throw new Error('GROQ_API_KEY not found');
-                }
-
-                // Initialize place agent
-                window.placeAgent = new PlaceAgent();
-                await window.placeAgent.initialize();
-                console.log('Place agent initialized successfully');
-
-                // Initialize chat assistant
-                window.chatAssistant = new ChatAssistant();
-                console.log('Chat assistant initialized successfully');
-
-                // Initialize map
-                const map = L.map('map').setView([51.2093, 3.2247], 14);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap contributors'
-                }).addTo(map);
-
-                // Initialize chat interface
-                const chatToggle = document.getElementById('chatToggle');
-                const chatContainer = document.getElementById('chatContainer');
-                const closeChat = document.getElementById('closeChat');
-                const chatInput = document.getElementById('chatInput');
-                const sendMessage = document.getElementById('sendMessage');
-                const chatMessages = document.getElementById('chatMessages');
-                const typingIndicator = document.getElementById('typingIndicator');
-
+                // Initialize ChatAssistant
+                const chatAssistant = new ChatAssistant();
+                await chatAssistant.initialize();
+                
+                // Set up chat UI event listeners
+                const chatToggle = document.querySelector('.chat-toggle');
+                const chatContainer = document.querySelector('.chat-container');
+                const chatInput = document.querySelector('.chat-input input');
+                const sendButton = document.querySelector('.chat-input button');
+                
                 chatToggle.addEventListener('click', () => {
                     chatContainer.classList.toggle('active');
                 });
-
-                closeChat.addEventListener('click', () => {
-                    chatContainer.classList.remove('active');
-                });
-
-                sendMessage.addEventListener('click', async () => {
+                
+                const sendMessage = async () => {
                     const message = chatInput.value.trim();
                     if (message) {
-                        // Add user message
-                        const userMessage = document.createElement('div');
-                        userMessage.className = 'message user-message';
-                        userMessage.textContent = message;
-                        chatMessages.appendChild(userMessage);
-
-                        // Clear input
+                        await chatAssistant.sendMessage(message);
                         chatInput.value = '';
-
-                        // Show typing indicator
-                        typingIndicator.classList.add('active');
-
-                        try {
-                            // Get response from chat assistant
-                            const response = await window.chatAssistant.getResponse(message);
-                            
-                            // Hide typing indicator
-                            typingIndicator.classList.remove('active');
-
-                            // Add bot message
-                            const botMessage = document.createElement('div');
-                            botMessage.className = 'message bot-message';
-                            botMessage.textContent = response;
-                            chatMessages.appendChild(botMessage);
-
-                            // Scroll to bottom
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
-                        } catch (error) {
-                            console.error('Error getting chat response:', error);
-                            typingIndicator.classList.remove('active');
-                            
-                            // Add error message
-                            const errorMessage = document.createElement('div');
-                            errorMessage.className = 'message bot-message';
-                            errorMessage.textContent = 'Sorry, I encountered an error. Please try again.';
-                            chatMessages.appendChild(errorMessage);
-                        }
                     }
-                });
-
-                // Handle Enter key in chat input
+                };
+                
+                sendButton.addEventListener('click', sendMessage);
                 chatInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
-                        sendMessage.click();
+                        sendMessage();
                     }
                 });
-
-                console.log('Tour guide initialized successfully');
             } catch (error) {
-                console.error('Error during initialization:', error);
+                console.error('Failed to initialize chat:', error);
                 // Show error message to user
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message';
-                errorDiv.textContent = 'Failed to initialize tour guide. Please check the console for details.';
-                document.body.appendChild(errorDiv);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'error-message';
+                errorMessage.textContent = 'Failed to initialize chat. Please try refreshing the page.';
+                document.body.appendChild(errorMessage);
             }
         });
     </script>

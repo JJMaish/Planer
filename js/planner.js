@@ -503,6 +503,8 @@ class TripPlanner {
             dietary: [],
             preferences: []
         };
+        this.map = null;
+        this.markers = [];
         this.initializeEventListeners();
         this.initializeWeatherWidget();
         this.initializeMap();
@@ -699,7 +701,34 @@ class TripPlanner {
     }
 
     updateMap(itinerary) {
-        // Implement map update logic
+        if (!this.map) return;
+
+        // Clear existing markers
+        this.markers.forEach(marker => this.map.removeLayer(marker));
+        this.markers = [];
+
+        // Add markers for each activity
+        itinerary.days.forEach(day => {
+            day.activities.forEach(activity => {
+                if (activity.coordinates) {
+                    const marker = L.marker(activity.coordinates)
+                        .bindPopup(`
+                            <h3>${activity.name}</h3>
+                            <p>${activity.time}</p>
+                            ${activity.description ? `<p>${activity.description}</p>` : ''}
+                            ${activity.duration ? `<p>Duration: ${activity.duration}</p>` : ''}
+                        `);
+                    marker.addTo(this.map);
+                    this.markers.push(marker);
+                }
+            });
+        });
+
+        // Fit map bounds to show all markers
+        if (this.markers.length > 0) {
+            const group = new L.featureGroup(this.markers);
+            this.map.fitBounds(group.getBounds().pad(0.1));
+        }
     }
 
     updateWeatherSummary() {
@@ -801,6 +830,49 @@ class TripPlanner {
     hideTypingIndicator() {
         const typingIndicator = document.querySelector('.typing');
         if (typingIndicator) typingIndicator.remove();
+    }
+
+    initializeMap() {
+        const mapContainer = document.getElementById('bruges-map');
+        if (!mapContainer) return;
+
+        // Initialize map centered on Bruges
+        this.map = L.map(mapContainer, {
+            zoomControl: true,
+            attributionControl: true
+        }).setView([51.2093, 3.2247], 14);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(this.map);
+
+        // Ensure map is properly sized
+        this.map.invalidateSize();
+
+        // Add map controls
+        this.addMapControls();
+    }
+
+    addMapControls() {
+        // Add zoom control
+        L.control.zoom({
+            position: 'topright'
+        }).addTo(this.map);
+
+        // Add custom controls
+        const controlContainer = L.DomUtil.create('div', 'map-controls');
+        
+        // Center map button
+        const centerButton = L.DomUtil.create('button', 'control-btn', controlContainer);
+        centerButton.innerHTML = '<i class="fas fa-crosshairs"></i>';
+        centerButton.title = 'Center Map';
+        centerButton.onclick = () => this.map.setView([51.2093, 3.2247], 14);
+
+        // Add control container to map
+        L.control({
+            position: 'topleft'
+        }).setContent(controlContainer).addTo(this.map);
     }
 }
 

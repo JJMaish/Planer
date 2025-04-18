@@ -19,7 +19,7 @@ function initializeSelectionHandlers() {
         }
 
         // Handle all selection checkboxes
-        document.querySelectorAll('.place-selector, .restaurant-selector, .photo-selector, .tour-selector, .event-selector')
+        document.querySelectorAll('.place-selector, .restaurant-selector, .tour-selector, .event-selector')
             .forEach(checkbox => {
                 const id = checkbox.dataset.id;
                 const type = checkbox.dataset.type;
@@ -68,17 +68,24 @@ function updateSelectionUI(checkbox) {
             }
         }
 
-        // Update label styling
-        const label = checkbox.nextElementSibling;
-        if (label && label.classList.contains('selection-label')) {
-            if (checkbox.checked) {
-                label.style.background = 'var(--primary-color)';
-                label.querySelector('i')?.style.setProperty('opacity', '1');
-                label.querySelector('i')?.style.setProperty('color', 'white');
-            } else {
-                label.style.background = 'rgba(255, 255, 255, 0.9)';
-                label.querySelector('i')?.style.setProperty('opacity', '0');
-            }
+        // Update checkbox styling
+        checkbox.style.width = '24px';
+        checkbox.style.height = '24px';
+        checkbox.style.borderRadius = '50%';
+        checkbox.style.border = '2px solid var(--primary-color)';
+        checkbox.style.transition = 'var(--transition)';
+        
+        if (checkbox.checked) {
+            checkbox.style.backgroundColor = 'var(--primary-color)';
+            checkbox.style.borderColor = 'var(--primary-color)';
+            checkbox.style.backgroundImage = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'white\'%3E%3Cpath d=\'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z\'/%3E%3C/svg%3E")';
+            checkbox.style.backgroundSize = '16px';
+            checkbox.style.backgroundPosition = 'center';
+            checkbox.style.backgroundRepeat = 'no-repeat';
+        } else {
+            checkbox.style.backgroundColor = 'var(--card-bg)';
+            checkbox.style.borderColor = 'var(--primary-color)';
+            checkbox.style.backgroundImage = 'none';
         }
     } catch (error) {
         console.error('Error updating selection UI:', error);

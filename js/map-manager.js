@@ -1,4 +1,4 @@
-class MapManager {
+export class MapManager {
     constructor() {
         this.map = null;
         this.markers = [];
@@ -45,7 +45,4 @@ class MapManager {
             this.map.setView([lat, lng], zoom);
         }
     }
-}
-
-// Export the MapManager class
-export { MapManager }; 
+} 

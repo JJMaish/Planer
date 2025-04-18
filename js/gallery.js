@@ -204,16 +204,6 @@ class GalleryManager {
             item.setAttribute('data-aos', 'fade-up');
             
             item.innerHTML = `
-                <div class="selection-control">
-                    <input type="checkbox" 
-                           class="photo-selector" 
-                           data-id="${image.id}" 
-                           data-type="photos"
-                           id="photo-${image.id}">
-                    <label for="photo-${image.id}" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <img src="${image.src}" alt="${image.title}" loading="lazy">
                 <div class="gallery-item-info">
                     <h3>${image.title}</h3>
@@ -222,10 +212,8 @@ class GalleryManager {
             `;
 
             // Add click event for lightbox
-            item.addEventListener('click', (e) => {
-                if (!e.target.closest('.selection-control')) {
-                    this.openLightbox(index);
-                }
+            item.addEventListener('click', () => {
+                this.openLightbox(index);
             });
 
             return item;
