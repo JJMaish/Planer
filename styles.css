@@ -1639,7 +1639,7 @@ footer {
 }
 
 .selection-control input[type="checkbox"]:checked + .selection-label {
-    background: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 .selection-control input[type="checkbox"]:checked + .selection-label i {
@@ -2447,47 +2447,118 @@ input[type="checkbox"]:focus + span {
 }
 
 .wishlist-nav {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    position: relative;
+    margin-left: 1rem;
 }
 
 .wishlist-nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
 }
 
 .wishlist-nav a:hover {
-    color: var(--primary-color);
-    background: rgba(0, 0, 0, 0.05);
+    background-color: var(--link-hover-color);
+    transform: translateY(-2px);
 }
 
 .wishlist-count {
-    background: var(--primary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    background-color: var(--accent-color);
     color: white;
-    padding: 0.2rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    padding: 0 0.25rem;
 }
 
+/* Selection Controls */
+.selection-control {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.selection-control input[type="checkbox"] {
+    display: none;
+}
+
+.selection-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.selection-label i {
+    color: var(--primary-color);
+    font-size: 1rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.selection-control input[type="checkbox"]:checked + .selection-label {
+    background-color: var(--primary-color);
+}
+
+.selection-control input[type="checkbox"]:checked + .selection-label i {
+    color: white;
+    opacity: 1;
+}
+
+/* Selected State */
+.restaurant-card.selected {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
     .wishlist-nav {
-        position: static;
-        transform: none;
-        margin-top: 1rem;
-        justify-content: center;
+        margin-left: 0.5rem;
     }
+
+    .wishlist-nav a {
+        padding: 0.5rem;
+    }
+
+    .selection-label {
+        width: 28px;
+        height: 28px;
+    }
+
+    .selection-label i {
+        font-size: 0.875rem;
+    }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .selection-label {
+    background-color: var(--dark-bg);
+}
+
+[data-theme="dark"] .restaurant-card.selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Common Transitions */

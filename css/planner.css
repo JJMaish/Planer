@@ -1,0 +1,259 @@
+/* Planner Page Styles */
+.planner-main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.planner-hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.planner-hero h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.planner-hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.planner-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.planner-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.map-container {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.map-container h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.planner-preferences {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.preference-section {
+    margin-bottom: 2rem;
+}
+
+.preference-section h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.interest-options,
+.budget-options,
+.tours-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.interest-option,
+.budget-option,
+.tour-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--light-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.interest-option:hover,
+.budget-option:hover,
+.tour-option:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.interest-option input,
+.budget-option input,
+.tour-option input {
+    margin-right: 0.5rem;
+}
+
+.selections-overview {
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.selection-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.selection-category {
+    background: var(--light-bg);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.selection-category h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.selection-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.selection-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 5px;
+}
+
+.itinerary-builder {
+    grid-column: 1 / -1;
+    background: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.itinerary-builder h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.itinerary-days {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.save-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-btn:hover {
+    background: var(--link-hover-color);
+    transform: translateY(-2px);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .planner-main {
+        padding: 1rem;
+    }
+
+    .planner-hero h1 {
+        font-size: 2rem;
+    }
+
+    .planner-hero p {
+        font-size: 1rem;
+    }
+
+    .planner-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .planner-tools {
+        gap: 1.5rem;
+    }
+
+    .map-container,
+    .planner-preferences,
+    .selections-overview,
+    .itinerary-builder {
+        padding: 1rem;
+    }
+
+    .interest-options,
+    .budget-options,
+    .tours-options {
+        grid-template-columns: 1fr;
+    }
+
+    .selection-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .itinerary-days {
+        grid-template-columns: 1fr;
+    }
+
+    .save-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Adjust form elements for mobile */
+    .user-interests-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px;
+    }
+
+    .analyze-btn,
+    .clear-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .input-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .planner-tools,
+[data-theme="dark"] .selections-overview,
+[data-theme="dark"] .itinerary-builder {
+    background: var(--dark-bg);
+}
+
+[data-theme="dark"] .interest-option,
+[data-theme="dark"] .budget-option,
+[data-theme="dark"] .tour-option,
+[data-theme="dark"] .selection-category {
+    background: var(--card-background);
+}
+
+[data-theme="dark"] .selection-item {
+    background: var(--dark-bg);
+} 

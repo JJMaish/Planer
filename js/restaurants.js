@@ -62,65 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Selection handling
-    const restaurantSelectors = document.querySelectorAll('.restaurant-selector');
-    
-    if (restaurantSelectors.length > 0) {
-        restaurantSelectors.forEach(selector => {
-            selector.addEventListener('change', function() {
-                const restaurantId = this.getAttribute('data-id');
-                const restaurantType = this.getAttribute('data-type');
-                const isSelected = this.checked;
-                
-                // Update selection in the selection manager
-                if (window.selectionManager) {
-                    if (isSelected) {
-                        window.selectionManager.addSelection(restaurantType, restaurantId);
-                    } else {
-                        window.selectionManager.removeSelection(restaurantType, restaurantId);
-                    }
-
-                    // Dispatch event to notify wish list
-                    const event = new CustomEvent('restaurantSelected', {
-                        detail: {
-                            id: restaurantId,
-                            selected: isSelected
-                        }
-                    });
-                    document.dispatchEvent(event);
-                }
-                
-                // Update UI feedback
-                const label = this.nextElementSibling;
-                if (isSelected) {
-                    label.style.background = 'var(--primary-color)';
-                    label.querySelector('i').style.opacity = '1';
-                    label.querySelector('i').style.color = 'white';
-                } else {
-                    label.style.background = 'rgba(255, 255, 255, 0.9)';
-                    label.querySelector('i').style.opacity = '0';
-                }
-            });
-        });
-    }
-
-    // Initialize selections from storage
-    if (window.selectionManager) {
-        const selections = window.selectionManager.getSelections();
-        const restaurantSelections = selections.restaurants || [];
-        
-        restaurantSelections.forEach(restaurantId => {
-            const selector = document.querySelector(`.restaurant-selector[data-id="${restaurantId}"]`);
-            if (selector) {
-                selector.checked = true;
-                const label = selector.nextElementSibling;
-                label.style.background = 'var(--primary-color)';
-                label.querySelector('i').style.opacity = '1';
-                label.querySelector('i').style.color = 'white';
-            }
-        });
-    }
-
     // Initialize AOS (Animate On Scroll) if available
     if (typeof AOS !== 'undefined') {
         AOS.init({

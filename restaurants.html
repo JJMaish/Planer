@@ -16,9 +16,9 @@
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
                 <div class="wishlist-nav">
-                    <a href="wish-list.html">
+                    <a href="wishlist.html">
                         <i class="fas fa-heart"></i>
-                        Wish List
+                        Wishlist
                         <span class="wishlist-count">0</span>
                     </a>
                 </div>
@@ -55,7 +55,13 @@
 
         <section class="restaurants-container grid-view">
             <!-- De Republiek -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-1">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-1" class="restaurant-selector" data-id="restaurant-1" data-type="restaurants">
+                    <label for="restaurant-1" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="bannerSlides/banner10.jpg" alt="De Republiek">
                 </div>
@@ -79,42 +85,59 @@
                         <a href="https://www.google.com/maps/dir/?api=1&destination=De+Republiek+Bruges" class="directions-btn">
                             <i class="fas fa-directions"></i> Get Directions
                         </a>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i> Save
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Franco Belge -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-2">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-2" class="restaurant-selector" data-id="restaurant-2" data-type="restaurants">
+                    <label for="restaurant-2" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
-                    <img src="bannerSlides/banner10.jpg" alt="Franco Belge">
+                    <img src="Data/Restaurants/0004.jpg" alt="Blackbird">
                 </div>
                 <div class="restaurant-content">
                     <div class="restaurant-header">
-                        <h2>Franco Belge</h2>
+                        <h2>Blackbird</h2>
                         <div class="rating">
                             <i class="fas fa-star"></i>
-                            <span>4.7</span>
+                            <span>4.4</span>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Flemish, French</p>
+                    <p class="type"><i class="fas fa-utensils"></i> International</p>
                     <div class="description">
-                        <p>Innovative Belgian-French cuisine in a vibrant neighborhood setting</p>
+                        <p>Industrial-chic spot known for creative brunch dishes and specialty coffee</p>
                     </div>
                     <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
-                        <p class="attributes"><i class="fas fa-star"></i> Award-winning chef</p>
+                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
+                        <p class="attributes"><i class="fas fa-leaf"></i> Vegan options available</p>
                     </div>
                     <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Franco+Belge+Bruges" class="directions-btn">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Blackbird+Bruges" class="directions-btn">
                             <i class="fas fa-directions"></i> Get Directions
                         </a>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i> Save
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Quatre Vins -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-3">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-3" class="restaurant-selector" data-id="restaurant-3" data-type="restaurants">
+                    <label for="restaurant-3" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="bannerSlides/banner10.jpg" alt="Quatre Vins">
                 </div>
@@ -139,41 +162,21 @@
                         <a href="https://www.google.com/maps/dir/?api=1&destination=Quatre+Vins+Bruges" class="directions-btn">
                             <i class="fas fa-directions"></i> Get Directions
                         </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blackbird -->
-            <div class="restaurant-card" data-aos="fade-up">
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0004.jpg" alt="Blackbird">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Blackbird</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> International</p>
-                    <div class="description">
-                        <p>Industrial-chic spot known for creative brunch dishes and specialty coffee</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
-                        <p class="attributes"><i class="fas fa-leaf"></i> Vegan options available</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Blackbird+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
+                        <button class="wishlist-btn">
+                            <i class="far fa-heart"></i> Save
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Le Mystique -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-4">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-4" class="restaurant-selector" data-id="restaurant-4" data-type="restaurants">
+                    <label for="restaurant-4" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/0005.jpg" alt="Le Mystique">
                 </div>
@@ -203,7 +206,13 @@
             </div>
 
             <!-- Cuvee - Bar à vin -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-5">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-5" class="restaurant-selector" data-id="restaurant-5" data-type="restaurants">
+                    <label for="restaurant-5" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/0006.jpg" alt="Cuvee - Bar à vin">
                 </div>
@@ -232,7 +241,13 @@
             </div>
 
             <!-- Brazila -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-6">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-6" class="restaurant-selector" data-id="restaurant-6" data-type="restaurants">
+                    <label for="restaurant-6" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/0007.jpg" alt="Brazila">
                 </div>
@@ -261,7 +276,13 @@
             </div>
 
             <!-- Barazar -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-7">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-7" class="restaurant-selector" data-id="restaurant-7" data-type="restaurants">
+                    <label for="restaurant-7" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/0008.jpg" alt="Barazar">
                 </div>
@@ -290,7 +311,13 @@
             </div>
 
             <!-- Assiette Blanche -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-8">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-8" class="restaurant-selector" data-id="restaurant-8" data-type="restaurants">
+                    <label for="restaurant-8" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/0009.jpg" alt="Assiette Blanche">
                 </div>
@@ -320,7 +347,13 @@
             </div>
 
             <!-- Craenenburg -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-9">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-9" class="restaurant-selector" data-id="restaurant-9" data-type="restaurants">
+                    <label for="restaurant-9" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/craenenburg.jpg" alt="Craenenburg">
                 </div>
@@ -349,7 +382,13 @@
             </div>
 
             <!-- MARO -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-10">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-10" class="restaurant-selector" data-id="restaurant-10" data-type="restaurants">
+                    <label for="restaurant-10" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/maro.jpg" alt="MARO">
                 </div>
@@ -378,7 +417,13 @@
             </div>
 
             <!-- Bie Jimmy -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-11">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-11" class="restaurant-selector" data-id="restaurant-11" data-type="restaurants">
+                    <label for="restaurant-11" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/bie-jimmy.jpg" alt="Bie Jimmy">
                 </div>
@@ -407,7 +452,13 @@
             </div>
 
             <!-- Kaffee Kamiel -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-12">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-12" class="restaurant-selector" data-id="restaurant-12" data-type="restaurants">
+                    <label for="restaurant-12" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/kaffee-kamiel.jpg" alt="Kaffee Kamiel">
                 </div>
@@ -436,7 +487,13 @@
             </div>
 
             <!-- Le Pain Quotidien -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-13">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-13" class="restaurant-selector" data-id="restaurant-13" data-type="restaurants">
+                    <label for="restaurant-13" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/le-pain-quotidien.jpg" alt="Le Pain Quotidien">
                 </div>
@@ -465,7 +522,13 @@
             </div>
 
             <!-- Carpe Diem -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-14">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-14" class="restaurant-selector" data-id="restaurant-14" data-type="restaurants">
+                    <label for="restaurant-14" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/carpe-diem.jpg" alt="Carpe Diem">
                 </div>
@@ -494,7 +557,13 @@
             </div>
 
             <!-- Réliva -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-15">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-15" class="restaurant-selector" data-id="restaurant-15" data-type="restaurants">
+                    <label for="restaurant-15" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/reliva.jpg" alt="Réliva">
                 </div>
@@ -524,7 +593,13 @@
             </div>
 
             <!-- Bruut -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-16">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-16" class="restaurant-selector" data-id="restaurant-16" data-type="restaurants">
+                    <label for="restaurant-16" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/bruut.jpg" alt="Bruut">
                 </div>
@@ -554,7 +629,13 @@
             </div>
 
             <!-- De Gastro -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-17">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-17" class="restaurant-selector" data-id="restaurant-17" data-type="restaurants">
+                    <label for="restaurant-17" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-gastro.jpg" alt="De Gastro">
                 </div>
@@ -584,7 +665,13 @@
             </div>
 
             <!-- Bistro Pro Deo -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-18">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-18" class="restaurant-selector" data-id="restaurant-18" data-type="restaurants">
+                    <label for="restaurant-18" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/bistro-pro-deo.jpg" alt="Bistro Pro Deo">
                 </div>
@@ -613,7 +700,13 @@
             </div>
 
             <!-- De Stove -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-19">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-19" class="restaurant-selector" data-id="restaurant-19" data-type="restaurants">
+                    <label for="restaurant-19" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-stove.jpg" alt="De Stove">
                 </div>
@@ -643,7 +736,13 @@
             </div>
 
             <!-- Den Dyver -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-20">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-20" class="restaurant-selector" data-id="restaurant-20" data-type="restaurants">
+                    <label for="restaurant-20" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/den-dyver.jpg" alt="Den Dyver">
                 </div>
@@ -673,7 +772,13 @@
             </div>
 
             <!-- De Karmeliet -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-21">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-21" class="restaurant-selector" data-id="restaurant-21" data-type="restaurants">
+                    <label for="restaurant-21" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-karmeliet.jpg" alt="De Karmeliet">
                 </div>
@@ -703,7 +808,13 @@
             </div>
 
             <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-22">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-22" class="restaurant-selector" data-id="restaurant-22" data-type="restaurants">
+                    <label for="restaurant-22" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-visscherie.jpg" alt="De Visscherie">
                 </div>
@@ -733,7 +844,13 @@
             </div>
 
             <!-- De Belegde Boterham -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-23">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-23" class="restaurant-selector" data-id="restaurant-23" data-type="restaurants">
+                    <label for="restaurant-23" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-belegde-boterham.jpg" alt="De Belegde Boterham">
                 </div>
@@ -762,7 +879,13 @@
             </div>
 
             <!-- De Bottelier -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-24">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-24" class="restaurant-selector" data-id="restaurant-24" data-type="restaurants">
+                    <label for="restaurant-24" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-bottelier.jpg" alt="De Bottelier">
                 </div>
@@ -791,7 +914,13 @@
             </div>
 
             <!-- De Bron -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-25">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-25" class="restaurant-selector" data-id="restaurant-25" data-type="restaurants">
+                    <label for="restaurant-25" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-bron.jpg" alt="De Bron">
                 </div>
@@ -820,7 +949,13 @@
             </div>
 
             <!-- De Gouden Harynck -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-26">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-26" class="restaurant-selector" data-id="restaurant-26" data-type="restaurants">
+                    <label for="restaurant-26" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-gouden-harynck.jpg" alt="De Gouden Harynck">
                 </div>
@@ -850,7 +985,13 @@
             </div>
 
             <!-- De Vlaamsche Pot -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-27">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-27" class="restaurant-selector" data-id="restaurant-27" data-type="restaurants">
+                    <label for="restaurant-27" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-vlaamsche-pot.jpg" alt="De Vlaamsche Pot">
                 </div>
@@ -879,7 +1020,13 @@
             </div>
 
             <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-28">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-28" class="restaurant-selector" data-id="restaurant-28" data-type="restaurants">
+                    <label for="restaurant-28" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-visscherie-2.jpg" alt="De Visscherie">
                 </div>
@@ -909,7 +1056,13 @@
             </div>
 
             <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up">
+            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-29">
+                <div class="selection-control">
+                    <input type="checkbox" id="restaurant-29" class="restaurant-selector" data-id="restaurant-29" data-type="restaurants">
+                    <label for="restaurant-29" class="selection-label">
+                        <i class="fas fa-check"></i>
+                    </label>
+                </div>
                 <div class="restaurant-image">
                     <img src="Data/Restaurants/de-visscherie-3.jpg" alt="De Visscherie">
                 </div>
