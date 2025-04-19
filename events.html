@@ -16,13 +16,6 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
-                <div class="wishlist-nav">
-                    <a href="wishlist.html">
-                        <i class="fas fa-heart"></i>
-                        Wish List
-                        <span class="wishlist-count">0</span>
-                    </a>
-                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -45,24 +38,30 @@
             <p>Discover exciting festivals, concerts, and cultural events in the heart of Bruges</p>
         </section>
 
-        <div class="view-controls">
-            <button class="view-toggle active" data-view="grid">
-                <i class="fas fa-th"></i> Grid View
-            </button>
-            <button class="view-toggle" data-view="list">
-                <i class="fas fa-list"></i> List View
-            </button>
+        <div class="gallery-filters">
+            <div class="view-controls">
+                <div class="filter-container">
+                    <select class="filter-dropdown">
+                        <option value="all">All Events</option>
+                        <option value="festival">Festivals</option>
+                        <option value="market">Markets</option>
+                        <option value="music">Music</option>
+                        <option value="food">Food</option>
+                        <option value="sports">Sports</option>
+                    </select>
+                </div>
+                <button class="view-toggle active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid View
+                </button>
+                <button class="view-toggle" data-view="list">
+                    <i class="fas fa-list"></i> List View
+                </button>
+            </div>
         </div>
 
         <section class="events-container grid-view">
             <!-- Bruges Beer Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-1">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-1" class="event-selector" data-id="event-1" data-type="event">
-                    <label for="event-1" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0001.jpg" alt="Beer Festival">
                 </div>
@@ -96,12 +95,6 @@
 
             <!-- Bruges Light Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-2">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-2" class="event-selector" data-id="event-2" data-type="event">
-                    <label for="event-2" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0002.jpg" alt="Light Festival">
                 </div>
@@ -135,12 +128,6 @@
 
             <!-- Procession of the Holy Blood -->
             <div class="event-card" data-aos="fade-up" data-id="event-3">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-3" class="event-selector" data-id="event-3" data-type="event">
-                    <label for="event-3" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0003.jpg" alt="Holy Blood Procession">
                 </div>
@@ -174,12 +161,6 @@
 
             <!-- Bruges Christmas Market -->
             <div class="event-card" data-aos="fade-up" data-id="event-4">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-4" class="event-selector" data-id="event-4" data-type="event">
-                    <label for="event-4" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0004.jpg" alt="Christmas Market">
                 </div>
@@ -213,12 +194,6 @@
 
             <!-- Bruges Triennial -->
             <div class="event-card" data-aos="fade-up" data-id="event-5">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-5" class="event-selector" data-id="event-5" data-type="event">
-                    <label for="event-5" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0005.jpg" alt="Triennial">
                 </div>
@@ -252,12 +227,6 @@
 
             <!-- Cactus Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-6">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-6" class="event-selector" data-id="event-6" data-type="event">
-                    <label for="event-6" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0006.jpg" alt="Cactus Festival">
                 </div>
@@ -291,12 +260,6 @@
 
             <!-- Bruges Chocolate Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-7">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-7" class="event-selector" data-id="event-7" data-type="event">
-                    <label for="event-7" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0007.jpg" alt="Chocolate Festival">
                 </div>
@@ -330,12 +293,6 @@
 
             <!-- Bruges Film Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-8">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-8" class="event-selector" data-id="event-8" data-type="event">
-                    <label for="event-8" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0008.jpg" alt="Film Festival">
                 </div>
@@ -369,12 +326,6 @@
 
             <!-- Bruges Marathon -->
             <div class="event-card" data-aos="fade-up" data-id="event-9">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-9" class="event-selector" data-id="event-9" data-type="event">
-                    <label for="event-9" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0009.jpg" alt="Marathon">
                 </div>
@@ -408,12 +359,6 @@
 
             <!-- Bruges Jazz Festival -->
             <div class="event-card" data-aos="fade-up" data-id="event-10">
-                <div class="selection-control">
-                    <input type="checkbox" id="event-10" class="event-selector" data-id="event-10" data-type="event">
-                    <label for="event-10" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
                 <div class="event-image">
                     <img src="Data/Events/0010.jpg" alt="Jazz Festival">
                 </div>
@@ -478,6 +423,5 @@
 
     <script src="js/mobile-menu.js"></script>
     <script src="js/events-view.js" defer></script>
-    <script src="js/selection-manager.js"></script>
 </body>
 </html> 
