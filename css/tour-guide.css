@@ -359,3 +359,183 @@
     right: 10px;
     z-index: 1;
 } 
+/* Add this to your tour-guide.css file */
+
+@media (max-width: 768px) {
+    /* Main container adjustments */
+    .tour-guide-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        margin-top: 60px; /* Reduced for mobile */
+    }
+
+    /* Map section */
+    .map-section {
+        height: 50vh;
+        position: relative;
+        order: 2; /* Map comes after sidebar on mobile */
+    }
+
+    /* Sidebar adjustments */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 40vh;
+        order: 1; /* Sidebar comes first on mobile */
+        border-left: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* Filter buttons - horizontal scroll */
+    .filter-buttons {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Places list */
+    .places-list {
+        gap: 10px;
+    }
+
+    /* Place card compact style */
+    .place-card {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .place-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .place-details h3 {
+        font-size: 1rem;
+    }
+
+    .place-meta {
+        font-size: 0.8rem;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* Map controls - larger for touch */
+    .map-controls {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .control-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* Chat interface adjustments */
+    .chat-container {
+        width: 100%;
+        max-height: 70vh;
+        bottom: 0;
+        right: 0;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .chat-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    /* Place details view */
+    .place-details {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        z-index: 100;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 15px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-section {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    /* Header adjustments */
+    .main-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        padding: 10px 15px;
+    }
+
+    /* Audio guide tooltip */
+    .audio-guide-tooltip {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+}
+
+/* Additional improvements for very small screens */
+@media (max-width: 480px) {
+    .sidebar-header {
+        padding: 15px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .places-container {
+        padding: 15px;
+    }
+
+    /* Chat input */
+    .chat-input {
+        padding: 10px;
+    }
+
+    .chat-input input {
+        padding: 8px 12px;
+    }
+
+    /* Message bubbles */
+    .message {
+        max-width: 90%;
+        padding: 8px 12px;
+    }
+}
+
+/* Improved touch targets */
+button, .place-card, .filter-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent zoom on input focus */
+@media screen and (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px;
+    }
+}

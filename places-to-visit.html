@@ -15,13 +15,6 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
-                <div class="wishlist-nav">
-                    <a href="wishlist.html">
-                        <i class="fas fa-heart"></i>
-                        Wish List
-                        <span class="wishlist-count">0</span>
-                    </a>
-                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -33,534 +26,592 @@
                 <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
                 <li><a href="events.html"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                <li><a href="BrugesTourMaster/client/Masterplan.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="places-hero">
-            <h1>Must-Visit Places in Bruges</h1>
-            <p>Discover the medieval charm and hidden gems of Bruges</p>
-        </section>
 
-        <div class="view-controls">
-            <button class="view-toggle active" data-view="grid">
-                <i class="fas fa-th"></i> Grid View
-            </button>
-            <button class="view-toggle" data-view="list">
-                <i class="fas fa-list"></i> List View
-            </button>
-        </div>
-
-        <section class="places-container grid-view">
-            <!-- Belfort -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/belfort.jpg" alt="Belfort">
+        <main class="places-main">
+            <section class="page-hero">
+                <div class="hero-content">
+                    <h1>Must-Visit Places in Bruges</h1>
+                    <p>Discover the beauty of Bruges through our curated collection</p>
                 </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Belfort</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-landmark"></i> Historical Landmark</p>
-                    <div class="description">
-                        <p>The Belfry of Bruges is a medieval bell tower in the city center. The 83-meter-high tower offers panoramic views of the city and houses a treasure chamber and a carillon with 47 melodious bells. This UNESCO World Heritage site dates back to the 13th century.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Belfort+Bruges+Belgium" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.visitbruges.be/en/belfort-belfry" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
+            </section>
+            <div class="view-controls">
+                <div class="filter-container">
+                    <select id="place-filter" class="filter-select">
+                        <option value="all">All Places</option>
+                        <option value="landmark">Landmarks</option>
+                        <option value="church">Churches</option>
+                        <option value="museum">Museums</option>
+                        <option value="park">Parks</option>
+                        <option value="shopping">Shopping</option>
+                    </select>
+                </div>
+                <div class="view-buttons">
+                    <button id="grid-view-btn" class="view-btn active">
+                        <i class="fas fa-th-large"></i> Grid
+                    </button>
+                    <button id="list-view-btn" class="view-btn">
+                        <i class="fas fa-list"></i> List
+                    </button>
                 </div>
             </div>
 
-            <!-- De Burg -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="bannerSlides/banner10.jpg" alt="De Burg">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>De Burg</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+            <div class="container-wrapper">
+                <section class="places-container grid-view">
+                    <div id="no-results" class="no-results" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>No places found</h3>
+                        <p>No places match your current filter. Please try a different category.</p>
+                    </div>
+                    
+                    <!-- Belfort -->
+                    <div class="place-card" data-id="place-1" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/belfort.jpg" alt="Belfort">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-1" class="place-selector" data-id="place-1" data-type="place">
+                                <label for="place-1" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Belfort</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-landmark"></i> Historical Landmark</p>
+                            <div class="description">
+                                <p>The Belfry of Bruges is a medieval bell tower in the city center. The 83-meter-high tower offers panoramic views of the city and houses a treasure chamber and a carillon with 47 melodious bells. This UNESCO World Heritage site dates back to the 13th century.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Belfort+Bruges+Belgium" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.visitbruges.be/en/belfort-belfry" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-landmark"></i> Historical landmark</p>
-                    <div class="description">
-                        <p>The Burg Square is one of Bruges' most important historical sites, featuring stunning Gothic and Renaissance architecture. Home to the City Hall and the Basilica of the Holy Blood, this square has been the center of religious and political power for over 1,000 years.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Burg+Square+Bruges+Belgium" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.visitbruges.be/hoogtepunten/burg" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Market Square -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="bannerSlides/banner10.jpg" alt="Market Square">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Market Square</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
+                    <!-- De Burg -->
+                    <div class="place-card" data-id="place-2" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="bannerSlides/banner10.jpg" alt="De Burg">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-2" class="place-selector" data-id="place-2" data-type="place">
+                                <label for="place-2" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>De Burg</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-landmark"></i> Historical landmark</p>
+                            <div class="description">
+                                <p>The Burg Square is one of Bruges' most important historical sites, featuring stunning Gothic and Renaissance architecture. Home to the City Hall and the Basilica of the Holy Blood, this square has been the center of religious and political power for over 1,000 years.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Burg+Square+Bruges+Belgium" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.visitbruges.be/hoogtepunten/burg" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-landmark"></i> Historical Site</p>
-                    <div class="description">
-                        <p>The Markt of Bruges is the historic city center and main square, surrounded by colorful guild houses and the iconic Provincial Court. This vibrant plaza has been the scene of markets, festivals, and tournaments since the Middle Ages and remains the heart of the city.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Market+Square+Bruges+Belgium" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Basilica of the Holy Blood -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="bannerSlides/banner10.jpg" alt="Basilica of the Holy Blood">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Basilica of the Holy Blood</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+                    <!-- Market Square -->
+                    <div class="place-card" data-id="place-3" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="bannerSlides/banner10.jpg" alt="Market Square">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-3" class="place-selector" data-id="place-3" data-type="place">
+                                <label for="place-3" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Market Square</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-landmark"></i> Historical Site</p>
+                            <div class="description">
+                                <p>The Markt of Bruges is the historic city center and main square, surrounded by colorful guild houses and the iconic Provincial Court. This vibrant plaza has been the scene of markets, festivals, and tournaments since the Middle Ages and remains the heart of the city.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Market+Square+Bruges+Belgium" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-church"></i> Church</p>
-                    <div class="description">
-                        <p>This 12th-century basilica houses a venerated relic - a vial said to contain the blood of Christ. The church features both Romanesque and Gothic architecture, with a stunning interior that includes ornate gold decorations and beautiful stained glass windows.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 16:30</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Basilica+of+the+Holy+Blood+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Historium Bruges -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/historium.jpg" alt="Historium Bruges">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Historium Bruges</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
+                    <!-- Basilica of the Holy Blood -->
+                    <div class="place-card" data-id="place-4" data-category="church" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="bannerSlides/banner10.jpg" alt="Basilica of the Holy Blood">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-4" class="place-selector" data-id="place-4" data-type="place">
+                                <label for="place-4" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Basilica of the Holy Blood</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-church"></i> Church</p>
+                            <div class="description">
+                                <p>This 12th-century basilica houses a venerated relic - a vial said to contain the blood of Christ. The church features both Romanesque and Gothic architecture, with a stunning interior that includes ornate gold decorations and beautiful stained glass windows.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 16:30</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Basilica+of+the+Holy+Blood+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-monument"></i> Tourist attraction</p>
-                    <div class="description">
-                        <p>Step back in time to medieval Bruges through interactive experiences and virtual reality. The Historium offers a unique journey through the Golden Age of Bruges, complete with sights, sounds, and smells of the 15th century.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Historium+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.historium.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Groeninge Museum -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/groeninge.jpg" alt="Groeninge Museum">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Groeninge Museum</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
+                    <!-- Historium Bruges -->
+                    <div class="place-card" data-id="place-5" data-category="museum" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/historium.jpg" alt="Historium Bruges">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-5" class="place-selector" data-id="place-5" data-type="place">
+                                <label for="place-5" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Historium Bruges</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.3</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-monument"></i> Tourist attraction</p>
+                            <div class="description">
+                                <p>Step back in time to medieval Bruges through interactive experiences and virtual reality. The Historium offers a unique journey through the Golden Age of Bruges, complete with sights, sounds, and smells of the 15th century.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Historium+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.historium.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-palette"></i> Art museum</p>
-                    <div class="description">
-                        <p>Known as 'The city museum of Fine Arts', the Groeninge Museum offers a rich array of Belgian visual art, with a unique collection of Flemish Primitive art, Renaissance and Baroque masters, and modern Belgian art pieces.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Groeninge+Museum+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.museabrugge.be/groeningemuseum" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Church of Our Lady -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/church-of-our-lady.jpg" alt="Church of Our Lady">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Church of Our Lady</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+                    <!-- Groeninge Museum -->
+                    <div class="place-card" data-id="place-6" data-category="museum" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/groeninge.jpg" alt="Groeninge Museum">
+                            <div class="selection-control">
+                                <input type="checkbox" id="place-6" class="place-selector" data-id="place-6" data-type="place">
+                                <label for="place-6" class="selection-label">
+                                    <i class="fas fa-check"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Groeninge Museum</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.5</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-palette"></i> Art museum</p>
+                            <div class="description">
+                                <p>Known as 'The city museum of Fine Arts', the Groeninge Museum offers a rich array of Belgian visual art, with a unique collection of Flemish Primitive art, Renaissance and Baroque masters, and modern Belgian art pieces.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Groeninge+Museum+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.museabrugge.be/groeningemuseum" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-church"></i> Catholic church</p>
-                    <div class="description">
-                        <p>Home to Michelangelo's Madonna and Child, this 115.5-meter brick church is one of the world's highest. Built between the 13th and 15th centuries, it houses numerous paintings, carved wooden choir stalls, and the tombs of Mary of Burgundy and Charles the Bold.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Church+of+Our+Lady+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://www.museabrugge.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Rosary Quay -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/rosary-quay.jpg" alt="Rosary Quay">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Rosary Quay</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
+                    <!-- Church of Our Lady -->
+                    <div class="place-card" data-id="place-7" data-category="church" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/church-of-our-lady.jpg" alt="Church of Our Lady">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Church of Our Lady</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-church"></i> Catholic church</p>
+                            <div class="description">
+                                <p>Home to Michelangelo's Madonna and Child, this 115.5-meter brick church is one of the world's highest. Built between the 13th and 15th centuries, it houses numerous paintings, carved wooden choir stalls, and the tombs of Mary of Burgundy and Charles the Bold.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Church+of+Our+Lady+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://www.museabrugge.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-camera"></i> Tourist attraction</p>
-                    <div class="description">
-                        <p>The most photographed spot in Bruges, Rozenhoedkaai offers a stunning view where the Dijver and Groenerei canals meet. This picturesque location has been capturing hearts since the Middle Ages, offering the perfect blend of historic architecture and peaceful waterways.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Rozenhoedkaai+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.visitbruges.be/en/rozenhoedkaai" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Choco-Story -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/choco-story.jpg" alt="Choco-Story">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Choco-Story</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.1</span>
+                    <!-- Rosary Quay -->
+                    <div class="place-card" data-id="place-8" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/rosary-quay.jpg" alt="Rosary Quay">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Rosary Quay</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-camera"></i> Tourist attraction</p>
+                            <div class="description">
+                                <p>The most photographed spot in Bruges, Rozenhoedkaai offers a stunning view where the Dijver and Groenerei canals meet. This picturesque location has been capturing hearts since the Middle Ages, offering the perfect blend of historic architecture and peaceful waterways.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Rozenhoedkaai+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.visitbruges.be/en/rozenhoedkaai" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-cookie"></i> Museum</p>
-                    <div class="description">
-                        <p>Discover the history of chocolate making in this unique museum. Watch live demonstrations, learn about cocoa cultivation, and taste delicious Belgian chocolate. The museum showcases the transformation of cocoa into chocolate through interactive exhibits and demonstrations.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Choco+Story+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://www.choco-story-brugge.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- De Halve Maan -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/halve-maan.jpg" alt="De Halve Maan">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>De Halve Maan Brewery</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+                    <!-- Choco-Story -->
+                    <div class="place-card" data-id="place-9" data-category="museum" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/choco-story.jpg" alt="Choco-Story">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Choco-Story</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.1</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-cookie"></i> Museum</p>
+                            <div class="description">
+                                <p>Discover the history of chocolate making in this unique museum. Watch live demonstrations, learn about cocoa cultivation, and taste delicious Belgian chocolate. The museum showcases the transformation of cocoa into chocolate through interactive exhibits and demonstrations.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Choco+Story+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://www.choco-story-brugge.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-beer"></i> Brewery</p>
-                    <div class="description">
-                        <p>Bruges' last active city brewery offers fascinating tours of its facilities, including its unique underground beer pipeline. Founded in 1856, this family-owned brewery combines traditional brewing methods with modern technology to create authentic Belgian beers.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 11:00 - 22:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Halve+Maan+Brewery+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://www.halvemaan.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Sint-Salvatorskathedraal -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/sint-salvators.jpg" alt="Sint-Salvatorskathedraal">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Sint-Salvatorskathedraal</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+                    <!-- De Halve Maan -->
+                    <div class="place-card" data-id="place-10" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/halve-maan.jpg" alt="De Halve Maan">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>De Halve Maan Brewery</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-beer"></i> Brewery</p>
+                            <div class="description">
+                                <p>Bruges' last active city brewery offers fascinating tours of its facilities, including its unique underground beer pipeline. Founded in 1856, this family-owned brewery combines traditional brewing methods with modern technology to create authentic Belgian beers.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 11:00 - 22:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=De+Halve+Maan+Brewery+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://www.halvemaan.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-church"></i> Catholic cathedral</p>
-                    <div class="description">
-                        <p>Bruges' oldest parish church, dating back to the 10th century, features remarkable Gothic architecture, precious tapestries, and medieval tombs. The cathedral houses an impressive collection of Flemish primitive paintings and ancient religious artifacts.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 13:00, 14:00 - 17:30</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Sint+Salvatorskathedraal+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.sintsalvatorskathedraal.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Boniface Bridge -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/boniface-bridge.jpg" alt="Boniface Bridge">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Boniface Bridge</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
+                    <!-- Sint-Salvatorskathedraal -->
+                    <div class="place-card" data-id="place-11" data-category="church" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/sint-salvators.jpg" alt="Sint-Salvatorskathedraal">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Sint-Salvatorskathedraal</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-church"></i> Catholic cathedral</p>
+                            <div class="description">
+                                <p>Bruges' oldest parish church, dating back to the 10th century, features remarkable Gothic architecture, precious tapestries, and medieval tombs. The cathedral houses an impressive collection of Flemish primitive paintings and ancient religious artifacts.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 13:00, 14:00 - 17:30</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Sint+Salvatorskathedraal+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.sintsalvatorskathedraal.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-archway"></i> Bridge</p>
-                    <div class="description">
-                        <p>One of Bruges' most picturesque spots, this romantic bridge offers stunning views of medieval architecture reflected in the calm waters below. Though relatively young (built in 1910), it perfectly captures the city's medieval atmosphere.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bonifacius+Bridge+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.visitbruges.be/en/bonifaciusbrug-bonifaciusbridge" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Bruges City Hall -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/city-hall.jpg" alt="Bruges City Hall">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Bruges City Hall</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
+                    <!-- Boniface Bridge -->
+                    <div class="place-card" data-id="place-12" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/boniface-bridge.jpg" alt="Boniface Bridge">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Boniface Bridge</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.7</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-archway"></i> Bridge</p>
+                            <div class="description">
+                                <p>One of Bruges' most picturesque spots, this romantic bridge offers stunning views of medieval architecture reflected in the calm waters below. Though relatively young (built in 1910), it perfectly captures the city's medieval atmosphere.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open 24/7</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Free</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Bonifacius+Bridge+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.visitbruges.be/en/bonifaciusbrug-bonifaciusbridge" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-landmark"></i> Historical Building</p>
-                    <div class="description">
-                        <p>Built in 1376, this Gothic masterpiece is one of the oldest city halls in the Low Countries. The interior features a stunning Gothic Hall with murals depicting Bruges' history and an impressive vaulted ceiling.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bruges+City+Hall" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://www.museabrugge.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Bruges Beer Experience -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/beer-experience.jpg" alt="Bruges Beer Experience">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Bruges Beer Experience</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
+                    <!-- Bruges City Hall -->
+                    <div class="place-card" data-id="place-13" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/city-hall.jpg" alt="Bruges City Hall">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Bruges City Hall</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.6</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-landmark"></i> Historical Building</p>
+                            <div class="description">
+                                <p>Built in 1376, this Gothic masterpiece is one of the oldest city halls in the Low Countries. The interior features a stunning Gothic Hall with murals depicting Bruges' history and an impressive vaulted ceiling.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Bruges+City+Hall" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://www.museabrugge.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-beer"></i> Museum</p>
-                    <div class="description">
-                        <p>Interactive museum dedicated to Belgian beer culture. Learn about brewing processes, ingredients, and beer history through modern exhibits. Includes beer tasting and a panoramic bar with views over the Market Square.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 18:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bruges+Beer+Experience" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://mybeerexperience.com/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Saint John's Hospital -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/saint-johns.jpg" alt="Saint John's Hospital">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Saint John's Hospital</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
+                    <!-- Bruges Beer Experience -->
+                    <div class="place-card" data-id="place-14" data-category="museum" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/beer-experience.jpg" alt="Bruges Beer Experience">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Bruges Beer Experience</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.4</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-beer"></i> Museum</p>
+                            <div class="description">
+                                <p>Interactive museum dedicated to Belgian beer culture. Learn about brewing processes, ingredients, and beer history through modern exhibits. Includes beer tasting and a panoramic bar with views over the Market Square.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 10:00 - 18:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Bruges+Beer+Experience" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://mybeerexperience.com/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-hospital"></i> Museum</p>
-                    <div class="description">
-                        <p>One of Europe's oldest surviving hospital buildings, now a museum showcasing medical instruments, artwork, and documents from its 800-year history. Features masterpieces by Hans Memling in the hospital's church.</p>
-                    </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Saint+Johns+Hospital+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="https://www.museabrugge.be/en/visit-our-museums/our-museums-and-monuments/sint-janshospitaal" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Luc Vanlaere Harpist -->
-            <div class="place-card" data-aos="fade-up">
-                <div class="place-image">
-                    <img src="Data/Places/harpist.jpg" alt="Luc Vanlaere Harpist">
-                </div>
-                <div class="place-content">
-                    <div class="place-header">
-                        <h2>Luc Vanlaere Harpist</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>5.0</span>
+                    <!-- Saint John's Hospital -->
+                    <div class="place-card" data-id="place-15" data-category="museum" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/saint-johns.jpg" alt="Saint John's Hospital">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Saint John's Hospital</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>4.3</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-hospital"></i> Museum</p>
+                            <div class="description">
+                                <p>One of Europe's oldest surviving hospital buildings, now a museum showcasing medical instruments, artwork, and documents from its 800-year history. Features masterpieces by Hans Memling in the hospital's church.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Open: 9:30 - 17:00</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Saint+Johns+Hospital+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="https://www.museabrugge.be/en/visit-our-museums/our-museums-and-monuments/sint-janshospitaal" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <p class="type"><i class="fas fa-music"></i> Concert hall</p>
-                    <div class="description">
-                        <p>Experience enchanting harp concerts in an intimate medieval setting. Luc Vanlaere performs traditional and contemporary pieces on various historical instruments, creating a magical atmosphere in the heart of Bruges.</p>
+
+                    <!-- Luc Vanlaere Harpist -->
+                    <div class="place-card" data-id="place-16" data-category="landmark" data-aos="fade-up">
+                        <div class="place-image">
+                            <img src="Data/Places/harpist.jpg" alt="Luc Vanlaere Harpist">
+                        </div>
+                        <div class="place-content">
+                            <div class="place-header">
+                                <h2>Luc Vanlaere Harpist</h2>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                            </div>
+                            <p class="type"><i class="fas fa-music"></i> Concert hall</p>
+                            <div class="description">
+                                <p>Experience enchanting harp concerts in an intimate medieval setting. Luc Vanlaere performs traditional and contemporary pieces on various historical instruments, creating a magical atmosphere in the heart of Bruges.</p>
+                            </div>
+                            <div class="details">
+                                <p class="hours"><i class="far fa-clock"></i> Concert times vary</p>
+                                <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
+                            </div>
+                            <div class="button-group">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Luc+Vanlaere+Harpist+Bruges" class="directions-btn">
+                                    <i class="fas fa-directions"></i> Get Directions
+                                </a>
+                                <a href="http://www.harpmuziek.be/" class="website-btn" target="_blank">
+                                    <i class="fas fa-globe"></i> Visit Website
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="details">
-                        <p class="hours"><i class="far fa-clock"></i> Concert times vary</p>
-                        <p class="price"><i class="fas fa-ticket-alt"></i> Paid</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Luc+Vanlaere+Harpist+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <a href="http://www.harpmuziek.be/" class="website-btn" target="_blank">
-                            <i class="fas fa-globe"></i> Visit Website
-                        </a>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
-    </main>
+        </main>
 
     <footer>
         <div class="footer-content">
@@ -592,6 +643,5 @@
 
     <script src="js/mobile-menu.js"></script>
     <script src="js/places-view.js" defer></script>
-    <script src="js/selection-manager.js"></script>
 </body>
 </html> 

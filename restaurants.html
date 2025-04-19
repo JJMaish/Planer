@@ -15,13 +15,6 @@
                 <a href="index.html" class="logo">
                     <i class="fas fa-landmark"></i> Bruges Guide
                 </a>
-                <div class="wishlist-nav">
-                    <a href="wishlist.html">
-                        <i class="fas fa-heart"></i>
-                        Wishlist
-                        <span class="wishlist-count">0</span>
-                    </a>
-                </div>
                 <button class="mobile-menu-btn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -39,1058 +32,906 @@
     </header>
 
     <main>
-        <section class="restaurants-hero">
-            <h1>Best Restaurants in Bruges</h1>
-            <p>Discover the finest dining experiences in Bruges</p>
-        </section>
-
-            <div class="view-controls">
-                <button class="view-toggle active" data-view="grid">
-                <i class="fas fa-th-large"></i> Grid
-                </button>
-                <button class="view-toggle" data-view="list">
-                <i class="fas fa-list"></i> List
-                </button>
-            </div>
-
-        <section class="restaurants-container grid-view">
-            <!-- De Republiek -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-1">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-1" class="restaurant-selector" data-id="restaurant-1" data-type="restaurants">
-                    <label for="restaurant-1" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="bannerSlides/banner10.jpg" alt="De Republiek">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Republiek</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Vegetarian/Vegan</p>
-                    <div class="description">
-                        <p>Spacious café with creative plant-based dishes and local beers in a grand setting</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Pub, Café, Terrace</p>
-                        <p class="attributes"><i class="fas fa-star"></i> Popular local hangout</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Republiek+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <button class="wishlist-btn">
-                            <i class="far fa-heart"></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Franco Belge -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-2">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-2" class="restaurant-selector" data-id="restaurant-2" data-type="restaurants">
-                    <label for="restaurant-2" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0004.jpg" alt="Blackbird">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Blackbird</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> International</p>
-                    <div class="description">
-                        <p>Industrial-chic spot known for creative brunch dishes and specialty coffee</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
-                        <p class="attributes"><i class="fas fa-leaf"></i> Vegan options available</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Blackbird+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <button class="wishlist-btn">
-                            <i class="far fa-heart"></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quatre Vins -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-3">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-3" class="restaurant-selector" data-id="restaurant-3" data-type="restaurants">
-                    <label for="restaurant-3" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="bannerSlides/banner10.jpg" alt="Quatre Vins">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Quatre Vins</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Fusion</p>
-                    <div class="description">
-                        <p>Intimate wine-focused bistro with modern shared plates</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner, Terrace</p>
-                        <p class="awards"><i class="fas fa-award"></i> Bib Gourmand</p>
-                        <p class="attributes"><i class="fas fa-wine-glass"></i> Wine pairing emphasis</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Quatre+Vins+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                        <button class="wishlist-btn">
-                            <i class="far fa-heart"></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Le Mystique -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-4">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-4" class="restaurant-selector" data-id="restaurant-4" data-type="restaurants">
-                    <label for="restaurant-4" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0005.jpg" alt="Le Mystique">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Le Mystique</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> French</p>
-                    <div class="description">
-                        <p>Elegant fine dining with seasonal tasting menus in a historic building</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Relais & Chateaux</p>
-                        <p class="attributes"><i class="fas fa-heart"></i> Romantic atmosphere</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Mystique+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cuvee - Bar à vin -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-5">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-5" class="restaurant-selector" data-id="restaurant-5" data-type="restaurants">
-                    <label for="restaurant-5" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0006.jpg" alt="Cuvee - Bar à vin">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Cuvee - Bar à vin</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Wine Bar</p>
-                    <div class="description">
-                        <p>Curated natural wines and small plates in a hip underground space</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Evenings, Terrace</p>
-                        <p class="attributes"><i class="fas fa-leaf"></i> Organic focus</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Cuvee+Bar+a+vin+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Brazila -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-6">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-6" class="restaurant-selector" data-id="restaurant-6" data-type="restaurants">
-                    <label for="restaurant-6" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0007.jpg" alt="Brazila">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Brazila</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Coffee</p>
-                    <div class="description">
-                        <p>Artisanal coffee roaster with Brazilian-inspired brewing methods</p>
-                    </div>
-                    <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> All day</p>
-                        <p class="attributes"><i class="fas fa-coffee"></i> Coffee tasting flights</p>
-                    </div>
-                    <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Brazila+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Barazar -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-7">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-7" class="restaurant-selector" data-id="restaurant-7" data-type="restaurants">
-                    <label for="restaurant-7" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0008.jpg" alt="Barazar">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Barazar</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
-                        </div>
-                        </div>
-                    <p class="type"><i class="fas fa-utensils"></i> International</p>
-                        <div class="description">
-                        <p>Stylish lounge with craft cocktails and seasonal small plates</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Evenings, Terrace</p>
-                        <p class="attributes"><i class="fas fa-music"></i> Live piano nights</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Barazar+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Assiette Blanche -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-8">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-8" class="restaurant-selector" data-id="restaurant-8" data-type="restaurants">
-                    <label for="restaurant-8" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/0009.jpg" alt="Assiette Blanche">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Assiette Blanche</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                        </div>
-                    <p class="type"><i class="fas fa-utensils"></i> French</p>
-                        <div class="description">
-                        <p>Classic French bistro with modern Belgian influences</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
-                        <p class="attributes"><i class="fas fa-landmark"></i> Historic location</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Assiette+Blanche+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Craenenburg -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-9">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-9" class="restaurant-selector" data-id="restaurant-9" data-type="restaurants">
-                    <label for="restaurant-9" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/craenenburg.jpg" alt="Craenenburg">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Craenenburg</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                        </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Flemish</p>
-                        <div class="description">
-                        <p>15th century tavern serving traditional beers and bar snacks</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> All day</p>
-                        <p class="attributes"><i class="fas fa-history"></i> Oldest pub in Bruges</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Craenenburg+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MARO -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-10">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-10" class="restaurant-selector" data-id="restaurant-10" data-type="restaurants">
-                    <label for="restaurant-10" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/maro.jpg" alt="MARO">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>MARO</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
-                        </div>
-                        </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Café</p>
-                        <div class="description">
-                        <p>Quirky café named after the owners' cat, serving homemade pastries</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
-                        <p class="attributes"><i class="fas fa-paw"></i> Pet-friendly</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=MARO+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bie Jimmy -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-11">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-11" class="restaurant-selector" data-id="restaurant-11" data-type="restaurants">
-                    <label for="restaurant-11" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/bie-jimmy.jpg" alt="Bie Jimmy">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Bie Jimmy</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Cocktails</p>
-                        <div class="description">
-                        <p>Parisian-style aperitif bar with inventive craft cocktails</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Evenings</p>
-                        <p class="attributes"><i class="fas fa-graduation-cap"></i> Mixology classes</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bie+Jimmy+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kaffee Kamiel -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-12">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-12" class="restaurant-selector" data-id="restaurant-12" data-type="restaurants">
-                    <label for="restaurant-12" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/kaffee-kamiel.jpg" alt="Kaffee Kamiel">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Kaffee Kamiel</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> International</p>
-                        <div class="description">
-                        <p>Cozy courtyard café specializing in all-day breakfast</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
-                        <p class="attributes"><i class="fas fa-pancakes"></i> Vegan pancakes</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Kaffee+Kamiel+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Le Pain Quotidien -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-13">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-13" class="restaurant-selector" data-id="restaurant-13" data-type="restaurants">
-                    <label for="restaurant-13" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/le-pain-quotidien.jpg" alt="Le Pain Quotidien">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Le Pain Quotidien</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Bakery</p>
-                        <div class="description">
-                        <p>Artisan bakery with organic breads and seasonal toppings</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
-                        <p class="attributes"><i class="fas fa-users"></i> Communal tables</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Pain+Quotidien+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carpe Diem -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-14">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-14" class="restaurant-selector" data-id="restaurant-14" data-type="restaurants">
-                    <label for="restaurant-14" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/carpe-diem.jpg" alt="Carpe Diem">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Carpe Diem</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Flemish</p>
-                        <div class="description">
-                        <p>Traditional Flemish bakery with modern healthy twists</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
-                        <p class="attributes"><i class="fas fa-leaf"></i> Gluten-free options</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Carpe+Diem+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Réliva -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-15">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-15" class="restaurant-selector" data-id="restaurant-15" data-type="restaurants">
-                    <label for="restaurant-15" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/reliva.jpg" alt="Réliva">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Réliva</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Vegetarian</p>
-                        <div class="description">
-                        <p>Farm-to-table restaurant focusing on nutritious, balanced meals</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
-                        <p class="attributes"><i class="fas fa-seedling"></i> Organic garden</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Reliva+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bruut -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-16">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-16" class="restaurant-selector" data-id="restaurant-16" data-type="restaurants">
-                    <label for="restaurant-16" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/bruut.jpg" alt="Bruut">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Bruut</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Eco-conscious dining with hyper-local ingredients and zero waste</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
-                        <p class="attributes"><i class="fas fa-chair"></i> Chef's counter seats</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bruut+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Gastro -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-17">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-17" class="restaurant-selector" data-id="restaurant-17" data-type="restaurants">
-                    <label for="restaurant-17" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-gastro.jpg" alt="De Gastro">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Gastro</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Modern bistro serving creative Belgian cuisine with seasonal ingredients</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
-                        <p class="attributes"><i class="fas fa-wine-glass"></i> Extensive wine list</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gastro+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bistro Pro Deo -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-18">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-18" class="restaurant-selector" data-id="restaurant-18" data-type="restaurants">
-                    <label for="restaurant-18" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/bistro-pro-deo.jpg" alt="Bistro Pro Deo">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Bistro Pro Deo</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> French</p>
-                        <div class="description">
-                        <p>Cozy French bistro with classic dishes and daily specials</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="attributes"><i class="fas fa-clock"></i> Daily specials</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Bistro+Pro+Deo+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Stove -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-19">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-19" class="restaurant-selector" data-id="restaurant-19" data-type="restaurants">
-                    <label for="restaurant-19" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-stove.jpg" alt="De Stove">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Stove</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Intimate restaurant serving refined Belgian cuisine with modern touches</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
-                        <p class="attributes"><i class="fas fa-home"></i> Historic building</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Stove+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Den Dyver -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-20">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-20" class="restaurant-selector" data-id="restaurant-20" data-type="restaurants">
-                    <label for="restaurant-20" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/den-dyver.jpg" alt="Den Dyver">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>Den Dyver</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Michelin-starred restaurant with beer-pairing menus</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Star</p>
-                        <p class="attributes"><i class="fas fa-beer"></i> Beer pairing</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Den+Dyver+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Karmeliet -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-21">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-21" class="restaurant-selector" data-id="restaurant-21" data-type="restaurants">
-                    <label for="restaurant-21" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-karmeliet.jpg" alt="De Karmeliet">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Karmeliet</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.8</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> French</p>
-                        <div class="description">
-                        <p>Three Michelin-starred restaurant offering refined French cuisine</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> 3 Michelin Stars</p>
-                        <p class="attributes"><i class="fas fa-crown"></i> Luxury dining</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Karmeliet+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-22">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-22" class="restaurant-selector" data-id="restaurant-22" data-type="restaurants">
-                    <label for="restaurant-22" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-visscherie.jpg" alt="De Visscherie">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Visscherie</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
-                        <div class="description">
-                        <p>Specialized seafood restaurant with fresh catches and creative preparations</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
-                        <p class="attributes"><i class="fas fa-fish"></i> Fresh seafood</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Belegde Boterham -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-23">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-23" class="restaurant-selector" data-id="restaurant-23" data-type="restaurants">
-                    <label for="restaurant-23" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-belegde-boterham.jpg" alt="De Belegde Boterham">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Belegde Boterham</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.4</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Cafe</p>
-                        <div class="description">
-                        <p>Charming cafe known for its gourmet sandwiches and homemade soups</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
-                        <p class="attributes"><i class="fas fa-bread-slice"></i> Artisanal bread</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Belegde+Boterham+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Bottelier -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-24">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-24" class="restaurant-selector" data-id="restaurant-24" data-type="restaurants">
-                    <label for="restaurant-24" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-bottelier.jpg" alt="De Bottelier">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Bottelier</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Traditional Belgian restaurant with a focus on seafood and local specialties</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="attributes"><i class="fas fa-umbrella-beach"></i> Canal-side dining</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Bottelier+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Bron -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-25">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-25" class="restaurant-selector" data-id="restaurant-25" data-type="restaurants">
-                    <label for="restaurant-25" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-bron.jpg" alt="De Bron">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Bron</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.3</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Traditional Belgian restaurant serving classic dishes in a historic setting</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="attributes"><i class="fas fa-history"></i> Historic building</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Bron+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Gouden Harynck -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-26">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-26" class="restaurant-selector" data-id="restaurant-26" data-type="restaurants">
-                    <label for="restaurant-26" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-gouden-harynck.jpg" alt="De Gouden Harynck">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Gouden Harynck</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> French</p>
-                        <div class="description">
-                        <p>Michelin-starred restaurant offering refined French cuisine in an elegant setting</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> 1 Michelin Star</p>
-                        <p class="attributes"><i class="fas fa-wine-glass-alt"></i> Wine pairing</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gouden+Harynck+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Vlaamsche Pot -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-27">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-27" class="restaurant-selector" data-id="restaurant-27" data-type="restaurants">
-                    <label for="restaurant-27" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-vlaamsche-pot.jpg" alt="De Vlaamsche Pot">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Vlaamsche Pot</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.5</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
-                        <div class="description">
-                        <p>Traditional Flemish restaurant serving hearty local dishes in a cozy atmosphere</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
-                        <p class="attributes"><i class="fas fa-fire"></i> Traditional cooking</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Vlaamsche+Pot+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-28">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-28" class="restaurant-selector" data-id="restaurant-28" data-type="restaurants">
-                    <label for="restaurant-28" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-visscherie-2.jpg" alt="De Visscherie">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Visscherie</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.6</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
-                        <div class="description">
-                        <p>Elegant seafood restaurant with a focus on fresh, local ingredients</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
-                        <p class="attributes"><i class="fas fa-fish"></i> Fresh seafood</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- De Visscherie -->
-            <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-29">
-                <div class="selection-control">
-                    <input type="checkbox" id="restaurant-29" class="restaurant-selector" data-id="restaurant-29" data-type="restaurants">
-                    <label for="restaurant-29" class="selection-label">
-                        <i class="fas fa-check"></i>
-                    </label>
-                </div>
-                <div class="restaurant-image">
-                    <img src="Data/Restaurants/de-visscherie-3.jpg" alt="De Visscherie">
-                </div>
-                <div class="restaurant-content">
-                    <div class="restaurant-header">
-                        <h2>De Visscherie</h2>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <span>4.7</span>
-                        </div>
-                    </div>
-                    <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
-                        <div class="description">
-                        <p>Upscale seafood restaurant with innovative dishes and an extensive wine list</p>
-                        </div>
-                        <div class="details">
-                        <p class="features"><i class="fas fa-tags"></i> Dinner</p>
-                        <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
-                        <p class="attributes"><i class="fas fa-wine-glass-alt"></i> Wine pairing</p>
-                        </div>
-                        <div class="button-group">
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
-                            <i class="fas fa-directions"></i> Get Directions
-                            </a>
-                    </div>
-                </div>
+        <section class="page-hero">
+            <div class="hero-content">
+                <h1>Best Restaurants in Bruges</h1>
+                <p>Discover the finest dining experiences in Bruges</p>
             </div>
         </section>
+
+        <div class="view-controls">
+            <div class="filter-container">
+                <select class="filter-dropdown">
+                    <option value="all">All Restaurants</option>
+                    <option value="belgian">Belgian</option>
+                    <option value="french">French</option>
+                    <option value="international">International</option>
+                    <option value="vegetarian">Vegetarian/Vegan</option>
+                    <option value="seafood">Seafood</option>
+                    <option value="cafe">Café & Coffee</option>
+                    <option value="wine">Wine & Cocktails</option>
+                    <option value="bakery">Bakery</option>
+                    <option value="pub">Pub</option>
+                    <option value="american">American</option>
+                    <option value="asian">Asian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="mediterranean">Mediterranean</option>
+                    <option value="italian">Italian</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="halal">حلال</option>
+                </select>
+            </div>
+            <button class="view-toggle active" data-view="grid">
+            <i class="fas fa-th-large"></i> Grid
+            </button>
+            <button class="view-toggle" data-view="list">
+            <i class="fas fa-list"></i> List
+            </button>
+        </div>
+
+        <div class="container-wrapper">
+            <section class="restaurants-container grid-view">
+                <div id="no-results" class="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No restaurants found</h3>
+                    <p>No restaurants match your current filter. Please try a different category.</p>
+                </div>
+                
+                <!-- De Republiek -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-1">
+                    <div class="restaurant-image">
+                        <img src="bannerSlides/banner10.jpg" alt="De Republiek">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Republiek</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Vegetarian/Vegan</p>
+                        <div class="description">
+                            <p>Spacious café with creative plant-based dishes and local beers in a grand setting</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Pub, Café, Terrace</p>
+                            <p class="attributes"><i class="fas fa-star"></i> Popular local hangout</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Republiek+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Franco Belge -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-2">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0004.jpg" alt="Blackbird">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Blackbird</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> International</p>
+                        <div class="description">
+                            <p>Industrial-chic spot known for creative brunch dishes and specialty coffee</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
+                            <p class="attributes"><i class="fas fa-leaf"></i> Vegan options available</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Blackbird+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quatre Vins -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-3">
+                    <div class="restaurant-image">
+                        <img src="bannerSlides/banner10.jpg" alt="Quatre Vins">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Quatre Vins</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Fusion</p>
+                        <div class="description">
+                            <p>Intimate wine-focused bistro with modern shared plates</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner, Terrace</p>
+                            <p class="awards"><i class="fas fa-award"></i> Bib Gourmand</p>
+                            <p class="attributes"><i class="fas fa-wine-glass"></i> Wine pairing emphasis</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Quatre+Vins+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Le Mystique -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-4">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0005.jpg" alt="Le Mystique">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Le Mystique</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> French</p>
+                        <div class="description">
+                            <p>Elegant fine dining with seasonal tasting menus in a historic building</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Relais & Chateaux</p>
+                            <p class="attributes"><i class="fas fa-heart"></i> Romantic atmosphere</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Mystique+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cuvee - Bar à vin -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-5">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0006.jpg" alt="Cuvee - Bar à vin">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Cuvee - Bar à vin</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Wine Bar</p>
+                        <div class="description">
+                            <p>Curated natural wines and small plates in a hip underground space</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Evenings, Terrace</p>
+                            <p class="attributes"><i class="fas fa-leaf"></i> Organic focus</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Cuvee+Bar+a+vin+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brazila -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-6">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0007.jpg" alt="Brazila">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Brazila</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Coffee</p>
+                        <div class="description">
+                            <p>Artisanal coffee roaster with Brazilian-inspired brewing methods</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> All day</p>
+                            <p class="attributes"><i class="fas fa-coffee"></i> Coffee tasting flights</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Brazila+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barazar -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-7">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0008.jpg" alt="Barazar">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Barazar</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> International</p>
+                        <div class="description">
+                            <p>Stylish lounge with craft cocktails and seasonal small plates</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Evenings, Terrace</p>
+                            <p class="attributes"><i class="fas fa-music"></i> Live piano nights</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Barazar+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assiette Blanche -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-8">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/0009.jpg" alt="Assiette Blanche">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Assiette Blanche</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> French</p>
+                        <div class="description">
+                            <p>Classic French bistro with modern Belgian influences</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
+                            <p class="attributes"><i class="fas fa-landmark"></i> Historic location</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Assiette+Blanche+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Craenenburg -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-9">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/craenenburg.jpg" alt="Craenenburg">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Craenenburg</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Flemish</p>
+                        <div class="description">
+                            <p>15th century tavern serving traditional beers and bar snacks</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> All day</p>
+                            <p class="attributes"><i class="fas fa-history"></i> Oldest pub in Bruges</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Craenenburg+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MARO -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-10">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/maro.jpg" alt="MARO">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>MARO</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Café</p>
+                        <div class="description">
+                            <p>Quirky café named after the owners' cat, serving homemade pastries</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
+                            <p class="attributes"><i class="fas fa-paw"></i> Pet-friendly</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=MARO+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bie Jimmy -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-11">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/bie-jimmy.jpg" alt="Bie Jimmy">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Bie Jimmy</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Cocktails</p>
+                        <div class="description">
+                            <p>Parisian-style aperitif bar with inventive craft cocktails</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Evenings</p>
+                            <p class="attributes"><i class="fas fa-graduation-cap"></i> Mixology classes</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bie+Jimmy+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kaffee Kamiel -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-12">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/kaffee-kamiel.jpg" alt="Kaffee Kamiel">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Kaffee Kamiel</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> International</p>
+                        <div class="description">
+                            <p>Cozy courtyard café specializing in all-day breakfast</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Brunch</p>
+                            <p class="attributes"><i class="fas fa-pancakes"></i> Vegan pancakes</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Kaffee+Kamiel+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Le Pain Quotidien -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-13">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/le-pain-quotidien.jpg" alt="Le Pain Quotidien">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Le Pain Quotidien</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Bakery</p>
+                        <div class="description">
+                            <p>Artisan bakery with organic breads and seasonal toppings</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
+                            <p class="attributes"><i class="fas fa-users"></i> Communal tables</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Le+Pain+Quotidien+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carpe Diem -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-14">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/carpe-diem.jpg" alt="Carpe Diem">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Carpe Diem</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Flemish</p>
+                        <div class="description">
+                            <p>Traditional Flemish bakery with modern healthy twists</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
+                            <p class="attributes"><i class="fas fa-leaf"></i> Gluten-free options</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Carpe+Diem+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Réliva -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-15">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/reliva.jpg" alt="Réliva">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Réliva</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Vegetarian</p>
+                        <div class="description">
+                            <p>Farm-to-table restaurant focusing on nutritious, balanced meals</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
+                            <p class="attributes"><i class="fas fa-seedling"></i> Organic garden</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Reliva+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bruut -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-16">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/bruut.jpg" alt="Bruut">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Bruut</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Eco-conscious dining with hyper-local ingredients and zero waste</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Gault&Millau</p>
+                            <p class="attributes"><i class="fas fa-chair"></i> Chef's counter seats</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bruut+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Gastro -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-17">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-gastro.jpg" alt="De Gastro">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Gastro</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Modern bistro serving creative Belgian cuisine with seasonal ingredients</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
+                            <p class="attributes"><i class="fas fa-wine-glass"></i> Extensive wine list</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gastro+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bistro Pro Deo -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-18">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/bistro-pro-deo.jpg" alt="Bistro Pro Deo">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Bistro Pro Deo</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> French</p>
+                        <div class="description">
+                            <p>Cozy French bistro with classic dishes and daily specials</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="attributes"><i class="fas fa-clock"></i> Daily specials</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Bistro+Pro+Deo+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Stove -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-19">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-stove.jpg" alt="De Stove">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Stove</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Intimate restaurant serving refined Belgian cuisine with modern touches</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
+                            <p class="attributes"><i class="fas fa-home"></i> Historic building</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Stove+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Den Dyver -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-20">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/den-dyver.jpg" alt="Den Dyver">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>Den Dyver</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Michelin-starred restaurant with beer-pairing menus</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Star</p>
+                            <p class="attributes"><i class="fas fa-beer"></i> Beer pairing</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=Den+Dyver+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Karmeliet -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-21">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-karmeliet.jpg" alt="De Karmeliet">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Karmeliet</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> French</p>
+                        <div class="description">
+                            <p>Three Michelin-starred restaurant offering refined French cuisine</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> 3 Michelin Stars</p>
+                            <p class="attributes"><i class="fas fa-crown"></i> Luxury dining</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Karmeliet+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Visscherie -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-22">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-visscherie.jpg" alt="De Visscherie">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Visscherie</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
+                        <div class="description">
+                            <p>Specialized seafood restaurant with fresh catches and creative preparations</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
+                            <p class="attributes"><i class="fas fa-fish"></i> Fresh seafood</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Belegde Boterham -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-23">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-belegde-boterham.jpg" alt="De Belegde Boterham">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Belegde Boterham</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.4</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Cafe</p>
+                        <div class="description">
+                            <p>Charming cafe known for its gourmet sandwiches and homemade soups</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Breakfast, Lunch</p>
+                            <p class="attributes"><i class="fas fa-bread-slice"></i> Artisanal bread</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Belegde+Boterham+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Bottelier -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-24">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-bottelier.jpg" alt="De Bottelier">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Bottelier</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Traditional Belgian restaurant with a focus on seafood and local specialties</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="attributes"><i class="fas fa-umbrella-beach"></i> Canal-side dining</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Bottelier+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Bron -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-25">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-bron.jpg" alt="De Bron">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Bron</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.3</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Traditional Belgian restaurant serving classic dishes in a historic setting</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="attributes"><i class="fas fa-history"></i> Historic building</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Bron+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Gouden Harynck -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-26">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-gouden-harynck.jpg" alt="De Gouden Harynck">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Gouden Harynck</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> French</p>
+                        <div class="description">
+                            <p>Michelin-starred restaurant offering refined French cuisine in an elegant setting</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> 1 Michelin Star</p>
+                            <p class="attributes"><i class="fas fa-wine-glass-alt"></i> Wine pairing</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Gouden+Harynck+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Vlaamsche Pot -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-27">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-vlaamsche-pot.jpg" alt="De Vlaamsche Pot">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Vlaamsche Pot</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.5</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Belgian</p>
+                        <div class="description">
+                            <p>Traditional Flemish restaurant serving hearty local dishes in a cozy atmosphere</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Lunch, Dinner</p>
+                            <p class="attributes"><i class="fas fa-fire"></i> Traditional cooking</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Vlaamsche+Pot+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Visscherie -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-28">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-visscherie-2.jpg" alt="De Visscherie">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Visscherie</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
+                        <div class="description">
+                            <p>Elegant seafood restaurant with a focus on fresh, local ingredients</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
+                            <p class="attributes"><i class="fas fa-fish"></i> Fresh seafood</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- De Visscherie -->
+                <div class="restaurant-card" data-aos="fade-up" data-id="restaurant-29">
+                    <div class="restaurant-image">
+                        <img src="Data/Restaurants/de-visscherie-3.jpg" alt="De Visscherie">
+                    </div>
+                    <div class="restaurant-content">
+                        <div class="restaurant-header">
+                            <h2>De Visscherie</h2>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="type"><i class="fas fa-utensils"></i> Seafood</p>
+                        <div class="description">
+                            <p>Upscale seafood restaurant with innovative dishes and an extensive wine list</p>
+                        </div>
+                        <div class="details">
+                            <p class="features"><i class="fas fa-tags"></i> Dinner</p>
+                            <p class="awards"><i class="fas fa-award"></i> Michelin Plate</p>
+                            <p class="attributes"><i class="fas fa-wine-glass-alt"></i> Wine pairing</p>
+                        </div>
+                        <div class="button-group">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=De+Visscherie+Bruges" class="directions-btn">
+                                <i class="fas fa-directions"></i> Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>

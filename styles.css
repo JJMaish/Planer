@@ -15,7 +15,8 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
+    background-color: var(--background);
 }
 
 /* Disable smooth scrolling on mobile devices */
@@ -31,8 +32,11 @@ body {
     --secondary-color: #2c3e50;
     --accent-color: #e74c3c;
     --text-color: #333;
+    --text-secondary: #666;
+    --background: #ffffff;
     --light-bg: #f8f9fa;
     --dark-bg: #1a1a1a;
+    --card-background: #ffffff;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -51,21 +55,126 @@ body {
     --menu-active-color: white;
     --border-color: #e9ecef;
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --danger-light: #f8d7da;
+    --danger-dark: #721c24;
+    --primary-color-light: #aed6f1;
+    --primary-color-dark: #2980b9;
+    --dark-card-background: #2c2c2c;
+    --dark-border-color: #444;
+    --text-secondary-dark: #adb5bd;
+    --text-color-dark: #e9ecef;
 }
 
 /* Dark Mode */
 [data-theme="dark"] {
-    --text-color: #fff;
+    --text-color: var(--text-color-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --background: var(--dark-bg);
     --light-bg: #1a1a1a;
     --dark-bg: #2c2c2c;
+    --card-background: var(--dark-card-background);
     --link-color: #5dade2;
     --link-hover-color: #3498db;
     --subcategory-bg: #2c2c2c;
     --subcategory-active-bg: #3498db;
     --menu-bg: #1a1a1a;
     --menu-hover-bg: #2c2c2c;
-    --border-color: #444;
+    --border-color: var(--dark-border-color);
     --shadow-color: rgba(0, 0, 0, 0.3);
+    --danger-light: #491217;
+    --danger-dark: #f5c6cb;
+    --primary-color-light: #2980b9;
+    --primary-color-dark: #3498db;
+}
+
+/* Base Transitions */
+button,
+a,
+input,
+select,
+textarea,
+.card,
+.info-card,
+.highlight-card,
+.service-card,
+.tour-card,
+.event-card,
+.place-card,
+.restaurant-card,
+.gallery-item,
+.filter-btn,
+.category-btn,
+.subcategory-link,
+.view-toggle,
+.nav-links a,
+.logo,
+.mobile-menu-btn,
+.back-to-top,
+.cta-button,
+.explore-btn,
+.directions-btn,
+.visit-btn,
+.browse-btn,
+.maps-link,
+.action-btn,
+.website-btn,
+.remove-selection,
+.remove-wishlist-item,
+.budget-option,
+.login-btn,
+.theme-toggle,
+.timeline-item {
+    transition: var(--transition);
+}
+
+/* Micro Transitions on Interaction */
+a:hover,
+a:focus,
+button:hover,
+button:focus,
+button.active,
+input:focus,
+select:focus,
+textarea:focus,
+.card:hover,
+.info-card:hover,
+.highlight-card:hover,
+.service-card:hover,
+.tour-card:hover,
+.event-card:hover,
+.place-card:hover,
+.restaurant-card:hover,
+.gallery-item:hover,
+.filter-btn:hover,
+.filter-btn.active,
+.category-btn:hover,
+.category-btn.active,
+.subcategory-link:hover,
+.subcategory-link.active,
+.view-toggle:hover,
+.view-toggle.active,
+.nav-links a:hover,
+.nav-links a:focus,
+.nav-links a.active,
+.logo:hover,
+.mobile-menu-btn:hover,
+.back-to-top:hover,
+.cta-button:hover,
+.explore-btn:hover,
+.directions-btn:hover,
+.visit-btn:hover,
+.browse-btn:hover,
+.maps-link:hover,
+.action-btn:hover,
+.website-btn:hover,
+.remove-selection:hover,
+.remove-wishlist-item:hover,
+.budget-option:hover,
+.budget-option input:checked + .budget-label,
+.login-btn:hover,
+.theme-toggle:hover,
+.timeline-item:hover .timeline-item::before {
+    transition: var(--transition-micro);
 }
 
 /* Navigation */
@@ -81,11 +190,16 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .logo a {
@@ -93,6 +207,35 @@ body {
     font-weight: bold;
     color: var(--primary-color);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wishlist-nav {
+    margin-left: 1rem;
+}
+
+.wishlist-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.wishlist-count {
+    background-color: var(--primary-color);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
 }
 
 .nav-links {
@@ -111,6 +254,13 @@ body {
     transition: color 0.3s ease;
     padding: 0.5rem 0;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a i {
+    font-size: 1rem;
 }
 
 .nav-links a:hover {
@@ -130,6 +280,105 @@ body {
     width: 100%;
     height: 2px;
     background-color: var(--primary-color);
+}
+
+/* Mobile menu styles */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-container {
+        padding: 0.6rem 1rem;
+    }
+    
+    .logo a {
+        font-size: 1.3rem;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+        order: 3;
+    }
+    
+    .wishlist-nav {
+        order: 2;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+    
+    .wishlist-nav a {
+        font-size: 0.85rem;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--menu-bg);
+        flex-direction: column;
+        padding: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        gap: 0;
+        z-index: 1000;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a {
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        font-size: 0.95rem;
+    }
+    
+    .nav-links a i {
+        font-size: 0.95rem;
+        width: 20px;
+    }
+    
+    .nav-links a.active::after {
+        display: none;
+    }
+    
+    .nav-links a.active {
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .nav-links a i {
+        font-size: 0.85rem;
+    }
+    
+    .logo a {
+        font-size: 1.2rem;
+    }
 }
 
 /* Subcategories Navigation - Consistent styling across all pages */
@@ -1162,46 +1411,8 @@ footer {
     visibility: visible;
 }
 
-/* Mobile menu styles */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-@media screen and (max-width: 768px) {
-    .mobile-menu-btn {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--background);
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-    }
-
-    .main-header nav {
-        position: relative;
-    }
-}
+/* Remove duplicate mobile menu styles */
+/* Instead, we use the comprehensive styles defined earlier */
 
 /* Add these to your existing CSS */
 .nav-links {
@@ -1234,6 +1445,9 @@ footer {
     .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
     .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
     .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+    .nav-links.active li:nth-child(5) { animation-delay: 0.5s; }
+    .nav-links.active li:nth-child(6) { animation-delay: 0.6s; }
+    .nav-links.active li:nth-child(7) { animation-delay: 0.7s; }
 }
 
 /* Responsive content layouts */
@@ -1947,15 +2161,26 @@ footer {
 
 /* Planner Page Styles */
 .planner-hero {
-    background: var(--primary-color);
-    color: white;
-    padding: 4rem 2rem;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('bannerSlides/banner10.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: white;
+    margin-bottom: 1.5rem;
 }
 
 .planner-hero h1 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .planner-content {
@@ -2032,11 +2257,11 @@ footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .planner-hero {
-        padding: 3rem 1rem;
+        height: 25vh;
     }
-
+    
     .planner-hero h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .planner-content {
@@ -2446,148 +2671,22 @@ input[type="checkbox"]:focus + span {
     border: 1px solid var(--primary-color);
 }
 
-.wishlist-nav {
-    position: relative;
-    margin-left: 1rem;
-}
-
-.wishlist-nav a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: var(--transition);
-    font-weight: 500;
-}
-
-.wishlist-nav a:hover {
-    background-color: var(--link-hover-color);
-    transform: translateY(-2px);
-}
-
-.wishlist-count {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 50%;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-left: 0.5rem;
-    padding: 0 0.25rem;
-}
-
-/* Selection Controls */
-.selection-control {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 2;
-}
-
-.selection-control input[type="checkbox"] {
-    display: none;
-}
-
-.selection-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.selection-label i {
-    color: var(--primary-color);
-    font-size: 1rem;
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.selection-control input[type="checkbox"]:checked + .selection-label {
-    background-color: var(--primary-color);
-}
-
-.selection-control input[type="checkbox"]:checked + .selection-label i {
-    color: white;
-    opacity: 1;
-}
-
-/* Selected State */
-.restaurant-card.selected {
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .wishlist-nav {
-        margin-left: 0.5rem;
-    }
-
-    .wishlist-nav a {
-        padding: 0.5rem;
-    }
-
-    .selection-label {
-        width: 28px;
-        height: 28px;
-    }
-
-    .selection-label i {
-        font-size: 0.875rem;
-    }
-}
-
-/* Dark Mode Adjustments */
-[data-theme="dark"] .selection-label {
-    background-color: var(--dark-bg);
-}
-
-[data-theme="dark"] .restaurant-card.selected {
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
 /* Common Transitions */
-.btn,
-.nav-links a,
-.wishlist-nav a,
+button,
+a,
 .card,
-.gallery-item,
-.place-card,
-.restaurant-card,
+.info-card,
+.highlight-card,
+.service-card,
 .tour-card,
-.event-card,
-.filter-dropdown,
-.view-toggle,
+.gallery-item,
 .filter-btn,
+.nav-links a,
+.logo,
 .mobile-menu-btn,
-.lightbox,
-.lightbox-content,
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next,
-input,
-select,
-textarea,
-.selection-control,
-.footer-section a,
-.loading,
-.error,
-.success {
+.back-to-top,
+.cta-button,
+.explore-btn {
     transition: var(--transition);
 }
 
@@ -2641,5 +2740,57 @@ textarea:focus,
     .footer-section a:hover {
         transition: none;
         transform: none !important;
+    }
+}
+
+/* Common Hero Section Style for All Pages */
+.page-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('bannerSlides/banner10.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.page-hero .hero-content {
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.page-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        height: 25vh;
+        padding: 1rem;
+    }
+    
+    .page-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-hero p {
+        font-size: 1rem;
     }
 } 

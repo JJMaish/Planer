@@ -19,41 +19,6 @@
     padding: 1rem;
 }
 
-.planner-hero {
-    position: relative;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    padding: 4rem 2rem;
-    margin-bottom: 3rem;
-    color: white;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.planner-hero::before {
-    content: '<image not available>';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1.2rem;
-    z-index: 1;
-}
-
-.planner-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.planner-hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 .planner-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -330,6 +295,7 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* Use page-hero styles from styles.css instead 
     .planner-hero h1 {
         font-size: 2rem;
     }
@@ -337,6 +303,7 @@
     .planner-hero p {
         font-size: 1rem;
     }
+    */
     
     .date-inputs {
         grid-template-columns: 1fr;
@@ -356,9 +323,11 @@
 }
 
 @media (max-width: 480px) {
+    /* Use page-hero styles from styles.css instead
     .planner-hero h1 {
         font-size: 1.8rem;
     }
+    */
     
     .interest-options, .budget-options, .tours-options {
         grid-template-columns: 1fr;

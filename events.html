@@ -27,18 +27,21 @@
                 <li><a href="tours.html"><i class="fas fa-ship"></i> Tours</a></li>
                 <li><a href="events.html" class="active"><i class="fas fa-calendar"></i> Events</a></li>
                 <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="planner.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
+                <li><a href="BrugesTourMaster/client/Masterplan.html"><i class="fas fa-clipboard-list"></i> Plan</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section class="events-hero">
-            <h1>Upcoming Events in Bruges</h1>
-            <p>Discover exciting festivals, concerts, and cultural events in the heart of Bruges</p>
+        <!-- Hero Section -->
+        <section class="page-hero">
+            <div class="hero-content">
+                <h1>Upcoming Events in Bruges</h1>
+                <p>Discover the vibrant cultural calendar of Bruges throughout the year</p>
+            </div>
         </section>
 
-        <div class="gallery-filters">
+        <section class="gallery-controls">
             <div class="view-controls">
                 <div class="filter-container">
                     <select class="filter-dropdown">
@@ -50,14 +53,16 @@
                         <option value="sports">Sports</option>
                     </select>
                 </div>
-                <button class="view-toggle active" data-view="grid">
-                    <i class="fas fa-th"></i> Grid View
-                </button>
-                <button class="view-toggle" data-view="list">
-                    <i class="fas fa-list"></i> List View
-                </button>
+                <div class="view-buttons">
+                    <button class="view-toggle active" data-view="grid">
+                        <i class="fas fa-th"></i> Grid View
+                    </button>
+                    <button class="view-toggle" data-view="list">
+                        <i class="fas fa-list"></i> List View
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
 
         <section class="events-container grid-view">
             <!-- Bruges Beer Festival -->
