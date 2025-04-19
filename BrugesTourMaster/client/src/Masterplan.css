@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --text-color: #333;
+  --text-secondary: #666;
+  --background: #ffffff;
+  --light-bg: #f8f9fa;
+  --dark-bg: #1a1a1a;
+  --card-background: #ffffff;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-micro: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --header-height: 60px;
+  --container-padding: 20px;
+  --primary-color-rgb: 52, 152, 219;
+  --link-color: #3498db;
+  --link-hover-color: #2980b9;
+  --subcategory-bg: #f8f9fa;
+  --subcategory-active-bg: #3498db;
+  --subcategory-active-color: white;
+  --menu-bg: white;
+  --menu-hover-bg: #f8f9fa;
+  --menu-active-bg: #3498db;
+  --menu-active-color: white;
+  --border-color: #e9ecef;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --danger-light: #f8d7da;
+  --danger-dark: #721c24;
+  --primary-color-light: #aed6f1;
+  --primary-color-dark: #2980b9;
+  --dark-card-background: #2c2c2c;
+  --dark-border-color: #444;
+  --text-secondary-dark: #adb5bd;
+  --text-color-dark: #e9ecef;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Fix for button styling */
+.btn,
+button[type="submit"],
+button[type="button"],
+button.primary {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn:hover,
+button[type="submit"]:hover,
+button[type="button"]:hover,
+button.primary:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.btn:disabled,
+button[type="submit"]:disabled,
+button[type="button"]:disabled,
+button.primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: #1a2530;
+}
